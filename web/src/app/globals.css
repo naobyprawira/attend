@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --color-primary: #4154f1;
+  --color-primary-light: #f6f6fe;
+  --color-heading: #012970;
+  --color-body: #444444;
+  --color-muted: #899bbd;
+  --color-secondary: #6c757d;
+  --color-success: #198754;
+  --color-danger: #dc3545;
+  --color-warning: #ffc107;
+  --color-bg: #f6f9ff;
+  --color-card: #ffffff;
+  --color-border: #e8e8e8;
+  --shadow-card: 0px 0px 30px rgba(1, 41, 112, 0.1);
+  --shadow-sidebar: 0px 0px 20px rgba(1, 41, 112, 0.1);
+  --shadow-header: 0px 2px 20px rgba(1, 41, 112, 0.1);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-body);
+  font-family: "Open Sans", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Nunito", "Open Sans", sans-serif;
+  color: var(--color-heading);
+}
+
+.font-mono {
+  font-family: "JetBrains Mono", "Courier New", ui-monospace, monospace;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a1a1a1; }
+
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

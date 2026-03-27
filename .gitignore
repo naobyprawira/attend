@@ -1,0 +1,32 @@
+__pycache__/
+*.pyc
+venv/
+.env
+*.db
+
+# YOLO model (auto-downloads)
+*.pt
+
+# ONNX model (converted from DeepFace)
+*.onnx
+
+# Next.js
+web/node_modules/
+web/.next/
+web/out/
+
+# IDE
+.vscode/
+.idea/
+
+# MCP config (contains API keys)
+.mcp.json
+
+# Known faces (user data)
+server/known_faces/
+
+# Debug crops
+server/debug_crops/
+
+# DeepFace weights
+.deepface/
