@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#e4e2e3",
+              "on-tertiary-container": "#a1e074",
+              "outline": "#85727b",
+              "surface-tint": "#9a3979",
+              "on-tertiary": "#ffffff",
+              "tertiary": "#204a00",
+              "error-container": "#ffdad6",
+              "surface-container": "#efedee",
+              "surface-container-low": "#f5f3f4",
+              "on-error": "#ffffff",
+              "on-primary-fixed": "#3c002b",
+              "primary-fixed": "#ffd8eb",
+              "on-surface-variant": "#53424a",
+              "tertiary-fixed": "#b4f485",
+              "surface-bright": "#fbf9fa",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "primary-container": "#923272",
+              "surface-dim": "#dbd9da",
+              "on-background": "#1b1c1d",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#e9e8e9",
+              "on-error-container": "#93000a",
+              "secondary-container": "#e3e0f2",
+              "secondary-fixed": "#e3e0f2",
+              "on-tertiary-fixed-variant": "#245100",
+              "inverse-on-surface": "#f2f0f1",
+              "on-primary-container": "#ffb9df",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "on-secondary-container": "#646372",
+              "on-tertiary-fixed": "#0b2000",
+              "on-secondary": "#ffffff",
+              "outline-variant": "#d8c0ca",
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed-variant": "#464553",
+              "surface-container-highest": "#e4e2e3",
+              "background": "#fbf9fa",
+              "tertiary-container": "#2e6400",
+              "on-secondary-fixed": "#1a1a27",
+              "on-surface": "#1b1c1d",
+              "inverse-surface": "#303031",
+              "secondary-fixed-dim": "#c7c5d6",
+              "tertiary-fixed-dim": "#99d76c",
+              "primary": "#751859"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #751859 0%, #923272 100%);
+        }
+        .confidence-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<!-- Sidebar (SideNavBar) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-[#1a1a27] dark:bg-[#0f0f16] flex flex-col z-40 font-['Inter'] antialiased tracking-tight text-sm">
+<div class="px-6 py-8 flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-primary-gradient flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-white tracking-tighter">Attend.AI</h1>
+<p class="text-[10px] text-white/50 uppercase tracking-[0.1em]">Enterprise Surveillance</p>
+</div>
+</div>
+<nav class="flex-1 px-0 mt-4 overflow-y-auto">
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="bg-[#751859] text-white border-l-4 border-[#923272] flex items-center px-6 py-3 ml-0" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">videocam</span>
+<span class="font-medium">Live View</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span>Person Management</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">event_available</span>
+<span>Attendance</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">assessment</span>
+<span>Reports</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">notification_important</span>
+<span>Event Center</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">person_add</span>
+<span>Visitor Management</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">lock_open</span>
+<span>Access Control</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">insert_chart</span>
+<span>Analytics</span>
+</a>
+<div class="mt-auto pb-8">
+<a class="text-white/70 hover:text-white flex items-center px-6 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span>System Administration</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Header (TopAppBar) -->
+<header class="fixed top-0 right-0 h-16 bg-[#fbf9fa]/80 dark:bg-[#1a1a27]/80 backdrop-blur-xl flex items-center justify-between px-8 ml-64 w-[calc(100%-16rem)] z-30 shadow-sm dark:shadow-none font-['Inter'] text-sm font-medium">
+<div class="flex items-center space-x-4">
+<span class="text-on-surface-variant flex items-center">
+                Main Terminal <span class="material-symbols-outlined text-xs mx-2">chevron_right</span>
+<span class="text-primary font-semibold">Live View</span>
+</span>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative group">
+<span class="material-symbols-outlined text-secondary hover:text-primary transition-all cursor-pointer">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-secondary hover:text-primary transition-all cursor-pointer">settings</span>
+<div class="flex items-center space-x-3 border-l border-outline-variant/30 pl-6">
+<div class="text-right">
+<p class="text-[11px] font-bold text-on-surface uppercase tracking-wider leading-none">Admin Station 04</p>
+<p class="text-[10px] text-on-surface-variant">Level 5 Clearance</p>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional male security administrator with sharp features and a neutral expression in a corporate environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOWHBc7YB8oBfukV-MawBaS7Aph8wQjJ-VD5xLL-dRX9JyheejGZIzTNuflF20ofO4QukYs_EZnTlaahkRDyo-wQe77LxRErht3IX-DHD_84pVK3bp0exeHeo91tbhCrD8LlTgJXNBKQUW3goDWLcoIP8I33CFvcEW99v-N3sl6Yslju-HbRK0bPcJ9kJly4i6kX7OgQF_bxcoBP2Zw4AFOEDdCX39jgEmtbqWU738UwWFc3B4LOLePFGslPyiBJ_oiKgmHo7Mkec"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 pt-16 h-screen w-[calc(100%-16rem)] flex flex-col relative bg-surface-container-low">
+<!-- Live Camera Canvas -->
+<div class="flex-1 relative overflow-hidden p-6">
+<div class="w-full h-full rounded-xl overflow-hidden bg-black shadow-2xl relative group">
+<!-- Main Feed Background -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-90 brightness-75" data-alt="wide angle security camera view of a high-end modern corporate lobby with marble floors and architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJFs_00OXRlJhPIbjcb0TM9WbAxfP6rZtwJyx6F-uc4bCqBvsdLH4uabRuGxW16jjIKxWMxhXUDEBsbF6g1namsJgyorcEFbdm1yZkCIzXzG-HHwYA3dvGwlpjLHpwRnIYH2FLgSnvzcESCYw-8zIv7XOffMB2MM9hF0FsmJ0sjHQzxpEWUmooC5e3bGyOarPIbYrSPMoLx4ht8eENYlV1s4dsKFCfexcRo1-QnyypIoVfQV7cchvuZnyAl7GaisSg0ae8nQG2NZU"/>
+</div>
+<!-- AI Bounding Boxes (Recognized) -->
+<div class="absolute top-[25%] left-[40%] w-32 h-32 border-2 border-on-tertiary-container z-10 confidence-pulse">
+<div class="absolute -top-7 left-0 bg-on-tertiary-container text-tertiary px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase">
+                        RECOGNIZED: JULIA W.
+                    </div>
+<div class="absolute -bottom-5 right-0 text-on-tertiary-container text-[9px] font-mono font-bold">
+                        98.4% CONFIDENCE
+                    </div>
+</div>
+<div class="absolute top-[15%] left-[15%] w-28 h-28 border-2 border-on-tertiary-container z-10 opacity-80">
+<div class="absolute -top-7 left-0 bg-on-tertiary-container text-tertiary px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase">
+                        RECOGNIZED: MARCUS T.
+                    </div>
+</div>
+<!-- AI Bounding Boxes (Unknown) -->
+<div class="absolute top-[35%] left-[65%] w-36 h-36 border-2 border-error z-10">
+<div class="absolute -top-7 left-0 bg-error text-white px-2 py-0.5 text-[10px] font-bold tracking-widest uppercase">
+                        UNKNOWN SUBJECT
+                    </div>
+<div class="absolute -bottom-5 right-0 text-error text-[9px] font-mono font-bold">
+                        FLAGGED: NO BADGE
+                    </div>
+</div>
+<!-- HUD Elements -->
+<div class="absolute inset-0 pointer-events-none border-[24px] border-black/5 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="bg-black/40 backdrop-blur-md px-4 py-2 rounded-lg flex items-center space-x-3">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="text-white font-mono text-xs tracking-widest">LIVE // CAM-04-NORTH-ENTRANCE</span>
+</div>
+<div class="flex flex-col items-end space-y-2">
+<div class="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg text-white font-mono text-[10px]">
+                                SIGNAL: STABLE [92%]
+                            </div>
+<div class="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg text-white font-mono text-[10px]">
+                                LATENCY: 12ms
+                            </div>
+</div>
+</div>
+</div>
+<!-- Floating Face Crop Strip (Right Side) -->
+<div class="absolute top-6 right-6 bottom-20 w-24 flex flex-col space-y-4 z-20">
+<p class="text-[9px] text-white/50 font-bold uppercase tracking-[0.2em] text-center">Recent Matches</p>
+<div class="flex-1 flex flex-col space-y-3 overflow-hidden">
+<!-- Recognized Items -->
+<div class="relative group cursor-pointer transition-transform hover:scale-105">
+<div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-on-tertiary-container/40 bg-surface-container-highest">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="close-up facial scan of a woman with red hair and neutral expression for biometric identification" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlOLvBek51o1X5xYQLa3NysOhBcAUwKjaT_a8XF_t_ejp9Oc97H6vxz0FkQMORNXPj2ATbT3Fj86WCoWCL0KT1XPVZsLxJexCk0VW04pjOzvoNMrr-gcPe2x9qieGXwLDgCz92-Kvg8euyDCG8sNGz9SbZ7WebbsSOp2rxzYok0cZBqwd9AfI_FA3v4t6MCeh-lHI_RilqQMbmf0UwPIWVAcOjufXXhrPgx8yZSKZp8hU8Zt9d7c7qIso2oxuaPg3ty96Pfwtah-o"/>
+</div>
+<div class="mt-1 text-[9px] text-on-tertiary-container font-bold text-center">JULIA W.</div>
+</div>
+<div class="relative group cursor-pointer transition-transform hover:scale-105">
+<div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-on-tertiary-container/40 bg-surface-container-highest">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="close-up biometric face capture of a young man with dark hair and short beard for facial recognition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2sbE7toDZZOSdHxl8v3OxvLE7WC_St7_28li8F6UImUAU7c0qNHAvzPwbk4I-dQgqfBMqa_Kk7hQRVE6uGfYyzOlt1WtR5E_nlcTXRk-nDU5T0Qya99N37xPRuS6YpKzquIMgMujFRYv2eOtFW5g01CNUsw-ghnkQfbIZmLeNnbeFwvIczlMGsRiuTYFvXAV9KLQvBF160a7ddAPV3AQhHDfGuBYGqw18vX60SdQbh_TKVDGQSCu-wQUF8VVA-V-9zNFsUk6tZjc"/>
+</div>
+<div class="mt-1 text-[9px] text-on-tertiary-container font-bold text-center">MARCUS T.</div>
+</div>
+<!-- Unknown Item -->
+<div class="relative group cursor-pointer transition-transform hover:scale-105">
+<div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-error/40 bg-surface-container-highest">
+<img class="w-full h-full object-cover grayscale-0 brightness-75" data-alt="grainy black and white facial capture of an unknown male subject in a security context" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7K3qYSbGggFKNS5Sj3KDFd8IkF3kXagWHGLhAy_ECvAOVWygiEgGJkKbauKthoZLvSlP4ChQMMZuR4UxmdKMHDX0IJ-hnmSrMCrBHbrnxOKis9vWkV_eb3tL8QmzTcfycuhbo1NCvuxbrdMVt_MTyBqMirqdhGMbzHduCQPuDsr8N1NDZNqeXt6Dk8phewV1aRJifeHKZPb2esUmP2quFp33kpib52eUHLaj6VWGfpJ0TBKs6-cWf2DRL2-gNzEUoGa4FpZQ9zBE"/>
+</div>
+<div class="mt-1 text-[9px] text-error font-bold text-center uppercase">Unknown</div>
+</div>
+<div class="relative group cursor-pointer transition-transform hover:scale-105">
+<div class="w-20 h-20 rounded-lg overflow-hidden border-2 border-on-tertiary-container/40 bg-surface-container-highest">
+<img class="w-full h-full object-cover grayscale" data-alt="biometric headshot of a woman with light hair and clear complexion looking directly at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq3fKERbspZNqFT7JjBQL7CbwB8uoeZVL2JOQGh9Y0Cmep81MNzaGRiUu-7TXR45YgYXFB7UGcZL_H8zo0vpQ7w_4xG_Hvw0UxZzUhxZDQ8ZlWVKXaa5T5jqfYZJz0vr27cIJArvOPNkhUsbOprZm1gjdFxLnocqKXgsfLp_EF84koPcMkruCLG2tgk2a7SrMOIg7hc4uUGZYI9y-Y-6Y3HLIaYc3hiM7R-eiKt_Udxn5bzNNE8JviUmQ5RPYqsT_dVDVfzSASk7Y"/>
+</div>
+<div class="mt-1 text-[9px] text-white/60 font-medium text-center">SARAH L.</div>
+</div>
+</div>
+<button class="w-10 h-10 mx-auto rounded-full glass-panel flex items-center justify-center text-primary-container shadow-lg">
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+<!-- Bottom Overlay Bar -->
+<div class="absolute bottom-0 left-0 right-0 h-16 glass-panel flex items-center justify-between px-8 z-20">
+<div class="flex items-center space-x-8">
+<div>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mb-1">Active Device</p>
+<h3 class="text-sm font-bold text-on-surface">NORTH_ENTRANCE_4K_001</h3>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mb-1">FPS Counter</p>
+<h3 class="text-sm font-mono font-bold text-primary">60.00 <span class="text-[9px] text-on-surface-variant">SECURE</span></h3>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div>
+<p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider mb-1">Timestamp</p>
+<h3 class="text-sm font-mono font-bold text-on-surface">2023-11-15 14:32:04:88</h3>
+</div>
+</div>
+<div class="flex items-center space-x-2 bg-surface-container-high p-1 rounded-lg">
+<button class="px-4 py-1.5 rounded-md text-[11px] font-bold tracking-tight bg-primary text-white transition-all">NORMAL</button>
+<button class="px-4 py-1.5 rounded-md text-[11px] font-bold tracking-tight text-on-surface-variant hover:bg-surface transition-all">GREEN</button>
+<button class="px-4 py-1.5 rounded-md text-[11px] font-bold tracking-tight text-on-surface-variant hover:bg-surface transition-all">BLUR</button>
+<button class="px-4 py-1.5 rounded-md text-[11px] font-bold tracking-tight text-on-surface-variant hover:bg-surface transition-all">BLACK</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Actions Contextual -->
+<div class="absolute top-24 left-10 flex flex-col space-y-4">
+<button class="w-12 h-12 rounded-xl bg-white shadow-lg flex items-center justify-center text-primary-container hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="w-12 h-12 rounded-xl bg-white shadow-lg flex items-center justify-center text-primary-container hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">camera</span>
+</button>
+<button class="w-12 h-12 rounded-xl bg-white shadow-lg flex items-center justify-center text-error hover:bg-error hover:text-white transition-all">
+<span class="material-symbols-outlined">emergency_recording</span>
+</button>
+</div>
+<!-- System Stats Footer (Contextual) -->
+<footer class="h-12 bg-white flex items-center justify-between px-8 border-t border-outline-variant/10 text-[11px]">
+<div class="flex items-center space-x-6 text-on-surface-variant">
+<span class="flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container mr-2"></span> AI ENGINE ACTIVE</span>
+<span class="flex items-center"><span class="material-symbols-outlined text-xs mr-1">memory</span> CPU LOAD: 14%</span>
+<span class="flex items-center"><span class="material-symbols-outlined text-xs mr-1">database</span> DISK SPACE: 2.4TB FREE</span>
+</div>
+<div class="flex items-center space-x-4">
+<span class="font-bold text-primary">ENCRYPTED STREAM</span>
+<span class="material-symbols-outlined text-sm">lock</span>
+</div>
+</footer>
+</main>
+</body></html>

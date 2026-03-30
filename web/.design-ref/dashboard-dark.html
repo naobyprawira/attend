@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#5e5d6c",
+                        "primary-fixed-dim": "#ffaedb",
+                        "on-secondary-fixed": "#1a1a27",
+                        "surface-container-low": "#1A1A2E", // Adjusted for requested Dark Mode base
+                        "on-tertiary-fixed-variant": "#245100",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#7d2060",
+                        "on-primary-container": "#ffb9df",
+                        "on-background": "#E5E7EB", // Adjusted for requested Light Text
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#252540", // Adjusted for requested Dark Cards
+                        "surface-tint": "#9a3979",
+                        "outline": "#85727b",
+                        "on-primary-fixed": "#3c002b",
+                        "surface-dim": "#151526",
+                        "on-surface": "#E5E7EB",
+                        "tertiary-fixed-dim": "#99d76c",
+                        "background": "#1A1A2E", // Requested Dark Background
+                        "surface-bright": "#252540",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#333355",
+                        "on-error": "#ffffff",
+                        "primary": "#751859",
+                        "on-secondary-container": "#c7c5d6",
+                        "tertiary-fixed": "#b4f485",
+                        "tertiary-container": "#2e6400",
+                        "secondary-container": "#252540",
+                        "on-surface-variant": "#d8c0ca",
+                        "primary-container": "#923272",
+                        "inverse-on-surface": "#1b1c1d",
+                        "inverse-primary": "#ffaedb",
+                        "surface": "#1A1A2E",
+                        "surface-container-high": "#2c2c4d",
+                        "outline-variant": "#464553",
+                        "primary-fixed": "#ffd8eb",
+                        "inverse-surface": "#fbf9fa",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#151526",
+                        "secondary-fixed": "#e3e0f2",
+                        "secondary-fixed-dim": "#c7c5d6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#252540",
+                        "on-secondary-fixed-variant": "#E5E7EB",
+                        "on-tertiary-fixed": "#0b2000",
+                        "tertiary": "#204a00",
+                        "on-tertiary-container": "#a1e074"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .glass-panel {
+            background: rgba(37, 37, 64, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ai-pulse {
+            box-shadow: 0 0 0 0 rgba(146, 50, 114, 0.7);
+            animation: pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+        @keyframes pulse {
+            to { box-shadow: 0 0 0 10px rgba(146, 50, 114, 0); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased selection:bg-primary/30">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-900 dark:bg-black flex flex-col h-full py-6 overflow-y-auto font-['Inter'] text-sm font-medium tracking-wide uppercase">
+<div class="px-8 mb-10">
+<h1 class="text-rose-500 font-black text-xl">Attend.AI</h1>
+<p class="text-[10px] text-slate-500 tracking-[0.2em] mt-1">ENTERPRISE SURVEILLANCE</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Active State Dashboard -->
+<a class="bg-rose-900/40 text-rose-100 border-r-4 border-rose-600 px-6 py-3 flex items-center gap-3 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined text-rose-500">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">videocam</span>
+<span>Live View</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Person Management</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Access Logs</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">speed</span>
+<span>Visitor Flow</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">map</span>
+<span>Zone Analytics</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span>Compliance</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span>Notifications</span>
+</a>
+</nav>
+<div class="px-6 mt-auto pt-6 border-t border-slate-800/50">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-lg font-bold text-xs flex items-center justify-center gap-2 tracking-widest uppercase hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Scan
+            </button>
+<div class="mt-6 space-y-1">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-0 py-2 flex items-center gap-3 text-[10px]" href="#">
+<span class="material-symbols-outlined text-sm">account_circle</span>
+                    ACCOUNT
+                </a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-0 py-2 flex items-center gap-3 text-[10px]" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+                    LOGOUT
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-40 bg-white/5 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)] flex justify-between items-center w-full px-8 py-4">
+<div class="flex items-center gap-8">
+<h2 class="text-2xl font-bold tracking-tighter text-rose-900 dark:text-rose-100 font-headline">Dashboard</h2>
+<div class="hidden md:flex items-center gap-6 font-['Inter'] tracking-tight text-slate-600 dark:text-slate-400">
+<a class="text-rose-900 dark:text-rose-400 border-b-2 border-rose-800 font-semibold transition-all" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-rose-700 transition-all" href="#">Live View</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-rose-700 transition-all" href="#">Analytics</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Dark Mode Toggle (Set to ON as requested) -->
+<div class="flex items-center bg-surface-container-high rounded-full p-1 border border-outline-variant/20">
+<button class="p-1.5 rounded-full text-slate-500">
+<span class="material-symbols-outlined text-[20px]">light_mode</span>
+</button>
+<button class="p-1.5 rounded-full bg-primary text-white shadow-lg">
+<span class="material-symbols-outlined text-[20px]">dark_mode</span>
+</button>
+</div>
+<div class="h-10 w-[1px] bg-outline-variant/20 mx-2"></div>
+<div class="flex items-center gap-4">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full border-2 border-primary/30 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional headshot of a male executive in dark studio lighting with sharp features and a confident expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl77vPe1lelo0ZBYbe8tTyfZQ3yH5ydFCag4eRUH3346iHKh1j2mtr5a1U7p7rlWEUcLHU2gS6vLd9gQx4vTJ7lIn9zkWI3YYG3sDv8hzfM-slNZeA4jXQywxs0nKE8Khc4P2hvUHLfS0kFm74hev0pKpN2BhB-qhVhzXN9XFmhZaDBTdHwa5GRMLMoutsntzjS0yGsXcAgfzggLZgd70edNTWN4Mr6j3ybz1NtQmrjYoAGPgKxN_hCwxTHM1AQWGx0jMLyZP6gT4"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- 4 Stat Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">Total Scans</p>
+<h3 class="text-3xl font-black text-on-surface">12,842</h3>
+<p class="text-xs text-green-500 mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +12% vs last week
+                        </p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[100px]">face</span>
+</div>
+</div>
+<div class="bg-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">Active Zones</p>
+<h3 class="text-3xl font-black text-on-surface">24</h3>
+<p class="text-xs text-primary-fixed-dim mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+                            Operational
+                        </p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[100px]">grid_view</span>
+</div>
+</div>
+<div class="bg-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">Avg Confidence</p>
+<h3 class="text-3xl font-black text-on-surface">98.2%</h3>
+<div class="w-full h-1 bg-surface-container-high rounded-full mt-4 overflow-hidden">
+<div class="w-[98%] h-full bg-gradient-to-r from-primary to-primary-container"></div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[100px]">verified</span>
+</div>
+</div>
+<div class="bg-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">Unrecognized</p>
+<h3 class="text-3xl font-black text-on-surface">14</h3>
+<p class="text-xs text-error mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">warning</span>
+                            Requires Review
+                        </p>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[100px]">person_off</span>
+</div>
+</div>
+</div>
+<!-- Main Analytics Bento Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Donut Chart & Trends -->
+<div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Attendance Rate Donut -->
+<div class="bg-surface-variant p-8 rounded-xl border border-outline-variant/5 flex flex-col items-center justify-center relative">
+<h4 class="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-8 self-start">Daily Attendance Rate</h4>
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- SVG Donut -->
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="128" cy="128" fill="transparent" r="110" stroke="currentColor" stroke-width="20"></circle>
+<circle cx="128" cy="128" fill="transparent" r="110" stroke="url(#plumGradient)" stroke-dasharray="691" stroke-dashoffset="110" stroke-linecap="round" stroke-width="20"></circle>
+<defs>
+<lineargradient id="plumGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#751859"></stop>
+<stop offset="100%" style="stop-color:#923272"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-5xl font-black text-on-surface">84%</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1">Present Today</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 w-full mt-8">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<div>
+<p class="text-xs text-on-surface font-bold">482</p>
+<p class="text-[10px] text-on-surface-variant">Present</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-surface-container-high"></div>
+<div>
+<p class="text-xs text-on-surface font-bold">92</p>
+<p class="text-[10px] text-on-surface-variant">Absent</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Attendance Trend Line Chart (Simplified Representation) -->
+<div class="bg-surface-variant p-8 rounded-xl border border-outline-variant/5 flex flex-col">
+<h4 class="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-4">7-Day Peak Trends</h4>
+<div class="flex-1 flex items-end gap-2 px-2 pb-4 mt-8">
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[40%]">
+<div class="absolute inset-x-0 bottom-0 bg-primary group-hover:bg-primary-container transition-all h-[60%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[60%]">
+<div class="absolute inset-x-0 bottom-0 bg-primary group-hover:bg-primary-container transition-all h-[80%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[80%]">
+<div class="absolute inset-x-0 bottom-0 bg-primary group-hover:bg-primary-container transition-all h-[70%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[70%]">
+<div class="absolute inset-x-0 bottom-0 bg-primary group-hover:bg-primary-container transition-all h-[95%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[90%]">
+<div class="absolute inset-x-0 bottom-0 bg-primary group-hover:bg-primary-container transition-all h-[85%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[50%]">
+<div class="absolute inset-x-0 bottom-0 bg-primary group-hover:bg-primary-container transition-all h-[40%] rounded-t-lg"></div>
+</div>
+<div class="flex-1 bg-surface-container-high rounded-t-lg relative group h-[100%]">
+<div class="absolute inset-x-0 bottom-0 bg-primary-container h-full rounded-t-lg ai-pulse"></div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] text-on-surface-variant font-medium">
+<span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+</div>
+</div>
+<!-- Department Frequency Bar Chart -->
+<div class="col-span-1 md:col-span-2 bg-surface-variant p-8 rounded-xl border border-outline-variant/5">
+<div class="flex justify-between items-center mb-8">
+<h4 class="text-sm font-bold tracking-widest uppercase text-on-surface-variant">Department Occupancy</h4>
+<span class="text-[10px] bg-primary/20 text-primary-fixed-dim px-2 py-1 rounded">Real-time</span>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-on-surface">
+<span class="font-medium">Engineering</span>
+<span class="font-bold">142 people</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-on-surface">
+<span class="font-medium">Product Design</span>
+<span class="font-bold">48 people</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/70" style="width: 40%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-on-surface">
+<span class="font-medium">Marketing &amp; Sales</span>
+<span class="font-bold">92 people</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary/50" style="width: 65%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Camera Feeds Grid -->
+<div class="col-span-12 lg:col-span-4 bg-surface-variant p-8 rounded-xl border border-outline-variant/5 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-sm font-bold tracking-widest uppercase text-on-surface-variant">Live Feeds</h4>
+<div class="flex gap-2">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">fullscreen</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">more_vert</span></button>
+</div>
+</div>
+<div class="grid grid-cols-1 gap-4 flex-1">
+<!-- Feed 1 -->
+<div class="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group">
+<img alt="Lobby Cam" class="w-full h-full object-cover" data-alt="security camera view of a modern high-ceiling corporate office lobby with glass walls and minimalist furniture in low light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMUkAeR5sWfDtCSeXYHB0PsWBl6yxOuEhuVg1YcFZGPWctfv0itsaT3jnr22T_-r72ROqXVJl5_8BhyH5-bsOEDtjeBOVApfeoHNgpb4MYdBgHL-ZJpqYiGJpdjK7BdHSgVBWSCP66J_3QdeBJQZSVKVuGM5ynQ2-nzmn8v7I1NUEvISuMTERqwlBwx_SYMq1dzWDdD6ynOsOSxW-IjPBzF_5R9Qk8rnzqqcrr78Jh8YuIRsOSfe40edYkM7OVTcMkCqY7b1WwR4w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></div>
+<span class="text-[10px] font-bold text-white uppercase tracking-tighter bg-black/40 px-2 py-1 rounded-full backdrop-blur-md">Main Lobby</span>
+</div>
+<div class="absolute bottom-3 left-3">
+<p class="text-[10px] text-white/70">Cam ID: 001-LBY</p>
+</div>
+<!-- Recognition Overlay Simulation -->
+<div class="absolute inset-0 border-2 border-primary/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<!-- Feed 2 -->
+<div class="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group">
+<img alt="Workspace Cam" class="w-full h-full object-cover" data-alt="industrial surveillance footage of an open plan workspace with rows of desks and computer screens in a cool blue toned light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUymMKmObx5Qr97sRxiaeKHgYF4v0gUIgX46fBGBofG3BXO-bbtMuLYLB1aW2vqtGW2KxOiUnSk4kFICZvoLKFl-s1vnmUCQTbFQvkVNeoBqVEM2aZai0lj4a4Dr5Zggyf7NgQ44ZP1R63zDq0b_CE__ZH-3s_4zGohTC49HZNIfRemYpgL6FNNGWlRYI5qYQhYccD4AMnttBhBY73PGQOzzyz5cOV7JpXtWcmx07_z_pgRQCAZNxXd2M_I1A2iyDCrvT6SKbfNTo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></div>
+<span class="text-[10px] font-bold text-white uppercase tracking-tighter bg-black/40 px-2 py-1 rounded-full backdrop-blur-md">Eng Floor</span>
+</div>
+<div class="absolute bottom-3 left-3">
+<p class="text-[10px] text-white/70">Cam ID: 004-ENG</p>
+</div>
+</div>
+<!-- Feed 3 -->
+<div class="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group">
+<img alt="Conference Cam" class="w-full h-full object-cover" data-alt="cctv camera angle of a sleek modern meeting room with a large screen and executive chairs in deep evening shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzaoqU9mz1F3gs7KPxqKQ5_Ip_3jF-NUQ-cNU3YWCh7sH9hbvTrLhTSdG_8BzPV3tTxlQu-uwGtZCmdEDj3e2Qy4cBWY3waGoKSlZTa3Rn6xpCSvdInvu0y8SpquY1r4yddxQkHZrGRdX-lbxXHZyQDRFn-q9Fc3Cm2Ypj5KztbZkmTsIMfEoNJ8zCpWOmf9sevAwwOkG5K6PMvUJivGVEa6CCyL-sxF8Oj001O6zA11P5OYSMqtMReMloxDBVV7JNYjMyGgI4mxA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-3 left-3 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-green-600"></div>
+<span class="text-[10px] font-bold text-white uppercase tracking-tighter bg-black/40 px-2 py-1 rounded-full backdrop-blur-md">Conf. A</span>
+</div>
+<div class="absolute bottom-3 left-3">
+<p class="text-[10px] text-white/70">Cam ID: 009-CNF</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Recognition Activity -->
+<div class="bg-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
+<div class="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h4 class="text-sm font-bold tracking-widest uppercase text-on-surface-variant">Live Activity Stream</h4>
+<button class="text-primary font-bold text-xs hover:underline">View Full Logs</button>
+</div>
+<div class="divide-y divide-outline-variant/5">
+<!-- Activity Item -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-primary/20">
+<img alt="User" data-alt="close-up portrait of a man with a beard and intense eyes wearing a dark sweater in dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJiBt6IpM38J33nZYeqBkuyLQD3bnp06Q9KuSFLkr7vHrNKfgpO5W-X2LElv04l_xC_rvlMNfXEfqmYxyXq9CysGstXXU1uCZD9iYqpcjz4yfBPe0ew2daxJhZk2tkLlTCeNvbxrfn06IiMEVp3WBvRnAkpMfgb-ely46C36cPgX6hjUxk4As0PecPlrhQHVXELieTSZU14oe_dPnAjiGE6AGgXDSopBtQYRvjVmDnadbS03-offQCLNciN67YiQ4DDA_kmeuHPt4"/>
+</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface">Marcus Thompson</h5>
+<p class="text-[10px] text-on-surface-variant uppercase">Engineering • 10:42:15 AM</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-xs font-bold text-primary-fixed-dim">99.4% Match</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Confidence</p>
+</div>
+<div class="bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                                Authorized
+                            </div>
+</div>
+</div>
+<!-- Activity Item -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-high transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-primary/20">
+<img alt="User" data-alt="candid portrait of a professional woman with glasses and dark hair looking slightly away from the camera in low ambient light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzig8nBBBlEaaiv72y49AOTUJk8DL5gPd8If6Ovk7AW4N1S1mU9aqxI2hdHqr5KWHSXVV0WhpORw4r82EXMI2O2CcOBzWfImCT2B8ZeTZlvL9hFetKs3lKE1k6O6I2wtIZaxYgQOuNnYwdDlBa2Ul8stK9N_dEzkjqsUoQC111dlGQlKe4-8TphJ2w-fjVWXvYzlZtlAgC8VL1ReRaqwQb63zIz-ASoR7oKIT8IbZSqhAbvwnZ4QRPLbpnYe6wyERp3TLF_rB9wII"/>
+</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface">Sarah Chen</h5>
+<p class="text-[10px] text-on-surface-variant uppercase">Product • 10:41:02 AM</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-xs font-bold text-primary-fixed-dim">98.9% Match</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Confidence</p>
+</div>
+<div class="bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                                Authorized
+                            </div>
+</div>
+</div>
+<!-- Activity Item (Flagged) -->
+<div class="p-4 flex items-center justify-between hover:bg-surface-container-high transition-colors group bg-error/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-error/50 flex items-center justify-center bg-error/20">
+<span class="material-symbols-outlined text-error">person_search</span>
+</div>
+<div>
+<h5 class="text-sm font-bold text-on-surface italic">Unrecognized Entity</h5>
+<p class="text-[10px] text-error uppercase font-bold">Main Lobby • 10:38:44 AM</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-right">
+<p class="text-xs font-bold text-error">No Match</p>
+<p class="text-[10px] text-on-surface-variant uppercase">Confidence</p>
+</div>
+<div class="bg-error text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+                                Flagged
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

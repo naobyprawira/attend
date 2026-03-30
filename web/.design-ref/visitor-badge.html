@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed": "#1a1a27",
+              "surface-container-low": "#f5f3f4",
+              "on-tertiary-fixed-variant": "#245100",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary-container": "#ffb9df",
+              "on-background": "#1b1c1d",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e4e2e3",
+              "surface-tint": "#9a3979",
+              "outline": "#85727b",
+              "on-primary-fixed": "#3c002b",
+              "surface-dim": "#dbd9da",
+              "on-surface": "#1b1c1d",
+              "tertiary-fixed-dim": "#99d76c",
+              "background": "#fbf9fa",
+              "surface-bright": "#fbf9fa",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e4e2e3",
+              "on-error": "#ffffff",
+              "primary": "#751859",
+              "on-secondary-container": "#646372",
+              "tertiary-fixed": "#b4f485",
+              "tertiary-container": "#2e6400",
+              "secondary-container": "#e3e0f2",
+              "on-surface-variant": "#53424a",
+              "primary-container": "#923272",
+              "inverse-on-surface": "#f2f0f1",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "surface-container-high": "#e9e8e9",
+              "outline-variant": "#d8c0ca",
+              "primary-fixed": "#ffd8eb",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#e3e0f2",
+              "secondary-fixed-dim": "#c7c5d6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#efedee",
+              "on-secondary-fixed-variant": "#464553",
+              "on-tertiary-fixed": "#0b2000",
+              "tertiary": "#204a00",
+              "on-tertiary-container": "#a1e074"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        @media print {
+            .no-print { display: none; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm h-16 flex items-center justify-between px-8">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold text-slate-900 font-headline tracking-tight">Attend.AI</span>
+</div>
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 hover:text-slate-900 transition-colors font-medium" href="#">Dashboard</a>
+<a class="text-fuchsia-700 font-semibold border-b-2 border-fuchsia-700 py-5" href="#">Visitors</a>
+<a class="text-slate-500 hover:text-slate-900 transition-colors font-medium" href="#">Zones</a>
+</nav>
+<div class="flex items-center gap-3 ml-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="Professional headshot of a corporate administrator in a bright office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUfbOSlCseOphxZzBdmDJXj7kglQCoFP2GxfQUxu7GRX7bivlr53EVIHwtRJdr7PLL3J5u71nl8v8W6bc0A-z-1MHGpAY6RBCmdsknYf4LzZpnvNMSoU6I6yRFEccC9749NnhIIqG9Mp4K-iF9iTdtDgXt81d7AVJT2BdF9MenuVyCnZf4Bsk5DU28Q6Z5a8dSlSDJNeLOocC_dj3NQrGimzk11J6s4w_Mi3yDXg58iBNhznXw0ibLU4-rBJI46gYwM81fRebvA48"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex pt-16 min-h-screen">
+<!-- Sidebar Navigation Shell -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-4rem)] w-64 bg-slate-50 p-4 gap-2 border-r border-outline-variant/10">
+<div class="mb-6 px-2">
+<h2 class="text-lg font-black text-fuchsia-800 tracking-tight">Attend.AI</h2>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest font-semibold opacity-70">Intelligence Suite</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-transform hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-fuchsia-50 text-fuchsia-700 rounded-lg transition-transform hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-medium">Visitors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-transform hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span class="font-medium">Zones</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-transform hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-medium">Floor Plan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-transform hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span class="font-medium">Violations</span>
+</a>
+</nav>
+<button class="mt-4 bg-primary text-white py-2.5 px-4 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-sm hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                Register Visitor
+            </button>
+<div class="mt-auto border-t border-outline-variant/20 pt-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-medium">Help</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-medium">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-8 md:p-12 lg:p-16 overflow-y-auto">
+<div class="max-w-4xl mx-auto">
+<!-- Header Actions -->
+<div class="flex justify-between items-end mb-12 no-print">
+<div>
+<h1 class="text-3xl font-black text-on-secondary-fixed tracking-tight font-headline">Visitor Badge Preview</h1>
+<p class="text-on-surface-variant mt-2">Generate and verify secure credentials for arriving guests.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-high text-primary px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+                            Edit Details
+                        </button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 shadow-lg hover:brightness-110 transition-all active:scale-95" onclick="window.print()">
+<span class="material-symbols-outlined" data-icon="print">print</span>
+                            Print Badge
+                        </button>
+</div>
+</div>
+<!-- Badge Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- The Badge Itself -->
+<div class="lg:col-span-7 flex justify-center">
+<!-- Card Container -->
+<div class="w-[380px] h-[540px] bg-surface-container-lowest rounded-xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)] overflow-hidden flex flex-col relative border-t-[10px] border-primary-container">
+<!-- Company Branding Header -->
+<div class="p-6 flex justify-between items-start">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" data-icon="radar">radar</span>
+</div>
+<span class="font-black text-on-secondary-fixed text-sm tracking-tighter">Attend.AI</span>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-[0.15em]">Official Credential</p>
+<p class="text-[10px] text-on-surface-variant/60">ID: V-294021-X</p>
+</div>
+</div>
+<!-- Visitor Type Header -->
+<div class="text-center mt-2">
+<h2 class="text-4xl font-black tracking-[0.25em] text-primary-container font-headline">VISITOR</h2>
+<div class="h-1 w-16 bg-primary-container/20 mx-auto mt-2 rounded-full"></div>
+</div>
+<!-- Photo Section -->
+<div class="flex justify-center mt-8">
+<div class="relative">
+<div class="w-44 h-44 rounded-full border-4 border-surface-container-low overflow-hidden shadow-sm">
+<img alt="Visitor headshot" class="w-full h-full object-cover" data-alt="Modern close-up portrait of a man with clean-cut style against a neutral gray background with professional studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWkqwtgb6uiIY7b1ofHv2Ei0hh4kZr3Ox3eF-mFG7yphBnYtN-QQZhHP9CH8wehRaapD7CeqpGOdAZ_4eNu8ZxfmdIZ2Z7clzY4alF97rxa_Y3mWNLePuz3462A-JoPPIcvjzBr191hZ54fwZqixUjHQn3kyqkoIiN9olLnQQm4KY8CRE35DhG0QvEp8HDQlRkwOCx8mv47OEqHjVNpJZo4ohz5yrChXBpNAIhWkBoOJvR4O7GM5-gAXSS1BByTndKBDBnozcQjVk"/>
+</div>
+<!-- AI Verified Badge Overlay -->
+<div class="absolute bottom-2 right-2 bg-green-500 text-white p-1.5 rounded-full shadow-md border-2 border-white">
+<span class="material-symbols-outlined text-sm block" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Details Section -->
+<div class="flex-1 px-8 pt-6 pb-4 flex flex-col items-center text-center">
+<h3 class="text-2xl font-black text-on-secondary-fixed tracking-tight">Marcus Richardson</h3>
+<p class="text-on-surface-variant font-medium text-sm mt-1">Lead Developer, Skybound Systems</p>
+<div class="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 w-full text-left">
+<div>
+<p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Host</p>
+<p class="text-sm font-bold text-on-secondary-fixed">Sarah Chen</p>
+</div>
+<div>
+<p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Purpose</p>
+<p class="text-sm font-bold text-on-secondary-fixed">Technical Audit</p>
+</div>
+<div>
+<p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Date</p>
+<p class="text-sm font-bold text-on-secondary-fixed">Oct 24, 2023</p>
+</div>
+<div>
+<p class="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Valid Until</p>
+<p class="text-sm font-bold text-primary">06:00 PM</p>
+</div>
+</div>
+</div>
+<!-- Footer Section -->
+<div class="bg-surface-container-low/50 px-8 py-4 flex justify-between items-center">
+<div class="flex flex-col">
+<p class="text-[8px] text-on-surface-variant leading-tight max-w-[140px]">This badge must be displayed at all times while on the premises.</p>
+<div class="flex gap-2 mt-2">
+<span class="material-symbols-outlined text-xs text-on-surface-variant" data-icon="wifi">wifi</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant" data-icon="lock">lock</span>
+</div>
+</div>
+<div class="bg-white p-2 rounded-lg shadow-sm border border-outline-variant/10">
+<img alt="Visitor QR Code" class="w-16 h-16 opacity-90" data-alt="Digital black and white QR code representation on a clean white square background with high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMiGAY_teym76FeMSmqntuhe1FgFMM3MlR_DIt2OMuk2fP_-bWQiAw4B3RxYqL8XkQSgISnRoh0vxSz1HTwuOWgFlgQalriMotVGRmvq90GeLLG8JQwweRX9v3b5o7QXc00ekFkGwZEv6-EiAHdhrRjkcdBUBZSrkLkaYmIM3lBI8xDNXBKTQasZDH7ply1N198dNXizxl1oLY0i1UsEbYIRloL_fKc5dO4FZS42Ty2uVUxVQ9mrN3VvrJ8bYAbKtXG1dTB6Iige8"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Controls/Metadata -->
+<div class="lg:col-span-5 space-y-8 no-print">
+<!-- Status Bento Card -->
+<div class="bg-surface-container-low rounded-xl p-6">
+<h4 class="text-sm font-bold text-on-secondary-fixed uppercase tracking-widest mb-4">Security Validation</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-white rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="face">face</span>
+<span class="text-sm font-medium">Face Match Confidence</span>
+</div>
+<span class="text-sm font-black text-primary">98.4%</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="fact_check">fact_check</span>
+<span class="text-sm font-medium">ID Verification</span>
+</div>
+<span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded">PASSED</span>
+</div>
+<div class="pt-2">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-fixed-dim to-primary w-[98%]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2">AI Scan complete. Biological markers aligned with database record.</p>
+</div>
+</div>
+</div>
+<!-- Printing Options -->
+<div class="bg-white border border-outline-variant/20 rounded-xl p-6 shadow-sm">
+<h4 class="text-sm font-bold text-on-secondary-fixed uppercase tracking-widest mb-6">Badge Options</h4>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-bold text-on-secondary-fixed">Add Wi-Fi Access</p>
+<p class="text-xs text-on-surface-variant">Include temporary guest credentials</p>
+</div>
+<div class="w-12 h-6 bg-primary/20 rounded-full relative">
+<div class="absolute right-1 top-1 w-4 h-4 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-bold text-on-secondary-fixed">NDA Required</p>
+<p class="text-xs text-on-surface-variant">Mark as "Signed" on badge</p>
+</div>
+<div class="w-12 h-6 bg-slate-200 rounded-full relative">
+<div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full shadow-sm"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-sm font-bold text-on-secondary-fixed">Escort Required</p>
+<p class="text-xs text-on-surface-variant">Visual flag for security personnel</p>
+</div>
+<div class="w-12 h-6 bg-primary/20 rounded-full relative">
+<div class="absolute right-1 top-1 w-4 h-4 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Info Alert -->
+<div class="bg-secondary-container/30 border border-secondary-container p-4 rounded-xl flex gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<p class="text-xs text-on-secondary-container leading-relaxed">
+<strong>Pro-Tip:</strong> Use high-density thermal paper for the best results. Badges are valid for 12 hours from the moment of printing.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Navigation -->
+<footer class="md:hidden fixed bottom-0 w-full bg-white/90 backdrop-blur-md flex items-center justify-around h-16 border-t border-outline-variant/10 z-50">
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-fuchsia-700">
+<span class="material-symbols-outlined" data-icon="group" data-weight="fill" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="text-[10px] font-bold">Visitors</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span class="text-[10px] font-medium">Zones</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="text-[10px] font-medium">Floor</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</footer>
+</body></html>

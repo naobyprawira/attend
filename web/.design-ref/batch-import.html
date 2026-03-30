@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Batch Import Preview | Attend.AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed": "#1a1a27",
+              "surface-container-low": "#f5f3f4",
+              "on-tertiary-fixed-variant": "#245100",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary-container": "#ffb9df",
+              "on-background": "#1b1c1d",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e4e2e3",
+              "surface-tint": "#9a3979",
+              "outline": "#85727b",
+              "on-primary-fixed": "#3c002b",
+              "surface-dim": "#dbd9da",
+              "on-surface": "#1b1c1d",
+              "tertiary-fixed-dim": "#99d76c",
+              "background": "#fbf9fa",
+              "surface-bright": "#fbf9fa",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e4e2e3",
+              "on-error": "#ffffff",
+              "primary": "#751859",
+              "on-secondary-container": "#646372",
+              "tertiary-fixed": "#b4f485",
+              "tertiary-container": "#2e6400",
+              "secondary-container": "#e3e0f2",
+              "on-surface-variant": "#53424a",
+              "primary-container": "#923272",
+              "inverse-on-surface": "#f2f0f1",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "surface-container-high": "#e9e8e9",
+              "outline-variant": "#d8c0ca",
+              "primary-fixed": "#ffd8eb",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#e3e0f2",
+              "secondary-fixed-dim": "#c7c5d6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#efedee",
+              "on-secondary-fixed-variant": "#464553",
+              "on-tertiary-fixed": "#0b2000",
+              "tertiary": "#204a00",
+              "on-tertiary-container": "#a1e074"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- Sidebar -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 pt-6 pb-8 bg-[#1a1a27] dark:bg-black docked left-0 h-full w-64 z-50">
+<div class="px-6 mb-10 flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">monorail</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold tracking-tighter uppercase leading-none">Intelligence</h1>
+<p class="text-white/50 text-[10px] tracking-[0.2em] uppercase mt-1">Observational Monolith</p>
+</div>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all duration-200 font-['Inter'] text-sm tracking-wide uppercase font-medium" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                Dashboard
+            </a>
+<a class="bg-[#751859] text-white rounded-lg flex items-center px-4 py-3 mx-2 font-['Inter'] text-sm tracking-wide uppercase font-medium" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+                Persons
+            </a>
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all duration-200 font-['Inter'] text-sm tracking-wide uppercase font-medium" href="#">
+<span class="material-symbols-outlined mr-3">fact_check</span>
+                Attendance
+            </a>
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all duration-200 font-['Inter'] text-sm tracking-wide uppercase font-medium" href="#">
+<span class="material-symbols-outlined mr-3">schedule</span>
+                Shifts
+            </a>
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all duration-200 font-['Inter'] text-sm tracking-wide uppercase font-medium" href="#">
+<span class="material-symbols-outlined mr-3">insert_chart</span>
+                Analytics
+            </a>
+</nav>
+<div class="px-4 mb-6">
+<button class="w-full bg-white/5 hover:bg-white/10 text-white/90 border border-white/10 py-3 rounded-lg flex items-center justify-center space-x-2 transition-all active:translate-x-1 duration-150">
+<span class="material-symbols-outlined text-sm">person_add</span>
+<span class="text-xs font-bold tracking-widest uppercase">Register New Person</span>
+</button>
+</div>
+<footer class="pt-4 border-t border-white/5">
+<a class="text-white/70 flex items-center px-4 py-2 mx-2 hover:bg-white/10 transition-all duration-200 font-['Inter'] text-xs tracking-wide uppercase font-medium" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">contact_support</span>
+                Support
+            </a>
+<a class="text-white/70 flex items-center px-4 py-2 mx-2 hover:bg-white/10 transition-all duration-200 font-['Inter'] text-xs tracking-wide uppercase font-medium" href="#">
+<span class="material-symbols-outlined mr-3 text-sm">logout</span>
+                Sign Out
+            </a>
+</footer>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-8 py-4 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl docked full-width top-0 z-40 shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)]">
+<div class="flex items-center space-x-8">
+<span class="text-xl font-bold tracking-tighter text-[#1a1a27] dark:text-slate-100 font-['Inter'] antialiased">Attend.AI</span>
+<nav class="hidden md:flex space-x-6">
+<a class="text-[#53424a] dark:text-slate-400 font-medium hover:text-[#751859] transition-colors" href="#">Directory</a>
+<a class="text-[#751859] dark:text-[#ffd8eb] font-semibold" href="#">Batch Import</a>
+<a class="text-[#53424a] dark:text-slate-400 font-medium hover:text-[#751859] transition-colors" href="#">Integrations</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative group">
+<span class="material-symbols-outlined p-2 rounded-full hover:bg-[#f5f3f4] text-secondary cursor-pointer transition-colors">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full ring-2 ring-white"></span>
+</div>
+<span class="material-symbols-outlined p-2 rounded-full hover:bg-[#f5f3f4] text-secondary cursor-pointer transition-colors">help</span>
+<span class="material-symbols-outlined p-2 rounded-full hover:bg-[#f5f3f4] text-secondary cursor-pointer transition-colors">settings</span>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+<div class="flex items-center space-x-3 group cursor-pointer">
+<img alt="User profile" class="w-10 h-10 rounded-full object-cover grayscale hover:grayscale-0 transition-all ring-2 ring-transparent group-hover:ring-primary-fixed" data-alt="professional headshot of a middle-aged male executive with glasses in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYWhgPt3OtaqXC6lEZHjaKsXL96YMZ51TEZ-D4v018uWFimEVOFW22QRCNxXIzc40cf821cSKHSahK77LhrAQQxcd3wCatH_GLQXc5rKYYPRtkeJW-kk847gM6mNygOA4LCUoG8Z-YUAgI0dbnPhzwwzBHpgR9p7g5ydDoGTzfOI3KDqT8_zIoeGJOtgX8e3ZZCMznNyaWtI9Qb2PprbrnXWNjh1DLPt8zhXVW2td12V92m3l0qEcAh5OAXnJEkRdfLp47RXdYORQ"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-12 max-w-7xl mx-auto space-y-12">
+<!-- Page Header -->
+<div class="space-y-2">
+<h2 class="text-3xl font-extrabold tracking-tight text-on-secondary-fixed">Batch Import Preview</h2>
+<p class="text-on-surface-variant font-medium">Verify structural integrity of the uploaded observational registry.</p>
+</div>
+<!-- Upload Section (Bento Style) -->
+<div class="grid grid-cols-12 gap-6">
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest border border-outline-variant/10 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary transition-all group-hover:w-2"></div>
+<div class="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant/50 rounded-lg p-12 bg-surface-container-low/30 hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="w-16 h-16 bg-primary-fixed rounded-2xl flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">description</span>
+</div>
+<h3 class="text-lg font-bold text-on-secondary-fixed mb-1">Upload Excel File</h3>
+<p class="text-on-surface-variant text-sm mb-6">Drag and drop your .xlsx registry file here</p>
+<button class="bg-primary hover:bg-primary-container text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition-all active:scale-95">Select File</button>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between h-full">
+<div>
+<h4 class="text-xs font-bold tracking-[0.1em] uppercase text-on-surface-variant mb-4">Template Resources</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">Ensure your data follows the standardized monolith schema for accurate face-matching and attendance tracking.</p>
+</div>
+<a class="flex items-center space-x-3 text-primary font-bold group" href="#">
+<span class="material-symbols-outlined group-hover:translate-y-0.5 transition-transform">download</span>
+<span class="text-sm">Download Template</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Validation Summary Bar -->
+<div class="bg-on-secondary-fixed text-white p-5 rounded-xl flex flex-wrap items-center justify-between shadow-xl">
+<div class="flex items-center space-x-12 px-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest text-white/50 mb-1">Status Report</span>
+<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>
+<span class="font-bold text-lg">47 Valid</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-bold text-lg text-error-container">3 Errors</span>
+</div>
+</div>
+</div>
+<div class="h-10 w-[1px] bg-white/10 hidden md:block"></div>
+<div class="hidden md:block">
+<span class="text-[10px] uppercase tracking-widest text-white/50 mb-1">Total Records</span>
+<p class="font-bold text-lg">50 Entities Detected</p>
+</div>
+</div>
+<div class="flex items-center space-x-4 px-4">
+<button class="text-white/70 hover:text-white px-4 py-2 font-semibold text-sm transition-colors">Discard Batch</button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-3 rounded-lg font-bold text-sm shadow-lg hover:shadow-primary/20 transition-all active:scale-95">Import Valid</button>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10">
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-left">
+<th class="px-6 py-4 text-[10px] font-bold tracking-[0.15em] uppercase text-secondary">Person Details</th>
+<th class="px-6 py-4 text-[10px] font-bold tracking-[0.15em] uppercase text-secondary">ID &amp; Dept</th>
+<th class="px-6 py-4 text-[10px] font-bold tracking-[0.15em] uppercase text-secondary">Email Registry</th>
+<th class="px-6 py-4 text-[10px] font-bold tracking-[0.15em] uppercase text-secondary text-center">Photo Status</th>
+<th class="px-6 py-4 text-[10px] font-bold tracking-[0.15em] uppercase text-secondary text-right">Validation</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1: Valid -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">JD</div>
+<span class="font-semibold text-on-secondary-fixed">Julianne Deckers</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-secondary-fixed">EMP-9021</span>
+<span class="text-xs text-on-surface-variant">Neural Systems</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">j.deckers@intel.monolith</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded bg-tertiary-fixed/20 text-tertiary-container text-[10px] font-bold uppercase tracking-wider">High Resolution</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-tertiary font-bold" style="font-variation-settings: 'wght' 700;">check_circle</span>
+</td>
+</tr>
+<!-- Row 2: Error -->
+<tr class="bg-error-container/5 hover:bg-error-container/10 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center space-x-4 opacity-80">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">RM</div>
+<span class="font-semibold text-on-secondary-fixed">Robert McAllister</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-error">INVALID_ID</span>
+<span class="text-xs text-on-surface-variant">Surveillance Operations</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant italic">missing_entry@---</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded bg-error-container text-on-error-container text-[10px] font-bold uppercase tracking-wider">No Image Detected</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-[10px] font-bold text-error uppercase tracking-tighter">Duplicated ID Field</span>
+<span class="material-symbols-outlined text-error font-bold" style="font-variation-settings: 'wght' 700;">cancel</span>
+</div>
+</td>
+</tr>
+<!-- Row 3: Valid -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">SA</div>
+<span class="font-semibold text-on-secondary-fixed">Sia Arlow</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-secondary-fixed">EMP-4482</span>
+<span class="text-xs text-on-surface-variant">Logic Architecture</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">sia.arlow@intel.monolith</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded bg-tertiary-fixed/20 text-tertiary-container text-[10px] font-bold uppercase tracking-wider">High Resolution</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-tertiary font-bold" style="font-variation-settings: 'wght' 700;">check_circle</span>
+</td>
+</tr>
+<!-- Row 4: Error -->
+<tr class="bg-error-container/5 hover:bg-error-container/10 transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center space-x-4 opacity-80">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">KU</div>
+<span class="font-semibold text-on-secondary-fixed">Kaito Uzumaki</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-secondary-fixed">EMP-1102</span>
+<span class="text-xs text-on-surface-variant">Infrastructure</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-error font-medium underline underline-offset-4 decoration-dashed">invalid_format.email</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded bg-tertiary-fixed/20 text-tertiary-container text-[10px] font-bold uppercase tracking-wider">High Resolution</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="flex items-center justify-end space-x-2">
+<span class="text-[10px] font-bold text-error uppercase tracking-tighter">Regex Format Error</span>
+<span class="material-symbols-outlined text-error font-bold" style="font-variation-settings: 'wght' 700;">cancel</span>
+</div>
+</td>
+</tr>
+<!-- Row 5: Valid -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-6 py-5">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary font-bold">LN</div>
+<span class="font-semibold text-on-secondary-fixed">Lila Nguyen</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-medium text-on-secondary-fixed">EMP-7710</span>
+<span class="text-xs text-on-surface-variant">Ethics Board</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">l.nguyen@intel.monolith</td>
+<td class="px-6 py-5 text-center">
+<span class="inline-flex items-center px-2 py-1 rounded bg-tertiary-fixed/20 text-tertiary-container text-[10px] font-bold uppercase tracking-wider">High Resolution</span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-tertiary font-bold" style="font-variation-settings: 'wght' 700;">check_circle</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-6 bg-surface-container-low/50 flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Showing first 5 entries of 50</span>
+<div class="flex space-x-2">
+<button class="p-2 rounded hover:bg-surface-container-high transition-colors text-secondary cursor-not-allowed opacity-30">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded hover:bg-surface-container-high transition-colors text-on-secondary-fixed">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Spacing and Metadata -->
+<div class="pt-12 border-t border-outline-variant/10 flex items-center justify-between text-[10px] font-bold tracking-[0.2em] uppercase text-secondary/60">
+<span>Attend.AI Core v4.2.1</span>
+<span>Last Processed: 2023-11-24 14:02:11 UTC</span>
+</div>
+</div>
+</main>
+</body></html>

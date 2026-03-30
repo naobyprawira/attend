@@ -1,51 +1,51 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PageHeader } from "@/components/layout/PageHeader";
 import { fetchSettings, updateSettings } from "@/lib/api";
 import type { Settings } from "@/lib/types";
+import { useI18n } from "@/lib/i18n/provider";
+import type { Locale } from "@/lib/i18n/translations";
 
-function SettingsCard({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="bg-white rounded-[5px]" style={{ boxShadow: "var(--shadow-card)" }}>
-      <div className="px-5 pt-5 pb-3">
-        <p className="text-lg font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>
-          <span style={{ color: "var(--color-primary)" }}>{title}</span>
-        </p>
-      </div>
-      <div className="px-5 pb-5 space-y-4">{children}</div>
-    </div>
-  );
-}
-
-function SettingsRow({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex items-center justify-between">
-      <span className="text-sm" style={{ color: "var(--color-body)" }}>
-        {label}
-      </span>
-      {children}
-    </div>
-  );
-}
+const DEFAULT_SETTINGS: Settings = {
+  face_detection_enabled: true,
+  face_recognition_enabled: true,
+  confidence_threshold: 23.56,
+  recognition_model: "Facenet512",
+  yolo_enabled: true,
+  temporal_alpha: 0.3,
+  target_fps: 15,
+  jpeg_quality: 80,
+  gpu_available: true,
+  gpu_name: "NVIDIA RTX 4090",
+  yolo_model: "yolo11n-seg.pt",
+  face_model: "Facenet512",
+  server_uptime: 3600,
+};
 
 export default function SettingsPage() {
-  const [settings, setSettings] = useState<Settings | null>(null);
+  const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
   const [saving, setSaving] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [backendOnline, setBackendOnline] = useState(false);
+  const { locale, setLocale, t } = useI18n();
 
   useEffect(() => {
-    fetchSettings().then(setSettings).catch(() => {});
+    fetchSettings()
+      .then((s) => {
+        setSettings(s);
+        setBackendOnline(true);
+      })
+      .catch(() => {
+        setBackendOnline(false);
+      });
   }, []);
 
   const update = (key: string, value: number) => {
-    if (!settings) return;
-    setSettings({ ...settings, [key]: value });
+    setSettings((prev) => ({ ...prev, [key]: value }));
     setDirty(true);
   };
 
   const handleSave = async () => {
-    if (!settings) return;
     setSaving(true);
     try {
       await updateSettings({
@@ -59,158 +59,204 @@ export default function SettingsPage() {
     setSaving(false);
   };
 
-  if (!settings) {
-    return (
-      <div className="p-6" style={{ color: "var(--color-muted)" }}>
-        Loading settings...
-      </div>
-    );
-  }
-
   return (
-    <>
-      <PageHeader title="Settings" breadcrumb="Manage / Settings">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+      {/* Page Header */}
+      <div className="flex justify-between items-end">
+        <div>
+          <h2 className="text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+            {t("settings.title")}
+          </h2>
+          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium">
+            {t("settings.subtitle")}
+          </p>
+        </div>
         {dirty && (
           <button
             onClick={handleSave}
             disabled={saving}
-            className="text-white text-sm px-5 py-2 rounded-lg disabled:opacity-50 cursor-pointer font-semibold"
-            style={{ backgroundColor: "var(--color-primary)" }}
+            className="primary-gradient text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all disabled:opacity-50"
           >
-            {saving ? "Saving..." : "Save Changes"}
+            <span className="material-symbols-outlined text-sm">save</span>
+            {saving ? t("common.saving") : t("common.save")}
           </button>
         )}
-      </PageHeader>
+      </div>
 
-      <div className="flex-1 overflow-y-auto p-6 space-y-4 max-w-2xl">
-        <SettingsCard title="Detection">
-          <SettingsRow label="Face Detection">
-            <span
-              className="text-xs font-semibold px-2 py-0.5 rounded"
-              style={{ backgroundColor: "#d1fae5", color: "var(--color-success)" }}
-            >
-              ENABLED
-            </span>
-          </SettingsRow>
-          <SettingsRow label="Face Recognition">
-            <span
-              className="text-xs font-semibold px-2 py-0.5 rounded"
-              style={{ backgroundColor: "#d1fae5", color: "var(--color-success)" }}
-            >
-              ENABLED
-            </span>
-          </SettingsRow>
-          <SettingsRow label="Distance Threshold">
+      {!backendOnline && (
+        <div className="bg-primary/5 border border-primary/20 rounded-xl px-5 py-3 flex items-center gap-3">
+          <span className="material-symbols-outlined text-primary text-sm">info</span>
+          <span className="text-xs text-primary font-medium">{t("common.backendOffline")}</span>
+        </div>
+      )}
+
+      <div className="max-w-3xl w-full space-y-6">
+        {/* Language */}
+        <SettingsCard title={t("settings.language")} icon="translate">
+          <SettingsRow label={t("settings.languageLabel")}>
             <div className="flex items-center gap-2">
-              <input
-                type="range"
-                min={5}
-                max={40}
-                step={0.5}
-                value={settings.confidence_threshold}
-                onChange={(e) => update("confidence_threshold", parseFloat(e.target.value))}
-                className="w-32 accent-[var(--color-primary)]"
-              />
-              <span className="text-xs font-mono w-8" style={{ color: "var(--color-secondary)" }}>
-                {settings.confidence_threshold}
-              </span>
+              {(["en", "id"] as Locale[]).map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => setLocale(lang)}
+                  className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
+                    locale === lang
+                      ? "bg-primary text-white shadow-lg shadow-primary/20"
+                      : "bg-surface-container-high dark:bg-dark-surface-container-high text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-dark-surface-container-highest"
+                  }`}
+                >
+                  {lang === "en" ? "English" : "Bahasa Indonesia"}
+                </button>
+              ))}
             </div>
           </SettingsRow>
-          <SettingsRow label="Model">
-            <span className="text-xs font-mono" style={{ color: "var(--color-secondary)" }}>
+          <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+            {t("settings.languageDesc")}
+          </p>
+        </SettingsCard>
+
+        {/* Detection */}
+        <SettingsCard title={t("settings.detection")} icon="face">
+          <SettingsRow label={t("settings.faceDetection")}>
+            <StatusBadge enabled={settings.face_detection_enabled} labelEnabled={t("common.enabled")} labelDisabled={t("common.disabled")} />
+          </SettingsRow>
+          <SettingsRow label={t("settings.faceRecognition")}>
+            <StatusBadge enabled={settings.face_recognition_enabled} labelEnabled={t("common.enabled")} labelDisabled={t("common.disabled")} />
+          </SettingsRow>
+          <SettingsRow label={t("settings.distanceThreshold")}>
+            <SliderControl
+              value={settings.confidence_threshold}
+              min={5} max={40} step={0.5}
+              onChange={(v) => update("confidence_threshold", v)}
+            />
+          </SettingsRow>
+          <SettingsRow label={t("settings.recognitionModel")}>
+            <span className="text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant bg-surface-container dark:bg-dark-surface-container-high px-3 py-1 rounded-lg">
               {settings.recognition_model}
             </span>
           </SettingsRow>
         </SettingsCard>
 
-        <SettingsCard title="Background Removal">
-          <SettingsRow label="YOLO Segmentation">
-            <span
-              className="text-xs font-semibold px-2 py-0.5 rounded"
-              style={{ backgroundColor: "#d1fae5", color: "var(--color-success)" }}
-            >
-              ENABLED
-            </span>
+        {/* Background Removal */}
+        <SettingsCard title={t("settings.backgroundRemoval")} icon="auto_fix_high">
+          <SettingsRow label={t("settings.yoloSegmentation")}>
+            <StatusBadge enabled={settings.yolo_enabled} labelEnabled={t("common.enabled")} labelDisabled={t("common.disabled")} />
           </SettingsRow>
-          <SettingsRow label="Temporal Smoothing">
-            <div className="flex items-center gap-2">
-              <input
-                type="range"
-                min={0.1}
-                max={1}
-                step={0.05}
-                value={settings.temporal_alpha}
-                onChange={(e) => update("temporal_alpha", parseFloat(e.target.value))}
-                className="w-32 accent-[var(--color-primary)]"
-              />
-              <span className="text-xs font-mono w-8" style={{ color: "var(--color-secondary)" }}>
-                {settings.temporal_alpha}
-              </span>
-            </div>
+          <SettingsRow label={t("settings.temporalSmoothing")}>
+            <SliderControl
+              value={settings.temporal_alpha}
+              min={0.1} max={1} step={0.05}
+              onChange={(v) => update("temporal_alpha", v)}
+            />
           </SettingsRow>
         </SettingsCard>
 
-        <SettingsCard title="Camera">
-          <SettingsRow label="Target FPS">
-            <div className="flex items-center gap-2">
-              <input
-                type="range"
-                min={5}
-                max={30}
-                step={1}
-                value={settings.target_fps}
-                onChange={(e) => update("target_fps", parseInt(e.target.value))}
-                className="w-32 accent-[var(--color-primary)]"
-              />
-              <span className="text-xs font-mono w-8" style={{ color: "var(--color-secondary)" }}>
-                {settings.target_fps}
-              </span>
-            </div>
+        {/* Camera */}
+        <SettingsCard title={t("settings.camera")} icon="videocam">
+          <SettingsRow label={t("settings.targetFps")}>
+            <SliderControl
+              value={settings.target_fps}
+              min={5} max={30} step={1}
+              onChange={(v) => update("target_fps", v)}
+            />
           </SettingsRow>
-          <SettingsRow label="JPEG Quality">
-            <div className="flex items-center gap-2">
-              <input
-                type="range"
-                min={30}
-                max={100}
-                step={5}
-                value={settings.jpeg_quality}
-                onChange={(e) => update("jpeg_quality", parseInt(e.target.value))}
-                className="w-32 accent-[var(--color-primary)]"
-              />
-              <span className="text-xs font-mono w-8" style={{ color: "var(--color-secondary)" }}>
-                {settings.jpeg_quality}
-              </span>
-            </div>
+          <SettingsRow label={t("settings.jpegQuality")}>
+            <SliderControl
+              value={settings.jpeg_quality}
+              min={30} max={100} step={5}
+              onChange={(v) => update("jpeg_quality", v)}
+            />
           </SettingsRow>
         </SettingsCard>
 
-        <SettingsCard title="System Info">
-          <SettingsRow label="Server Uptime">
-            <span className="text-xs font-mono" style={{ color: "var(--color-secondary)" }}>
+        {/* System Info */}
+        <SettingsCard title={t("settings.systemInfo")} icon="info">
+          <SettingsRow label={t("settings.serverUptime")}>
+            <span className="text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant">
               {Math.floor(settings.server_uptime / 60)}m {settings.server_uptime % 60}s
             </span>
           </SettingsRow>
-          <SettingsRow label="GPU">
-            <span
-              className="text-xs font-mono"
-              style={{ color: settings.gpu_available ? "var(--color-success)" : "var(--color-muted)" }}
-            >
-              {settings.gpu_available ? settings.gpu_name : "Not available"}
+          <SettingsRow label={t("settings.gpu")}>
+            <span className={`text-xs font-mono ${settings.gpu_available ? "text-green-500" : "text-on-surface-variant dark:text-dark-on-surface-variant"}`}>
+              {settings.gpu_available ? settings.gpu_name : t("settings.notAvailable")}
             </span>
           </SettingsRow>
-          <SettingsRow label="YOLO Model">
-            <span className="text-xs font-mono" style={{ color: "var(--color-secondary)" }}>
+          <SettingsRow label={t("settings.yoloModel")}>
+            <span className="text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant bg-surface-container dark:bg-dark-surface-container-high px-3 py-1 rounded-lg">
               {settings.yolo_model}
             </span>
           </SettingsRow>
-          <SettingsRow label="Face Model">
-            <span className="text-xs font-mono" style={{ color: "var(--color-secondary)" }}>
+          <SettingsRow label={t("settings.faceModel")}>
+            <span className="text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant bg-surface-container dark:bg-dark-surface-container-high px-3 py-1 rounded-lg">
               {settings.face_model}
             </span>
           </SettingsRow>
         </SettingsCard>
       </div>
-    </>
+    </div>
+  );
+}
+
+function SettingsCard({ title, icon, children }: { title: string; icon: string; children: React.ReactNode }) {
+  return (
+    <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
+      <div className="px-6 py-4 border-b border-outline-variant/10 dark:border-dark-outline-variant/10 flex items-center gap-3">
+        <span className="material-symbols-outlined text-primary">{icon}</span>
+        <h3 className="text-sm font-bold tracking-widest uppercase text-on-surface dark:text-dark-on-surface">
+          {title}
+        </h3>
+      </div>
+      <div className="px-6 py-5 space-y-5">{children}</div>
+    </div>
+  );
+}
+
+function SettingsRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-between">
+      <span className="text-sm text-on-surface dark:text-dark-on-surface font-medium">{label}</span>
+      {children}
+    </div>
+  );
+}
+
+function StatusBadge({ enabled, labelEnabled = "Enabled", labelDisabled = "Disabled" }: { enabled: boolean; labelEnabled?: string; labelDisabled?: string }) {
+  return (
+    <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest ${
+      enabled ? "bg-green-500/10 text-green-500" : "bg-error/10 text-error"
+    }`}>
+      {enabled ? labelEnabled : labelDisabled}
+    </span>
+  );
+}
+
+function SliderControl({
+  value,
+  min,
+  max,
+  step,
+  onChange,
+}: {
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <input
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))}
+        className="w-32 accent-primary"
+      />
+      <span className="text-xs font-mono font-bold text-primary min-w-[3rem] text-right">
+        {value}
+      </span>
+    </div>
   );
 }

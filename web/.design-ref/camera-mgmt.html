@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed": "#1a1a27",
+              "surface-container-low": "#f5f3f4",
+              "on-tertiary-fixed-variant": "#245100",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary-container": "#ffb9df",
+              "on-background": "#1b1c1d",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e4e2e3",
+              "surface-tint": "#9a3979",
+              "outline": "#85727b",
+              "on-primary-fixed": "#3c002b",
+              "surface-dim": "#dbd9da",
+              "on-surface": "#1b1c1d",
+              "tertiary-fixed-dim": "#99d76c",
+              "background": "#fbf9fa",
+              "surface-bright": "#fbf9fa",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e4e2e3",
+              "on-error": "#ffffff",
+              "primary": "#751859",
+              "on-secondary-container": "#646372",
+              "tertiary-fixed": "#b4f485",
+              "tertiary-container": "#2e6400",
+              "secondary-container": "#e3e0f2",
+              "on-surface-variant": "#53424a",
+              "primary-container": "#923272",
+              "inverse-on-surface": "#f2f0f1",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "surface-container-high": "#e9e8e9",
+              "outline-variant": "#d8c0ca",
+              "primary-fixed": "#ffd8eb",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#e3e0f2",
+              "secondary-fixed-dim": "#c7c5d6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#efedee",
+              "on-secondary-fixed-variant": "#464553",
+              "on-tertiary-fixed": "#0b2000",
+              "tertiary": "#204a00",
+              "on-tertiary-container": "#a1e074"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .glass-effect {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .brand-gradient {
+        background: linear-gradient(135deg, #751859 0%, #923272 100%);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-900 dark:bg-black flex flex-col py-6 overflow-y-auto">
+<div class="px-6 mb-8">
+<h1 class="text-rose-500 font-black text-xl">Attend.AI</h1>
+<p class="text-slate-400 text-[10px] uppercase tracking-widest mt-1 opacity-70">Enterprise Surveillance</p>
+</div>
+<button class="mx-6 mb-8 py-3 px-4 brand-gradient text-white font-semibold rounded-lg flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">add</span>
+            New Scan
+        </button>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Dashboard</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">videocam</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Live View</span>
+</a>
+<a class="bg-rose-900/40 text-rose-100 border-r-4 border-rose-600 px-6 py-3 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">videocam</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Camera Management</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Person Management</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Access Logs</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">speed</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Visitor Flow</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Zone Analytics</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Compliance</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Notifications</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">memory</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">System Health</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-slate-800/50">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Account</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Logout</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar Component -->
+<header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl docked full-width top-0 z-40 shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)] sticky">
+<div class="flex justify-between items-center w-full px-8 py-4">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-rose-900 dark:text-rose-100">Attend.AI</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 hover:text-rose-700 font-['Inter'] tracking-tight antialiased" href="#">Dashboard</a>
+<a class="text-slate-500 hover:text-rose-700 font-['Inter'] tracking-tight antialiased" href="#">Live View</a>
+<a class="text-slate-500 hover:text-rose-700 font-['Inter'] tracking-tight antialiased" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<input class="bg-surface-container-highest border-none rounded-full px-4 py-2 text-sm w-64 focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search cameras..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2 text-slate-400 text-sm">search</span>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden ml-2">
+<img alt="User Profile" class="h-full w-full object-cover" data-alt="Professional corporate headshot of a middle-aged male executive in a sharp navy suit with neutral studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbPqsR925B-_OAyUP-dM4d3ClYVz3dowSytaOZVlxKnlow1XEReS7GAWk_I0T2e1iZ-REJ1R7fRhBvq_ivh1NeEsOkvjCuelOO7FxkZZsh-3H1JQb50dCDhpOn_Z_U5hCqggkYSvvhB9hkA4JC-YDeWIFHTGHFdfpISQh5WCstAPP1sHU-TwYNm-aMDkvd_DJFGtxJsH15jIFvxQP46VvzqObrgKApS3rXROD07r89tzBOYME9LJwxTmb0op0Ot13FPt_QmKeM5Jw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-10 bg-surface">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-on-secondary-fixed mb-2">Camera Management</h2>
+<p class="text-on-surface-variant font-medium opacity-80 uppercase text-xs tracking-[0.15em]">Global Surveillance Infrastructure</p>
+</div>
+<button class="brand-gradient text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:opacity-90 transition-all shadow-lg active:scale-95">
+<span class="material-symbols-outlined">add_a_photo</span>
+                    Add Camera
+                </button>
+</div>
+<!-- Dashboard Bento Grid View / Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<p class="text-secondary text-[10px] font-bold tracking-widest uppercase mb-1">Total Assets</p>
+<p class="text-3xl font-black text-on-surface">128</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<p class="text-secondary text-[10px] font-bold tracking-widest uppercase mb-1">Live Feeds</p>
+<p class="text-3xl font-black text-primary">124</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<p class="text-secondary text-[10px] font-bold tracking-widest uppercase mb-1">Avg Frame Rate</p>
+<p class="text-3xl font-black text-on-surface">24 <span class="text-sm font-medium text-on-surface-variant">FPS</span></p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<p class="text-secondary text-[10px] font-bold tracking-widest uppercase mb-1">System Health</p>
+<div class="flex items-center gap-2">
+<p class="text-3xl font-black text-on-surface">98%</p>
+<span class="w-3 h-3 rounded-full bg-tertiary-container animate-pulse"></span>
+</div>
+</div>
+</div>
+<!-- Table Card -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(27,28,29,0.04)]">
+<!-- Filter Bar -->
+<div class="p-6 border-b border-surface-variant/30 flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-surface-container-high text-primary font-semibold text-sm rounded-lg hover:bg-secondary-container transition-colors">
+                            All Cameras
+                        </button>
+<button class="px-4 py-2 text-on-surface-variant hover:bg-surface-container-low font-medium text-sm rounded-lg transition-colors">
+                            Online Only
+                        </button>
+<button class="px-4 py-2 text-on-surface-variant hover:bg-surface-container-low font-medium text-sm rounded-lg transition-colors">
+                            Maintenance
+                        </button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-secondary hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 text-secondary hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Surveillance Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-4 text-[11px] font-extrabold text-secondary tracking-widest uppercase">Name</th>
+<th class="px-6 py-4 text-[11px] font-extrabold text-secondary tracking-widest uppercase">Location</th>
+<th class="px-6 py-4 text-[11px] font-extrabold text-secondary tracking-widest uppercase">Type</th>
+<th class="px-6 py-4 text-[11px] font-extrabold text-secondary tracking-widest uppercase">Status</th>
+<th class="px-6 py-4 text-[11px] font-extrabold text-secondary tracking-widest uppercase text-center">FPS</th>
+<th class="px-6 py-4 text-[11px] font-extrabold text-secondary tracking-widest uppercase">Last Seen</th>
+<th class="px-8 py-4 text-[11px] font-extrabold text-secondary tracking-widest uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant/20">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-16 bg-on-secondary-fixed rounded-lg overflow-hidden shrink-0 border border-outline-variant/10">
+<img alt="Cam Stream" class="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Monochrome surveillance footage still showing a clean white corridor with minimalist architecture and overhead lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZaoqatiCQsVIf6NdK1fyBYoyZYOSlfeX1dml6uRflzhLWQc3yrYwbzrLGEJDoq5Zx1Qx3kW5aIBd1ql1CZD89wUAv0EaWUGIKPIDlFv0HPA2seZsJVR1omU2TIY-kh1tvfRRx-Q2E4vDDK0bDe6YFTRfQH84_T1RfMnHUe0C7CRW1qeJTi9evePd0DpX_LZEfCAyDbj8U5AFLcmI6bLySfWTpDa4sVLHheCQn7F6D7DK5MDZD5MaSXQaga2uHAAeaFDIotVBSdII"/>
+</div>
+<span class="font-bold text-on-surface">Main Entrance A-1</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">North Wing Lobby</td>
+<td class="px-6 py-5 text-xs font-mono tracking-tighter text-secondary">RTSP / H.264</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-black uppercase tracking-wider rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                                        Online
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-center font-bold">30</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Just now</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-secondary hover:text-primary transition-colors hover:bg-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-secondary hover:text-error transition-colors hover:bg-error-container rounded-lg"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-16 bg-on-secondary-fixed rounded-lg overflow-hidden shrink-0 border border-outline-variant/10">
+<img alt="Cam Stream" class="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="CCTV perspective of a high-tech server room with glowing blue indicator lights and orderly cable management" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3YMRoQ-HbwvOhaZv5Tazon9PC_jtuLMeeJnEgehsotCr8jxamfJkw6EwycubTBxX8a-oBX-WJJkIdyx1U7CP4oMuo_pRqC_tdCeDXcQdtJDr9ED1xbx69Ws4jVbWT7oCewBrY2Wz56KEKBkreBkl7v4C3_VkPlZwDmkH06KFgWOOHuQcAw42eAXjDXaW3lNlu5fOoauZG2RSP6p6ZaWfcTbhmBKI8glnLrkNx_6N3z9TKYnKVI29Y8KYyVx0CAq-GZVpP3p7VxE"/>
+</div>
+<span class="font-bold text-on-surface">Server Vault 02</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Secure Zone Level B1</td>
+<td class="px-6 py-5 text-xs font-mono tracking-tighter text-secondary">WebSocket</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-black uppercase tracking-wider rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                                        Online
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-center font-bold">24</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">2m ago</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-secondary hover:text-primary transition-colors hover:bg-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-secondary hover:text-error transition-colors hover:bg-error-container rounded-lg"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 (Offline) -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-16 bg-slate-200 rounded-lg overflow-hidden shrink-0 border border-outline-variant/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">videocam_off</span>
+</div>
+<span class="font-bold text-on-surface">Parking Gate East</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Exterior Perimeter</td>
+<td class="px-6 py-5 text-xs font-mono tracking-tighter text-secondary">RTSP / H.265</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-error-container text-on-error-container text-[10px] font-black uppercase tracking-wider rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                                        Offline
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-center font-bold text-error">0</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">45m ago</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-secondary hover:text-primary transition-colors hover:bg-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-secondary hover:text-error transition-colors hover:bg-error-container rounded-lg"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-16 bg-on-secondary-fixed rounded-lg overflow-hidden shrink-0 border border-outline-variant/10">
+<img alt="Cam Stream" class="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Security camera view of a high-end corporate office kitchen area with polished concrete floors and wooden accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCT5iGydjBs-VrqHvIjsF8sYUfq7tQkBxHcI8oEZ_2a7nRV0QJGAT0B_BvruETy1vdM3FMmsSlyjia648Q2eamLS4b8_hKX5c1RW44to32diyE0CeAuh0lcI5I0cbS7a-JI0IP-UAWmCW-S_nF7k5tGfZl4V11a4Wh3X-UEaL6_nzOEwta41NNpkvdBQtP-cci1-NBckquuyVPh5LJU4AZFGw5K_oKz_QEQmwMW5E9kU4kGALQWW8DdgLFPyoCKl7J5q4trc1ckGc"/>
+</div>
+<span class="font-bold text-on-surface">Cafeteria Hub</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Staff Zone L3</td>
+<td class="px-6 py-5 text-xs font-mono tracking-tighter text-secondary">WebSocket</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-black uppercase tracking-wider rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                                        Online
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-center font-bold">15</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Just now</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-secondary hover:text-primary transition-colors hover:bg-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-secondary hover:text-error transition-colors hover:bg-error-container rounded-lg"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="h-10 w-16 bg-on-secondary-fixed rounded-lg overflow-hidden shrink-0 border border-outline-variant/10">
+<img alt="Cam Stream" class="h-full w-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Thermal surveillance camera view showing heat signatures of people moving through an industrial facility" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdjouUR5uF-C3jUcJjoUYwDsETwQ8k5RbXmuCRCpTUtU1jOolQkLiY6VQxsQ1BIBX5DKO1f79lPh1iwXMpYnJzrmDPUX64TtlsqcvKNAHna3Dp9e54nQOZj-SbsZjLY0owaIGBWw9ve2MyBTOdGBFiw0Ma6FGkBigks_DWBb1CtRNsCjFSt3LeZAZtvzgHQ-_BP-vWgwLMCDEED4ddEvt3C7oqPNvVzYnMYu9XGMnOl2Z_ABo91n2rokeMwlW3LD9WAg5BGit0m-M"/>
+</div>
+<span class="font-bold text-on-surface">Loading Dock B</span>
+</div>
+</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">Logistic Yard</td>
+<td class="px-6 py-5 text-xs font-mono tracking-tighter text-secondary">RTSP / H.264</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-black uppercase tracking-wider rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                                        Online
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-center font-bold">30</td>
+<td class="px-6 py-5 text-sm text-on-surface-variant">12s ago</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-secondary hover:text-primary transition-colors hover:bg-primary-fixed rounded-lg"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-secondary hover:text-error transition-colors hover:bg-error-container rounded-lg"><span class="material-symbols-outlined text-lg">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-6 bg-surface-container-low/30 border-t border-surface-variant/20 flex items-center justify-between">
+<p class="text-xs font-medium text-on-surface-variant">Showing 1 to 5 of 128 results</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xs font-medium">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xs font-medium">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Contextual Help / AI Suggestions -->
+<div class="mt-12 p-8 bg-on-secondary-fixed rounded-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="relative z-10 max-w-xl">
+<div class="inline-flex items-center gap-2 bg-primary/20 text-primary-fixed px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4">
+<span class="material-symbols-outlined text-xs">bolt</span>
+                        AI Optimization
+                    </div>
+<h3 class="text-white text-2xl font-bold mb-2">Bandwidth Alert: Adaptive Streaming</h3>
+<p class="text-slate-400 text-sm">3 cameras in the South Wing are showing high latency. We recommend switching their transport protocol to WebSocket to reduce frame loss during peak hours.</p>
+</div>
+<button class="z-10 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white px-6 py-3 rounded-lg font-semibold transition-all">
+                    Apply Optimization
+                </button>
+<!-- Decorative element -->
+<div class="absolute -right-10 -bottom-10 w-64 h-64 bg-primary/20 blur-[100px] rounded-full"></div>
+<div class="absolute -left-10 -top-10 w-48 h-48 bg-secondary/10 blur-[80px] rounded-full"></div>
+</div>
+</main>
+</div>
+</body></html>

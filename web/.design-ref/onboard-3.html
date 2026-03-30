@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attend.AI - Onboarding Phase 1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed": "#1a1a27",
+              "surface-container-low": "#f5f3f4",
+              "on-tertiary-fixed-variant": "#245100",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary-container": "#ffb9df",
+              "on-background": "#1b1c1d",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e4e2e3",
+              "surface-tint": "#9a3979",
+              "outline": "#85727b",
+              "on-primary-fixed": "#3c002b",
+              "surface-dim": "#dbd9da",
+              "on-surface": "#1b1c1d",
+              "tertiary-fixed-dim": "#99d76c",
+              "background": "#fbf9fa",
+              "surface-bright": "#fbf9fa",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e4e2e3",
+              "on-error": "#ffffff",
+              "primary": "#751859",
+              "on-secondary-container": "#646372",
+              "tertiary-fixed": "#b4f485",
+              "tertiary-container": "#2e6400",
+              "secondary-container": "#e3e0f2",
+              "on-surface-variant": "#53424a",
+              "primary-container": "#923272",
+              "inverse-on-surface": "#f2f0f1",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "surface-container-high": "#e9e8e9",
+              "outline-variant": "#d8c0ca",
+              "primary-fixed": "#ffd8eb",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#e3e0f2",
+              "secondary-fixed-dim": "#c7c5d6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#efedee",
+              "on-secondary-fixed-variant": "#464553",
+              "on-tertiary-fixed": "#0b2000",
+              "tertiary": "#204a00",
+              "on-tertiary-container": "#a1e074"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-slate-50 dark:bg-slate-900 h-screen w-72 left-0 top-0 fixed flex flex-col h-full p-6 space-y-8 z-40">
+<div class="flex flex-col">
+<span class="text-lg font-black text-fuchsia-900 dark:text-fuchsia-100 tracking-tighter">Attend.AI</span>
+<div class="mt-8 flex items-center space-x-3">
+<div class="h-10 w-10 rounded-lg bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="settings_suggest">settings_suggest</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-on-surface">Onboarding</h3>
+<p class="text-xs text-on-surface-variant">Phase 1: Initialization</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- System Check (Complete) -->
+<div class="flex items-center space-x-3 p-3 rounded-lg text-slate-500 dark:text-slate-400 font-['Inter'] text-sm font-medium hover:text-fuchsia-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>System Check</span>
+</div>
+<!-- Create Admin (Complete) -->
+<div class="flex items-center space-x-3 p-3 rounded-lg text-slate-500 dark:text-slate-400 font-['Inter'] text-sm font-medium hover:text-fuchsia-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Create Admin</span>
+</div>
+<!-- Add Camera (Active) -->
+<div class="flex items-center space-x-3 p-3 font-['Inter'] text-sm font-medium bg-fuchsia-700 text-white rounded-lg shadow-lg shadow-fuchsia-900/20 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined" data-icon="videocam" style="font-variation-settings: 'FILL' 1;">videocam</span>
+<span>Add Camera</span>
+</div>
+<!-- Register Person (Inactive) -->
+<div class="flex items-center space-x-3 p-3 rounded-lg text-slate-600 dark:text-slate-400 font-['Inter'] text-sm font-medium hover:text-fuchsia-600 transition-colors">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+<span>Register Person</span>
+</div>
+</nav>
+<div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center space-x-2 text-xs text-on-surface-variant font-medium uppercase tracking-widest">
+<span>Setup Progress</span>
+<span class="ml-auto">65%</span>
+</div>
+<div class="mt-2 h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 65%"></div>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-72 flex-1 relative overflow-y-auto">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl docked full-width top-0 z-50 flex justify-between items-center w-full px-8 py-4 sticky top-0">
+<div class="flex items-center space-x-4">
+<h1 class="text-xl font-bold tracking-tighter text-fuchsia-900 dark:text-fuchsia-100 font-['Inter'] antialiased tracking-tight">Step 3: Vision Integration</h1>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined hover:bg-fuchsia-50/50 dark:hover:bg-fuchsia-900/20 transition-colors p-2 rounded-lg cursor-pointer" data-icon="help_outline">help_outline</span>
+<span class="material-symbols-outlined hover:bg-fuchsia-50/50 dark:hover:bg-fuchsia-900/20 transition-colors p-2 rounded-lg cursor-pointer" data-icon="settings">settings</span>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Admin Avatar" class="h-full w-full object-cover" data-alt="Admin user portrait with neutral background and professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUAVbw6SWrg3C-MUz_J4V1n9RGGhnsawnOQmSX4j_8BqcLB-7f_VcbweOWG0P8HN2AS69fg5Kyrshd1nqicnQ4IICCJ6z6q8Hp-NlkayLVh4EapcDvIfkKSK9AlaSlk-ciq8usgxvFuihmYALrVlMAdsZm6QdA_8NPjdSNu3Ts7mEnUJmDQxHVbgNXJUW0vF0yTsT7BaZ3GprT9oVvseNGYc8qSL9ZxiDiOAXnBP4gM999Ya2hoFOnj1h-e0oSKDYaYo4NGMatdnw"/>
+</div>
+</div>
+</header>
+<section class="p-12 max-w-6xl mx-auto space-y-12">
+<!-- Header Section -->
+<div class="space-y-2">
+<span class="text-xs font-bold tracking-[0.15em] text-primary uppercase">Camera Configuration</span>
+<h2 class="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">Link your first surveillance node.</h2>
+<p class="text-on-surface-variant text-lg max-w-2xl leading-relaxed">Connect your IP camera or local stream. Attend.AI supports ultra-low latency RTSP and WebSocket protocols for real-time biometric analysis.</p>
+</div>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Configuration Card -->
+<div class="col-span-12 lg:col-span-7 bg-surface-container-lowest p-8 rounded-xl ring-1 ring-outline-variant/10">
+<form class="space-y-8">
+<!-- Camera Name -->
+<div class="space-y-3">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Identify Component</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg p-4 focus:ring-2 focus:ring-primary-container/20 text-on-surface placeholder:text-outline" placeholder="e.g. Main Entrance North" type="text"/>
+</div>
+<!-- Connection Type -->
+<div class="space-y-3">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Protocol Architecture</label>
+<div class="flex p-1 bg-surface-container-high rounded-xl w-fit">
+<button class="px-6 py-2.5 rounded-lg text-sm font-semibold bg-white shadow-sm text-primary transition-all" type="button">WebSocket</button>
+<button class="px-6 py-2.5 rounded-lg text-sm font-semibold text-on-secondary-container hover:text-primary transition-all" type="button">RTSP</button>
+</div>
+</div>
+<!-- URL Input -->
+<div class="space-y-3">
+<label class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Source Endpoint (URL)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="link">link</span>
+<input class="w-full bg-surface-container-highest border-none rounded-lg p-4 pl-12 focus:ring-2 focus:ring-primary-container/20 text-on-surface font-mono text-sm" type="text" value="ws://192.168.1.45:8080/live/main_gate"/>
+</div>
+</div>
+<!-- Test Connection & Badge -->
+<div class="flex items-center justify-between pt-4">
+<button class="px-6 py-3 rounded-lg bg-surface-container-high text-primary font-bold text-sm flex items-center space-x-2 hover:bg-surface-container-highest transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-lg" data-icon="bolt">bolt</span>
+<span>Test Connection</span>
+</button>
+<div class="flex items-center space-x-2 px-4 py-2 bg-tertiary-fixed/30 text-tertiary-fixed-variant rounded-full ring-1 ring-tertiary/20">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-tertiary"></span>
+</span>
+<span class="text-xs font-bold uppercase tracking-widest">Connected</span>
+</div>
+</div>
+</form>
+</div>
+<!-- Preview Card -->
+<div class="col-span-12 lg:col-span-5 flex flex-col space-y-6">
+<div class="flex-1 bg-on-secondary-fixed rounded-xl overflow-hidden relative group">
+<img alt="Live Preview" class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-700" data-alt="High-angle surveillance view of a modern glass-walled office lobby with minimalist furniture and high-contrast shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcnwa7Lsyg49164tCRnf2cbgMbY-MZRiIqiG8LrHmTcR95U-zrWorI0LmyRs4o23nOEUz335Gu1O97mfYUacBFaJ1HtwY7zy-f_a6qWoEr4OjQCDsrpILCst43xksAQfzYwVrTR8cCPnbX-M3Q6tUtBoaJRfnjc6lXrtQBp-JxzB6drKUa6IToGQeiKKR6fxzbYDO7agCSXUSJFgnFftxMoItrCgqac4QK8_qyIDyQUbjCS6O4VBVYTNdUDo7XjxGOEX5mcRSA0Gk"/>
+<!-- Overlay UI -->
+<div class="absolute inset-0 p-6 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start">
+<div class="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded text-[10px] font-mono text-white tracking-widest flex items-center space-x-2">
+<div class="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+<span>LIVE // 1080P // 60FPS</span>
+</div>
+<span class="material-symbols-outlined text-white/50" data-icon="fit_screen">fit_screen</span>
+</div>
+<!-- Recognition Pulse Simulation -->
+<div class="flex items-center justify-center">
+<div class="w-48 h-48 border-[1.5px] border-primary-fixed rounded-xl flex items-center justify-center opacity-60 ring-4 ring-primary-fixed/20">
+<div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary-fixed -translate-x-1 -translate-y-1"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary-fixed translate-x-1 -translate-y-1"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary-fixed -translate-x-1 translate-y-1"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary-fixed translate-x-1 translate-y-1"></div>
+<span class="text-[10px] font-bold text-primary-fixed uppercase tracking-[0.2em] bg-primary/40 px-2 py-1 backdrop-blur-sm rounded">Scanning...</span>
+</div>
+</div>
+<div class="bg-black/40 backdrop-blur-md p-3 rounded-lg border border-white/10">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-white/70 uppercase tracking-widest">Latency</span>
+<span class="text-[10px] font-bold text-tertiary-fixed tracking-widest">14ms</span>
+</div>
+<div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed" style="width: 85%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Informational Card -->
+<div class="bg-primary-fixed/20 p-6 rounded-xl border border-primary-fixed/30 flex items-start space-x-4">
+<span class="material-symbols-outlined text-primary-fixed-variant" data-icon="info" style="font-variation-settings: 'FILL' 1;">info</span>
+<div class="space-y-1">
+<h4 class="text-sm font-bold text-on-primary-fixed-variant">Optimal Feed Settings</h4>
+<p class="text-xs text-on-primary-fixed-variant/80 leading-relaxed">For best recognition accuracy, ensure the camera is mounted between 7-9ft high with a direct line of sight to the entry threshold.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="pt-8 flex items-center justify-between border-t border-outline-variant/20">
+<button class="px-8 py-3 rounded-lg text-sm font-bold text-on-surface-variant hover:text-primary transition-colors flex items-center space-x-2">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<span>Previous Step</span>
+</button>
+<div class="flex items-center space-x-4">
+<button class="px-8 py-3 rounded-lg text-sm font-bold text-on-surface-variant hover:bg-surface-container-high transition-colors">Skip for now</button>
+<button class="px-10 py-3 rounded-lg bg-gradient-to-br from-primary to-primary-container text-white font-extrabold text-sm shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+                        Complete Connection &amp; Next
+                    </button>
+</div>
+</div>
+</section>
+<!-- Decorative Floating Elements -->
+<div class="fixed bottom-8 right-8 pointer-events-none opacity-50">
+<div class="text-[8rem] font-black text-surface-container-high select-none leading-none tracking-tighter">03</div>
+</div>
+</main>
+</body></html>

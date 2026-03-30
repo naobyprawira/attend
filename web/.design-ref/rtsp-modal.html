@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attend.AI - Camera Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#5e5d6c",
+                        "primary-fixed-dim": "#ffaedb",
+                        "on-secondary-fixed": "#1a1a27",
+                        "surface-container-low": "#f5f3f4",
+                        "on-tertiary-fixed-variant": "#245100",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#7d2060",
+                        "on-primary-container": "#ffb9df",
+                        "on-background": "#1b1c1d",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e4e2e3",
+                        "surface-tint": "#9a3979",
+                        "outline": "#85727b",
+                        "on-primary-fixed": "#3c002b",
+                        "surface-dim": "#dbd9da",
+                        "on-surface": "#1b1c1d",
+                        "tertiary-fixed-dim": "#99d76c",
+                        "background": "#fbf9fa",
+                        "surface-bright": "#fbf9fa",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e4e2e3",
+                        "on-error": "#ffffff",
+                        "primary": "#751859",
+                        "on-secondary-container": "#646372",
+                        "tertiary-fixed": "#b4f485",
+                        "tertiary-container": "#2e6400",
+                        "secondary-container": "#e3e0f2",
+                        "on-surface-variant": "#53424a",
+                        "primary-container": "#923272",
+                        "inverse-on-surface": "#f2f0f1",
+                        "inverse-primary": "#ffaedb",
+                        "surface": "#fbf9fa",
+                        "surface-container-high": "#e9e8e9",
+                        "outline-variant": "#d8c0ca",
+                        "primary-fixed": "#ffd8eb",
+                        "inverse-surface": "#303031",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#e3e0f2",
+                        "secondary-fixed-dim": "#c7c5d6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#efedee",
+                        "on-secondary-fixed-variant": "#464553",
+                        "on-tertiary-fixed": "#0b2000",
+                        "tertiary": "#204a00",
+                        "on-tertiary-container": "#a1e074"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #751859 0%, #923272 100%);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-900 flex flex-col py-6 overflow-y-auto">
+<div class="px-6 mb-8">
+<h1 class="text-rose-500 font-black text-xl tracking-tighter">Attend.AI</h1>
+<p class="text-slate-500 text-[10px] uppercase tracking-[0.2em] font-bold mt-1">Enterprise Surveillance</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Dashboard</span>
+</a>
+<a class="bg-rose-900/40 text-rose-100 border-r-4 border-rose-600 px-6 py-3 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Live View</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Person Management</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Access Logs</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Visitor Flow</span>
+</a>
+</nav>
+<div class="mt-auto px-4">
+<button class="w-full bg-rose-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-rose-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>New Scan</span>
+</button>
+<div class="mt-6 pt-6 border-t border-slate-800">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-2 py-3 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Account</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-2 py-3 flex items-center gap-3 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen relative">
+<!-- Top App Bar -->
+<header class="bg-white/80 backdrop-blur-xl flex justify-between items-center w-full px-8 py-4 sticky top-0 z-40 shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-rose-900">Dashboard</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-500 hover:text-rose-700 font-['Inter'] tracking-tight antialiased transition-all" href="#">Dashboard</a>
+<a class="text-rose-900 border-b-2 border-rose-800 font-semibold tracking-tight antialiased" href="#">Live View</a>
+<a class="text-slate-500 hover:text-rose-700 font-['Inter'] tracking-tight antialiased transition-all" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search devices..." type="text"/>
+</div>
+<button class="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<img alt="User Profile" class="w-10 h-10 rounded-full object-cover border-2 border-surface-container-high" data-alt="professional headshot of a mid-career male executive in a corporate setting with soft natural window lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnvwewbwvXIlFjjEzVzDQOVdS8unAS4GFkwMsUNnTq_ONNTcMT_yXlsG2D3Y_CvxOoSZNa_dIkBR-z7kbAS1v8c6wwO88UOcZy83Vx7cfVg0wUks4xG3V77tmcpoiBM1dOvDhzfPzFMgZ0x-4n7xch_3mFwRbSL-hY5XCcf_GyCVE-1Ppoe7NMNra2ecQkAO8laYYqeA_VM0CYDzdQm0wwZj8ElKhKX3gbnVZ_CBsfRPrqGAxiPTJLMyy1Egd_fT6U6KQQXET0c4U"/>
+</div>
+</header>
+<!-- Page Content Background (Simulated) -->
+<div class="p-10 space-y-10">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">Camera Management</h2>
+<p class="text-on-surface-variant mt-2 font-medium">Configure and monitor your enterprise surveillance nodes.</p>
+</div>
+<button class="primary-gradient text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span>Register New Camera</span>
+</button>
+</div>
+<!-- Bento Grid Preview -->
+<div class="grid grid-cols-12 gap-6">
+<div class="col-span-8 bg-surface-container-lowest rounded-xl p-6 h-[400px] border border-outline-variant/10">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-on-surface">Active Nodes</h3>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold px-3 py-1 rounded-full tracking-widest uppercase">98% System Health</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="p-4 bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-slate-200 rounded-lg overflow-hidden">
+<img alt="Camera Feed 1" class="w-full h-full object-cover" data-alt="security camera perspective of a modern office lobby with minimalist furniture and glass walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7NAysxRXKFrGnh2ChRLp6NeTHAiK12nBZfsd0puwCW3UnF21sm8S4cvcL7E3BL0DDPGenKCdt7y3MtifPDk9pL9jKKVAvJ3zdxKlE_mRbeTsU0PBOjXJZEjrTlSK5FyNDfZIN98KAV0UXGWOl6eniJIU0Til72A_DdNmZNjpP1svJdtDtmvMoWrRL87A3W8gfM1jgNlTEmBk2b6Xms47DT8Xd9NlHiFpe1DdV2hMzDaXdrz3IWGtunAK6KZObNrj2SvzYAAfYkIE"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Main Entrance A-1</p>
+<p class="text-xs text-on-surface-variant uppercase tracking-wider">RTSP://192.168.1.104/live</p>
+</div>
+</div>
+<span class="text-primary font-bold text-sm">CONNECTED</span>
+</div>
+</div>
+</div>
+<div class="col-span-4 space-y-6">
+<div class="bg-on-secondary-fixed text-white rounded-xl p-6 h-[180px]">
+<h4 class="text-rose-400 uppercase text-[10px] font-black tracking-[0.3em] mb-4">Storage Usage</h4>
+<div class="flex items-end justify-between">
+<span class="text-5xl font-black">1.4 <span class="text-lg opacity-50">TB</span></span>
+<span class="material-symbols-outlined text-rose-500 scale-150 mb-2" data-icon="hard_drive">hard_drive</span>
+</div>
+<div class="w-full bg-white/10 h-1.5 mt-6 rounded-full overflow-hidden">
+<div class="bg-rose-500 h-full w-[65%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-6 h-[196px]">
+<h4 class="text-on-surface-variant uppercase text-[10px] font-black tracking-[0.3em] mb-4">Network Load</h4>
+<div class="h-20 flex items-end gap-1">
+<div class="flex-1 bg-surface-container-high h-[40%] rounded-t-sm"></div>
+<div class="flex-1 bg-surface-container-high h-[60%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/20 h-[80%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/40 h-[70%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary h-[95%] rounded-t-sm"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RTSP Setup Modal Overlay -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-on-secondary-fixed/40 backdrop-blur-sm">
+<div class="w-full max-w-4xl bg-surface-container-lowest rounded-xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.25)] overflow-hidden flex flex-col md:flex-row">
+<!-- Left: Preview Frame -->
+<div class="md:w-5/12 bg-on-secondary-fixed p-8 flex flex-col">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></div>
+<h3 class="text-white font-bold tracking-tight uppercase text-xs">Live Preview Connection</h3>
+</div>
+<div class="flex-1 rounded-xl overflow-hidden bg-slate-800 relative group aspect-video md:aspect-auto">
+<img alt="Camera Live Preview" class="w-full h-full object-cover opacity-60" data-alt="wide angle low light security footage of a modern industrial warehouse with high ceilings and metal racks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAckgukjF55NupDuaO7H9UAEyeD-CfGDRTBchPAejykjfccsFOMAK1cy-5sUjtTlQXNyQGxfOjvzS0FL1yCx0Ai0kvnDvJAwVi3ezI3Jb1RZQ2rrkBNIprj-c54xgRdjfbaRS-u2sJ3pLvrVJmDePTu5e1rS4ZMzehX4_Iz3x6-n3qxpQHy88-KeHTJeIoLzIWZVLcRIn0XGe3MhseJ--z_rK7GWrUGkSxvWyCeQPzITNfealkcAJsxMO188YqvjJTVZDvXkamhKnw"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center p-4">
+<span class="material-symbols-outlined text-white/40 text-4xl mb-2" data-icon="videocam_off">videocam_off</span>
+<p class="text-white/60 text-xs font-medium uppercase tracking-widest">Awaiting Link</p>
+</div>
+</div>
+<!-- UI Overlays for Video -->
+<div class="absolute top-4 left-4 text-[10px] text-white/50 font-mono">00:00:00:00</div>
+<div class="absolute bottom-4 right-4 flex gap-1">
+<div class="w-1 h-3 bg-white/20"></div>
+<div class="w-1 h-3 bg-white/20"></div>
+<div class="w-1 h-3 bg-white/20"></div>
+</div>
+</div>
+<div class="mt-6 flex flex-col gap-3">
+<div class="flex justify-between items-center text-xs">
+<span class="text-white/40 uppercase font-bold tracking-widest">Resolution</span>
+<span class="text-white font-medium">1080p (FHD)</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-white/40 uppercase font-bold tracking-widest">Framerate</span>
+<span class="text-white font-medium">30 FPS</span>
+</div>
+</div>
+</div>
+<!-- Right: Form Fields -->
+<div class="md:w-7/12 p-10 bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h2 class="text-2xl font-black text-on-surface tracking-tighter">RTSP Camera Setup</h2>
+<p class="text-on-surface-variant text-sm mt-1">Configure your stream endpoint and metadata.</p>
+</div>
+<button class="text-secondary hover:text-on-surface p-2 transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<form class="space-y-6">
+<!-- URL Field -->
+<div class="space-y-2">
+<label class="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em]">RTSP Stream URL</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/50" placeholder="rtsp://admin:password@192.168.1.100:554/live" type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-surface-container-low text-primary text-[10px] font-bold rounded-md hover:bg-surface-container-high transition-colors uppercase tracking-widest" type="button">
+                                    Test Connection
+                                </button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<!-- Camera Name -->
+<div class="space-y-2">
+<label class="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em]">Camera Name</label>
+<input class="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all" placeholder="e.g. Lobby South-East" type="text"/>
+</div>
+<!-- Location -->
+<div class="space-y-2">
+<label class="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em]">Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline/50 text-lg" data-icon="location_on">location_on</span>
+<input class="w-full bg-surface-container-highest border-none rounded-lg py-3 pl-10 pr-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Building B, Floor 2" type="text"/>
+</div>
+</div>
+</div>
+<!-- Checkpoint Type -->
+<div class="space-y-2">
+<label class="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em]">Checkpoint Type</label>
+<div class="grid grid-cols-3 gap-3">
+<label class="relative flex items-center justify-center p-3 rounded-lg border-2 border-transparent bg-surface-container-low cursor-pointer hover:bg-surface-container-high transition-all has-[:checked]:border-primary/40 has-[:checked]:bg-primary/5">
+<input checked="" class="sr-only" name="checkpoint" type="radio" value="in"/>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Check-In</span>
+</label>
+<label class="relative flex items-center justify-center p-3 rounded-lg border-2 border-transparent bg-surface-container-low cursor-pointer hover:bg-surface-container-high transition-all has-[:checked]:border-primary/40 has-[:checked]:bg-primary/5">
+<input class="sr-only" name="checkpoint" type="radio" value="out"/>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Check-Out</span>
+</label>
+<label class="relative flex items-center justify-center p-3 rounded-lg border-2 border-transparent bg-surface-container-low cursor-pointer hover:bg-surface-container-high transition-all has-[:checked]:border-primary/40 has-[:checked]:bg-primary/5">
+<input class="sr-only" name="checkpoint" type="radio" value="both"/>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Both</span>
+</label>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="pt-6 flex gap-4">
+<button class="flex-1 py-4 bg-surface-container-high text-on-surface-variant font-bold rounded-xl hover:bg-surface-container-highest transition-all uppercase tracking-widest text-xs" type="button">
+                                Discard Changes
+                            </button>
+<button class="flex-[2] py-4 primary-gradient text-white font-bold rounded-xl shadow-xl shadow-primary/20 hover:opacity-90 transition-all uppercase tracking-[0.2em] text-xs" type="submit">
+                                Save Configuration
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+</body></html>

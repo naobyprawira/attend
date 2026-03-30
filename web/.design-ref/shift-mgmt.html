@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed": "#1a1a27",
+              "surface-container-low": "#f5f3f4",
+              "on-tertiary-fixed-variant": "#245100",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary-container": "#ffb9df",
+              "on-background": "#1b1c1d",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e4e2e3",
+              "surface-tint": "#9a3979",
+              "outline": "#85727b",
+              "on-primary-fixed": "#3c002b",
+              "surface-dim": "#dbd9da",
+              "on-surface": "#1b1c1d",
+              "tertiary-fixed-dim": "#99d76c",
+              "background": "#fbf9fa",
+              "surface-bright": "#fbf9fa",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e4e2e3",
+              "on-error": "#ffffff",
+              "primary": "#751859",
+              "on-secondary-container": "#646372",
+              "tertiary-fixed": "#b4f485",
+              "tertiary-container": "#2e6400",
+              "secondary-container": "#e3e0f2",
+              "on-surface-variant": "#53424a",
+              "primary-container": "#923272",
+              "inverse-on-surface": "#f2f0f1",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "surface-container-high": "#e9e8e9",
+              "outline-variant": "#d8c0ca",
+              "primary-fixed": "#ffd8eb",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#e3e0f2",
+              "secondary-fixed-dim": "#c7c5d6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#efedee",
+              "on-secondary-fixed-variant": "#464553",
+              "on-tertiary-fixed": "#0b2000",
+              "tertiary": "#204a00",
+              "on-tertiary-container": "#a1e074"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fbf9fa;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="flex flex-col h-screen fixed left-0 top-0 pt-6 pb-8 bg-[#1a1a27] dark:bg-black docked left-0 h-full w-64 z-50">
+<div class="px-6 mb-10 flex items-center space-x-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="visibility">visibility</span>
+</div>
+<div>
+<h1 class="text-white text-lg font-bold tracking-tight">Intelligence</h1>
+<p class="text-white/50 text-[10px] uppercase tracking-[0.2em] font-medium">Observational Monolith</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-medium">Dashboard</span>
+</a>
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="group">group</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-medium">Persons</span>
+</a>
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="fact_check">fact_check</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-medium">Attendance</span>
+</a>
+<a class="bg-[#751859] text-white rounded-lg flex items-center px-4 py-3 mx-2 active:translate-x-1 duration-150" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="schedule">schedule</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-medium">Shifts</span>
+</a>
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="insert_chart">insert_chart</span>
+<span class="font-['Inter'] text-sm tracking-wide uppercase font-medium">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 border-t border-white/10">
+<button class="mx-4 mb-6 px-4 py-3 bg-primary text-white rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-colors">
+                Register New Person
+            </button>
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="contact_support">contact_support</span>
+<span class="text-xs uppercase font-medium tracking-wider">Support</span>
+</a>
+<a class="text-white/70 flex items-center px-4 py-3 mx-2 hover:bg-white/10 transition-all" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="logout">logout</span>
+<span class="text-xs uppercase font-medium tracking-wider">Sign Out</span>
+</a>
+</div>
+</aside>
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar (Authority: JSON) -->
+<header class="flex justify-between items-center w-full px-8 py-4 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl docked full-width top-0 z-40 shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)]">
+<div class="flex items-center space-x-6">
+<span class="text-xl font-bold tracking-tighter text-[#1a1a27] dark:text-slate-100 font-['Inter'] antialiased">Attend.AI</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-highest border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary-container/20" placeholder="Search operational shifts..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-secondary hover:bg-surface-container-low rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-secondary hover:bg-surface-container-low rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="p-2 text-secondary hover:bg-surface-container-low rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-px bg-outline-variant/30 mx-2"></div>
+<div class="flex items-center space-x-3">
+<img class="w-9 h-9 rounded-full object-cover" data-alt="close-up portrait of a professional male operations manager in a sleek office environment with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Av6RJuEZ6fuDR7bkIizj905kWzgCyIIddrC02s2HfuutyAPISGKQcWskwh7NcFiwyv6H7kIsCjlHdiyHCPJ9htwasnBhW7RiIYleBv63N7GERLQd15uigzZ940J4e9wAvwDtW9JRFHAmEtF6HlV3V_uUwW3etwSIh1ynUl7oxpJOhtRe7B2H7C_BzQNqVO_fyNyLENxaIRhc3VreS8wB77y0B81HsbE25Xz9S3WCA5TmZf-D59qSwdzzkV93eFI_qYAt2lxlzVY"/>
+<span class="text-sm font-semibold text-on-secondary-fixed">Director Aris</span>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-12">
+<div>
+<span class="text-[10px] font-bold tracking-[0.25em] text-primary uppercase">Resource Allocation</span>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-secondary-fixed mt-1">Shift Management</h2>
+<p class="text-on-surface-variant mt-2 max-w-lg">Define and oversee temporal operational frameworks. High-precision surveillance requires rigorous schedule enforcement.</p>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg shadow-primary/20 flex items-center space-x-2 active:scale-95 duration-150 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>CREATE SHIFT</span>
+</button>
+</div>
+<!-- Bento Stats Grid -->
+<div class="grid grid-cols-12 gap-6 mb-12">
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-secondary tracking-widest uppercase">Active Shifts</span>
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-black tracking-tighter">14</span>
+<span class="text-xs text-on-tertiary-fixed-variant ml-2">+2 from last week</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-secondary tracking-widest uppercase">Grace Compliance</span>
+<span class="material-symbols-outlined text-primary" data-icon="verified_user">verified_user</span>
+</div>
+<div class="mt-4 flex items-end">
+<span class="text-3xl font-black tracking-tighter">98.2%</span>
+<div class="ml-4 flex-1 h-1.5 bg-surface-container-high rounded-full overflow-hidden mb-2">
+<div class="h-full bg-gradient-to-r from-primary to-primary-fixed-dim" style="width: 98%;"></div>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold text-secondary tracking-widest uppercase">Overtime Hours</span>
+<span class="material-symbols-outlined text-primary" data-icon="history">history</span>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-black tracking-tighter">124.5h</span>
+<span class="text-xs text-error ml-2">High threshold alert</span>
+</div>
+</div>
+</div>
+<!-- Shift Table (Editorial Authority Styling) -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)]">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-none">
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-[0.15em] uppercase">Shift Name</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-[0.15em] uppercase">Type</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-[0.15em] uppercase text-center">Check-In</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-[0.15em] uppercase text-center">Check-Out</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-[0.15em] uppercase text-center">Grace</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-[0.15em] uppercase text-center">OT Threshold</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-[0.15em] uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1: Normal Shift -->
+<tr class="group hover:bg-surface-container transition-colors">
+<td class="px-8 py-6 font-bold text-on-secondary-fixed">Morning Intelligence A</td>
+<td class="px-8 py-6">
+<span class="bg-secondary-container text-primary font-bold text-[10px] tracking-widest px-3 py-1 rounded-full uppercase">Normal</span>
+</td>
+<td class="px-8 py-6 text-center text-on-surface-variant font-medium">08:00 AM</td>
+<td class="px-8 py-6 text-center text-on-surface-variant font-medium">05:00 PM</td>
+<td class="px-8 py-6 text-center text-on-surface-variant">15 min</td>
+<td class="px-8 py-6 text-center text-on-surface-variant">45h / week</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: Expanded Shift with Timeline -->
+<tr class="bg-surface-container/30">
+<td class="px-8 py-6 font-bold text-on-secondary-fixed">
+<div class="flex items-center space-x-2">
+<span>Standard Surveillance</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="unfold_less">unfold_less</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="bg-secondary-container text-primary font-bold text-[10px] tracking-widest px-3 py-1 rounded-full uppercase">Normal</span>
+</td>
+<td class="px-8 py-6 text-center text-on-surface-variant font-bold">08:00 AM</td>
+<td class="px-8 py-6 text-center text-on-surface-variant font-bold">05:00 PM</td>
+<td class="px-8 py-6 text-center text-on-surface-variant">15 min</td>
+<td class="px-8 py-6 text-center text-on-surface-variant">40h / week</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-primary">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Timeline Sub-row -->
+<tr class="bg-surface-container/30">
+<td class="px-8 pb-8" colspan="7">
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-xs font-black uppercase tracking-[0.2em] text-secondary">Visual Timeline Anatomy</h4>
+<div class="flex space-x-6">
+<div class="flex items-center space-x-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">CORE SHIFT</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="text-[10px] font-bold text-on-surface-variant">GRACE PERIOD</span>
+</div>
+</div>
+</div>
+<!-- The Timeline Bar -->
+<div class="relative w-full h-16 bg-surface-container-high rounded-lg overflow-hidden flex items-center">
+<!-- Time Markers -->
+<div class="absolute inset-0 flex justify-between px-4 items-center opacity-20 pointer-events-none">
+<span class="text-[9px] font-bold">06:00</span>
+<span class="text-[9px] font-bold">09:00</span>
+<span class="text-[9px] font-bold">12:00</span>
+<span class="text-[9px] font-bold">15:00</span>
+<span class="text-[9px] font-bold">18:00</span>
+<span class="text-[9px] font-bold">21:00</span>
+</div>
+<!-- Actual Timeline Content -->
+<div class="relative h-10 mx-auto w-4/5 bg-surface-container-high/50 rounded-md overflow-hidden flex items-center">
+<!-- Core Shift Bar -->
+<div class="absolute left-0 h-full bg-primary/20 border-l-2 border-primary w-[75%]" style="left: 10%;"></div>
+<!-- Main Shift Visualization -->
+<div class="absolute top-0 bottom-0 flex items-center" style="left: 10%; width: 75%;">
+<!-- Grace Period Start -->
+<div class="h-full bg-primary-container w-[10%] opacity-80" title="Grace Period (Start)"></div>
+<!-- Regular Hours -->
+<div class="h-full bg-primary flex-1 flex items-center justify-center">
+<span class="text-[10px] text-white font-bold tracking-widest">ACTIVE SURVEILLANCE WINDOW</span>
+</div>
+<!-- Grace Period End -->
+<div class="h-full bg-primary-container w-[5%] opacity-80" title="Grace Period (End)"></div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex justify-between px-[10%] text-[10px] font-black text-primary uppercase tracking-tighter">
+<span>08:00 AM (Check-in)</span>
+<span>05:00 PM (Check-out)</span>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 3: Flexible Shift -->
+<tr class="group hover:bg-surface-container transition-colors">
+<td class="px-8 py-6 font-bold text-on-secondary-fixed">Night Watch Operatives</td>
+<td class="px-8 py-6">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed font-bold text-[10px] tracking-widest px-3 py-1 rounded-full uppercase">Flexible</span>
+</td>
+<td class="px-8 py-6 text-center text-on-surface-variant font-medium">10:00 PM</td>
+<td class="px-8 py-6 text-center text-on-surface-variant font-medium">06:00 AM</td>
+<td class="px-8 py-6 text-center text-on-surface-variant">30 min</td>
+<td class="px-8 py-6 text-center text-on-surface-variant">38h / week</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Support Shift -->
+<tr class="group hover:bg-surface-container transition-colors">
+<td class="px-8 py-6 font-bold text-on-secondary-fixed">Administrative Support</td>
+<td class="px-8 py-6">
+<span class="bg-secondary-container text-primary font-bold text-[10px] tracking-widest px-3 py-1 rounded-full uppercase">Normal</span>
+</td>
+<td class="px-8 py-6 text-center text-on-surface-variant font-medium">09:00 AM</td>
+<td class="px-8 py-6 text-center text-on-surface-variant font-medium">06:00 PM</td>
+<td class="px-8 py-6 text-center text-on-surface-variant">10 min</td>
+<td class="px-8 py-6 text-center text-on-surface-variant">40h / week</td>
+<td class="px-8 py-6 text-right">
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination / Footer of Table -->
+<div class="px-8 py-6 bg-surface-container-low/50 flex justify-between items-center">
+<span class="text-xs text-on-surface-variant font-medium">Showing 4 of 14 operational shifts</span>
+<div class="flex space-x-2">
+<button class="p-2 hover:bg-surface-container transition-colors rounded">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="px-3 py-1 bg-primary text-white text-xs font-bold rounded">1</button>
+<button class="px-3 py-1 hover:bg-surface-container text-xs font-bold rounded">2</button>
+<button class="px-3 py-1 hover:bg-surface-container text-xs font-bold rounded">3</button>
+<button class="p-2 hover:bg-surface-container transition-colors rounded">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Contextual Floating Info (Surveillance Modern) -->
+<div class="mt-12 p-8 rounded-2xl bg-[#1a1a27] text-white flex items-center justify-between">
+<div class="flex items-center space-x-6">
+<div class="w-16 h-16 rounded-full border-2 border-primary-fixed/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" data-icon="psychology">psychology</span>
+</div>
+<div>
+<h3 class="text-lg font-bold tracking-tight">AI Shift Optimization</h3>
+<p class="text-white/60 text-sm max-w-md">Attend.AI has detected a potential overlap in "Morning Intelligence A" and "Administrative Support". Would you like to auto-rebalance?</p>
+</div>
+</div>
+<button class="px-6 py-2 border border-primary-fixed/20 rounded-lg text-primary-fixed font-bold text-xs tracking-widest uppercase hover:bg-primary-fixed/10 transition-colors">
+                    Review Suggestions
+                </button>
+</div>
+</div>
+</main>
+</body></html>

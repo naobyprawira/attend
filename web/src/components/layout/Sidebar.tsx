@@ -2,129 +2,151 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useI18n } from "@/lib/i18n/provider";
+import type { TranslationKey } from "@/lib/i18n/translations";
 
-const NAV_SECTIONS = [
-  {
-    label: "Monitor",
-    items: [
-      {
-        href: "/live",
-        label: "Live View",
-        icon: (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-            <circle cx="12" cy="13" r="4" />
-          </svg>
-        ),
-      },
-    ],
-  },
-  {
-    label: "Analyze",
-    items: [
-      {
-        href: "/",
-        label: "Dashboard",
-        icon: (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="7" height="7" />
-            <rect x="14" y="3" width="7" height="7" />
-            <rect x="3" y="14" width="7" height="7" />
-            <rect x="14" y="14" width="7" height="7" />
-          </svg>
-        ),
-      },
-      {
-        href: "/events",
-        label: "Events",
-        icon: (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="8" y1="6" x2="21" y2="6" />
-            <line x1="8" y1="12" x2="21" y2="12" />
-            <line x1="8" y1="18" x2="21" y2="18" />
-            <line x1="3" y1="6" x2="3.01" y2="6" />
-            <line x1="3" y1="12" x2="3.01" y2="12" />
-            <line x1="3" y1="18" x2="3.01" y2="18" />
-          </svg>
-        ),
-      },
-    ],
-  },
-  {
-    label: "Manage",
-    items: [
-      {
-        href: "/persons",
-        label: "Persons",
-        icon: (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-          </svg>
-        ),
-      },
-      {
-        href: "/settings",
-        label: "Settings",
-        icon: (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="3" />
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-          </svg>
-        ),
-      },
-    ],
-  },
+type NavEntry =
+  | { type: "section"; labelKey: TranslationKey }
+  | { type: "link"; href: string; labelKey: TranslationKey; icon: string };
+
+const NAV_ITEMS: NavEntry[] = [
+  { type: "section", labelKey: "nav.monitor" },
+  { type: "link", href: "/", labelKey: "nav.dashboard", icon: "dashboard" },
+  { type: "link", href: "/live", labelKey: "nav.liveView", icon: "videocam" },
+  { type: "link", href: "/cameras", labelKey: "nav.cameras", icon: "settings_video_camera" },
+
+  { type: "section", labelKey: "nav.intelligence" },
+  { type: "link", href: "/people-counting", labelKey: "nav.peopleCounting", icon: "counter_1" },
+  { type: "link", href: "/heatmap", labelKey: "nav.heatmap", icon: "thermostat" },
+  { type: "link", href: "/search", labelKey: "nav.smartSearch", icon: "person_search" },
+  { type: "link", href: "/anomaly", labelKey: "nav.anomaly", icon: "report" },
+
+  { type: "section", labelKey: "nav.manage" },
+  { type: "link", href: "/persons", labelKey: "nav.persons", icon: "group" },
+  { type: "link", href: "/attendance", labelKey: "nav.attendance", icon: "event_available" },
+  { type: "link", href: "/shifts", labelKey: "nav.shifts", icon: "schedule" },
+  { type: "link", href: "/visitors", labelKey: "nav.visitors", icon: "badge" },
+
+  { type: "section", labelKey: "nav.analyze" },
+  { type: "link", href: "/event-center", labelKey: "nav.eventCenter", icon: "notification_important" },
+  { type: "link", href: "/analytics", labelKey: "nav.analytics", icon: "insights" },
+  { type: "link", href: "/reports", labelKey: "nav.reports", icon: "assessment" },
+  { type: "link", href: "/violations", labelKey: "nav.violations", icon: "gpp_bad" },
+
+  { type: "section", labelKey: "nav.infrastructure" },
+  { type: "link", href: "/zones", labelKey: "nav.zones", icon: "map" },
+  { type: "link", href: "/sites", labelKey: "nav.sites", icon: "domain" },
+  { type: "link", href: "/cross-site", labelKey: "nav.crossSite", icon: "hub" },
+  { type: "link", href: "/network", labelKey: "nav.network", icon: "lan" },
+
+  { type: "section", labelKey: "nav.admin" },
+  { type: "link", href: "/users", labelKey: "nav.users", icon: "manage_accounts" },
+  { type: "link", href: "/permissions", labelKey: "nav.permissions", icon: "admin_panel_settings" },
+  { type: "link", href: "/system-logs", labelKey: "nav.systemLogs", icon: "terminal" },
+  { type: "link", href: "/backups", labelKey: "nav.backups", icon: "backup" },
+  { type: "link", href: "/api-docs", labelKey: "nav.apiDocs", icon: "menu_book" },
+  { type: "link", href: "/webhooks", labelKey: "nav.webhooks", icon: "webhook" },
+  { type: "link", href: "/api-keys", labelKey: "nav.apiKeys", icon: "vpn_key" },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useI18n();
 
   return (
-    <aside
-      className="w-[260px] bg-white shrink-0 flex flex-col overflow-y-auto"
-      style={{ boxShadow: "var(--shadow-sidebar)" }}
-    >
-      <nav className="flex-1 px-5 py-5 space-y-1">
-        {NAV_SECTIONS.map((section) => (
-          <div key={section.label}>
-            <p
-              className="text-[11px] font-semibold uppercase tracking-wider mb-2 mt-4 first:mt-0"
-              style={{ color: "var(--color-muted)", fontFamily: "'Open Sans', sans-serif" }}
-            >
-              {section.label}
-            </p>
-            {section.items.map((item) => {
-              const active = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded text-[15px] font-semibold transition-colors ${
-                    active
-                      ? "text-[var(--color-primary)] bg-[var(--color-bg)]"
-                      : "text-[var(--color-heading)] hover:bg-[var(--color-bg)]"
-                  }`}
-                  style={{ fontFamily: "'Open Sans', sans-serif" }}
-                >
-                  <span className={active ? "text-[var(--color-primary)]" : "text-[var(--color-muted)]"}>
-                    {item.icon}
-                  </span>
-                  <span>{item.label}</span>
-                </Link>
-              );
-            })}
-          </div>
-        ))}
-      </nav>
-      <div
-        className="px-5 py-3 border-t text-xs"
-        style={{ borderColor: "var(--color-border)", color: "var(--color-muted)" }}
+    <>
+      <button
+        onClick={() => setMobileOpen(true)}
+        className="lg:hidden fixed top-4 left-4 z-[60] p-2 bg-black/80 text-white rounded-lg backdrop-blur-md"
       >
-        <span className="font-mono">Attend.ai v2.0</span>
-      </div>
-    </aside>
+        <span className="material-symbols-outlined">menu</span>
+      </button>
+
+      {mobileOpen && (
+        <div
+          className="lg:hidden fixed inset-0 z-[55] bg-black/50"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      <aside
+        className={`h-screen w-64 fixed left-0 top-0 z-[56] bg-black flex flex-col py-6 overflow-y-auto transition-transform duration-300 ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        }`}
+      >
+        <div className="px-6 mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-rose-500 font-black text-xl tracking-tighter">{t("brand.title")}</h1>
+            <p className="text-slate-500 text-[10px] uppercase tracking-[0.2em] font-bold mt-1">
+              {t("brand.subtitle")}
+            </p>
+          </div>
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="lg:hidden text-slate-400 hover:text-white"
+          >
+            <span className="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <nav className="flex-1 space-y-0.5">
+          {NAV_ITEMS.map((item, idx) => {
+            if (item.type === "section") {
+              return (
+                <div
+                  key={`section-${item.labelKey}`}
+                  className={`px-6 pt-5 pb-2 text-[9px] font-black tracking-[0.25em] uppercase text-slate-500 ${
+                    idx === 0 ? "pt-0" : ""
+                  }`}
+                >
+                  {t(item.labelKey)}
+                </div>
+              );
+            }
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={`px-6 py-2.5 flex items-center gap-3 transition-all duration-200 text-sm font-medium tracking-wide uppercase ${
+                  active
+                    ? "bg-rose-900/40 text-rose-100 border-r-4 border-rose-600"
+                    : "text-slate-400 opacity-70 hover:opacity-100 hover:bg-slate-800/50"
+                }`}
+              >
+                <span className={`material-symbols-outlined text-[20px] ${active ? "text-rose-500" : ""}`}>
+                  {item.icon}
+                </span>
+                <span className="text-xs">{t(item.labelKey)}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="px-4 mt-auto">
+          <button className="w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 tracking-widest uppercase hover:opacity-90 transition-all">
+            <span className="material-symbols-outlined text-sm">add</span>
+            {t("nav.newScan")}
+          </button>
+          <div className="mt-6 pt-6 border-t border-slate-800/50 space-y-1">
+            <Link
+              href="/settings"
+              onClick={() => setMobileOpen(false)}
+              className="text-slate-400 opacity-70 hover:opacity-100 px-2 py-3 flex items-center gap-3 transition-all duration-200"
+            >
+              <span className="material-symbols-outlined text-sm">settings</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest">{t("nav.settings")}</span>
+            </Link>
+            <button className="text-slate-400 opacity-70 hover:opacity-100 px-2 py-3 flex items-center gap-3 transition-all duration-200 w-full text-left">
+              <span className="material-symbols-outlined text-sm">logout</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest">{t("nav.logout")}</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+    </>
   );
 }

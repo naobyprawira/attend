@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed": "#1a1a27",
+              "surface-container-low": "#f5f3f4",
+              "on-tertiary-fixed-variant": "#245100",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary-container": "#ffb9df",
+              "on-background": "#1b1c1d",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e4e2e3",
+              "surface-tint": "#9a3979",
+              "outline": "#85727b",
+              "on-primary-fixed": "#3c002b",
+              "surface-dim": "#dbd9da",
+              "on-surface": "#1b1c1d",
+              "tertiary-fixed-dim": "#99d76c",
+              "background": "#fbf9fa",
+              "surface-bright": "#fbf9fa",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e4e2e3",
+              "on-error": "#ffffff",
+              "primary": "#751859",
+              "on-secondary-container": "#646372",
+              "tertiary-fixed": "#b4f485",
+              "tertiary-container": "#2e6400",
+              "secondary-container": "#e3e0f2",
+              "on-surface-variant": "#53424a",
+              "primary-container": "#923272",
+              "inverse-on-surface": "#f2f0f1",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "surface-container-high": "#e9e8e9",
+              "outline-variant": "#d8c0ca",
+              "primary-fixed": "#ffd8eb",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#e3e0f2",
+              "secondary-fixed-dim": "#c7c5d6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#efedee",
+              "on-secondary-fixed-variant": "#464553",
+              "on-tertiary-fixed": "#0b2000",
+              "tertiary": "#204a00",
+              "on-tertiary-container": "#a1e074"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar (Authority Source: JSON) -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-900 flex flex-col py-6 overflow-y-auto font-['Inter'] text-sm font-medium tracking-wide uppercase">
+<div class="px-6 mb-8">
+<h1 class="text-rose-500 font-black text-xl">Attend.AI</h1>
+<p class="text-slate-400 text-[10px] tracking-widest mt-1">Enterprise Surveillance</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="bg-rose-900/40 text-rose-100 border-r-4 border-rose-600 px-6 py-3 flex items-center gap-3 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="videocam">videocam</span>
+<span>Live View</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Person Management</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Access Logs</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="speed">speed</span>
+<span>Visitor Flow</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span>Zone Analytics</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span>Compliance</span>
+</a>
+</nav>
+<div class="px-6 mt-8 mb-4">
+<button class="w-full py-3 px-4 bg-primary text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+                New Scan
+            </button>
+</div>
+<div class="mt-auto border-t border-slate-800 pt-4">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span>Account</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col bg-surface">
+<!-- TopAppBar (Authority Source: JSON) -->
+<header class="bg-white/80 backdrop-blur-xl sticky top-0 z-40 shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)] flex justify-between items-center w-full px-8 py-4">
+<div class="flex items-center gap-8">
+<div class="text-2xl font-bold tracking-tighter text-rose-900">Attend.AI</div>
+<nav class="hidden md:flex gap-6 font-['Inter'] tracking-tight antialiased text-slate-600">
+<a class="text-slate-500 hover:text-rose-700 transition-all duration-300" href="#">Dashboard</a>
+<a class="text-rose-900 border-b-2 border-rose-800 font-semibold transition-all duration-300" href="#">Live View</a>
+<a class="text-slate-500 hover:text-rose-700 transition-all duration-300" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="absolute inset-y-0 left-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-highest rounded-full border-none focus:ring-2 focus:ring-primary-container/20 w-64 text-sm transition-all" placeholder="Search feeds..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-all duration-300 scale-95 active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-all duration-300 scale-95 active:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-slate-200">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a professional man in a business suit against a clean studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS4-zF-ZZvCM4igtW110_i6OUHSLc9GJ0EtEXCea2tFBqcDNgS-cqFjenqdjUpiXDGrIrkKYxeTXW4xqnEBqs3vPF1IX86kiV1asSX9AbPYa1Id0WwHPBlK39ryNRt3Zhu_D7LeKEBfSRtdfc08DzYMUaeORJCynWzAq3JVT48ixVIqPccr9_p1O7YDBHBOL32VTxtaPzEuIMMkXnqhUbb42zHKR30lxaseEkOqG24hX771lNF5WZIBZmmw_jb4SajzHs_Rbmiu64"/>
+</div>
+</div>
+</header>
+<!-- Live View Grid Content -->
+<div class="p-8 flex-1">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-2xl font-bold text-on-secondary-fixed tracking-tight">Main Campus Surveillance</h2>
+<p class="text-on-surface-variant text-sm mt-1 uppercase tracking-widest font-medium">4 Active Stream Nodes • Low Latency</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-surface-container-high text-primary rounded-lg font-semibold text-sm hover:bg-surface-container transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">grid_view</span> Layout
+                    </button>
+<button class="px-4 py-2 bg-primary text-white rounded-lg font-semibold text-sm hover:opacity-90 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">fullscreen</span> Expand
+                    </button>
+</div>
+</div>
+<!-- The 2x2 Bento Grid -->
+<div class="grid grid-cols-2 gap-6 h-[calc(100vh-280px)]">
+<!-- Feed 1: Lobby (Selected) -->
+<div class="relative rounded-xl overflow-hidden group border-4 border-primary-container ring-4 ring-primary-container/10">
+<img alt="Lobby View" class="w-full h-full object-cover" data-alt="wide angle security camera shot of a modern minimalist office lobby with marble floors and recessed ceiling lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA25IDwjHEmoIwoJvGuHafXRhUlPe0GGFCHMzW2nTbYH5Wr65db9GgU7dYdAVpO_HBAEGJZIy6zY7JSzsX0zeknbbg6FNxsQwMhgzc0rsefd6ODHCyFoqZeavc4pJlAaryfxdL8QXhytlXOwOR149n97269vyfGbHozDpn_6QQ0OFPe77pQZlePqtxWP-xsXlDi9tidKwtk8c0_3tPxbf7XcC8GN-ehAq9wmTjDZg_vLB-Zg7_9j0BHCjwIXgMOIozAAydmODM7hIk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80"></div>
+<div class="absolute top-4 left-4 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-[10px] font-bold text-white tracking-widest uppercase">CAM 01 // LOBBY</span>
+</div>
+<div class="absolute bottom-4 right-4 flex gap-2">
+<button class="bg-white/10 hover:bg-white/20 backdrop-blur-md p-2 rounded-lg text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">zoom_in</span>
+</button>
+<button class="bg-white/10 hover:bg-white/20 backdrop-blur-md p-2 rounded-lg text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">capture</span>
+</button>
+</div>
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-black px-2 py-0.5 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span> SELECTED
+                    </div>
+</div>
+<!-- Feed 2: Entrance -->
+<div class="relative rounded-xl overflow-hidden group bg-slate-200">
+<img alt="Entrance View" class="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700" data-alt="exterior wide view of a sleek glass corporate building entrance during daylight with people walking past" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq6MU3eMZ4O4Ad-oJQFUXCnSmo59EsmsCswGxtgwXGC2DCAfH0JNU55U8ScBegtKsyTnmxv1fvP_rVdhM-1bSx9od9ELtVhYOvwra5yTZqrdKt5HhiV0EqmHxgxoXcDNOj5E88rVQ_jsiIWRYRBMu9Rr4HqS0soXXs6roshJHoMO87uqbgMeLICjFtaOpgC8rZ-tQmCI_H3LzeC-15A71epyfEARVAcNaDtPdneXGqBjWKYint5OwabBR-l8lUcnK4p9kgRC0QIRY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-[10px] font-bold text-white tracking-widest uppercase">CAM 02 // MAIN ENTRANCE</span>
+</div>
+<div class="absolute bottom-4 left-4 flex items-center gap-4">
+<div class="bg-black/40 backdrop-blur-md px-3 py-1 rounded text-white text-[10px] font-mono">
+                            REC 24:00:12:45
+                        </div>
+</div>
+</div>
+<!-- Feed 3: Office Floor -->
+<div class="relative rounded-xl overflow-hidden group bg-slate-200">
+<img alt="Office Floor View" class="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700" data-alt="top-down high angle view of an open plan office with rows of desks and modern industrial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcA7bJFsHvu7J9sLGALqfGlq1aZ1_hu4iVaHSAQf2mWfCak2S6UEGk-y9pj923ZpiWyTjTJWUhmqWCRCQD-dYaPXUzREXr7xxRq7FdKs4sMn7KbaN3fb4Qy8gCgU9BAa-mj1-0-1tgt1IlpOjVJO_lwHmtK58d6DIT4odoTBZiog7_E7vE6KtVnc9i-nGDzpThWglRyFaKSKrxfLk_iShX1dE6ZqBNx2SwBP9U_nTVdsxPVAedicSPtk_IIGImVndffFirNiaXYOs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex items-center gap-2 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-[10px] font-bold text-white tracking-widest uppercase">CAM 03 // OFFICE FLOOR B</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-white/90 text-primary p-4 rounded-full shadow-xl">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Feed 4: Parking -->
+<div class="relative rounded-xl overflow-hidden group bg-slate-900">
+<img alt="Parking View" class="w-full h-full object-cover grayscale opacity-50" data-alt="dimly lit underground parking lot with concrete pillars and yellow markings under fluorescent lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRKQgAaeCN4-k2oNMtGpQXT2ULSOntmy_EHUXTsiNDoj69beHofeUXeOGF6U1cpN3fR__OkqGGof6jLPklhde1rsstBip2TOKJZz5jGH5FhifYyHkctWlk2pGcq9nPgxuinHQ5VR9e6zt1iPioRp2jeVMIghOZRr8Uj3wUPSTY0h5ZcihNG2BMaEMOBupDdwGRoVP4SI6-N1RBK7WiQsnsckDCLS63LSx1Ph1vIJCVG4cJMbMrSh7wtqCf2v-Q4hkDoM4fOvEUbFE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4 flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span class="text-[10px] font-bold text-white tracking-widest uppercase">CAM 04 // NORTH PARKING</span>
+</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="material-symbols-outlined text-white/20 text-6xl mb-2">signal_cellular_connected_no_internet_4_bar</span>
+<span class="text-white/40 text-[10px] font-bold tracking-[0.2em] uppercase">Low Signal Intensity</span>
+</div>
+<div class="absolute bottom-4 left-4">
+<div class="flex items-center gap-1.5 text-error text-[10px] font-black uppercase tracking-tighter bg-error-container/20 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-xs">warning</span> Connection Unstable
+                        </div>
+</div>
+</div>
+</div>
+<!-- Footer Meta Bar -->
+<div class="mt-8 grid grid-cols-4 gap-6">
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">visibility</span>
+</div>
+<div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Global Conf.</div>
+<div class="text-lg font-bold text-on-secondary-fixed">98.2%</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/30 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_search</span>
+</div>
+<div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Matches (1h)</div>
+<div class="text-lg font-bold text-on-secondary-fixed">142</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lan</span>
+</div>
+<div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Data Rate</div>
+<div class="text-lg font-bold text-on-secondary-fixed">1.2 GB/s</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error-container/50 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency</span>
+</div>
+<div>
+<div class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Alerts</div>
+<div class="text-lg font-bold text-on-secondary-fixed">02</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

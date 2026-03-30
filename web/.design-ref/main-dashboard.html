@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attend.AI | Enterprise Surveillance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-variant": "#e4e2e3",
+                "on-tertiary-container": "#a1e074",
+                "outline": "#85727b",
+                "surface-tint": "#9a3979",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#204a00",
+                "error-container": "#ffdad6",
+                "surface-container": "#efedee",
+                "surface-container-low": "#f5f3f4",
+                "on-error": "#ffffff",
+                "on-primary-fixed": "#3c002b",
+                "primary-fixed": "#ffd8eb",
+                "on-surface-variant": "#53424a",
+                "tertiary-fixed": "#b4f485",
+                "surface-bright": "#fbf9fa",
+                "inverse-primary": "#ffaedb",
+                "surface": "#fbf9fa",
+                "primary-container": "#923272",
+                "surface-dim": "#dbd9da",
+                "on-background": "#1b1c1d",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-high": "#e9e8e9",
+                "on-error-container": "#93000a",
+                "secondary-container": "#e3e0f2",
+                "secondary-fixed": "#e3e0f2",
+                "on-tertiary-fixed-variant": "#245100",
+                "inverse-on-surface": "#f2f0f1",
+                "on-primary-container": "#ffb9df",
+                "on-primary-fixed-variant": "#7d2060",
+                "on-primary": "#ffffff",
+                "error": "#ba1a1a",
+                "on-secondary-container": "#646372",
+                "on-tertiary-fixed": "#0b2000",
+                "on-secondary": "#ffffff",
+                "outline-variant": "#d8c0ca",
+                "secondary": "#5e5d6c",
+                "primary-fixed-dim": "#ffaedb",
+                "on-secondary-fixed-variant": "#464553",
+                "surface-container-highest": "#e4e2e3",
+                "background": "#fbf9fa",
+                "tertiary-container": "#2e6400",
+                "on-secondary-fixed": "#1a1a27",
+                "on-surface": "#1b1c1d",
+                "inverse-surface": "#303031",
+                "secondary-fixed-dim": "#c7c5d6",
+                "tertiary-fixed-dim": "#99d76c",
+                "primary": "#751859"
+              },
+              fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #751859 0%, #923272 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-[#1a1a27] dark:bg-[#0f0f16] font-['Inter'] antialiased tracking-tight text-sm docked left-0 h-screen w-64 border-r-0">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-gradient flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-white tracking-tighter">Attend.AI</h1>
+<p class="text-[10px] text-white/50 uppercase tracking-widest">Enterprise Surveillance</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1 mt-4">
+<!-- Dashboard Active -->
+<a class="bg-[#751859] text-white border-l-4 border-[#923272] flex items-center px-4 py-3 ml-0 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="videocam">videocam</span>
+<span>Live View</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="group">group</span>
+<span>Person Management</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="event_available">event_available</span>
+<span>Attendance</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="assessment">assessment</span>
+<span>Reports</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="notification_important">notification_important</span>
+<span>Event Center</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="person_add">person_add</span>
+<span>Visitor Management</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="lock_open">lock_open</span>
+<span>Access Control</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="insert_chart">insert_chart</span>
+<span>Analytics</span>
+</a>
+<div class="pt-4 mt-4 border-t border-white/10">
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="settings">settings</span>
+<span>System Administration</span>
+</a>
+<a class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="hub">hub</span>
+<span>Integrations</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-8 ml-0 w-full h-16 bg-[#fbf9fa]/80 dark:bg-[#1a1a27]/80 backdrop-blur-xl shadow-sm dark:shadow-none font-['Inter'] text-sm font-medium sticky top-0 z-30">
+<div class="flex items-center gap-4">
+<div class="flex items-center text-on-surface-variant gap-2">
+<span class="text-outline">Organization</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-semibold">Dashboard</span>
+</div>
+</div>
+<div class="flex-1 max-w-xl px-12">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+<input class="w-full bg-surface-container-highest border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary-container/20 transition-all" placeholder="Search people, events, or cameras..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-secondary hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<button class="text-secondary hover:text-primary transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">Alex Rivera</p>
+<p class="text-[10px] text-on-surface-variant">Security Admin</p>
+</div>
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-lg object-cover" data-alt="professional headshot of a young male security administrator with a clean look and neutral expression in studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzHiOyjsLAamPPoTlw5Av3YBCimPyWyb8YMZogEOHOnLWvy9rGpI8zSZnYYgnlFaARJf5F-uGAGG18YdgCFbr4Qm9gBj5hLzZ5JUJjExLUcNKYTCEAtd9b-cm0x6Xinh-YfBrIjsVAlL4j1n33kWWNNKZ6tjlYfhJZaUXk0fdrE5dEQ-sJXdHs9CBEdP2_PxhsDIHiyfmlptCebS2YHq61r7OZwPntuYcI071_KGpykKu1fkBBoIl5xZqAXKhjuMtqXRZyxC0dsws"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Content -->
+<div class="p-8 space-y-8">
+<!-- Row 1: Stat Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-surface-container rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="person">person</span>
+</div>
+<div class="w-16 h-8 bg-surface-container-low rounded relative overflow-hidden">
+<!-- Mini Sparkline Simulation -->
+<div class="absolute bottom-0 left-0 w-full h-full flex items-end gap-0.5 px-1">
+<div class="w-full bg-secondary/20 h-[40%]"></div>
+<div class="w-full bg-secondary/20 h-[60%]"></div>
+<div class="w-full bg-secondary/20 h-[55%]"></div>
+<div class="w-full bg-secondary/20 h-[75%]"></div>
+<div class="w-full bg-secondary/20 h-[70%]"></div>
+</div>
+</div>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Total Employees</p>
+<h3 class="text-2xl font-bold text-on-surface">1,248</h3>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-on-tertiary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-tertiary-container" data-icon="check_circle">check_circle</span>
+</div>
+<div class="w-16 h-8 bg-surface-container-low rounded relative overflow-hidden">
+<div class="absolute bottom-0 left-0 w-full h-full flex items-end gap-0.5 px-1">
+<div class="w-full bg-tertiary-container/20 h-[30%]"></div>
+<div class="w-full bg-tertiary-container/20 h-[50%]"></div>
+<div class="w-full bg-tertiary-container/20 h-[85%]"></div>
+<div class="w-full bg-tertiary-container/20 h-[90%]"></div>
+<div class="w-full bg-tertiary-container/20 h-[95%]"></div>
+</div>
+</div>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Present Today</p>
+<h3 class="text-2xl font-bold text-tertiary-container">1,152</h3>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-amber-100 rounded-lg">
+<span class="material-symbols-outlined text-amber-600" data-icon="schedule">schedule</span>
+</div>
+<div class="w-16 h-8 bg-surface-container-low rounded relative overflow-hidden">
+<div class="absolute bottom-0 left-0 w-full h-full flex items-end gap-0.5 px-1">
+<div class="w-full bg-amber-600/20 h-[20%]"></div>
+<div class="w-full bg-amber-600/20 h-[40%]"></div>
+<div class="w-full bg-amber-600/20 h-[30%]"></div>
+<div class="w-full bg-amber-600/20 h-[60%]"></div>
+<div class="w-full bg-amber-600/20 h-[45%]"></div>
+</div>
+</div>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Late Arrivals</p>
+<h3 class="text-2xl font-bold text-amber-600">64</h3>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-error-container/30 rounded-lg">
+<span class="material-symbols-outlined text-error" data-icon="cancel">cancel</span>
+</div>
+<div class="w-16 h-8 bg-surface-container-low rounded relative overflow-hidden">
+<div class="absolute bottom-0 left-0 w-full h-full flex items-end gap-0.5 px-1">
+<div class="w-full bg-error/20 h-[80%]"></div>
+<div class="w-full bg-error/20 h-[60%]"></div>
+<div class="w-full bg-error/20 h-[40%]"></div>
+<div class="w-full bg-error/20 h-[20%]"></div>
+<div class="w-full bg-error/20 h-[10%]"></div>
+</div>
+</div>
+</div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Absent</p>
+<h3 class="text-2xl font-bold text-error">32</h3>
+</div>
+</div>
+<!-- Row 2: Charts -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Donut Chart -->
+<div class="lg:col-span-3 bg-surface-container-lowest p-8 rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden border border-outline-variant/20">
+<h4 class="text-sm font-bold text-on-surface-variant mb-6">Attendance Rate</h4>
+<div class="relative w-40 h-40">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-low" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary-container" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="35" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-3xl font-extrabold text-on-surface">92.3%</span>
+<span class="text-[10px] text-on-surface-variant font-medium">STABLE</span>
+</div>
+</div>
+<p class="mt-6 text-xs text-on-surface-variant px-4">Daily goal achieved. +2.1% from yesterday.</p>
+</div>
+<!-- Bar Chart -->
+<div class="lg:col-span-5 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-center mb-8">
+<h4 class="text-sm font-bold text-on-surface-variant">Late Frequency by Dept</h4>
+<span class="text-[10px] font-bold text-primary uppercase">This Week</span>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>Engineering</span>
+<span>12</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 45%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>Sales &amp; Ops</span>
+<span>24</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 85%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>Finance</span>
+<span>8</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 25%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-medium">
+<span>HR</span>
+<span>5</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 15%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Trend Line Chart -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-center mb-8">
+<h4 class="text-sm font-bold text-on-surface-variant">Attendance Trend</h4>
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<span class="text-[10px] text-on-surface-variant font-bold">7D VIEW</span>
+</div>
+</div>
+<div class="h-48 w-full flex items-end justify-between gap-1 px-2">
+<!-- Bar chart acting as simplified line chart visualization -->
+<div class="w-full bg-primary-container/20 rounded-t-sm h-[70%]"></div>
+<div class="w-full bg-primary-container/40 rounded-t-sm h-[85%]"></div>
+<div class="w-full bg-primary-container/20 rounded-t-sm h-[75%]"></div>
+<div class="w-full bg-primary-container/60 rounded-t-sm h-[90%]"></div>
+<div class="w-full bg-primary-container/40 rounded-t-sm h-[80%]"></div>
+<div class="w-full bg-primary-container/80 rounded-t-sm h-[95%]"></div>
+<div class="w-full bg-primary-gradient rounded-t-sm h-[88%]"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">
+<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+</div>
+</div>
+</div>
+<!-- Row 3: Cameras & Recent Events -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Active Cameras -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-sm font-bold text-on-surface-variant">Active Camera Feeds</h4>
+<button class="text-primary text-xs font-semibold hover:underline">View All Clusters</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative group aspect-video rounded-xl overflow-hidden bg-on-secondary-fixed">
+<img alt="Main Lobby Camera" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="security camera view of a modern bright corporate lobby with marble floors and reception desk, cinematic low-angle shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqpybJ2-F98v8IeKDo4nLEuGgOJpniPDhEe8g277X_GgRsU648nwkuYFPZfPVwFVlz0wYz_gE9hJUcmCMQ_Su-8Op1ASUKifcRU5YVYmnBVh1W7AYG46xVYs3I7nVTsXRl5h5tLi5jFQ970_g44tzEuSpR4YK2cB16GVomNyhe9qEqIXkSO2lrc8UZxKe37-Hsmwa5DPvKYzDsZC_t-LoLvW0jLv39K1z_26K_hR2eSADhlbWBV5sGRlBdjV3HEqZU9b17J3DtM4Q"/>
+<div class="absolute top-3 left-3 flex items-center gap-2 px-2 py-1 bg-black/50 backdrop-blur-md rounded-full">
+<div class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></div>
+<span class="text-[10px] text-white font-medium uppercase tracking-wider">Lobby-01</span>
+</div>
+</div>
+<div class="relative group aspect-video rounded-xl overflow-hidden bg-on-secondary-fixed">
+<img alt="Server Room Camera" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="wide angle security camera shot of a dark data center server room with blue LED indicator lights glowing on server racks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFbV0ABWBpkIvSott4EUobyFw39IP0xtiz1pmEEqzq_V6sRWXzHxXNuFI9FskdY90VReXx3LtGnTa_4KgP_HTyW_YAvKz3mG6jjqM_K-kYVteg48olYtKEkalpTt4Al2qdYUFh1a2T0iJg2xmnSiixsgQlvWYCekLt45NRq1d81ksHsZpQXNAyFXAVy5jwHfrwIGuXMHYxwW5aC8JDAXja0CT-zx-BEG94xch3TW14MSrkBs5NQm-kOOCOOssS8CvoKllwuk1WzH4"/>
+<div class="absolute top-3 left-3 flex items-center gap-2 px-2 py-1 bg-black/50 backdrop-blur-md rounded-full">
+<div class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></div>
+<span class="text-[10px] text-white font-medium uppercase tracking-wider">Server-SR</span>
+</div>
+</div>
+<div class="relative group aspect-video rounded-xl overflow-hidden bg-on-secondary-fixed">
+<img alt="Cafeteria Camera" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="high angle security view of a corporate cafeteria with wooden tables and green plants, soft natural light through large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQ7pPhzTZ8nlss9nrvr8M9wNRcHKnw4K4Oa4XrlmMRbMLrYoks-xbx5vDoMDMJYHlTJ_nWPam2B8kjeyH1x_JvMs7G6osRMJgYZ-3_TmBJYKBcVlL_dpBXQK1xogC91gtMluYOVQcGwCGO-pEq6jICsJbNvLqlElAIE5kdyxdvtyD357RdzpYbDcMbz3LGKwL42ZB2kF3dsTnDfGOlet3AFLbmB6jpKFPmlo8GSnPRBHoHNuxeONmKkFJy7l884xEGONDIszLd4to"/>
+<div class="absolute top-3 left-3 flex items-center gap-2 px-2 py-1 bg-black/50 backdrop-blur-md rounded-full">
+<div class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></div>
+<span class="text-[10px] text-white font-medium uppercase tracking-wider">Cafe-Main</span>
+</div>
+</div>
+<div class="relative group aspect-video rounded-xl overflow-hidden bg-on-secondary-fixed">
+<img alt="Parking Garage Camera" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="security footage of a dimly lit underground parking garage with concrete pillars and yellow markings, dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd1LyXmJIDurKplPfgfTL7jDs_EGtKXrIkzcygnIZ4El4zksNVeVvlmbV1Ox7Yn7rNutY2S4PYfR9AwST3WK_l2BuFO9VUYmY-hz5rngE3TtScgUii1ePU_HcPgeG3r8h3UPpP-zgMxyl4qeFSmY5z2thsZ4uUx-cuaofrhTIK3QDKAaFPLZQ6rNmbqBP_1sRnR7As4SoD1y4UNpzI0mn9eOtfiMX0mk5gPKsRxrQAfLLh1Uj-t3-CCBo36TxunrFm_VGnRQdajiU"/>
+<div class="absolute top-3 left-3 flex items-center gap-2 px-2 py-1 bg-black/50 backdrop-blur-md rounded-full">
+<div class="w-2 h-2 rounded-full bg-amber-500"></div>
+<span class="text-[10px] text-white font-medium uppercase tracking-wider">Parking-P2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Events -->
+<div class="lg:col-span-5 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-sm font-bold text-on-surface-variant">Live Event Feed</h4>
+<span class="material-symbols-outlined text-outline text-lg">history</span>
+</div>
+<div class="space-y-4">
+<!-- Event 1 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Sarah Connor" class="w-10 h-10 rounded-lg object-cover" data-alt="close up passport style photo of a professional woman with brown hair and glasses, neutral lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFnevOcQbQ3ImTK9J9ilSHKgmJPQy-qMDpnrtp8uHir-TQJ7-WHnhw1lgcYOs0OwE2CPD5HyHk0nRaB4UYw2Irqy3TqOxFJ44pUcvkbKWbnkZpG4Zy1nYNoCkqN1n_h777A9f504jEtUPBmjt-xGdbMq0Ocky_Z_dhg5NKBV35tRUo1_bXiw6nNEKpEqRlCvBJs5o33ZPcUanKzO69g0oiLAPzdDSqPAwiIwfw82J8yC0Ci-4GOxx38175oluAZUiM4W6aR05Dv8w"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-tertiary-container text-white rounded-full flex items-center justify-center text-[8px] border-2 border-white">
+<span class="material-symbols-outlined text-[10px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">Sarah Connor</p>
+<p class="text-[10px] text-on-surface-variant">Entrance A • 10:42 AM</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-on-tertiary-container/10 text-tertiary-container text-[9px] font-bold rounded uppercase">Recognized</span>
+</div>
+<!-- Event 2 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-error-container/10 rounded-lg flex items-center justify-center border border-error/10">
+<span class="material-symbols-outlined text-error" data-icon="person_off">person_off</span>
+</div>
+<div>
+<p class="text-xs font-bold text-on-surface">Unknown Subject</p>
+<p class="text-[10px] text-on-surface-variant">Side Loading Dock • 10:38 AM</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-error-container/20 text-error text-[9px] font-bold rounded uppercase">Unidentified</span>
+</div>
+<!-- Event 3 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<img alt="Marcus Wright" class="w-10 h-10 rounded-lg object-cover" data-alt="close up passport style photo of a middle aged man with short hair and professional attire, studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFV29Mu5Fl-HzlyW2CxwGf_NS3tOxPBZRSt6ZxxZBsMQsGFBP4WYywm9w45lz9zdf_3tWUTC3mUircukXRLApaLvuIRXLSOvYCFkQm7-wP1hqiu9f5hjuAD0RdCPypKCvsTWvJ9SHhVJnOCKn1BtKs6idFM9FvU6yeJCCi044ltex5-X5T8aKrVrdp8UJtEAhiFTdtRTnjrjfFeYeFA534sI5_kca2WhS7-2GYX7RK6kWHbQELRl5XFBe4BlKtPZ6vTtgi107zvX0"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Marcus Wright</p>
+<p class="text-[10px] text-on-surface-variant">Level 3 Elevators • 10:31 AM</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-on-tertiary-container/10 text-tertiary-container text-[9px] font-bold rounded uppercase">Recognized</span>
+</div>
+<!-- Event 4 -->
+<div class="flex items-center justify-between p-3 rounded-xl hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-4">
+<img alt="Elena Gilbert" class="w-10 h-10 rounded-lg object-cover" data-alt="close up passport style photo of a young professional woman smiling slightly, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKwcqpgsgBCrLUAHCzdi_jg9Bl5ZJozrEnOjSAanltFtoyuKLf3LFAtg8YU3HjtKWGNoOoB4GtlHxGtbkZYhq3aF34LVEObsoverxT8MfU5gG2XSBDaJUQn_7Q3MsJfIPBqR52q_btDZEFDW4vDFbwRfNltjVdO92k7f1NGlVqdUes3jEBJBLuzPI1lC4UfAovoNhxHCK-YWDSg_V-5rgEHhHLITbgm8EUp-e0C7FT2NiELTkx6MqCrA8q8rTObqvDJeM3ofiVxKs"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Elena Gilbert</p>
+<p class="text-[10px] text-on-surface-variant">South Lobby • 10:25 AM</p>
+</div>
+</div>
+<span class="px-2 py-1 bg-on-tertiary-container/10 text-tertiary-container text-[9px] font-bold rounded uppercase">Recognized</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Zone Status & System Health -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-8">
+<!-- Zone Status -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20">
+<h4 class="text-sm font-bold text-on-surface-variant mb-6">Security Zone Status</h4>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-6 rounded-xl bg-surface-container-low relative border border-outline-variant/10">
+<div class="flex justify-between items-center mb-4">
+<h5 class="text-xs font-bold text-on-surface">Main Lobby</h5>
+<div class="w-2 h-2 rounded-full bg-tertiary-container shadow-[0_0_8px_rgba(46,100,0,0.5)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mb-4">SECURE • 14 ACTIVE NODES</p>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary-container/10 border border-white flex items-center justify-center text-[8px] font-bold">1</div>
+<div class="w-6 h-6 rounded-full bg-primary-container/10 border border-white flex items-center justify-center text-[8px] font-bold">2</div>
+<div class="w-6 h-6 rounded-full bg-primary-container/10 border border-white flex items-center justify-center text-[8px] font-bold">3</div>
+</div>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low relative border border-outline-variant/10">
+<div class="flex justify-between items-center mb-4">
+<h5 class="text-xs font-bold text-on-surface">Server Room</h5>
+<div class="w-2 h-2 rounded-full bg-tertiary-container shadow-[0_0_8px_rgba(46,100,0,0.5)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mb-4">RESTRICTED • 8 NODES</p>
+<span class="px-2 py-1 bg-tertiary-container/10 text-tertiary-container text-[8px] font-bold rounded">LEVEL 4 CLEARANCE</span>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-low relative border-2 border-amber-500/20">
+<div class="flex justify-between items-center mb-4">
+<h5 class="text-xs font-bold text-on-surface">Parking Zone</h5>
+<div class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mb-4 text-amber-600 font-bold">MONITORING • UNKNOWN OBJECT</p>
+<button class="w-full py-2 bg-amber-500 text-white text-[9px] font-bold rounded uppercase">Dispatch Response</button>
+</div>
+</div>
+</div>
+<!-- System Health Mini Gauges -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/20">
+<h4 class="text-sm font-bold text-on-surface-variant mb-8">Edge Processor Health</h4>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-16 h-16">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="176" stroke-dashoffset="40" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">75%</div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">CPU</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-16 h-16">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="176" stroke-dashoffset="100" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">42%</div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">RAM</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-16 h-16">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary-gradient" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="176" stroke-dashoffset="15" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">92%</div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">GPU Inference</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="relative w-16 h-16">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-width="4"></circle>
+<circle class="text-primary-container" cx="32" cy="32" fill="transparent" r="28" stroke="currentColor" stroke-dasharray="176" stroke-dashoffset="140" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center text-[10px] font-bold">20%</div>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Disk</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating AI Recognition Pulse Simulation (Subtle Detail) -->
+<div class="fixed bottom-8 right-8 z-50">
+<div class="bg-primary-gradient text-white p-4 rounded-xl shadow-2xl flex items-center gap-4">
+<div class="relative">
+<div class="absolute inset-0 rounded-full border border-primary-fixed animate-ping opacity-25"></div>
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">face</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-primary-fixed">Active Processing</p>
+<p class="text-xs font-medium">Analyzing 24 streams...</p>
+</div>
+</div>
+</div>
+</body></html>

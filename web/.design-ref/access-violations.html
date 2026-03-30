@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attend.AI | Access Violations Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed": "#1a1a27",
+              "surface-container-low": "#f5f3f4",
+              "on-tertiary-fixed-variant": "#245100",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary-container": "#ffb9df",
+              "on-background": "#1b1c1d",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e4e2e3",
+              "surface-tint": "#9a3979",
+              "outline": "#85727b",
+              "on-primary-fixed": "#3c002b",
+              "surface-dim": "#dbd9da",
+              "on-surface": "#1b1c1d",
+              "tertiary-fixed-dim": "#99d76c",
+              "background": "#fbf9fa",
+              "surface-bright": "#fbf9fa",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e4e2e3",
+              "on-error": "#ffffff",
+              "primary": "#751859",
+              "on-secondary-container": "#646372",
+              "tertiary-fixed": "#b4f485",
+              "tertiary-container": "#2e6400",
+              "secondary-container": "#e3e0f2",
+              "on-surface-variant": "#53424a",
+              "primary-container": "#923272",
+              "inverse-on-surface": "#f2f0f1",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "surface-container-high": "#e9e8e9",
+              "outline-variant": "#d8c0ca",
+              "primary-fixed": "#ffd8eb",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#e3e0f2",
+              "secondary-fixed-dim": "#c7c5d6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#efedee",
+              "on-secondary-fixed-variant": "#464553",
+              "on-tertiary-fixed": "#0b2000",
+              "tertiary": "#204a00",
+              "on-tertiary-container": "#a1e074"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+      }
+      .violator-card-hover:hover {
+        background-color: #fbf9fa;
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+      }
+      .pulse-red {
+        box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.4);
+        animation: pulse-red-anim 2s infinite;
+      }
+      @keyframes pulse-red-anim {
+        0% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(186, 26, 26, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="hidden md:flex flex-col h-screen w-64 bg-slate-50 dark:bg-slate-900 border-r-0 z-50 fixed left-0 top-0">
+<div class="flex flex-col h-full p-4 gap-2">
+<div class="px-4 py-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" data-weight="fill">shield</span>
+</div>
+<div>
+<h1 class="text-lg font-black text-fuchsia-800 dark:text-fuchsia-300">Attend.AI</h1>
+<p class="text-[10px] uppercase tracking-widest text-secondary font-bold">Intelligence Suite</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 duration-200 rounded-lg text-sm font-medium transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 duration-200 rounded-lg text-sm font-medium transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Visitors</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 duration-200 rounded-lg text-sm font-medium transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span>Zones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 duration-200 rounded-lg text-sm font-medium transition-all active:scale-98" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span>Floor Plan</span>
+</a>
+<!-- ACTIVE NAV ITEM -->
+<a class="flex items-center gap-3 px-4 py-2 bg-fuchsia-50 dark:bg-fuchsia-900/20 text-fuchsia-700 dark:text-fuchsia-300 rounded-lg text-sm font-medium transition-all active:scale-98 hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span>Violations</span>
+</a>
+</nav>
+<div class="px-2 pb-4">
+<button class="w-full bg-primary text-white py-2.5 rounded-lg text-sm font-bold shadow-sm hover:shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                    Register Visitor
+                </button>
+</div>
+<div class="mt-auto border-t border-slate-200/50 pt-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-sm font-medium transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span>Help</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-sm font-medium transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar Component -->
+<header class="fixed top-0 w-full z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm dark:shadow-none font-['Inter'] tracking-tight">
+<div class="flex items-center justify-between px-8 h-16 max-w-[calc(100vw-16rem)] ml-auto">
+<div class="flex items-center gap-6">
+<h2 class="text-xl font-bold text-slate-900 dark:text-slate-50">Violations Feed</h2>
+<div class="h-4 w-[1px] bg-slate-200"></div>
+<div class="flex gap-4">
+<span class="text-fuchsia-700 dark:text-fuchsia-400 font-semibold border-b-2 border-fuchsia-700 h-16 flex items-center px-2">Real-time</span>
+<span class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors h-16 flex items-center px-2 cursor-pointer">Archive</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="pl-9 pr-4 py-1.5 bg-slate-100 dark:bg-slate-800 border-none rounded-full text-sm focus:ring-2 focus:ring-fuchsia-500 w-64 transition-all" placeholder="Search events..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover border-2 border-slate-100" data-alt="professional portrait of a security administrator in a modern office setting, bright clean studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6HhDfOf23XIhWl4DAf3R90Eiwj6s-XJ1OhC8zkiAAimnuQcf0AipoAqmQXgNVIW2QXohBoZlbagHlBxcRCGqCittkFYOJCsdZ7Ir4bZ0Ahv-5CqtCySK3DFqPRUkYF2R5Bpld7-jK_6FzrkU_z2o3yo9QftEkW5XDL01JLwK3qzD5eevKaUaAOn1rSGDXV9u6nxKzmOC0AuBwn0hDUcHD94Ktm-H2y2rIZXnX7XLxu2rs2tsWhAOePXT0U3iFoiCBO0-METnEO-k"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="mt-16 p-8 flex-1 overflow-y-auto">
+<!-- Alert Banner -->
+<div class="mb-8 p-4 bg-error-container/30 border-l-4 border-error rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-error flex items-center justify-center pulse-red">
+<span class="material-symbols-outlined text-white">warning</span>
+</div>
+<div>
+<p class="text-on-error-container font-bold text-lg leading-tight">3 High Severity Access Violations</p>
+<p class="text-on-error-container/70 text-sm">Require immediate attention in Zone C and Server Room.</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-error text-white font-bold rounded-lg hover:bg-red-700 transition-colors text-sm">Deploy Rapid Response</button>
+</div>
+<!-- Bento Grid Layout for Violations -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Violation Card 1: Critical -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-transparent hover:border-error/20 flex flex-col">
+<div class="relative h-56 group overflow-hidden">
+<img alt="Unknown Individual" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="high contrast surveillance footage still of a mysterious man in a dark hoodie looking into a security camera, gritty urban lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ1dpU8NQUgsZ13eqT5NDtKSgru3eJQ6--pXboOjqbOrcgO8KJI-0UMYA0vKWzaqZQrDdEeGIy6o7MgVvtGlK4481fjjOcqZ6mpWYRxCOLOViKflMiayUTXFtckn7bt0XVjRyh9XFKtbmbcB0HV6R9Y9kcMPXU8O40hENi_3B4Yy-LzaNyp_PsnxKn7lFk3eh4rAhtQNa5tpcyt-gxUbReNYkACAkwM1nIyBD5W-PYCO5DmKxpNPQmuwQn6t9xTeaca2SReG2KTtg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-error text-white text-[10px] font-black px-2 py-0.5 rounded tracking-tighter uppercase">Critical</span>
+<span class="bg-black/50 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-tighter uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">videocam</span> CAM-042
+                            </span>
+</div>
+<div class="absolute bottom-4 left-4">
+<h3 class="text-white font-bold text-lg leading-none">Unknown Person</h3>
+<p class="text-white/70 text-xs font-medium mt-1">Captured at 14:22:15 PST</p>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-xl">location_on</span>
+<span class="font-bold text-on-surface-variant">Server Room 4</span>
+</div>
+<span class="bg-red-50 text-error text-[10px] font-black border border-error/20 px-2 py-0.5 rounded uppercase tracking-widest">Restricted</span>
+</div>
+<div class="mb-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold text-secondary">
+<span>Threat Confidence</span>
+<span class="text-error">98%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-error to-primary w-[98%]"></div>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 bg-surface-container-high text-primary font-bold py-2 rounded-lg text-sm hover:bg-surface-container-highest transition-colors active:scale-95">Acknowledge</button>
+<button class="flex-1 bg-primary text-white font-bold py-2 rounded-lg text-sm hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">Investigate</button>
+</div>
+</div>
+</div>
+<!-- Violation Card 2: High Severity -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-transparent hover:border-error/20 flex flex-col">
+<div class="relative h-56 group overflow-hidden">
+<img alt="Sarah Jenkins" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="low light security camera capture of a woman walking quickly through a corporate hallway, motion blur, cold blue office lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCXAC_R9F9VXSdGFkOK6_XJ0hiR6deH0ElXPaOirDD4VzIvJfubOaFRAj4sJesfHk9JiB9kBOgNaO0lHrzKeIdEg_2wKnJzFiwd0FU4K_Ja7yYVIocyCY3MpNqgom7e7kPIPVbfTtW3tqhY7mAhuuzsIyw4Gx0agXO1EZdOVYc70t3BPvOCY7WBIkhdoomwiklR-L_LzGRYCVfRE7m7E0eDsWqtFoIimgJ92OmfiskfnN5o6gd45D2cLPAtEOQ01i5zu3JRQ7iWE8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded tracking-tighter uppercase">High</span>
+<span class="bg-black/50 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-tighter uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">videocam</span> CAM-108
+                            </span>
+</div>
+<div class="absolute bottom-4 left-4">
+<h3 class="text-white font-bold text-lg leading-none">Sarah Jenkins</h3>
+<p class="text-white/70 text-xs font-medium mt-1">Captured at 13:58:02 PST</p>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-xl">location_on</span>
+<span class="font-bold text-on-surface-variant">Executive Zone B</span>
+</div>
+<span class="bg-red-50 text-error text-[10px] font-black border border-error/20 px-2 py-0.5 rounded uppercase tracking-widest">Restricted</span>
+</div>
+<div class="mb-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold text-secondary">
+<span>Threat Confidence</span>
+<span class="text-orange-500">82%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-orange-400 to-orange-600 w-[82%]"></div>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 bg-surface-container-high text-primary font-bold py-2 rounded-lg text-sm hover:bg-surface-container-highest transition-colors active:scale-95">Acknowledge</button>
+<button class="flex-1 bg-primary text-white font-bold py-2 rounded-lg text-sm hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">Investigate</button>
+</div>
+</div>
+</div>
+<!-- Violation Card 3: High Severity -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-transparent hover:border-error/20 flex flex-col">
+<div class="relative h-56 group overflow-hidden">
+<img alt="Michael Chen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="dramatic lighting on a man standing near a restricted vault door, high contrast shadows, security lens perspective" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBha7ERjYxu7ieT-XspXhItQpJ8NAxgtXTJnkF_obEYLQPQyCBoJfaCpFbrbQt-2IerI9yI36bDKIOLpJGokyJkkriz2sa6PCVpYRIocEhyzltHoTv3FRIFq0PZWF5zkHiJJv2qUnE3WM0doEiw4gukLf22QDYzMifqLSQjZu9aGBCZjezW3ZgGMW0407qE2BJ0W6i65iFtpxh__DVrUU2IYObLrtjQ3KIJn48LDMD0ctqTnfQEgrMUVE_S_H4seFcAWqGdVBC-EvM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded tracking-tighter uppercase">High</span>
+<span class="bg-black/50 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-tighter uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">videocam</span> CAM-009
+                            </span>
+</div>
+<div class="absolute bottom-4 left-4">
+<h3 class="text-white font-bold text-lg leading-none">Michael Chen</h3>
+<p class="text-white/70 text-xs font-medium mt-1">Captured at 12:45:30 PST</p>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-xl">location_on</span>
+<span class="font-bold text-on-surface-variant">R&amp;D Lab Floor 2</span>
+</div>
+<span class="bg-red-50 text-error text-[10px] font-black border border-error/20 px-2 py-0.5 rounded uppercase tracking-widest">Restricted</span>
+</div>
+<div class="mb-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold text-secondary">
+<span>Threat Confidence</span>
+<span class="text-orange-500">75%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-orange-400 to-orange-600 w-[75%]"></div>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 bg-surface-container-high text-primary font-bold py-2 rounded-lg text-sm hover:bg-surface-container-highest transition-colors active:scale-95">Acknowledge</button>
+<button class="flex-1 bg-primary text-white font-bold py-2 rounded-lg text-sm hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">Investigate</button>
+</div>
+</div>
+</div>
+<!-- Violation Card 4: High Severity (Asymmetric Sizing) -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-transparent hover:border-error/20 flex flex-col">
+<div class="relative h-56 group overflow-hidden">
+<img alt="Unknown" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="shadowy figure in a long coat walking through a dark laboratory, neon green status lights reflecting in background, surveillance angle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmDknK13z3Q8SXE-roz8Cn1l5SY9kneKCQnQkVe6XGQ0mbHV4YP6EHAH-cZVXdpKesPiRTh6ymS8A110pmv8G16vHYP3d1emLw-c5bekbeZCY5m9BnNGpazM1Sg6xd7eiDfhRxT91sVEbHFjmGFjPVLi9jXxmGLNkWKTtgkbVfm3ihaopw0JI_6mzfnGVDsscdjGqLNGvZn3Ffom_LxbYG0My-9ERpq3teArux9uqFtGda_lTCjckh_HVgdXTA2mY7Gs0eTTzLoZg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded tracking-tighter uppercase">High</span>
+<span class="bg-black/50 backdrop-blur-md text-white text-[10px] font-bold px-2 py-0.5 rounded tracking-tighter uppercase flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">videocam</span> CAM-214
+                            </span>
+</div>
+<div class="absolute bottom-4 left-4">
+<h3 class="text-white font-bold text-lg leading-none">Unknown Person</h3>
+<p class="text-white/70 text-xs font-medium mt-1">Captured at 11:20:11 PST</p>
+</div>
+</div>
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-xl">location_on</span>
+<span class="font-bold text-on-surface-variant">Maintenance Duct 2</span>
+</div>
+<span class="bg-red-50 text-error text-[10px] font-black border border-error/20 px-2 py-0.5 rounded uppercase tracking-widest">Restricted</span>
+</div>
+<div class="mb-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold text-secondary">
+<span>Threat Confidence</span>
+<span class="text-orange-500">88%</span>
+</div>
+<div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-orange-400 to-orange-600 w-[88%]"></div>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 bg-surface-container-high text-primary font-bold py-2 rounded-lg text-sm hover:bg-surface-container-highest transition-colors active:scale-95">Acknowledge</button>
+<button class="flex-1 bg-primary text-white font-bold py-2 rounded-lg text-sm hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">Investigate</button>
+</div>
+</div>
+</div>
+<!-- Live Stream Feed (The "Surveillance Feed Card") -->
+<div class="lg:col-span-2 bg-on-secondary-fixed rounded-xl overflow-hidden relative shadow-2xl flex flex-col group">
+<div class="p-4 flex items-center justify-between border-b border-white/5 bg-black/20">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-error rounded-full animate-pulse"></div>
+<h4 class="text-white text-xs font-black uppercase tracking-[0.2em]">Live Stream: Server Room North Entrance</h4>
+</div>
+<div class="flex gap-2">
+<button class="text-white/60 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">settings</span>
+</button>
+<button class="text-white/60 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">fullscreen</span>
+</button>
+</div>
+</div>
+<div class="flex-1 relative bg-black">
+<img alt="Server Room Live Feed" class="w-full h-full object-cover opacity-60" data-alt="wide shot of a high-tech server room with glowing blue LED rack lights, long symmetrical perspective, cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZgcUHY4z6XyGeSPEjVT2hMAHGVevB9L2kVvJusET6727Hg0eg8A61PuFfpmjUH_q1YyYlMNHwU7twR5n8FUW8Ctdlpko3ljSVaJh53AtWJPFyngs2h7ru59Kez-qFLK41UlL7fMTtoPbw9NWUB9-XWAo-VCesR_gZWWg5HIGwAP4AfNVy19sbs_9JIqjp01P5jFfXaY5QX5eMJOgCp2hJ5TTxMtx1VX7NX1GAXYojdHJKVIrAIJLa2wCMPdns4ohfYS3elEFgh18"/>
+<!-- AI Scan Overlay -->
+<div class="absolute inset-0 pointer-events-none flex items-center justify-center">
+<div class="w-48 h-48 border-2 border-fuchsia-500/50 rounded-xl flex items-center justify-center relative">
+<div class="absolute inset-0 border-4 border-fuchsia-500 rounded-xl scale-110 opacity-20"></div>
+<div class="text-[10px] text-fuchsia-400 font-bold uppercase tracking-widest absolute -top-8 bg-fuchsia-900/40 px-3 py-1 rounded-full backdrop-blur-md">Scanning Faces...</div>
+<div class="w-full h-[1px] bg-fuchsia-500 absolute top-0 animate-[bounce_3s_infinite] shadow-[0_0_10px_#f5d0fe]"></div>
+</div>
+</div>
+<!-- Data Overlay -->
+<div class="absolute bottom-6 right-6 flex flex-col items-end gap-2">
+<div class="bg-black/60 backdrop-blur-lg rounded-lg p-3 border border-white/10 w-48">
+<div class="flex justify-between text-[10px] text-white/50 font-bold mb-1">
+<span>CPU LOAD</span>
+<span class="text-tertiary-fixed">42%</span>
+</div>
+<div class="w-full h-1 bg-white/10 rounded-full">
+<div class="w-[42%] h-full bg-tertiary-fixed"></div>
+</div>
+</div>
+<div class="bg-black/60 backdrop-blur-lg rounded-lg p-3 border border-white/10 w-48">
+<div class="flex justify-between text-[10px] text-white/50 font-bold mb-1">
+<span>AI CONFIDENCE</span>
+<span class="text-fuchsia-400">99.8%</span>
+</div>
+<div class="w-full h-1 bg-white/10 rounded-full">
+<div class="w-[99%] h-full bg-fuchsia-400"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action for Mobile / Quick Response -->
+<button class="fixed bottom-8 right-8 w-16 h-16 bg-error text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform active:scale-95 z-50">
+<span class="material-symbols-outlined text-3xl">emergency_share</span>
+</button>
+</body></html>

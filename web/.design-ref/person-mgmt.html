@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attend.AI - Person Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#e4e2e3",
+                        "on-tertiary-container": "#a1e074",
+                        "outline": "#85727b",
+                        "surface-tint": "#9a3979",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#204a00",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#efedee",
+                        "surface-container-low": "#f5f3f4",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#3c002b",
+                        "primary-fixed": "#ffd8eb",
+                        "on-surface-variant": "#53424a",
+                        "tertiary-fixed": "#b4f485",
+                        "surface-bright": "#fbf9fa",
+                        "inverse-primary": "#ffaedb",
+                        "surface": "#fbf9fa",
+                        "primary-container": "#923272",
+                        "surface-dim": "#dbd9da",
+                        "on-background": "#1b1c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e8e9",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#e3e0f2",
+                        "secondary-fixed": "#e3e0f2",
+                        "on-tertiary-fixed-variant": "#245100",
+                        "inverse-on-surface": "#f2f0f1",
+                        "on-primary-container": "#ffb9df",
+                        "on-primary-fixed-variant": "#7d2060",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#646372",
+                        "on-tertiary-fixed": "#0b2000",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#d8c0ca",
+                        "secondary": "#5e5d6c",
+                        "primary-fixed-dim": "#ffaedb",
+                        "on-secondary-fixed-variant": "#464553",
+                        "surface-container-highest": "#e4e2e3",
+                        "background": "#fbf9fa",
+                        "tertiary-container": "#2e6400",
+                        "on-secondary-fixed": "#1a1a27",
+                        "on-surface": "#1b1c1d",
+                        "inverse-surface": "#303031",
+                        "secondary-fixed-dim": "#c7c5d6",
+                        "tertiary-fixed-dim": "#99d76c",
+                        "primary": "#751859"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-dot-green { background-color: #a1e074; }
+        .active-dot-red { background-color: #ba1a1a; }
+        .active-dot-amber { background-color: #ffb9df; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col z-40 bg-[#1a1a27] dark:bg-[#0f0f16] font-['Inter'] antialiased tracking-tight text-sm docked left-0 h-screen w-64 border-r-0">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-white tracking-tighter">Attend.AI</h1>
+<p class="text-[10px] text-white/50 uppercase tracking-widest">Enterprise Surveillance</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                Dashboard
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">videocam</span>
+                Live View
+            </div>
+<div class="bg-[#751859] text-white border-l-4 border-[#923272] flex items-center px-4 py-3 ml-0 scale-98 active:opacity-80 cursor-pointer">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">group</span>
+                Person Management
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">event_available</span>
+                Attendance
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">assessment</span>
+                Reports
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">notification_important</span>
+                Event Center
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">person_add</span>
+                Visitor Management
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">lock_open</span>
+                Access Control
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">insert_chart</span>
+                Analytics
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">settings</span>
+                System Administration
+            </div>
+<div class="text-white/70 hover:text-white flex items-center px-4 py-3 hover:bg-white/5 transition-colors duration-200 cursor-pointer">
+<span class="material-symbols-outlined mr-3">hub</span>
+                Integrations
+            </div>
+</nav>
+<div class="p-4 border-t border-white/10">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border border-white/20" data-alt="close-up portrait of professional male executive with a confident expression in a studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQrn99JYbx1kmDl01fmO8dCznRiyzkthoNaWRrcNw9scnTpoqxg8gx9aakQQpkyuGAMsD0iwiHyNIsJ8pg2bkW3EAPB9rjngpeu_PnD4SNQsaf1sArVJyVJjM-FgYG4i0v1OUCGlG1GzXamJ3Jcisnc2eQd1XOJ3cX3LTR3FzaGPm4ZFnyBbETTp4M33-mBTt-IiSNqdWgYyMvfBc4GMf1-fUh5SMQtJt3_zcB12T9rP8-ijcGIeyzClrUJth8504HvJ4fN15ihpc"/>
+<div class="overflow-hidden">
+<p class="text-white text-xs font-semibold truncate">Alex Sterling</p>
+<p class="text-white/50 text-[10px] truncate">Security Director</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="h-16 flex items-center justify-between px-8 bg-[#fbf9fa]/80 dark:bg-[#1a1a27]/80 backdrop-blur-xl shadow-sm dark:shadow-none font-['Inter'] text-sm font-medium z-30 sticky top-0">
+<div class="flex items-center gap-4">
+<nav class="flex text-on-surface-variant gap-2 items-center">
+<span>Directory</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-[#751859] font-semibold">Person Management</span>
+</nav>
+</div>
+<div class="flex-1 max-w-xl mx-8">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary">search</span>
+<input class="w-full bg-surface-container-highest border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search for personnel, ID, or department..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-secondary">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-secondary">settings</span>
+</button>
+</div>
+</header>
+<!-- Content Area: Three-Panel Layout -->
+<div class="flex flex-1 overflow-hidden">
+<!-- Left Panel: Department Tree (20%) -->
+<section class="w-[20%] bg-surface-container-low p-6 overflow-y-auto">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Departments</h3>
+<span class="material-symbols-outlined text-secondary text-lg cursor-pointer">account_tree</span>
+</div>
+<div class="space-y-2">
+<!-- Root -->
+<div class="flex items-center gap-2 py-1.5 cursor-pointer">
+<span class="material-symbols-outlined text-secondary text-sm">keyboard_arrow_down</span>
+<span class="material-symbols-outlined text-primary text-lg">corporate_fare</span>
+<span class="font-semibold text-sm">Attend Corp</span>
+</div>
+<!-- Nodes -->
+<div class="ml-6 space-y-1">
+<div class="flex items-center gap-2 py-2 px-3 rounded-lg bg-primary-container text-white shadow-md">
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+<span class="text-sm font-medium">Engineering</span>
+</div>
+<div class="ml-6 space-y-1 border-l-2 border-outline-variant/30 pl-4 py-1">
+<div class="py-1 text-sm text-on-surface-variant hover:text-primary cursor-pointer transition-colors">Frontend Architecture</div>
+<div class="py-1 text-sm text-on-surface-variant hover:text-primary cursor-pointer transition-colors">Backend &amp; AI</div>
+<div class="py-1 text-sm text-on-surface-variant hover:text-primary cursor-pointer transition-colors">Surveillance Ops</div>
+</div>
+<div class="flex items-center gap-2 py-2 px-3 rounded-lg hover:bg-surface-container transition-colors cursor-pointer text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">keyboard_arrow_right</span>
+<span class="text-sm">Human Resources</span>
+</div>
+<div class="flex items-center gap-2 py-2 px-3 rounded-lg hover:bg-surface-container transition-colors cursor-pointer text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">keyboard_arrow_right</span>
+<span class="text-sm">Operations</span>
+</div>
+<div class="flex items-center gap-2 py-2 px-3 rounded-lg hover:bg-surface-container transition-colors cursor-pointer text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">keyboard_arrow_right</span>
+<span class="text-sm">Marketing</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Center Panel: Person List (40%) -->
+<section class="w-[40%] bg-surface p-6 overflow-y-auto border-x border-outline-variant/10">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h2 class="text-xl font-bold tracking-tight">Personnel</h2>
+<p class="text-xs text-on-surface-variant">142 active members in Engineering</p>
+</div>
+<div class="flex gap-2">
+<button class="p-2 bg-surface-container-high rounded-lg text-primary hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">upload</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg shadow-lg hover:shadow-primary/20 transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-sm">add</span>
+                            Add Person
+                        </button>
+</div>
+</div>
+<!-- Grid of Cards -->
+<div class="grid grid-cols-1 @xl:grid-cols-2 gap-4">
+<!-- Person Card Active -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant/10 hover:shadow-xl hover:shadow-on-surface/5 transition-all cursor-pointer ring-2 ring-primary-container/20">
+<div class="flex items-start justify-between mb-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="professional headshot of a smiling woman with glasses, neutral office background, soft daylight, sharp focus on facial features" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-uXF7Pfrohrf_LdSFnG0YEzWUuMAcgNCurLVMsE5qA7vwdE7P5KJgxWNaR-BLIFuRj0JsLiOXWg6ijBCYqj-bsr-d2kn0QzRa95wG7W018d3-5rj8yqZBbcvLs_gpfizVusHXx4RIO0uEc_bKUvBKHE4bYIXEPQ0G4fWhSMwFKm95Ov2i-7qxcxDO4_XS9UfICqcO08XnhkozIoCvMI2lJmQDTxNVbVAmElTyPgEbvNwasDb2hXQ3LAlqnHNJGKUCroCuaRTdLQo"/>
+<span class="px-2 py-1 bg-on-tertiary-container/10 text-tertiary text-[10px] font-bold uppercase rounded-full tracking-wider">Active</span>
+</div>
+<h4 class="font-bold text-sm">Elena Rodriguez</h4>
+<p class="text-[10px] text-on-surface-variant mb-3">ID: #AI-90210</p>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] rounded">Engineering</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] rounded">Lead Designer</span>
+</div>
+</div>
+<!-- Person Card 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-transparent hover:border-outline-variant/20 hover:shadow-xl hover:shadow-on-surface/5 transition-all cursor-pointer">
+<div class="flex items-start justify-between mb-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="studio portrait of a middle-aged man with short beard and dark hair, wearing a clean professional black polo shirt, soft rim light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFrkBFoh-XdaoooLqcOUzf1iZNr6iKjI5SlkCrLWSZHVDhCYS82avuAzScScXXDhVbD968_4T-vMVX2HLH5NTxPaJOOwiMtqFzpFd6GwLRatEkezqYNc-zSnGEyv6klDuiarfq3uLa7Cua8ki8qSaBDH_7vqI7A_4LO0FoFluusDJIZSF6rUVckfAlUCJMfs7gzyIBzquur9_VTuV_AtkbdV_uY7ydthnzY_IjVm3sR0kXlKU7Pp7N_lC7DToOQ9-_lJ95fuz1Enc"/>
+<span class="px-2 py-1 bg-on-tertiary-container/10 text-tertiary text-[10px] font-bold uppercase rounded-full tracking-wider">Active</span>
+</div>
+<h4 class="font-bold text-sm">Marcus Chen</h4>
+<p class="text-[10px] text-on-surface-variant mb-3">ID: #AI-90211</p>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] rounded">Engineering</span>
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] rounded">Staff AI Eng</span>
+</div>
+</div>
+<!-- Person Card 3 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-transparent hover:border-outline-variant/20 hover:shadow-xl hover:shadow-on-surface/5 transition-all cursor-pointer">
+<div class="flex items-start justify-between mb-4">
+<img class="w-12 h-12 rounded-full object-cover grayscale opacity-60" data-alt="close up of a young man with curly hair smiling, looking directly at the camera, clean white background, soft professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC33D2JTh5Li8ae_YgSTq5zT7G3DpY6Zdlh4YlFoOYYaBBXIJBhrP5eK2WVzS7tkSb3Au-CPwxYMvtcCs9yLxxQj9l77JPzlTJvy2bQbxofUkmsfIlg29-EnoQACn2gnroLyrHvaYp2HbwPuW2axd_clnq4r04dBpoLBCl4UdOklFurbKSY3BPBDF3wPrwlXzoaK6Cd5I7oLwW90blTXxmFNmn2CP5ul0DBtVaC22Dm8oTLBHkjBGB2lLCI62mr5z58mMe2xhhvvGY"/>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase rounded-full tracking-wider">Inactive</span>
+</div>
+<h4 class="font-bold text-sm text-on-surface/60">Sarah Jenkins</h4>
+<p class="text-[10px] text-on-surface-variant/60 mb-3">ID: #AI-90212</p>
+<div class="flex flex-wrap gap-1 opacity-60">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] rounded">HR</span>
+</div>
+</div>
+<!-- More cards for density -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-transparent hover:border-outline-variant/20 transition-all cursor-pointer">
+<div class="flex items-start justify-between mb-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="confident professional woman in office environment, modern architectural background, natural light, business casual attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm_zYCozeY7HcrQVo9yoN_UjxtJJD649ozPMaaquZCmmhqmFGCNpCqLNulFw0XuLjtBxvBiCp05sV2UOp74eRB6RpUCrJXk5xN0A74TtjwYJ-8g1RDF6Q1cOmKDqA67uXmqKEW6VV2W2NKN5ZHxdtINpHalKcQBt-PItbS7oWR0-23TeCRvFaB8q60LIbfTrECrz-Yj4ZO9KkLaiO3XbqXt_Y9vvHucLKXL5IWRj-FTRkhNABh4EAMGYhpxIfataN8EXma_yxgsUM"/>
+<span class="px-2 py-1 bg-on-tertiary-container/10 text-tertiary text-[10px] font-bold uppercase rounded-full tracking-wider">Active</span>
+</div>
+<h4 class="font-bold text-sm">Amara Okafor</h4>
+<p class="text-[10px] text-on-surface-variant mb-3">ID: #AI-90215</p>
+<div class="flex flex-wrap gap-1">
+<span class="px-2 py-0.5 bg-surface-container-high text-on-surface-variant text-[10px] rounded">Engineering</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Person Detail (40%) -->
+<section class="w-[40%] bg-surface-container-low p-8 overflow-y-auto">
+<div class="flex justify-between items-start mb-8">
+<div class="flex gap-6">
+<div class="relative">
+<img class="w-32 h-32 rounded-xl object-cover shadow-2xl shadow-primary/10 border-4 border-white" data-alt="high-resolution portrait of Elena Rodriguez, professional executive attire, warm office interior lighting, shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3wfQ_Ydr7vHeSfBWFxjceeR7NYuSM3a01P6MEdZYl_3zP8k0zQiGEdCjrAyr7BvmcZtARFfemyfLiOM73gDEjhhiIL56yR3WSLj0PRGWEaefsYNM_kkDZ2sG77NvvSdHosE-YQip0BQV0eJ6SNi2Bx6zRz-qBAfpxLHJ3-u4ifFBFgqKx1Lhy8bJAeswl4J9KFJj8SBUXomCLuglGQm8O-jdCkLWmTvnpYvPgQiwuTI6zrUxTnU-NRdgupW9bh22fHHtNQlQ_AGI"/>
+<div class="absolute -bottom-2 -right-2 bg-on-tertiary-container p-1 rounded-lg text-white shadow-lg">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<h2 class="text-2xl font-extrabold tracking-tight mb-1">Elena Rodriguez</h2>
+<p class="text-primary font-medium mb-4">Lead Product Designer</p>
+<div class="flex gap-4">
+<button class="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">mail</span>
+</button>
+<button class="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
+<span class="material-symbols-outlined text-sm">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+<span class="text-[10px] font-bold uppercase text-on-surface-variant tracking-tighter">System Access</span>
+</div>
+</div>
+<!-- Info Grid -->
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div class="bg-surface-container-lowest p-4 rounded-xl">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant mb-1">Employee ID</p>
+<p class="text-sm font-semibold">AI-90210</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant mb-1">Department</p>
+<p class="text-sm font-semibold">Engineering</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant mb-1">Email</p>
+<p class="text-sm font-semibold truncate">e.rodriguez@attend.ai</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl">
+<p class="text-[10px] font-bold uppercase text-on-surface-variant mb-1">Phone</p>
+<p class="text-sm font-semibold">+1 (555) 902-1234</p>
+</div>
+</div>
+<!-- Attendance Calendar Mockup -->
+<div class="mb-8 bg-surface-container-lowest p-6 rounded-xl">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold">Attendance - October</h3>
+<div class="flex gap-2">
+<span class="flex items-center gap-1 text-[10px] text-on-surface-variant">
+<span class="w-2 h-2 rounded-full active-dot-green"></span> Present
+                            </span>
+<span class="flex items-center gap-1 text-[10px] text-on-surface-variant">
+<span class="w-2 h-2 rounded-full active-dot-red"></span> Absent
+                            </span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center text-[10px]">
+<div class="text-on-surface-variant font-bold">M</div>
+<div class="text-on-surface-variant font-bold">T</div>
+<div class="text-on-surface-variant font-bold">W</div>
+<div class="text-on-surface-variant font-bold">T</div>
+<div class="text-on-surface-variant font-bold">F</div>
+<div class="text-on-surface-variant font-bold">S</div>
+<div class="text-on-surface-variant font-bold">S</div>
+<!-- Calendar Days with dots -->
+<div class="py-2 hover:bg-surface-container rounded-lg cursor-default relative">1 <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full active-dot-green"></span></div>
+<div class="py-2 hover:bg-surface-container rounded-lg cursor-default relative">2 <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full active-dot-green"></span></div>
+<div class="py-2 hover:bg-surface-container rounded-lg cursor-default relative">3 <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full active-dot-red"></span></div>
+<div class="py-2 hover:bg-surface-container rounded-lg cursor-default relative">4 <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full active-dot-green"></span></div>
+<div class="py-2 hover:bg-surface-container rounded-lg cursor-default relative">5 <span class="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full active-dot-amber"></span></div>
+<div class="py-2 opacity-30">6</div>
+<div class="py-2 opacity-30">7</div>
+<!-- ... rest of calendar truncated for brevity -->
+</div>
+</div>
+<!-- Recent Events List -->
+<div>
+<h3 class="text-sm font-bold mb-4">Recent Surveillance Events</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-white/50 rounded-lg hover:bg-white transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dim overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="grainy black and white security camera freeze frame showing a face match event, high contrast technical aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJVF6TsmO85afwjpvbxShQKTIABddpXE883CtQ9dJOHNYieKZCefkds_G0VmU0dVMyyfRoia7cvHeycWUedDer1JfBjtmkkGTtjsEQ8oXPSyaRUUPx2f6FbQ8WYYTdRH1zcO8bh-Nc14LsoWU095ToyqYbY9e0CebocEi2W7QaZh0ctIbcBnAQrbqAfw0o1HHSPSAUycONPPr_z97hACk6JbKdeWj7Qe0NVPaJ4kU5v-1UAtya7MIOcGm7H03HKCjuo3ntavOCFpk"/>
+<div class="absolute inset-0 border border-primary-container/40"></div>
+</div>
+<div>
+<p class="text-xs font-bold">Access Granted: Main Lobby</p>
+<p class="text-[10px] text-on-surface-variant">Today, 09:12 AM • 98.4% Match</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white/50 rounded-lg hover:bg-white transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dim overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="security footage thumbnail of person walking through doorway, thermal heat map overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo4IdoxCg6vrBa7Fiik4uLBIDufGMsz0fmR6IhuiBXHJhTG1p6nwhgWV-ylrNbLl5AMkm5jdQQ4LV6qkM43FSmlRVTLVu_mZiIwS4kwH7MJ30d3_JwYBQx9ytWT4euEtA2JYmBjT0voDQ6MdyRIGKsLImdJ6xwFni5bx2pAvh5cp-vJU6KpdyzCyBi8BE6sBk7J6OtI2iiPCSH3twkpnp4TvFV-ZNZxdywMaDQZEicA8zMk1Rk_fWGX-yyhclMONMhCYTIkioA9QA"/>
+<div class="absolute inset-0 border border-primary-container/40"></div>
+</div>
+<div>
+<p class="text-xs font-bold">Access Granted: Lab 4</p>
+<p class="text-[10px] text-on-surface-variant">Today, 10:45 AM • 99.1% Match</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary text-sm">check_circle</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>

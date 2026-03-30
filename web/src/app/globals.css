@@ -1,47 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap');
-
-@import "tailwindcss";
-
-:root {
-  --color-primary: #4154f1;
-  --color-primary-light: #f6f6fe;
-  --color-heading: #012970;
-  --color-body: #444444;
-  --color-muted: #899bbd;
-  --color-secondary: #6c757d;
-  --color-success: #198754;
-  --color-danger: #dc3545;
-  --color-warning: #ffc107;
-  --color-bg: #f6f9ff;
-  --color-card: #ffffff;
-  --color-border: #e8e8e8;
-  --shadow-card: 0px 0px 30px rgba(1, 41, 112, 0.1);
-  --shadow-sidebar: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  --shadow-header: 0px 2px 20px rgba(1, 41, 112, 0.1);
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  background: var(--color-bg);
-  color: var(--color-body);
-  font-family: "Open Sans", system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Nunito", "Open Sans", sans-serif;
-  color: var(--color-heading);
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 }
 
-.font-mono {
-  font-family: "JetBrains Mono", "Courier New", ui-monospace, monospace;
+.primary-gradient {
+  background: linear-gradient(135deg, #751859 0%, #923272 100%);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.dark .glass-panel {
+  background: rgba(37, 37, 64, 0.8);
+}
+
+.ai-pulse {
+  box-shadow: 0 0 0 0 rgba(146, 50, 114, 0.7);
+  animation: ai-pulse-kf 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes ai-pulse-kf {
+  to { box-shadow: 0 0 0 10px rgba(146, 50, 114, 0); }
 }
 
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #a1a1a1; }
 
-@keyframes pulse-live {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
+.dark ::-webkit-scrollbar-thumb { background: #464553; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #555577; }

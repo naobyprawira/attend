@@ -1,9 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PageHeader } from "@/components/layout/PageHeader";
 import { fetchEvents, fetchEventStats } from "@/lib/api";
 import type { DetectionEvent, EventStats } from "@/lib/types";
+
+const DUMMY_EVENTS: DetectionEvent[] = [
+  { id: 1, timestamp: new Date(Date.now() - 60000).toISOString(), event_type: "face_recognized", person_name: "Marcus Thompson", confidence: 0.994, bbox: null, thumbnail: null, frame_number: null },
+  { id: 2, timestamp: new Date(Date.now() - 120000).toISOString(), event_type: "face_recognized", person_name: "Sarah Chen", confidence: 0.989, bbox: null, thumbnail: null, frame_number: null },
+  { id: 3, timestamp: new Date(Date.now() - 180000).toISOString(), event_type: "unknown_face", person_name: null, confidence: null, bbox: null, thumbnail: null, frame_number: null },
+  { id: 4, timestamp: new Date(Date.now() - 300000).toISOString(), event_type: "face_recognized", person_name: "David Park", confidence: 0.972, bbox: null, thumbnail: null, frame_number: null },
+  { id: 5, timestamp: new Date(Date.now() - 420000).toISOString(), event_type: "face_recognized", person_name: "Aisha Rahman", confidence: 0.991, bbox: null, thumbnail: null, frame_number: null },
+  { id: 6, timestamp: new Date(Date.now() - 600000).toISOString(), event_type: "unknown_face", person_name: null, confidence: null, bbox: null, thumbnail: null, frame_number: null },
+  { id: 7, timestamp: new Date(Date.now() - 900000).toISOString(), event_type: "face_recognized", person_name: "Lisa Wong", confidence: 0.965, bbox: null, thumbnail: null, frame_number: null },
+];
 
 export default function EventCenterPage() {
   const [events, setEvents] = useState<DetectionEvent[]>([]);
@@ -11,6 +20,7 @@ export default function EventCenterPage() {
   const [typeFilter, setTypeFilter] = useState("");
   const [personFilter, setPersonFilter] = useState("");
   const [loading, setLoading] = useState(true);
+  const [backendOnline, setBackendOnline] = useState(false);
 
   const loadEvents = async (showSpinner = false) => {
     if (showSpinner) setLoading(true);
@@ -21,7 +31,11 @@ export default function EventCenterPage() {
       const [e, s] = await Promise.all([fetchEvents(params), fetchEventStats()]);
       setEvents(e);
       setStats(s);
-    } catch {}
+      setBackendOnline(true);
+    } catch {
+      setBackendOnline(false);
+      setEvents(DUMMY_EVENTS);
+    }
     setLoading(false);
   };
 
@@ -36,172 +50,170 @@ export default function EventCenterPage() {
     loadEvents(true);
   };
 
+  const displayEvents = backendOnline
+    ? events
+    : events.filter((e) => {
+        if (typeFilter && e.event_type !== typeFilter) return false;
+        if (personFilter && !(e.person_name || "").toLowerCase().includes(personFilter.toLowerCase())) return false;
+        return true;
+      });
+
+  const totalEvents = stats?.total_events ?? displayEvents.length;
+  const recognized = stats?.today?.face_recognized ?? displayEvents.filter((e) => e.event_type === "face_recognized").length;
+  const unknown = stats?.today?.unknown_face ?? displayEvents.filter((e) => e.event_type === "unknown_face").length;
+
   return (
-    <>
-      <PageHeader title="Event Center" breadcrumb="Events" />
-      <div className="flex-1 overflow-y-auto p-6 space-y-4">
-        {/* Filters */}
-        <div
-          className="bg-white rounded-[5px] flex items-end gap-4 px-4 py-5"
-          style={{ boxShadow: "var(--shadow-card)" }}
-        >
-          <div>
-            <label className="text-xs block mb-1" style={{ color: "var(--color-secondary)" }}>
-              Type
-            </label>
-            <select
-              value={typeFilter}
-              onChange={(e) => setTypeFilter(e.target.value)}
-              className="bg-white border rounded-md text-sm px-3 py-2 focus:outline-none focus:border-[var(--color-primary)]"
-              style={{ borderColor: "var(--color-border)", color: "var(--color-body)" }}
-            >
-              <option value="">All Types</option>
-              <option value="face_recognized">Recognized</option>
-              <option value="unknown_face">Unknown</option>
-            </select>
-          </div>
-          <form onSubmit={handleSearch} className="flex gap-2 items-end">
-            <div>
-              <label className="text-xs block mb-1" style={{ color: "var(--color-secondary)" }}>
-                Person
-              </label>
-              <input
-                type="text"
-                placeholder="Search person..."
-                value={personFilter}
-                onChange={(e) => setPersonFilter(e.target.value)}
-                className="bg-white border rounded-md text-sm px-3 py-2 w-48 focus:outline-none focus:border-[var(--color-primary)]"
-                style={{ borderColor: "var(--color-border)", color: "var(--color-body)" }}
-              />
-            </div>
-            <button
-              type="submit"
-              className="text-white text-sm px-5 py-2 rounded-lg cursor-pointer font-semibold"
-              style={{ backgroundColor: "var(--color-primary)" }}
-            >
-              Search
-            </button>
-          </form>
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-surface dark:bg-dark-surface min-h-full">
+      {/* Page Header */}
+      <div>
+        <h2 className="text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          Access Logs
+        </h2>
+        <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium">
+          View and search all detection events across your surveillance network.
+        </p>
+      </div>
+
+      {/* Stat Summary */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="bg-surface-variant dark:bg-dark-surface-variant p-5 rounded-xl border border-outline-variant/10">
+          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase">Total Events</p>
+          <p className="text-2xl font-black text-on-surface dark:text-dark-on-surface mt-1">{totalEvents}</p>
         </div>
-
-        {/* Summary */}
-        {stats && (
-          <div className="flex gap-6 text-sm">
-            <span style={{ color: "var(--color-secondary)" }}>
-              Total:{" "}
-              <span className="font-bold" style={{ color: "var(--color-heading)" }}>
-                {stats.total_events}
-              </span>
-            </span>
-            <span style={{ color: "var(--color-secondary)" }}>
-              Recognized:{" "}
-              <span className="font-bold" style={{ color: "var(--color-success)" }}>
-                {stats.today?.face_recognized ?? 0}
-              </span>
-            </span>
-            <span style={{ color: "var(--color-secondary)" }}>
-              Unknown:{" "}
-              <span className="font-bold" style={{ color: "var(--color-danger)" }}>
-                {stats.today?.unknown_face ?? 0}
-              </span>
-            </span>
-            {stats.most_seen && (
-              <span style={{ color: "var(--color-secondary)" }}>
-                Most seen:{" "}
-                <span className="font-bold" style={{ color: "var(--color-primary)" }}>
-                  {stats.most_seen.person_name} ({stats.most_seen.count})
-                </span>
-              </span>
-            )}
-          </div>
-        )}
-
-        {/* Table */}
-        <div className="bg-white rounded-[5px] overflow-hidden" style={{ boxShadow: "var(--shadow-card)" }}>
-          <table className="w-full text-sm">
-            <thead>
-              <tr
-                className="text-xs uppercase tracking-wider"
-                style={{
-                  color: "var(--color-muted)",
-                  backgroundColor: "var(--color-bg)",
-                  borderBottom: "1px solid var(--color-border)",
-                }}
-              >
-                <th className="text-left px-5 py-3 font-semibold">Time</th>
-                <th className="text-left px-5 py-3 font-semibold w-12">Face</th>
-                <th className="text-left px-5 py-3 font-semibold">Type</th>
-                <th className="text-left px-5 py-3 font-semibold">Person</th>
-                <th className="text-left px-5 py-3 font-semibold">Confidence</th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading && (
-                <tr>
-                  <td colSpan={5} className="px-5 py-8 text-center" style={{ color: "var(--color-muted)" }}>
-                    Loading...
-                  </td>
-                </tr>
-              )}
-              {!loading && events.length === 0 && (
-                <tr>
-                  <td colSpan={5} className="px-5 py-8 text-center" style={{ color: "var(--color-muted)" }}>
-                    No events found
-                  </td>
-                </tr>
-              )}
-              {events.map((event) => (
-                <tr
-                  key={event.id}
-                  className="border-b hover:bg-[var(--color-bg)] transition-colors"
-                  style={{ borderColor: "var(--color-border)" }}
-                >
-                  <td className="px-5 py-2.5 font-mono text-xs" style={{ color: "var(--color-secondary)" }}>
-                    {new Date(event.timestamp).toLocaleString("en-GB")}
-                  </td>
-                  <td className="px-5 py-2.5">
-                    {event.thumbnail ? (
-                      <img
-                        src={`data:image/jpeg;base64,${event.thumbnail}`}
-                        alt=""
-                        className="w-8 h-8 rounded object-cover"
-                        style={{ border: "1px solid var(--color-border)" }}
-                      />
-                    ) : (
-                      <div
-                        className="w-8 h-8 rounded"
-                        style={{ backgroundColor: "var(--color-bg)", border: "1px solid var(--color-border)" }}
-                      />
-                    )}
-                  </td>
-                  <td className="px-5 py-2.5">
-                    <span
-                      className="text-[10px] px-2 py-0.5 rounded font-semibold"
-                      style={
-                        event.event_type === "face_recognized"
-                          ? { backgroundColor: "#d1fae5", color: "var(--color-success)" }
-                          : { backgroundColor: "#fee2e2", color: "var(--color-danger)" }
-                      }
-                    >
-                      {event.event_type === "face_recognized" ? "RECOGNIZED" : "UNKNOWN"}
-                    </span>
-                  </td>
-                  <td className="px-5 py-2.5" style={{ color: "var(--color-heading)" }}>
-                    {event.person_name || "—"}
-                  </td>
-                  <td className="px-5 py-2.5 font-mono" style={{ color: "var(--color-secondary)" }}>
-                    {event.confidence != null ? `${Math.round(event.confidence * 100)}%` : "—"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="bg-surface-variant dark:bg-dark-surface-variant p-5 rounded-xl border border-outline-variant/10">
+          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase">Recognized</p>
+          <p className="text-2xl font-black text-green-500 mt-1">{recognized}</p>
         </div>
-
-        <div className="text-xs" style={{ color: "var(--color-muted)" }}>
-          Showing {events.length} events
+        <div className="bg-surface-variant dark:bg-dark-surface-variant p-5 rounded-xl border border-outline-variant/10">
+          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase">Unknown</p>
+          <p className="text-2xl font-black text-error mt-1">{unknown}</p>
         </div>
       </div>
-    </>
+
+      {/* Filters */}
+      <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 p-5 flex flex-wrap items-end gap-4">
+        <div>
+          <label className="text-[10px] font-black text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-[0.2em] block mb-2">
+            Type
+          </label>
+          <select
+            value={typeFilter}
+            onChange={(e) => setTypeFilter(e.target.value)}
+            className="bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg text-sm px-4 py-2.5 focus:ring-2 focus:ring-primary/20 text-on-surface dark:text-dark-on-surface"
+          >
+            <option value="">All Types</option>
+            <option value="face_recognized">Recognized</option>
+            <option value="unknown_face">Unknown</option>
+          </select>
+        </div>
+        <form onSubmit={handleSearch} className="flex gap-3 items-end">
+          <div>
+            <label className="text-[10px] font-black text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-[0.2em] block mb-2">
+              Person
+            </label>
+            <input
+              type="text"
+              placeholder="Search person..."
+              value={personFilter}
+              onChange={(e) => setPersonFilter(e.target.value)}
+              className="bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg text-sm px-4 py-2.5 w-56 focus:ring-2 focus:ring-primary/20 text-on-surface dark:text-dark-on-surface"
+            />
+          </div>
+          <button
+            type="submit"
+            className="primary-gradient text-white text-xs font-bold px-6 py-3 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all"
+          >
+            Search
+          </button>
+        </form>
+      </div>
+
+      {/* Events Table */}
+      <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
+        <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="text-[10px] uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant border-b border-outline-variant/10 dark:border-dark-outline-variant/10">
+              <th className="text-left px-5 py-4 font-bold">Time</th>
+              <th className="text-left px-5 py-4 font-bold w-12">Face</th>
+              <th className="text-left px-5 py-4 font-bold">Type</th>
+              <th className="text-left px-5 py-4 font-bold">Person</th>
+              <th className="text-left px-5 py-4 font-bold">Confidence</th>
+            </tr>
+          </thead>
+          <tbody>
+            {loading && (
+              <tr>
+                <td colSpan={5} className="px-5 py-12 text-center text-on-surface-variant dark:text-dark-on-surface-variant">
+                  <span className="material-symbols-outlined animate-spin text-2xl mb-2 block">progress_activity</span>
+                  Loading...
+                </td>
+              </tr>
+            )}
+            {!loading && displayEvents.length === 0 && (
+              <tr>
+                <td colSpan={5} className="px-5 py-12 text-center text-on-surface-variant dark:text-dark-on-surface-variant">
+                  No events found
+                </td>
+              </tr>
+            )}
+            {!loading && displayEvents.map((event) => (
+              <tr
+                key={event.id}
+                className={`border-b border-outline-variant/5 dark:border-dark-outline-variant/5 hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors ${
+                  event.event_type === "unknown_face" ? "bg-error/5" : ""
+                }`}
+              >
+                <td className="px-5 py-3 font-mono text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+                  {new Date(event.timestamp).toLocaleString("en-GB")}
+                </td>
+                <td className="px-5 py-3">
+                  {event.thumbnail ? (
+                    <img
+                      src={`data:image/jpeg;base64,${event.thumbnail}`}
+                      alt=""
+                      className="w-9 h-9 rounded-lg object-cover border border-outline-variant/20"
+                    />
+                  ) : (
+                    <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${
+                      event.event_type === "face_recognized"
+                        ? "bg-primary/10 border border-primary/20"
+                        : "bg-error/10 border border-error/20"
+                    }`}>
+                      <span className={`material-symbols-outlined text-sm ${
+                        event.event_type === "face_recognized" ? "text-primary" : "text-error"
+                      }`}>
+                        {event.event_type === "face_recognized" ? "person" : "person_off"}
+                      </span>
+                    </div>
+                  )}
+                </td>
+                <td className="px-5 py-3">
+                  <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-widest ${
+                    event.event_type === "face_recognized"
+                      ? "bg-green-500/10 text-green-500"
+                      : "bg-error/10 text-error"
+                  }`}>
+                    {event.event_type === "face_recognized" ? "Recognized" : "Unknown"}
+                  </span>
+                </td>
+                <td className="px-5 py-3 font-bold text-on-surface dark:text-dark-on-surface">
+                  {event.person_name || <span className="italic text-error">Unrecognized</span>}
+                </td>
+                <td className="px-5 py-3 font-mono text-on-surface-variant dark:text-dark-on-surface-variant">
+                  {event.confidence != null ? `${Math.round(event.confidence * 100)}%` : "--"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <div className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+        Showing {displayEvents.length} events
+        {!backendOnline && <span className="ml-2 text-primary">(demo data)</span>}
+      </div>
+    </div>
   );
 }

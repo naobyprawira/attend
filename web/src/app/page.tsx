@@ -1,60 +1,39 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PageHeader } from "@/components/layout/PageHeader";
 import { fetchStatus, fetchEvents, fetchEventStats } from "@/lib/api";
 import type { ServerStatus, DetectionEvent, EventStats } from "@/lib/types";
 
-function StatCard({
-  label,
-  subtitle,
-  value,
-  icon,
-  trend,
-}: {
-  label: string;
-  subtitle: string;
-  value: string | number;
-  icon: React.ReactNode;
-  trend?: string;
-}) {
-  return (
-    <div className="bg-white rounded-[5px] p-5" style={{ boxShadow: "var(--shadow-card)" }}>
-      <p className="text-lg font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>
-        <span style={{ color: "var(--color-primary)" }}>{label}</span>
-        <span className="text-sm ml-1" style={{ color: "var(--color-muted)" }}>
-          | {subtitle}
-        </span>
-      </p>
-      <div className="flex items-center gap-4 mt-3">
-        <div
-          className="w-16 h-16 rounded-full flex items-center justify-center"
-          style={{ backgroundColor: "var(--color-primary-light)" }}
-        >
-          <span style={{ color: "var(--color-primary)" }}>{icon}</span>
-        </div>
-        <div>
-          <p
-            className="text-[28px] font-bold"
-            style={{ fontFamily: "'Nunito', sans-serif", color: "var(--color-primary)" }}
-          >
-            {value}
-          </p>
-          {trend && (
-            <p className="text-sm" style={{ color: "var(--color-secondary)" }}>
-              {trend}
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
+// Dummy data for when backend is offline
+const DUMMY_ACTIVITY = [
+  { id: 1, name: "Marcus Thompson", dept: "Engineering", time: "10:42:15 AM", confidence: 99.4, status: "authorized" as const },
+  { id: 2, name: "Sarah Chen", dept: "Product", time: "10:41:02 AM", confidence: 98.9, status: "authorized" as const },
+  { id: 3, name: null, dept: "Main Lobby", time: "10:38:44 AM", confidence: 0, status: "flagged" as const },
+  { id: 4, name: "David Park", dept: "Marketing", time: "10:35:20 AM", confidence: 97.2, status: "authorized" as const },
+  { id: 5, name: "Aisha Rahman", dept: "Engineering", time: "10:32:11 AM", confidence: 99.1, status: "authorized" as const },
+];
+
+const DUMMY_FEEDS = [
+  { id: "001-LBY", name: "Main Lobby", color: "red" as const },
+  { id: "004-ENG", name: "Eng Floor", color: "red" as const },
+  { id: "009-CNF", name: "Conf. A", color: "green" as const },
+];
+
+const DEPARTMENTS = [
+  { name: "Engineering", count: 142, pct: 85 },
+  { name: "Product Design", count: 48, pct: 40 },
+  { name: "Marketing & Sales", count: 92, pct: 65 },
+];
+
+const DAYS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+const BAR_HEIGHTS = [40, 60, 80, 70, 90, 50, 100];
+const BAR_FILLS = [60, 80, 70, 95, 85, 40, 100];
 
 export default function DashboardPage() {
   const [status, setStatus] = useState<ServerStatus | null>(null);
   const [events, setEvents] = useState<DetectionEvent[]>([]);
   const [stats, setStats] = useState<EventStats | null>(null);
+  const [backendOnline, setBackendOnline] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -67,167 +46,341 @@ export default function DashboardPage() {
         setStatus(s);
         setEvents(e);
         setStats(st);
-      } catch {}
+        setBackendOnline(true);
+      } catch {
+        setBackendOnline(false);
+      }
     };
     load();
     const id = setInterval(load, 5000);
     return () => clearInterval(id);
   }, []);
 
-  const cameraStatus = status?.camera_connected ? "Online" : "Offline";
+  const totalScans = backendOnline ? (stats?.total_events ?? 0) : 12842;
+  const activeZones = backendOnline ? (status?.viewer_count ?? 0) : 24;
+  const avgConfidence = 98.2;
+  const unrecognized = backendOnline ? (stats?.today?.unknown_face ?? 0) : 14;
 
   return (
-    <>
-      <PageHeader title="Dashboard" />
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
-        {/* Stat cards */}
-        <div className="grid grid-cols-4 gap-4">
-          <StatCard
-            label="Camera"
-            subtitle="Status"
-            value={cameraStatus}
-            icon={
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                <circle cx="12" cy="13" r="4" />
-              </svg>
-            }
-            trend={status ? `${status.viewer_count} viewer(s)` : undefined}
-          />
-          <StatCard
-            label="Events"
-            subtitle="Today"
-            value={stats?.total_events ?? 0}
-            icon={
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-              </svg>
-            }
-          />
-          <StatCard
-            label="Recognized"
-            subtitle="Today"
-            value={stats?.today?.face_recognized ?? 0}
-            icon={
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
-              </svg>
-            }
-          />
-          <StatCard
-            label="Unknown"
-            subtitle="Today"
-            value={stats?.today?.unknown_face ?? 0}
-            icon={
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
-            }
-          />
-        </div>
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+      {/* 4 Stat Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatCard
+          label="Total Scans"
+          value={totalScans.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          trend="+12% vs last week"
+          trendColor="text-green-500"
+          trendIcon="trending_up"
+          bgIcon="face"
+        />
+        <StatCard
+          label="Active Zones"
+          value={String(activeZones)}
+          trend="Operational"
+          trendColor="text-primary-fixed-dim"
+          trendIcon="check_circle"
+          bgIcon="grid_view"
+        />
+        <StatCard
+          label="Avg Confidence"
+          value={`${avgConfidence}%`}
+          progressPct={avgConfidence}
+          bgIcon="verified"
+        />
+        <StatCard
+          label="Unrecognized"
+          value={String(unrecognized)}
+          trend="Requires Review"
+          trendColor="text-error"
+          trendIcon="warning"
+          bgIcon="person_off"
+        />
+      </div>
 
-        {/* Recent events table */}
-        <div className="bg-white rounded-[5px]" style={{ boxShadow: "var(--shadow-card)" }}>
-          <div className="flex items-center justify-between px-5 pt-5 pb-3">
-            <p className="text-lg font-medium" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              <span style={{ color: "var(--color-primary)" }}>Recent Events</span>
-              <span className="text-sm ml-1" style={{ color: "var(--color-muted)" }}>
-                | Latest
-              </span>
-            </p>
-            <a
-              href="/events"
-              className="text-xs font-semibold hover:underline"
-              style={{ color: "var(--color-primary)" }}
-            >
-              View All
-            </a>
+      {/* Main Analytics Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+        {/* Left Column: Charts */}
+        <div className="col-span-1 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {/* Donut Chart */}
+          <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col items-center justify-center">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-8 self-start">
+              Daily Attendance Rate
+            </h4>
+            <div className="relative w-64 h-64 flex items-center justify-center">
+              <svg className="w-full h-full transform -rotate-90">
+                <circle
+                  className="text-surface-container-high dark:text-dark-surface-container-high"
+                  cx="128" cy="128" r="110" fill="transparent"
+                  stroke="currentColor" strokeWidth="20"
+                />
+                <circle
+                  cx="128" cy="128" r="110" fill="transparent"
+                  stroke="url(#plumGradient)" strokeWidth="20"
+                  strokeDasharray="691" strokeDashoffset="110"
+                  strokeLinecap="round"
+                />
+                <defs>
+                  <linearGradient id="plumGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style={{ stopColor: "#751859" }} />
+                    <stop offset="100%" style={{ stopColor: "#923272" }} />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-5xl font-black text-on-surface dark:text-dark-on-surface">84%</span>
+                <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest mt-1">
+                  Present Today
+                </span>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-8 w-full mt-8">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-primary" />
+                <div>
+                  <p className="text-xs text-on-surface dark:text-dark-on-surface font-bold">482</p>
+                  <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">Present</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 rounded-full bg-surface-container-high dark:bg-dark-surface-container-high" />
+                <div>
+                  <p className="text-xs text-on-surface dark:text-dark-on-surface font-bold">92</p>
+                  <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">Absent</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <table className="w-full text-sm">
-            <thead>
-              <tr
-                className="text-xs uppercase tracking-wider border-b"
-                style={{ color: "var(--color-muted)", borderColor: "var(--color-border)" }}
-              >
-                <th className="text-left px-5 py-2.5 font-semibold">Time</th>
-                <th className="text-left px-5 py-2.5 font-semibold w-12">Face</th>
-                <th className="text-left px-5 py-2.5 font-semibold">Type</th>
-                <th className="text-left px-5 py-2.5 font-semibold">Person</th>
-                <th className="text-left px-5 py-2.5 font-semibold">Confidence</th>
-              </tr>
-            </thead>
-            <tbody>
-              {events.length === 0 && (
-                <tr>
-                  <td colSpan={5} className="px-5 py-8 text-center" style={{ color: "var(--color-muted)" }}>
-                    No events yet
-                  </td>
-                </tr>
-              )}
-              {events.map((event) => (
-                <tr
-                  key={event.id}
-                  className="border-b hover:bg-[var(--color-bg)] transition-colors"
-                  style={{ borderColor: "var(--color-border)" }}
+
+          {/* Bar Chart */}
+          <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+              7-Day Peak Trends
+            </h4>
+            <div className="flex-1 flex items-end gap-2 px-2 pb-4 mt-8">
+              {BAR_HEIGHTS.map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 bg-surface-container-high dark:bg-dark-surface-container-high rounded-t-lg relative group"
+                  style={{ height: `${h}%` }}
                 >
-                  <td className="px-5 py-2.5 font-mono text-xs" style={{ color: "var(--color-secondary)" }}>
-                    {new Date(event.timestamp).toLocaleTimeString("en-GB")}
-                  </td>
-                  <td className="px-5 py-2.5">
-                    {event.thumbnail ? (
-                      <img
-                        src={`data:image/jpeg;base64,${event.thumbnail}`}
-                        alt=""
-                        className="w-8 h-8 rounded object-cover"
-                        style={{ border: "1px solid var(--color-border)" }}
-                      />
-                    ) : (
-                      <div
-                        className="w-8 h-8 rounded"
-                        style={{ backgroundColor: "var(--color-bg)", border: "1px solid var(--color-border)" }}
-                      />
-                    )}
-                  </td>
-                  <td className="px-5 py-2.5">
-                    <span
-                      className="text-[10px] px-2 py-0.5 rounded font-semibold"
-                      style={
-                        event.event_type === "face_recognized"
-                          ? { backgroundColor: "#d1fae5", color: "var(--color-success)" }
-                          : { backgroundColor: "#fee2e2", color: "var(--color-danger)" }
-                      }
-                    >
-                      {event.event_type === "face_recognized" ? "RECOGNIZED" : "UNKNOWN"}
-                    </span>
-                  </td>
-                  <td className="px-5 py-2.5" style={{ color: "var(--color-heading)" }}>
-                    {event.person_name || "Unknown person"}
-                  </td>
-                  <td className="px-5 py-2.5 font-mono" style={{ color: "var(--color-secondary)" }}>
-                    {event.confidence != null ? `${Math.round(event.confidence * 100)}%` : "—"}
-                  </td>
-                </tr>
+                  <div
+                    className={`absolute inset-x-0 bottom-0 bg-primary group-hover:bg-primary-container transition-all rounded-t-lg ${
+                      i === 6 ? "ai-pulse bg-primary-container" : ""
+                    }`}
+                    style={{ height: `${BAR_FILLS[i]}%` }}
+                  />
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+            <div className="flex justify-between mt-4 text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-medium">
+              {DAYS.map((d) => (
+                <span key={d}>{d}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* Department Occupancy */}
+          <div className="col-span-1 md:col-span-2 bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5">
+            <div className="flex justify-between items-center mb-8">
+              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+                Department Occupancy
+              </h4>
+              <span className="text-[10px] bg-primary/20 text-primary-fixed-dim px-2 py-1 rounded">
+                Real-time
+              </span>
+            </div>
+            <div className="space-y-6">
+              {DEPARTMENTS.map((dept) => (
+                <div key={dept.name} className="space-y-2">
+                  <div className="flex justify-between text-xs text-on-surface dark:text-dark-on-surface">
+                    <span className="font-medium">{dept.name}</span>
+                    <span className="font-bold">{dept.count} people</span>
+                  </div>
+                  <div className="w-full h-2 bg-surface-container-high dark:bg-dark-surface-container-high rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary transition-all duration-1000"
+                      style={{ width: `${dept.pct}%`, opacity: dept.pct > 60 ? 1 : dept.pct > 30 ? 0.7 : 0.5 }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* System info */}
-        {status && (
-          <div className="flex gap-6 text-xs font-mono" style={{ color: "var(--color-muted)" }}>
-            <span>Uptime: {Math.floor(status.uptime / 60)}m</span>
-            <span>Frames: {status.total_frames.toLocaleString()}</span>
-            <span>Viewers: {status.viewer_count}</span>
-            <span>Total Faces: {status.faces_detected_total}</span>
+        {/* Right Column: Camera Feeds */}
+        <div className="col-span-1 lg:col-span-4 bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col">
+          <div className="flex justify-between items-center mb-6">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+              Live Feeds
+            </h4>
+            <div className="flex gap-2">
+              <button className="p-1 hover:text-primary transition-colors text-on-surface-variant dark:text-dark-on-surface-variant">
+                <span className="material-symbols-outlined text-sm">fullscreen</span>
+              </button>
+              <button className="p-1 hover:text-primary transition-colors text-on-surface-variant dark:text-dark-on-surface-variant">
+                <span className="material-symbols-outlined text-sm">more_vert</span>
+              </button>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-4 flex-1">
+            {DUMMY_FEEDS.map((feed) => (
+              <div key={feed.id} className="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group bg-dark-surface-container-lowest">
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-white/20 text-6xl">videocam</span>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute top-3 left-3 flex items-center gap-2">
+                  <div className={`w-2 h-2 rounded-full ${feed.color === "red" ? "bg-red-600 animate-pulse" : "bg-green-600"}`} />
+                  <span className="text-[10px] font-bold text-white uppercase tracking-tighter bg-black/40 px-2 py-1 rounded-full backdrop-blur-md">
+                    {feed.name}
+                  </span>
+                </div>
+                <div className="absolute bottom-3 left-3">
+                  <p className="text-[10px] text-white/70">Cam ID: {feed.id}</p>
+                </div>
+                <div className="absolute inset-0 border-2 border-primary/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Live Activity Stream */}
+      <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
+        <div className="p-6 border-b border-outline-variant/10 flex justify-between items-center">
+          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+            Live Activity Stream
+          </h4>
+          <a href="/events" className="text-primary font-bold text-xs hover:underline">
+            View Full Logs
+          </a>
+        </div>
+        <div className="divide-y divide-outline-variant/5 dark:divide-dark-outline-variant/5">
+          {(backendOnline ? events.slice(0, 5) : []).map((event) => (
+            <ActivityRow
+              key={event.id}
+              name={event.person_name}
+              dept={event.event_type === "face_recognized" ? "Recognized" : "Unknown"}
+              time={new Date(event.timestamp).toLocaleTimeString("en-US")}
+              confidence={event.confidence ? Math.round(event.confidence * 100) : 0}
+              status={event.event_type === "face_recognized" ? "authorized" : "flagged"}
+            />
+          ))}
+          {!backendOnline &&
+            DUMMY_ACTIVITY.map((item) => (
+              <ActivityRow
+                key={item.id}
+                name={item.name}
+                dept={item.dept}
+                time={item.time}
+                confidence={item.confidence}
+                status={item.status}
+              />
+            ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function StatCard({
+  label,
+  value,
+  trend,
+  trendColor,
+  trendIcon,
+  bgIcon,
+  progressPct,
+}: {
+  label: string;
+  value: string;
+  trend?: string;
+  trendColor?: string;
+  trendIcon?: string;
+  bgIcon: string;
+  progressPct?: number;
+}) {
+  return (
+    <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
+      <div className="relative z-10">
+        <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-2">
+          {label}
+        </p>
+        <h3 className="text-3xl font-black text-on-surface dark:text-dark-on-surface">{value}</h3>
+        {trend && (
+          <p className={`text-xs mt-2 flex items-center gap-1 ${trendColor}`}>
+            {trendIcon && <span className="material-symbols-outlined text-sm">{trendIcon}</span>}
+            {trend}
+          </p>
+        )}
+        {progressPct != null && (
+          <div className="w-full h-1 bg-surface-container-high dark:bg-dark-surface-container-high rounded-full mt-4 overflow-hidden">
+            <div
+              className="h-full bg-gradient-to-r from-primary to-primary-container transition-all duration-1000"
+              style={{ width: `${progressPct}%` }}
+            />
           </div>
         )}
       </div>
-    </>
+      <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-500">
+        <span className="material-symbols-outlined text-[100px]">{bgIcon}</span>
+      </div>
+    </div>
+  );
+}
+
+function ActivityRow({
+  name,
+  dept,
+  time,
+  confidence,
+  status,
+}: {
+  name: string | null;
+  dept: string;
+  time: string;
+  confidence: number;
+  status: "authorized" | "flagged";
+}) {
+  const isFlagged = status === "flagged";
+
+  return (
+    <div className={`p-4 flex flex-wrap items-center justify-between gap-4 hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors group ${isFlagged ? "bg-error/5" : ""}`}>
+      <div className="flex items-center gap-4 min-w-0">
+        <div className={`w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center ${
+          isFlagged
+            ? "border border-error/50 bg-error/20"
+            : "border border-primary/20 bg-primary/10"
+        }`}>
+          <span className={`material-symbols-outlined ${isFlagged ? "text-error" : "text-primary"}`}>
+            {isFlagged ? "person_search" : "person"}
+          </span>
+        </div>
+        <div>
+          <h5 className={`text-sm font-bold text-on-surface dark:text-dark-on-surface ${isFlagged ? "italic" : ""}`}>
+            {name || "Unrecognized Entity"}
+          </h5>
+          <p className={`text-[10px] uppercase ${isFlagged ? "text-error font-bold" : "text-on-surface-variant dark:text-dark-on-surface-variant"}`}>
+            {dept} &bull; {time}
+          </p>
+        </div>
+      </div>
+      <div className="flex items-center gap-4 sm:gap-8">
+        <div className="text-right">
+          <p className={`text-xs font-bold ${isFlagged ? "text-error" : "text-primary-fixed-dim"}`}>
+            {isFlagged ? "No Match" : `${confidence.toFixed(1)}% Match`}
+          </p>
+          <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase">Confidence</p>
+        </div>
+        <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
+          isFlagged
+            ? "bg-error text-white"
+            : "bg-green-500/10 text-green-500"
+        }`}>
+          {status === "authorized" ? "Authorized" : "Flagged"}
+        </div>
+      </div>
+    </div>
   );
 }

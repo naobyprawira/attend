@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Detail | Attend.AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#5e5d6c",
+                        "primary-fixed-dim": "#ffaedb",
+                        "on-secondary-fixed": "#1a1a27",
+                        "surface-container-low": "#f5f3f4",
+                        "on-tertiary-fixed-variant": "#245100",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#7d2060",
+                        "on-primary-container": "#ffb9df",
+                        "on-background": "#1b1c1d",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e4e2e3",
+                        "surface-tint": "#9a3979",
+                        "outline": "#85727b",
+                        "on-primary-fixed": "#3c002b",
+                        "surface-dim": "#dbd9da",
+                        "on-surface": "#1b1c1d",
+                        "tertiary-fixed-dim": "#99d76c",
+                        "background": "#fbf9fa",
+                        "surface-bright": "#fbf9fa",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e4e2e3",
+                        "on-error": "#ffffff",
+                        "primary": "#751859",
+                        "on-secondary-container": "#646372",
+                        "tertiary-fixed": "#b4f485",
+                        "tertiary-container": "#2e6400",
+                        "secondary-container": "#e3e0f2",
+                        "on-surface-variant": "#53424a",
+                        "primary-container": "#923272",
+                        "inverse-on-surface": "#f2f0f1",
+                        "inverse-primary": "#ffaedb",
+                        "surface": "#fbf9fa",
+                        "surface-container-high": "#e9e8e9",
+                        "outline-variant": "#d8c0ca",
+                        "primary-fixed": "#ffd8eb",
+                        "inverse-surface": "#303031",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#e3e0f2",
+                        "secondary-fixed-dim": "#c7c5d6",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#efedee",
+                        "on-secondary-fixed-variant": "#464553",
+                        "on-tertiary-fixed": "#0b2000",
+                        "tertiary": "#204a00",
+                        "on-tertiary-container": "#a1e074"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-between items-center px-8 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-fuchsia-900 dark:text-fuchsia-100 tracking-tighter">Attend.AI</span>
+<nav class="hidden md:flex items-center space-y-0 space-x-6 h-full">
+<a class="font-['Inter'] font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-fuchsia-600 transition-colors" href="#">Dashboard</a>
+<a class="font-['Inter'] font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-fuchsia-600 transition-colors" href="#">Reports</a>
+<a class="font-['Inter'] font-medium tracking-tight text-fuchsia-800 dark:text-fuchsia-400 border-b-2 border-fuchsia-700 font-semibold transition-colors" href="#">Events</a>
+<a class="font-['Inter'] font-medium tracking-tight text-slate-500 dark:text-slate-400 hover:text-fuchsia-600 transition-colors" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative flex items-center bg-slate-100/50 dark:bg-slate-800/50 rounded-full px-4 py-1.5 group">
+<span class="material-symbols-outlined text-secondary text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 font-medium" placeholder="Search events..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-secondary hover:bg-slate-50 p-2 rounded-full transition-transform active:scale-90">notifications</button>
+<button class="material-symbols-outlined text-secondary hover:bg-slate-50 p-2 rounded-full transition-transform active:scale-90">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-2 ring-2 ring-primary-fixed">
+<img alt="User profile" data-alt="portrait of a professional man in a light blue shirt with a clean background, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcFI2uxDtvyarISCBlwjsR-waqxRecjTYTN_BxMy4vKYbzJxCs36u33IO5_44xni4_nZVmGJ1MghvV9Jx6d_tDSz5Y6sgkxbKJlUtBCNVJbfYkOWjNz9qoQHg5DX8wb0sP9DlnfhmmupEII3JoMaTz1x-NoEi20PH8F0s6dXk__l95YdMefBYaP3oJk82wFDX8HjFVkRqhNKPXnCWWLFfLBDITbNGA9G0Dziuc0r-HEYVjZozk1pT7qICMcBOVKsGyqgzh35kSfuY"/>
+</div>
+</div>
+</header>
+<main class="pt-16 flex h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 border-r-0 bg-slate-50 dark:bg-slate-950 flex flex-col py-6 space-y-2 shrink-0">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined">visibility</span>
+</div>
+<div>
+<h3 class="text-xs font-['Inter'] font-semibold uppercase tracking-widest text-on-surface">Event Center</h3>
+<p class="text-[10px] text-primary font-bold uppercase tracking-tighter">High Priority Active</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 mx-2 px-4 py-3 hover:bg-slate-200/50 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Inter'] text-sm font-semibold uppercase tracking-widest">Attendance</span>
+</a>
+<a class="flex items-center gap-3 bg-fuchsia-50 dark:bg-fuchsia-900/20 text-fuchsia-800 dark:text-fuchsia-300 rounded-lg mx-2 px-4 py-3" href="#">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span class="font-['Inter'] text-sm font-semibold uppercase tracking-widest">Exceptions</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 mx-2 px-4 py-3 hover:bg-slate-200/50 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span class="font-['Inter'] text-sm font-semibold uppercase tracking-widest">Logs</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 mx-2 px-4 py-3 hover:bg-slate-200/50 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Inter'] text-sm font-semibold uppercase tracking-widest">Insights</span>
+</a>
+</nav>
+<div class="px-4 mt-auto mb-4">
+<button class="w-full py-3 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20">Generate Report</button>
+</div>
+<div class="border-t border-slate-200/50 pt-4 pb-20">
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 mx-2 px-4 py-3 hover:bg-slate-200/50 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-['Inter'] text-sm font-semibold uppercase tracking-widest">Support</span>
+</a>
+<a class="flex items-center gap-3 text-slate-500 dark:text-slate-400 mx-2 px-4 py-3 hover:bg-slate-200/50 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-['Inter'] text-sm font-semibold uppercase tracking-widest">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas (Background behind modal) -->
+<section class="flex-1 overflow-y-auto p-12 bg-surface">
+<div class="max-w-7xl mx-auto space-y-12">
+<div class="flex justify-between items-end">
+<div>
+<span class="text-xs font-bold tracking-[0.2em] text-primary uppercase">Surveillance Console</span>
+<h1 class="text-4xl font-black tracking-tight mt-2 text-on-secondary-fixed">Global Exception Log</h1>
+</div>
+<div class="flex gap-4">
+<div class="h-10 px-4 flex items-center bg-surface-container-high rounded-xl text-primary font-semibold text-sm">Filter: All Time</div>
+<div class="h-10 px-4 flex items-center bg-surface-container-high rounded-xl text-primary font-semibold text-sm">Priority: Critical</div>
+</div>
+</div>
+<!-- Bento Grid Mockup -->
+<div class="grid grid-cols-12 gap-6 h-[600px]">
+<div class="col-span-8 bg-surface-container-low rounded-xl overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="interior of a modern spacious corporate lobby with glass walls and minimalist architectural details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiadkbw7w0np6UOS48IMobG9Q_mcMEHIri9KzUxbQQ1fMyQYlUXD5y9mwWi4dTzuT-pPO98oYHaGJLeJiyUd-QxBwMnD-_xfd6QfRbzseFwA8nHiXUJZtmOWg8R5_Qv0JyU9uVQGMPV2-a1qFokyFg0mD2FvMOSNYZijELX3gN1C79t16mBhw8PFynYVFpKXUIxwleqdsKfYnD0lgqLL1_JbzTIUi2U-UK8mTTcYXR1rMtriNBG4I69td5lYzLF-LQOPmqM3Yk9ew"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-white font-bold tracking-widest text-sm uppercase px-6 py-3 border border-white/50 backdrop-blur-md rounded-full">View Live Feed</span>
+</div>
+</div>
+<div class="col-span-4 grid grid-rows-2 gap-6">
+<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary text-3xl">fingerprint</span>
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-1 rounded text-[10px] font-black uppercase tracking-widest">Live</span>
+</div>
+<div>
+<h4 class="text-2xl font-bold tracking-tight">Active Scans</h4>
+<p class="text-on-surface-variant text-sm mt-1">1,240 detections processed today</p>
+</div>
+</div>
+<div class="bg-primary rounded-xl p-8 flex flex-col justify-between text-on-primary">
+<span class="material-symbols-outlined text-4xl">warning</span>
+<div>
+<h4 class="text-2xl font-bold tracking-tight">3 Flagged</h4>
+<p class="opacity-70 text-sm mt-1">Pending immediate review</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- EVENT DETAIL MODAL OVERLAY -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center p-8 bg-on-secondary-fixed/40 backdrop-blur-sm">
+<div class="w-full max-w-6xl h-[870px] bg-surface-bright rounded-2xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.15)] overflow-hidden flex flex-col relative">
+<!-- Modal Header -->
+<div class="px-8 h-20 flex items-center justify-between shrink-0 border-b border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-error-container text-on-error-container px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-sm leading-none" style="font-variation-settings: 'FILL' 1;">error</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Unrecognized Entry</span>
+</div>
+<span class="text-outline-variant text-xl">/</span>
+<h2 class="text-lg font-bold tracking-tight text-on-secondary-fixed">Event ID: SCAN_92834-X</h2>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-secondary">close</span>
+</button>
+</div>
+<!-- Modal Content Layout -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left: Visual Evidence -->
+<div class="flex-[1.8] bg-black relative overflow-hidden group">
+<img class="w-full h-full object-cover opacity-80" data-alt="security camera perspective of a sleek office lobby with high-tech interior, soft modern lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXa8dFZ3PPjDPwWn422zY3N5eSNDeWxJyeIqeZgwfVYLBBgUMLV_b2STBBryeh4JHmoSjBrIF5uNZemunM0K_nY3C1kXtk_LmzfQ5R-9bdI7IcZnorB53yN3Kvn2IKVooVYPtCAKaeDp8oxYh26o7IIEPtVT4FF3ml79lI_vakngdW-BcyjQ6JnTF6KNyN6FSMhm5fyxG1yprS3tpWS0nlV_JS8kobIPkj_bigBHLYRUXCR3tkRvV0jV3pFVv8xRYOgA5AqJgN6yA"/>
+<!-- Bounding Box Overlay -->
+<div class="absolute top-[28%] left-[42%] w-[12%] h-[18%] border-[1.5px] border-primary-fixed pulse-animation rounded-sm shadow-[0_0_20px_rgba(117,24,89,0.4)]">
+<div class="absolute -top-6 left-0 bg-primary-fixed text-on-primary-fixed text-[8px] font-black uppercase px-1 py-0.5 whitespace-nowrap">Target Lock: 98.4% Match</div>
+<!-- Corner accents -->
+<div class="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-white"></div>
+<div class="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-white"></div>
+<div class="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-white"></div>
+<div class="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-white"></div>
+</div>
+<!-- HUD Overlays -->
+<div class="absolute top-6 left-6 flex flex-col gap-2">
+<div class="glass-panel px-3 py-1 rounded-md text-[10px] font-bold text-on-surface-variant flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> CAMERA_04: LOBBY_NORTH
+                        </div>
+<div class="glass-panel px-3 py-1 rounded-md text-[10px] font-bold text-on-surface-variant">
+                            TIMESTAMP: 14:02:11.233 UTC
+                        </div>
+</div>
+<!-- Zoomed Face Crop -->
+<div class="absolute bottom-6 right-6 w-44 h-44 rounded-xl border-4 border-surface-container-lowest shadow-2xl overflow-hidden glass-panel">
+<div class="absolute inset-0 bg-primary/10"></div>
+<img class="w-full h-full object-cover scale-150 translate-y-2" data-alt="close up passport style portrait of a man with short hair looking forward, neutral expression, high contrast lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqP9qqDZVP1hZ--664Nwb1T1ZqRgWHj3Cpu7YajLuwb54bRoBHCjqnNd-YRrmomvS7sTv5rwG_Z8TxJjGO3f3OdF7xy8hZZFciTkrt8hgSxGl18oZh8JYaV9pBBt0lqgbErNtlJ7HKMu-vnym4ODOwS-n6ECqYb8LEt3uQnx7kXg5AIpsWaes-DKlCjWUqrQ7fNDQYzaphY14WLCf-6cU9_ju_STcZAA1lmvuOkbmWljYWFUBbJo0djLaWhMNYjcag535x09A8NBk"/>
+<div class="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-black/80 to-transparent flex items-center px-3">
+<span class="text-[9px] font-bold text-white tracking-widest uppercase">Enhance Filter: ON</span>
+</div>
+</div>
+</div>
+<!-- Right: Metadata & Actions -->
+<div class="flex-1 flex flex-col bg-surface-container-low border-l border-outline-variant/10 overflow-y-auto">
+<div class="p-8 space-y-10">
+<!-- Section 1: Identity -->
+<div class="space-y-4">
+<span class="text-[10px] font-black tracking-[0.2em] text-outline uppercase">Recognition Analysis</span>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-2xl">person_search</span>
+</div>
+<div>
+<h3 class="text-xl font-extrabold tracking-tight text-on-secondary-fixed">Unidentified Guest</h3>
+<p class="text-sm text-on-surface-variant font-medium">Potential Lead: <span class="text-primary">E. Thompson?</span> (14% Confidence)</p>
+</div>
+</div>
+</div>
+<!-- Section 2: Metrics -->
+<div class="space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl">
+<span class="text-[9px] font-bold text-outline uppercase tracking-widest">Confidence</span>
+<div class="flex items-center gap-2 mt-2">
+<div class="flex-1 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary" style="width: 98%;"></div>
+</div>
+<span class="text-xs font-black text-primary">98%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl">
+<span class="text-[9px] font-bold text-outline uppercase tracking-widest">Risk Level</span>
+<div class="flex items-center gap-2 mt-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-xs font-black text-on-secondary-fixed">HIGH</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-xs font-semibold text-on-surface-variant">Processing Latency</span>
+<span class="text-xs font-bold font-mono text-on-secondary-fixed">42ms</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs font-semibold text-on-surface-variant">Sensor Model</span>
+<span class="text-xs font-bold font-mono text-on-secondary-fixed">Optic-V4_S</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs font-semibold text-on-surface-variant">Authorization</span>
+<span class="text-xs font-bold text-error">None Detected</span>
+</div>
+</div>
+</div>
+<!-- Section 3: Timeline -->
+<div class="space-y-6">
+<span class="text-[10px] font-black tracking-[0.2em] text-outline uppercase">Activity Chain</span>
+<div class="relative pl-6 space-y-6 before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant/30">
+<div class="relative">
+<div class="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-primary ring-4 ring-surface-container-low"></div>
+<p class="text-[11px] font-bold text-primary mb-1">CURRENT EVENT</p>
+<p class="text-xs font-bold text-on-secondary-fixed">Entry detected at main turnstiles</p>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Today, 14:02:11</p>
+</div>
+<div class="relative opacity-60">
+<div class="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-outline-variant ring-4 ring-surface-container-low"></div>
+<p class="text-xs font-bold text-on-secondary-fixed">Peripheral scan: Exterior Plaza</p>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Today, 14:01:45</p>
+</div>
+<div class="relative opacity-40">
+<div class="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-outline-variant ring-4 ring-surface-container-low"></div>
+<p class="text-xs font-bold text-on-secondary-fixed">Anomaly trigger: Vehicle Drop-off</p>
+<p class="text-[10px] text-on-surface-variant mt-0.5">Today, 14:00:20</p>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="pt-6 border-t border-outline-variant/10 flex gap-4">
+<button class="flex-1 py-4 rounded-xl bg-surface-container-high text-primary font-bold text-xs uppercase tracking-widest hover:brightness-95 transition-all">Flag for Review</button>
+<button class="flex-[1.5] py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">Acknowledge &amp; Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

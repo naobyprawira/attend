@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Attend.AI | Live View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#5e5d6c",
+              "primary-fixed-dim": "#ffaedb",
+              "on-secondary-fixed": "#1a1a27",
+              "surface-container-low": "#f5f3f4",
+              "on-tertiary-fixed-variant": "#245100",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#7d2060",
+              "on-primary-container": "#ffb9df",
+              "on-background": "#1b1c1d",
+              "error-container": "#ffdad6",
+              "surface-variant": "#e4e2e3",
+              "surface-tint": "#9a3979",
+              "outline": "#85727b",
+              "on-primary-fixed": "#3c002b",
+              "surface-dim": "#dbd9da",
+              "on-surface": "#1b1c1d",
+              "tertiary-fixed-dim": "#99d76c",
+              "background": "#fbf9fa",
+              "surface-bright": "#fbf9fa",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e4e2e3",
+              "on-error": "#ffffff",
+              "primary": "#751859",
+              "on-secondary-container": "#646372",
+              "tertiary-fixed": "#b4f485",
+              "tertiary-container": "#2e6400",
+              "secondary-container": "#e3e0f2",
+              "on-surface-variant": "#53424a",
+              "primary-container": "#923272",
+              "inverse-on-surface": "#f2f0f1",
+              "inverse-primary": "#ffaedb",
+              "surface": "#fbf9fa",
+              "surface-container-high": "#e9e8e9",
+              "outline-variant": "#d8c0ca",
+              "primary-fixed": "#ffd8eb",
+              "inverse-surface": "#303031",
+              "on-primary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#e3e0f2",
+              "secondary-fixed-dim": "#c7c5d6",
+              "on-tertiary": "#ffffff",
+              "surface-container": "#efedee",
+              "on-secondary-fixed-variant": "#464553",
+              "on-tertiary-fixed": "#0b2000",
+              "tertiary": "#204a00",
+              "on-tertiary-container": "#a1e074"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        backdrop-filter: blur(20px);
+        background: rgba(255, 255, 255, 0.8);
+      }
+      .pulse-scan {
+        border: 1.5px solid #ffd8eb;
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface overflow-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-900 dark:bg-black flex flex-col py-6 overflow-y-auto">
+<div class="px-6 mb-8">
+<h1 class="text-rose-500 font-black text-xl">Attend.AI</h1>
+<p class="text-[10px] font-medium tracking-wide uppercase text-slate-400 opacity-70">Enterprise Surveillance</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Dashboard</span>
+</a>
+<a class="bg-rose-900/40 text-rose-100 border-r-4 border-rose-600 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">videocam</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Live View</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Person Management</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Access Logs</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">speed</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Visitor Flow</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200 hover:translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Zone Analytics</span>
+</a>
+</nav>
+<div class="px-6 mt-6">
+<button class="w-full py-3 bg-gradient-to-r from-primary to-primary-container text-white rounded-lg font-semibold text-sm shadow-lg active:scale-95 transition-transform">
+                New Scan
+            </button>
+</div>
+<div class="mt-auto border-t border-slate-800 pt-4">
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Account</span>
+</a>
+<a class="text-slate-400 opacity-70 hover:opacity-100 px-6 py-3 flex items-center gap-3 hover:bg-slate-800/50 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide uppercase">Logout</span>
+</a>
+</div>
+</aside>
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-white/80 backdrop-blur-xl flex justify-between items-center w-full px-8 py-4 sticky top-0 z-40 shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-rose-900">Live View</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-rose-900 border-b-2 border-rose-800 font-semibold py-1" href="#">Dashboard</a>
+<a class="text-slate-500 hover:text-rose-700 py-1 transition-all duration-300" href="#">Live View</a>
+<a class="text-slate-500 hover:text-rose-700 py-1 transition-all duration-300" href="#">Analytics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-high rounded-full px-4 py-2 gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">grid_view</span>
+<button class="p-1 hover:bg-white rounded transition-colors"><span class="material-symbols-outlined text-lg">grid_view</span></button>
+<button class="p-1 hover:bg-white rounded transition-colors"><span class="material-symbols-outlined text-lg">grid_4x4</span></button>
+<button class="p-1 bg-white shadow-sm rounded transition-colors"><span class="material-symbols-outlined text-lg text-primary">view_quilt</span></button>
+</div>
+<div class="flex items-center gap-2 border-l border-outline-variant pl-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="professional corporate headshot of a security director in a modern office setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf_w76UzIu0ZxnnTgpIxUFletWImBt1qIjpwAmopzHjlTw9Yzom_fFLckj9zfDK08NDtIq2URAbUIxOhuVryTkhaDxWFvehcywgOyI1XDTPYuB6fJUnwRKCIl-VA_u3Yp1EN-apevaZqAnvGWXQsAUaKKCGenfKNuCrELAsKYwGdHBOd95QelsJZjSGZ0GY3qz1OJ4KELu6Gja9S7qebt147jB9qVhirZG6u-O8erkdELgaCGKWWME5edyGBNzZmGSwl-WW5PkLaw"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area: 3+1 Layout -->
+<div class="flex-1 p-6 grid grid-cols-10 gap-6 overflow-hidden">
+<!-- Large Main Camera (70%) -->
+<div class="col-span-7 flex flex-col gap-4">
+<div class="relative flex-1 bg-black rounded-xl overflow-hidden shadow-2xl group">
+<img class="w-full h-full object-cover opacity-90" data-alt="high-definition wide angle surveillance footage of a sleek modern corporate lobby with marble floors and glass elevators at midday" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmktSxrTszd4NnMIg0zupreCLhkqlx-GUslvvnr3fkxxATLOdL02tLKBvK0wP-Lag80t_u2t-NVseNKTiT4NPDYFd99athkXFJ2V1J7cOVpUdg3TFxy3yEn2woEsKRYd4y4LVG5Gf7gvI0xRxRTyzxJlWa8fckuYKctbtPkCpAyZ1yFCQycMKV0VFCM08gxa4TuA2P2gcp6zMW7GipHJzOadrzIX5GQCGpLBISEIIv7jfgz2uNrphPYh15ViRiUklcCHOMQD_xq64"/>
+<!-- Overlay Controls -->
+<div class="absolute inset-0 p-6 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+<span class="text-white text-xs font-bold tracking-widest uppercase">REC • MAIN LOBBY NORTH</span>
+</div>
+<div class="bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10">
+<span class="text-white text-xs font-mono">14:22:05 UTC+2</span>
+</div>
+</div>
+<!-- AI Face Recognition Simulation -->
+<div class="absolute top-1/3 left-1/4 w-32 h-32 pulse-scan rounded-lg flex items-center justify-center pointer-events-auto cursor-crosshair">
+<div class="absolute -top-10 left-0 bg-primary/90 backdrop-blur text-white text-[10px] px-2 py-1 rounded whitespace-nowrap">
+<span class="font-bold">MATCH 98.4%</span> — MARCUS V.
+                            </div>
+</div>
+<div class="flex justify-between items-end pointer-events-auto">
+<div class="flex gap-2">
+<button class="p-2 bg-black/60 hover:bg-primary transition-colors text-white rounded-lg backdrop-blur-sm">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-2 bg-black/60 hover:bg-primary transition-colors text-white rounded-lg backdrop-blur-sm">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+</div>
+<button class="p-2 bg-black/60 hover:bg-primary transition-colors text-white rounded-lg backdrop-blur-sm">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Stacked Sidebar Cameras (30%) -->
+<div class="col-span-3 flex flex-col gap-6 overflow-y-auto pr-2">
+<!-- Camera 2 -->
+<div class="relative aspect-video bg-black rounded-xl overflow-hidden group shadow-lg">
+<img class="w-full h-full object-cover opacity-80" data-alt="security camera view of a modern underground parking garage with bright LED lighting and clean gray concrete surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs77RVF2nmJgIX9ZnohLxxn98W0YC_vq78HXa_HOGtrfuRSDryW6XEGE3wwDY56EjzdfG9gL7gDj1hneEkD0hTMMutaHDoztOcUWLl77Rn5kI7s1o7jZSNGBt4OSHYfebREQbcOgFpAo1cbnx6Ex1ov0kceorR9JyD3wF0xX0oZi0GKQCGSyHGsCrIlXbTwBbqcxFpN7oU1oamii_0jhh4JitEjD9-pQ89gSpYq_G1DybkJChTX7MEyNbAy0bFYKowd_SPfpNqLhA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2">
+<span class="text-white text-[10px] font-bold tracking-wider uppercase bg-black/40 px-2 py-0.5 rounded">Parking B-2</span>
+<div class="h-1 w-16 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+</div>
+<div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 bg-white/20 backdrop-blur text-white rounded-md hover:bg-primary">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Camera 3 -->
+<div class="relative aspect-video bg-black rounded-xl overflow-hidden group shadow-lg">
+<img class="w-full h-full object-cover opacity-80" data-alt="low light security footage of a high-tech server room with blue glowing rack lights and industrial cooling fans" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoK-dQah21SkbkhaZkSYJpoAZSS0pIVkIsd2tGNF8BHtUyRCFbpagFls9KPSZdmzfS_9zcTR5_dlbmhQk-qH5JQhBUDMop9jJAcEZ414dXsIdz4h8SD0QNoeLAweNY5R_cyfCmvGih5GpWu_9ZLmjmIp1cQYdCQF2rQsF0embpg01x2cJmwTgOxMq9rC1w0lZ0phDtxP-kNQg3tBLEzL8g3-A3BFV6ETyVlsY5HTKJMS4BtRMeZ4-uXd62V-VTHHSiOPHrXNYcu4o"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2">
+<span class="text-white text-[10px] font-bold tracking-wider uppercase bg-black/40 px-2 py-0.5 rounded">Data Center</span>
+<div class="h-1 w-16 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-full"></div>
+</div>
+</div>
+<div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 bg-white/20 backdrop-blur text-white rounded-md hover:bg-primary">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Camera 4 -->
+<div class="relative aspect-video bg-black rounded-xl overflow-hidden group shadow-lg">
+<img class="w-full h-full object-cover opacity-80" data-alt="fisheye lens view of a minimalist office kitchen area with white cabinetry and a modern espresso machine" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFOoWMXAYxTlHzdOp4B75EIx674ve9rDQDhoflZTdHo-eLeNWi4Hi5_obqQxAo3CCrBmlr2qex0n_jfs2IqnI788LiUqe3GqnocR4TLH-LYVkx0Epu0hc6mvhnOmQhtvGlMrBPsKO0SRho7TG2zLRPe9AtvLKGEzl4x3LCNQh5hak3G2FdSAApSLzytmOpMTijowojb_EL2R7QnDNGrY31MR12Xu2X2l6sQMKIu1RvaTUsV2aN1zq4lkeut6CYww-rayvky1ecma8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2">
+<span class="text-white text-[10px] font-bold tracking-wider uppercase bg-black/40 px-2 py-0.5 rounded">Breakroom 4</span>
+<div class="h-1 w-16 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/4"></div>
+</div>
+</div>
+<div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 bg-white/20 backdrop-blur text-white rounded-md hover:bg-primary">
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Live Events Feed (Additional UI depth) -->
+<div class="mt-2 bg-surface-container-low rounded-xl p-4">
+<h3 class="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant mb-4">Activity Log</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5"></div>
+<div>
+<p class="text-xs font-semibold">Face Match: Marcus V.</p>
+<p class="text-[10px] text-on-surface-variant">Main Lobby North • Just now</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary mt-1.5"></div>
+<div>
+<p class="text-xs font-semibold">Vehicle Entry: K-9921</p>
+<p class="text-[10px] text-on-surface-variant">Parking B-2 • 2m ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Timeline Bar -->
+<div class="mx-8 mb-6 h-16 bg-white/80 backdrop-blur-xl rounded-2xl flex items-center px-6 gap-6 shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)]">
+<button class="text-primary"><span class="material-symbols-outlined">play_arrow</span></button>
+<div class="flex-1 h-1.5 bg-surface-container-high rounded-full relative overflow-hidden">
+<div class="absolute left-0 top-0 h-full w-3/4 bg-primary/20"></div>
+<div class="absolute left-[75%] top-0 h-full w-1 bg-primary"></div>
+<!-- Heatmap peaks -->
+<div class="absolute left-[10%] h-full w-8 bg-primary/10"></div>
+<div class="absolute left-[40%] h-full w-12 bg-primary/10"></div>
+<div class="absolute left-[65%] h-full w-6 bg-primary/10"></div>
+</div>
+<div class="flex items-center gap-4 text-xs font-mono font-medium text-on-surface-variant">
+<span>14:00</span>
+<span>14:15</span>
+<span class="text-primary font-bold">14:22:05</span>
+<span class="opacity-40">14:30</span>
+<span class="opacity-40">14:45</span>
+</div>
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">calendar_today</span></button>
+</div>
+</main>
+</body></html>
