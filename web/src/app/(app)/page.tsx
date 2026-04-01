@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchStatus, fetchEvents, fetchEventStats } from "@/lib/api";
-import type { ServerStatus, DetectionEvent, EventStats } from "@/lib/types";
+import { useStatus, useEvents, useEventStats } from "@/lib/queries";
+import type { DetectionEvent } from "@/lib/types";
 
 // Dummy data for when backend is offline
 const DUMMY_ACTIVITY = [
@@ -30,32 +29,11 @@ const BAR_HEIGHTS = [40, 60, 80, 70, 90, 50, 100];
 const BAR_FILLS = [60, 80, 70, 95, 85, 40, 100];
 
 export default function DashboardPage() {
-  const [status, setStatus] = useState<ServerStatus | null>(null);
-  const [events, setEvents] = useState<DetectionEvent[]>([]);
-  const [stats, setStats] = useState<EventStats | null>(null);
-  const [backendOnline, setBackendOnline] = useState(false);
+  const { data: status } = useStatus();
+  const { data: events = [] } = useEvents({ limit: "10" });
+  const { data: stats } = useEventStats();
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const [s, e, st] = await Promise.all([
-          fetchStatus(),
-          fetchEvents({ limit: "10" }),
-          fetchEventStats(),
-        ]);
-        setStatus(s);
-        setEvents(e);
-        setStats(st);
-        setBackendOnline(true);
-      } catch {
-        setBackendOnline(false);
-      }
-    };
-    load();
-    const id = setInterval(load, 5000);
-    return () => clearInterval(id);
-  }, []);
-
+  const backendOnline = !!status;
   const totalScans = backendOnline ? (stats?.total_events ?? 0) : 12842;
   const activeZones = backendOnline ? (status?.viewer_count ?? 0) : 24;
   const avgConfidence = 98.2;

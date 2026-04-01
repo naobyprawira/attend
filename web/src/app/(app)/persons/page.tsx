@@ -1,7 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { deletePerson, fetchPersons, personPhotoUrl, registerPerson } from "@/lib/api";
+import { useRef, useState } from "react";
+import { toast } from "sonner";
+import { personPhotoUrl } from "@/lib/api";
+import { usePersons, useRegisterPerson, useDeletePerson } from "@/lib/queries";
 import type { Person } from "@/lib/types";
 
 /* ── Extended person type for dummy data with extra fields ── */
@@ -44,70 +46,43 @@ const ATTENDANCE_DAYS = [
 ];
 
 export default function PersonsPage() {
-  const [persons, setPersons] = useState<PersonExt[]>([]);
   const [showDialog, setShowDialog] = useState(false);
   const [name, setName] = useState("");
-  const [uploading, setUploading] = useState(false);
   const [search, setSearch] = useState("");
-  const [backendOnline, setBackendOnline] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [expandedDept, setExpandedDept] = useState<string | null>("Engineering");
   const [activeDept, setActiveDept] = useState<string | null>("Engineering");
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const load = useCallback(async () => {
-    try {
-      const data: Person[] = await fetchPersons();
-      // Map API persons into extended shape
-      const ext: PersonExt[] = data.map((p: Person) => ({
-        ...p,
-        department: "Engineering",
-        role: "Member",
-        status: "Active" as const,
-      }));
-      setPersons(ext);
-      setBackendOnline(true);
-    } catch {
-      setBackendOnline(false);
-      setPersons(DUMMY_PERSONS);
-    }
-  }, []);
+  const { data: rawPersons = [], isError } = usePersons();
+  const registerMutation = useRegisterPerson();
+  const deleteMutation = useDeletePerson();
 
-  useEffect(() => {
-    load();
-    const id = setInterval(load, 5000);
-    return () => clearInterval(id);
-  }, [load]);
+  const backendOnline = !isError;
 
-  useEffect(() => {
-    if (persons.length > 0 && selectedId === null) {
-      setSelectedId(persons[0].id);
-    }
-  }, [persons, selectedId]);
+  const persons: PersonExt[] = backendOnline
+    ? rawPersons.map((p: Person) => ({ ...p, department: "Engineering", role: "Member", status: "Active" as const }))
+    : DUMMY_PERSONS;
 
   const handleRegister = async () => {
     const file = fileRef.current?.files?.[0];
     if (!name.trim() || !file) return;
-    setUploading(true);
     try {
-      await registerPerson(name.trim(), file);
+      await registerMutation.mutateAsync({ name: name.trim(), photo: file });
       setName("");
       setShowDialog(false);
       if (fileRef.current) fileRef.current.value = "";
-      await load();
-    } catch { /* ignore */ }
-    setUploading(false);
+    } catch {
+      toast.error("Failed to register person");
+    }
   };
 
   const handleDelete = async (id: number) => {
     if (!confirm("Remove this person?")) return;
-    if (backendOnline) {
-      try {
-        await deletePerson(id);
-        await load();
-      } catch { /* ignore */ }
-    } else {
-      setPersons((prev) => prev.filter((p) => p.id !== id));
+    try {
+      await deleteMutation.mutateAsync(id);
+    } catch {
+      toast.error("Failed to remove person");
     }
     if (selectedId === id) setSelectedId(null);
   };
@@ -514,10 +489,10 @@ export default function PersonsPage() {
                 </button>
                 <button
                   onClick={handleRegister}
-                  disabled={uploading || !name.trim()}
+                  disabled={registerMutation.isPending || !name.trim()}
                   className="flex-[2] py-3.5 primary-gradient text-white font-bold rounded-xl shadow-xl shadow-primary/20 hover:opacity-90 transition-all uppercase tracking-[0.2em] text-xs disabled:opacity-50"
                 >
-                  {uploading ? "Registering..." : "Register Person"}
+                  {registerMutation.isPending ? "Registering..." : "Register Person"}
                 </button>
               </div>
             </div>

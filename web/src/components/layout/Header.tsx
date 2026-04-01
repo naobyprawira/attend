@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useTheme } from "./ThemeProvider";
 import { useI18n } from "@/lib/i18n/provider";
 import type { TranslationKey } from "@/lib/i18n/translations";
@@ -32,6 +33,8 @@ export function Header() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const { t, locale, setLocale } = useI18n();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const titleKey = PAGE_TITLE_MAP[pathname] ?? "nav.dashboard";
   const pageTitle = t(titleKey);
@@ -68,7 +71,7 @@ export function Header() {
           <button
             onClick={() => theme !== "light" && toggleTheme()}
             className={`w-8 h-8 flex items-center justify-center rounded-full transition-all ${
-              theme === "light"
+              mounted && theme === "light"
                 ? "bg-primary text-white shadow-lg"
                 : "text-slate-500"
             }`}
@@ -78,7 +81,7 @@ export function Header() {
           <button
             onClick={() => theme !== "dark" && toggleTheme()}
             className={`w-8 h-8 flex items-center justify-center rounded-full transition-all ${
-              theme === "dark"
+              mounted && theme === "dark"
                 ? "bg-primary text-white shadow-lg"
                 : "text-slate-500"
             }`}

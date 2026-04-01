@@ -8,7 +8,7 @@ GET  /api/auth/me
 
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 
 from server.core.auth import (
     create_access_token,
@@ -32,7 +32,7 @@ router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 
 @router.post("/login", response_model=TokenResponse)
-async def login(body: LoginRequest):
+async def login(body: LoginRequest, response: Response):
     user = await get_user_by_username(body.username)
     if not user or not verify_password(body.password, user["hashed_password"]):
         raise HTTPException(401, detail={"code": "INVALID_CREDENTIALS", "message": "Invalid username or password"})
@@ -41,6 +41,14 @@ async def login(body: LoginRequest):
     refresh_token, expires_at = create_refresh_token()
     await save_refresh_token(user["id"], refresh_token, expires_at)
     await update_last_login(user["id"])
+
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        samesite="lax",
+        max_age=30 * 24 * 60 * 60,  # 30 days
+    )
 
     logger.info("User logged in: %s", user["username"])
     return TokenResponse(
@@ -74,8 +82,9 @@ async def refresh(body: RefreshRequest):
 
 
 @router.post("/logout")
-async def logout(body: RefreshRequest):
+async def logout(body: RefreshRequest, response: Response):
     await delete_refresh_token(body.refresh_token)
+    response.delete_cookie(key="refresh_token")
     return {"status": "ok"}
 
 

@@ -21,6 +21,8 @@ Authorization: Bearer <access_token>
 ```
 WebSocket auth: pass token as query param `?token=<access_token>` on connection.
 
+**Session cookie:** On login, the server sets an `HttpOnly` cookie named `refresh_token` (SameSite=Lax, Max-Age=30 days). The Next.js middleware uses this cookie server-side to gate protected routes. The frontend must call login with `credentials: "include"` so the cookie is received and sent on subsequent requests.
+
 ### Date/Time Format
 All timestamps are **ISO 8601 UTC**: `"2026-03-27T10:30:00Z"`
 
@@ -79,6 +81,8 @@ Response 200:
   }
 }
 
+Set-Cookie: refresh_token=<token>; HttpOnly; SameSite=Lax; Max-Age=2592000
+
 Response 401:
 { "error": { "code": "INVALID_CREDENTIALS", "message": "..." } }
 ```
@@ -106,6 +110,8 @@ Request:
 
 Response 200:
 { "status": "ok" }
+
+Set-Cookie: refresh_token=; HttpOnly; SameSite=Lax; Max-Age=0  // clears cookie
 ```
 
 #### `GET /api/auth/me`

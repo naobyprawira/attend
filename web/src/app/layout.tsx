@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { I18nProvider } from "@/lib/i18n/provider";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { Header } from "@/components/layout/Header";
+import { AuthProvider } from "@/lib/auth/context";
+import { QueryProvider } from "@/lib/query-provider";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -22,11 +23,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface antialiased min-h-screen">
         <ThemeProvider>
           <I18nProvider>
-            <Sidebar />
-            <main className="lg:ml-64 min-h-screen">
-              <Header />
-              {children}
-            </main>
+            <QueryProvider>
+              <AuthProvider>
+                {children}
+                <Toaster richColors position="top-right" />
+              </AuthProvider>
+            </QueryProvider>
           </I18nProvider>
         </ThemeProvider>
       </body>

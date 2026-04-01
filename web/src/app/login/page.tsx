@@ -1,18 +1,27 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useAuth } from "@/lib/auth/context";
 
 export default function LoginPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
+  const { login } = useAuth();
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    router.push("/");
+    setIsLoading(true);
+    try {
+      await login(username, password);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Login failed");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -54,22 +63,22 @@ export default function LoginPage() {
             {/* Email Field */}
             <div className="space-y-2">
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest"
               >
-                Email Address
+                Username
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-outline">
-                  <span className="material-symbols-outlined text-xl">mail</span>
+                  <span className="material-symbols-outlined text-xl">person</span>
                 </div>
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="name@company.ai"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  id="username"
+                  name="username"
+                  type="text"
+                  placeholder="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="w-full pl-11 pr-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary-container/20 text-on-surface placeholder:text-outline transition-all duration-200 outline-none"
                 />
               </div>
@@ -133,9 +142,10 @@ export default function LoginPage() {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full py-4 bg-primary-container text-white font-bold rounded-lg shadow-lg shadow-primary-container/30 hover:shadow-primary-container/40 active:scale-[0.98] transition-all duration-300"
+                disabled={isLoading}
+                className="w-full py-4 bg-primary-container text-white font-bold rounded-lg shadow-lg shadow-primary-container/30 hover:shadow-primary-container/40 active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Sign In
+                {isLoading ? "Signing in…" : "Sign In"}
               </button>
             </div>
           </form>
