@@ -18,7 +18,8 @@ import cv2
 import numpy as np
 
 from server.config import KNOWN_FACES_DIR
-from server.db import delete_known_face, get_known_faces, insert_known_face, get_events, count_events_for_person
+from server.db.crud.persons import delete_known_face, get_known_faces, insert_known_face, count_events_for_person
+from server.db.crud.events import get_events
 from server.services.face_recognizer import reload_known_faces, crop_largest_face
 
 logger = logging.getLogger(__name__)
@@ -80,16 +81,29 @@ async def get_person(person_id: int) -> dict:
     if not person:
         raise HTTPException(404, "Person not found")
 
-    events = await get_events(limit=50, event_type="face_recognized", person=person["name"])
-    person["recent_events"] = events
-    person["recognition_count"] = len(events)
+    result = await get_events(limit=50, event_type="face_recognized", person=person["name"])
+    person["recent_events"] = result["items"]
+    person["recognition_count"] = len(result["items"])
     person["photo_url"] = f"/api/persons/{person_id}/photo"
     return person
 
 
 @router.delete("/{person_id}")
 async def remove_person(person_id: int) -> dict:
-    """Remove a person from the database."""
+    """Remove a person from the database and delete their photo from disk."""
+    from server.db.crud.persons import get_known_face_by_id
+    person = await get_known_face_by_id(person_id)
+    if not person:
+        raise HTTPException(404, "Person not found")
+
+    # Delete photo file and person directory if empty
+    filepath = os.path.join(KNOWN_FACES_DIR, person["photo_path"])
+    if os.path.isfile(filepath):
+        os.remove(filepath)
+        person_dir = os.path.dirname(filepath)
+        if os.path.isdir(person_dir) and not os.listdir(person_dir):
+            os.rmdir(person_dir)
+
     await delete_known_face(person_id)
     reload_known_faces()
     return {"status": "ok"}

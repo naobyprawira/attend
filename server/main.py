@@ -14,8 +14,14 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from server.config import CORS_ORIGINS, KNOWN_FACES_DIR
-from server.db import init_db, sync_known_faces_from_disk
-from server.routers import api_events, api_persons, api_status, api_settings, ws_camera, ws_feed
+from server.core.auth import hash_password
+from server.core.errors import register_exception_handlers
+from server.db.engine import init_db
+from server.db.crud.persons import sync_known_faces_from_disk
+from server.db.crud.users import create_user, user_exists
+from server.routers import auth, events, persons, settings, status
+from server.routers.ws import camera as ws_camera
+from server.routers.ws import feed as ws_feed
 
 logging.basicConfig(
     level=logging.INFO,
@@ -31,12 +37,22 @@ async def lifespan(app: FastAPI):
     added = await sync_known_faces_from_disk(KNOWN_FACES_DIR)
     if added:
         logger.info("Synced %d person(s) from known_faces/ directory", added)
+    if not await user_exists():
+        await create_user(
+            username="admin",
+            email="admin@attend.local",
+            hashed_password=hash_password("admin"),
+            role="admin",
+        )
+        logger.info("Default admin user created (username: admin, password: admin)")
     logger.info("Attend.ai API server ready")
     yield
     logger.info("Attend.ai API server stopping")
 
 
-app = FastAPI(title="Attend.ai API", version="2.0.0", lifespan=lifespan)
+app = FastAPI(title="Attend.ai API", version="0.1.0", lifespan=lifespan)
+
+register_exception_handlers(app)
 
 app.add_middleware(
     CORSMiddleware,
@@ -46,12 +62,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# REST routers
+app.include_router(auth.router)
+app.include_router(status.router)
+app.include_router(events.router)
+app.include_router(persons.router)
+app.include_router(settings.router)
+
+# WebSocket routers
 app.include_router(ws_camera.router)
 app.include_router(ws_feed.router)
-app.include_router(api_status.router)
-app.include_router(api_events.router)
-app.include_router(api_persons.router)
-app.include_router(api_settings.router)
 
 
 if __name__ == "__main__":

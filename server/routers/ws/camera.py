@@ -28,7 +28,7 @@ from server.services.face_detector import detect_faces, crop_face
 from server.services.face_recognizer import recognize
 from server.services.segmentor import segment_persons
 from server.services.mask_refiner import refine_mask
-from server import db
+from server.db.crud import events as db
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
