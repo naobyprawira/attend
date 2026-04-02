@@ -1,10 +1,14 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import { setAccessToken } from "@/lib/api";
-
-const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5678";
+import { createContext, useContext, useEffect, useState, useCallback, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  loginWithPassword,
+  logoutSession,
+  refreshSession,
+  setAuthSessionListener,
+  type AuthSession,
+} from "@/lib/api";
 
 interface AuthUser {
   id: number;
@@ -25,67 +29,86 @@ interface AuthContextValue extends AuthState {
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
+const PUBLIC_PATHS = ["/login", "/forgot-password", "/onboarding", "/setup-success"];
+
+function isPublicPath(pathname: string) {
+  return PUBLIC_PATHS.some((p) => pathname.startsWith(p));
+}
+
+function mapSessionToState(session: AuthSession): AuthState {
+  return {
+    user: session.user,
+    accessToken: session.accessToken,
+    isLoading: false,
+  };
+}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const loggingOutRef = useRef(false);
+  const pathnameRef = useRef(pathname);
   const [state, setState] = useState<AuthState>({
     user: null,
     accessToken: null,
     isLoading: true,
   });
 
-  // On mount, try to restore session via refresh token
   useEffect(() => {
-    refresh().finally(() => {
-      setState((s) => ({ ...s, isLoading: false }));
-    });
-  }, []);
+    pathnameRef.current = pathname;
+  }, [pathname]);
 
-  async function refresh() {
-    try {
-      const res = await fetch(`${API}/api/auth/refresh`, {
-        method: "POST",
-        credentials: "include",
+  useEffect(() => {
+    let alive = true;
+
+    setAuthSessionListener((session) => {
+      if (!alive) return;
+      if (!session) {
+        setState({ user: null, accessToken: null, isLoading: false });
+        if (!loggingOutRef.current && !isPublicPath(pathnameRef.current)) {
+          router.push("/login");
+        }
+        return;
+      }
+      setState(mapSessionToState(session));
+    });
+
+    refreshSession()
+      .then((session) => {
+        if (!alive) return;
+        if (session) {
+          setState(mapSessionToState(session));
+        } else {
+          setState({ user: null, accessToken: null, isLoading: false });
+        }
+      })
+      .finally(() => {
+        if (alive) {
+          setState((current) => ({ ...current, isLoading: false }));
+        }
       });
-      if (!res.ok) return;
-      const data = await res.json();
-      setAccessToken(data.access_token);
-      setState({ user: data.user, accessToken: data.access_token, isLoading: false });
-    } catch {
-      // No valid session — stay logged out
-    }
-  }
+
+    return () => {
+      alive = false;
+      setAuthSessionListener(null);
+    };
+  }, [router]);
 
   const login = useCallback(async (username: string, password: string) => {
-    const res = await fetch(`${API}/api/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ username, password }),
-    });
-
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      // errors.py wraps as { error: { code, message } }; fallback to legacy detail shape
-      throw new Error(
-        err?.error?.message ??
-        err?.detail?.message ??
-        (typeof err?.detail === "string" ? err.detail : null) ??
-        "Login failed"
-      );
-    }
-
-    const data = await res.json();
-    setAccessToken(data.access_token);
-    setState({ user: data.user, accessToken: data.access_token, isLoading: false });
+    const session = await loginWithPassword(username, password);
+    setState(mapSessionToState(session));
     router.push("/");
   }, [router]);
 
   const logout = useCallback(async () => {
-    await fetch(`${API}/api/auth/logout`, { method: "POST", credentials: "include" }).catch(() => {});
-    setAccessToken(null);
-    setState({ user: null, accessToken: null, isLoading: false });
-    router.push("/login");
+    loggingOutRef.current = true;
+    try {
+      await logoutSession();
+      setState({ user: null, accessToken: null, isLoading: false });
+      router.push("/login");
+    } finally {
+      loggingOutRef.current = false;
+    }
   }, [router]);
 
   return (

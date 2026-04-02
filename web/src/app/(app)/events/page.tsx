@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { fetchEvents, fetchEventStats } from "@/lib/api";
+import { useMemo, useState } from "react";
+import { useEvents, useEventStats } from "@/lib/queries";
 import type { DetectionEvent, EventStats } from "@/lib/types";
 import { Select } from "@/components/Select";
 
@@ -16,39 +16,28 @@ const DUMMY_EVENTS: DetectionEvent[] = [
 ];
 
 export default function EventCenterPage() {
-  const [events, setEvents] = useState<DetectionEvent[]>([]);
-  const [stats, setStats] = useState<EventStats | null>(null);
   const [typeFilter, setTypeFilter] = useState("");
+  const [personInput, setPersonInput] = useState("");
   const [personFilter, setPersonFilter] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [backendOnline, setBackendOnline] = useState(false);
 
-  const loadEvents = async (showSpinner = false) => {
-    if (showSpinner) setLoading(true);
-    try {
-      const params: Record<string, string> = { limit: "100" };
-      if (typeFilter) params.type = typeFilter;
-      if (personFilter) params.person = personFilter;
-      const [e, s] = await Promise.all([fetchEvents(params), fetchEventStats()]);
-      setEvents(e);
-      setStats(s);
-      setBackendOnline(true);
-    } catch {
-      setBackendOnline(false);
-      setEvents(DUMMY_EVENTS);
-    }
-    setLoading(false);
-  };
+  const queryParams = useMemo(() => {
+    const params: Record<string, string> = { limit: "100" };
+    if (typeFilter) params.type = typeFilter;
+    if (personFilter.trim()) params.person = personFilter.trim();
+    return params;
+  }, [typeFilter, personFilter]);
 
-  useEffect(() => {
-    loadEvents(true);
-    const id = setInterval(() => loadEvents(false), 5000);
-    return () => clearInterval(id);
-  }, [typeFilter]);
+  const eventsQuery = useEvents(queryParams);
+  const statsQuery = useEventStats();
+
+  const loading = eventsQuery.isLoading || statsQuery.isLoading;
+  const backendOnline = !eventsQuery.isError && !statsQuery.isError;
+  const events = backendOnline ? (eventsQuery.data ?? []) : DUMMY_EVENTS;
+  const stats: EventStats | null = backendOnline ? (statsQuery.data ?? null) : null;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    loadEvents(true);
+    setPersonFilter(personInput);
   };
 
   const displayEvents = backendOnline
@@ -115,8 +104,8 @@ export default function EventCenterPage() {
             <input
               type="text"
               placeholder="Search person..."
-              value={personFilter}
-              onChange={(e) => setPersonFilter(e.target.value)}
+              value={personInput}
+              onChange={(e) => setPersonInput(e.target.value)}
               className="bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg text-sm px-4 py-2.5 w-56 focus:ring-2 focus:ring-primary/20 text-on-surface dark:text-dark-on-surface"
             />
           </div>
@@ -213,6 +202,7 @@ export default function EventCenterPage() {
 
       <div className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
         Showing {displayEvents.length} events
+        {eventsQuery.isFetching && <span className="ml-2">(refreshing)</span>}
         {!backendOnline && <span className="ml-2 text-primary">(demo data)</span>}
       </div>
     </div>

@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchSettings, updateSettings } from "@/lib/api";
 import type { Settings } from "@/lib/types";
 import { useI18n } from "@/lib/i18n/provider";
 import type { Locale } from "@/lib/i18n/translations";
+import { useSettings, useUpdateSettings } from "@/lib/queries";
+import { toast } from "sonner";
 
 const DEFAULT_SETTINGS: Settings = {
   face_detection_enabled: true,
@@ -22,42 +23,47 @@ const DEFAULT_SETTINGS: Settings = {
   server_uptime: 3600,
 };
 
+type MutableSettingsKey =
+  | "confidence_threshold"
+  | "temporal_alpha"
+  | "target_fps"
+  | "jpeg_quality";
+
 export default function SettingsPage() {
+  const { data, isError } = useSettings();
+  const updateSettingsMutation = useUpdateSettings();
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
-  const [saving, setSaving] = useState(false);
   const [dirty, setDirty] = useState(false);
-  const [backendOnline, setBackendOnline] = useState(false);
   const { locale, setLocale, t } = useI18n();
 
   useEffect(() => {
-    fetchSettings()
-      .then((s) => {
-        setSettings(s);
-        setBackendOnline(true);
-      })
-      .catch(() => {
-        setBackendOnline(false);
-      });
-  }, []);
+    if (data && !dirty) {
+      setSettings(data);
+    }
+  }, [data, dirty]);
 
-  const update = (key: string, value: number) => {
+  const update = (key: MutableSettingsKey, value: number) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
     setDirty(true);
   };
 
   const handleSave = async () => {
-    setSaving(true);
     try {
-      await updateSettings({
+      await updateSettingsMutation.mutateAsync({
         confidence_threshold: settings.confidence_threshold,
         temporal_alpha: settings.temporal_alpha,
         target_fps: settings.target_fps,
         jpeg_quality: settings.jpeg_quality,
       });
       setDirty(false);
-    } catch {}
-    setSaving(false);
+      toast.success("Settings saved");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to save settings");
+    }
   };
+
+  const saving = updateSettingsMutation.isPending;
+  const backendOnline = !!data && !isError;
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">

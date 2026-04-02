@@ -6,12 +6,16 @@ import {
   fetchPersons,
   registerPerson,
   deletePerson,
+  fetchSettings,
+  updateSettings,
   fetchUsers,
   createUser,
   updateUser,
   deleteUser,
 } from "@/lib/api";
-import type { User } from "@/lib/types";
+import type { DetectionEvent, EventStats, Person, ServerStatus, Settings, User } from "@/lib/types";
+
+const FAST_POLL_INTERVAL_MS = 5_000;
 
 // ── Keys ────────────────────────────────────────────────────
 
@@ -20,44 +24,45 @@ export const keys = {
   events: (params?: Record<string, string>) => ["events", params] as const,
   eventStats: ["eventStats"] as const,
   persons: ["persons"] as const,
+  settings: ["settings"] as const,
   users: ["users"] as const,
 };
 
 // ── Status ──────────────────────────────────────────────────
 
 export function useStatus() {
-  return useQuery({
+  return useQuery<ServerStatus>({
     queryKey: keys.status,
     queryFn: fetchStatus,
-    refetchInterval: 5_000,
+    refetchInterval: FAST_POLL_INTERVAL_MS,
   });
 }
 
 // ── Events ──────────────────────────────────────────────────
 
 export function useEvents(params?: Record<string, string>) {
-  return useQuery({
+  return useQuery<DetectionEvent[]>({
     queryKey: keys.events(params),
     queryFn: () => fetchEvents(params),
-    refetchInterval: 5_000,
+    refetchInterval: FAST_POLL_INTERVAL_MS,
   });
 }
 
 export function useEventStats() {
-  return useQuery({
+  return useQuery<EventStats>({
     queryKey: keys.eventStats,
     queryFn: fetchEventStats,
-    refetchInterval: 5_000,
+    refetchInterval: FAST_POLL_INTERVAL_MS,
   });
 }
 
 // ── Persons ─────────────────────────────────────────────────
 
 export function usePersons() {
-  return useQuery({
+  return useQuery<Person[]>({
     queryKey: keys.persons,
     queryFn: fetchPersons,
-    refetchInterval: 5_000,
+    refetchInterval: FAST_POLL_INTERVAL_MS,
   });
 }
 
@@ -75,6 +80,23 @@ export function useDeletePerson() {
   return useMutation({
     mutationFn: (id: number) => deletePerson(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: keys.persons }),
+  });
+}
+
+// ── Settings ────────────────────────────────────────────────
+
+export function useSettings() {
+  return useQuery<Settings>({
+    queryKey: keys.settings,
+    queryFn: fetchSettings,
+  });
+}
+
+export function useUpdateSettings() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Record<string, unknown>) => updateSettings(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: keys.settings }),
   });
 }
 
