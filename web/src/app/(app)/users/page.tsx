@@ -6,6 +6,7 @@ import { useAuth } from "@/lib/auth/context";
 import { useUsers, useCreateUser, useUpdateUser, useDeleteUser } from "@/lib/queries";
 import { Select } from "@/components/Select";
 import type { User } from "@/lib/types";
+import { normalizeEmail, validateEmail, validatePassword } from "@/lib/validation";
 
 // ── Helpers ──────────────────────────────────────────────────
 
@@ -79,8 +80,25 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!username.trim() || !email.trim() || !password) return;
+
+    const normalizedEmail = normalizeEmail(email);
+    const emailError = validateEmail(normalizedEmail);
+    if (emailError) {
+      toast.error(emailError);
+      return;
+    }
+
+    const passwordError = validatePassword(password, {
+      username,
+      email: normalizedEmail,
+    });
+    if (passwordError) {
+      toast.error(passwordError);
+      return;
+    }
+
     try {
-      await createUser.mutateAsync({ username: username.trim(), email: email.trim(), password, role });
+      await createUser.mutateAsync({ username: username.trim(), email: normalizedEmail, password, role });
       toast.success(`User "${username}" created`);
       onClose();
     } catch (err) {
@@ -117,6 +135,7 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
               onChange={(e) => setEmail(e.target.value)}
               placeholder="john@example.com"
               className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-2.5 px-3.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface"
+              maxLength={254}
               required
             />
           </div>
@@ -129,12 +148,17 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-2.5 px-3.5 pr-10 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface"
+                minLength={12}
+                maxLength={128}
                 required
               />
               <button type="button" onClick={() => setShowPw(!showPw)} className="absolute inset-y-0 right-0 pr-3 text-on-surface-variant/60 hover:text-primary transition-colors">
                 <span className="material-symbols-outlined text-lg">{showPw ? "visibility_off" : "visibility"}</span>
               </button>
             </div>
+            <p className="text-[11px] text-on-surface-variant dark:text-dark-on-surface-variant">
+              Use 12+ characters with uppercase, lowercase, number, and symbol.
+            </p>
           </div>
           <div className="space-y-1.5">
             <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">Role</label>

@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/lib/auth/context";
 import { requestAccess } from "@/lib/api";
+import { normalizeEmail, validateEmail, validatePassword } from "@/lib/validation";
 
 // ── Request Access Modal ─────────────────────────────────────
 
@@ -17,13 +18,29 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    const normalizedEmail = normalizeEmail(email);
+    const emailError = validateEmail(normalizedEmail);
+    if (emailError) {
+      toast.error(emailError);
+      return;
+    }
+
+    const passwordError = validatePassword(password, {
+      username,
+      email: normalizedEmail,
+    });
+    if (passwordError) {
+      toast.error(passwordError);
+      return;
+    }
+
     if (password !== confirmPw) {
       toast.error("Passwords do not match");
       return;
     }
     setIsLoading(true);
     try {
-      await requestAccess({ username: username.trim(), email: email.trim(), password });
+      await requestAccess({ username: username.trim(), email: normalizedEmail, password });
       toast.success("Request submitted! An admin will review it shortly.");
       onClose();
     } catch (err) {
@@ -88,6 +105,7 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary-container/20 text-on-surface placeholder:text-outline transition-all outline-none"
+                maxLength={254}
                 required
               />
             </div>
@@ -108,6 +126,8 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-11 pr-12 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary-container/20 text-on-surface placeholder:text-outline transition-all outline-none"
+                minLength={12}
+                maxLength={128}
                 required
               />
               <button
@@ -120,6 +140,9 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
                 </span>
               </button>
             </div>
+            <p className="text-[11px] text-on-surface-variant">
+              Use 12+ characters with uppercase, lowercase, number, and symbol.
+            </p>
           </div>
 
           {/* Confirm Password */}
@@ -137,6 +160,8 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
                 value={confirmPw}
                 onChange={(e) => setConfirmPw(e.target.value)}
                 className="w-full pl-11 pr-4 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary-container/20 text-on-surface placeholder:text-outline transition-all outline-none"
+                minLength={12}
+                maxLength={128}
                 required
               />
             </div>
