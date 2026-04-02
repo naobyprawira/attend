@@ -73,9 +73,9 @@ export default function BatchImportPage() {
   const [entries] = useState<ImportEntry[]>(DUMMY_DATA);
   const [fileName, setFileName] = useState<string | null>(null);
 
-  const validCount = entries.filter((e) => e.validation === "valid").length;
-  const errorCount = entries.filter((e) => e.validation !== "valid").length;
-  const totalCount = entries.length;
+  const _validCount = entries.filter((e) => e.validation === "valid").length;
+  const _errorCount = entries.filter((e) => e.validation !== "valid").length;
+  const _totalCount = entries.length;
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-8 sm:space-y-12">

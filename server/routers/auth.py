@@ -26,7 +26,6 @@ from server.db.crud.users import (
     get_refresh_token,
     get_user_by_email_any,
     get_user_by_id,
-    get_user_by_username,
     get_user_by_username_any,
     save_refresh_token,
     update_last_login,

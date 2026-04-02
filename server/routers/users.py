@@ -12,7 +12,7 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException, status
 
 from server.core.auth import hash_password
-from server.core.deps import require_admin, ADMIN_ROLES
+from server.core.deps import require_admin
 from server.db.crud.users import (
     create_user,
     delete_user,

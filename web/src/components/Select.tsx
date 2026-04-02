@@ -41,7 +41,9 @@ export function Select({ value, onChange, options, className = "", disabled = fa
         type="button"
         onClick={(e) => {
           e.stopPropagation();
-          !disabled && setOpen((v) => !v);
+          if (!disabled) {
+            setOpen((v) => !v);
+          }
         }}
         disabled={disabled}
         className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-2.5 px-3.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface text-left flex items-center justify-between disabled:opacity-50 disabled:cursor-not-allowed hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high"

@@ -1,7 +1,6 @@
 "use client";
 
 import { useStatus, useEvents, useEventStats } from "@/lib/queries";
-import type { DetectionEvent } from "@/lib/types";
 
 // Dummy data for when backend is offline
 const DUMMY_ACTIVITY = [

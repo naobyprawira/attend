@@ -318,7 +318,6 @@ export default function UsersPage() {
   const { user: me, isLoading: authLoading } = useAuth();
   const { data: users, isLoading, isError, refetch } = useUsers({ enabled: !authLoading });
   const updateUser = useUpdateUser();
-  const deleteUser = useDeleteUser();
 
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<Tab>("All");
@@ -327,7 +326,10 @@ export default function UsersPage() {
   const [editingUser, setEditingUser] = useState<User | null>(null);
 
   // All hooks must run unconditionally before any early return
-  const allUsers = Array.isArray(users) ? users : [];
+  const allUsers = useMemo(
+    () => (Array.isArray(users) ? users : []),
+    [users],
+  );
 
   const { totalActive, totalPending, totalAdmins } = useMemo(() => {
     let active = 0, pending = 0, admins = 0;
