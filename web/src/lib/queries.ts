@@ -6,7 +6,12 @@ import {
   fetchPersons,
   registerPerson,
   deletePerson,
+  fetchUsers,
+  createUser,
+  updateUser,
+  deleteUser,
 } from "@/lib/api";
+import type { User } from "@/lib/types";
 
 // ── Keys ────────────────────────────────────────────────────
 
@@ -15,6 +20,7 @@ export const keys = {
   events: (params?: Record<string, string>) => ["events", params] as const,
   eventStats: ["eventStats"] as const,
   persons: ["persons"] as const,
+  users: ["users"] as const,
 };
 
 // ── Status ──────────────────────────────────────────────────
@@ -69,5 +75,43 @@ export function useDeletePerson() {
   return useMutation({
     mutationFn: (id: number) => deletePerson(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: keys.persons }),
+  });
+}
+
+// ── Users ────────────────────────────────────────────────────
+
+export function useUsers(opts?: { enabled?: boolean }) {
+  return useQuery<User[]>({
+    queryKey: keys.users,
+    queryFn: fetchUsers,
+    enabled: opts?.enabled ?? true,
+    staleTime: 30_000,
+    retry: 1,
+  });
+}
+
+export function useCreateUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { username: string; email: string; password: string; role: string }) =>
+      createUser(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: keys.users }),
+  });
+}
+
+export function useUpdateUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, ...data }: { id: number; role?: string; status?: string }) =>
+      updateUser(id, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: keys.users }),
+  });
+}
+
+export function useDeleteUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => deleteUser(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: keys.users }),
   });
 }

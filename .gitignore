@@ -30,3 +30,4 @@ server/debug_crops/
 
 # DeepFace weights
 .deepface/
+.playwright-mcp/

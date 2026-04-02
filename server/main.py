@@ -19,7 +19,7 @@ from server.core.errors import register_exception_handlers
 from server.db.engine import init_db
 from server.db.crud.persons import sync_known_faces_from_disk
 from server.db.crud.users import create_user, user_exists
-from server.routers import auth, events, persons, settings, status
+from server.routers import auth, events, persons, settings, status, users
 from server.routers.ws import camera as ws_camera
 from server.routers.ws import feed as ws_feed
 
@@ -42,9 +42,9 @@ async def lifespan(app: FastAPI):
             username="admin",
             email="admin@attend.local",
             hashed_password=hash_password("admin"),
-            role="admin",
+            role="super_admin",
         )
-        logger.info("Default admin user created (username: admin, password: admin)")
+        logger.info("Default super admin user created (username: admin, password: admin)")
     logger.info("Attend.ai API server ready")
     yield
     logger.info("Attend.ai API server stopping")
@@ -64,6 +64,7 @@ app.add_middleware(
 
 # REST routers
 app.include_router(auth.router)
+app.include_router(users.router)
 app.include_router(status.router)
 app.include_router(events.router)
 app.include_router(persons.router)

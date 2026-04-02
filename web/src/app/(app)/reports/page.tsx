@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Select } from "@/components/Select";
 
 /* ------------------------------------------------------------------ */
 /*  Types & Dummy Data                                                 */
@@ -108,23 +109,15 @@ export default function ReportsPage() {
               Department
             </label>
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-lg">
+              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-lg z-10 pointer-events-none">
                 apartment
               </span>
-              <select
+              <Select
                 value={department}
-                onChange={(e) => setDepartment(e.target.value)}
-                className="w-full pl-10 pr-8 py-2.5 rounded-xl bg-surface-container-lowest dark:bg-dark-surface-container-lowest border border-outline-variant/20 dark:border-dark-outline-variant/20 text-sm text-on-surface dark:text-dark-on-surface font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-primary/30"
-              >
-                {DEPARTMENTS.map((d) => (
-                  <option key={d} value={d}>
-                    {d}
-                  </option>
-                ))}
-              </select>
-              <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-dark-on-surface-variant text-lg pointer-events-none">
-                expand_more
-              </span>
+                onChange={setDepartment}
+                options={DEPARTMENTS.map((d) => ({ value: d, label: d }))}
+                className="pl-10"
+              />
             </div>
           </div>
 

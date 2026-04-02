@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n/provider";
+import { useAuth } from "@/lib/auth/context";
 import type { TranslationKey } from "@/lib/i18n/translations";
 
 type NavEntry =
@@ -54,6 +55,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t } = useI18n();
+  const { logout } = useAuth();
 
   return (
     <>
@@ -140,7 +142,10 @@ export function Sidebar() {
               <span className="material-symbols-outlined text-sm">settings</span>
               <span className="text-[10px] font-bold uppercase tracking-widest">{t("nav.settings")}</span>
             </Link>
-            <button className="text-slate-400 opacity-70 hover:opacity-100 px-2 py-3 flex items-center gap-3 transition-all duration-200 w-full text-left">
+            <button
+              onClick={() => logout()}
+              className="text-slate-400 opacity-70 hover:opacity-100 px-2 py-3 flex items-center gap-3 transition-all duration-200 w-full text-left"
+            >
               <span className="material-symbols-outlined text-sm">logout</span>
               <span className="text-[10px] font-bold uppercase tracking-widest">{t("nav.logout")}</span>
             </button>

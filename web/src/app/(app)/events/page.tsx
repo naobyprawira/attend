@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { fetchEvents, fetchEventStats } from "@/lib/api";
 import type { DetectionEvent, EventStats } from "@/lib/types";
+import { Select } from "@/components/Select";
 
 const DUMMY_EVENTS: DetectionEvent[] = [
   { id: 1, timestamp: new Date(Date.now() - 60000).toISOString(), event_type: "face_recognized", person_name: "Marcus Thompson", confidence: 0.994, bbox: null, thumbnail: null, frame_number: null },
@@ -96,15 +97,15 @@ export default function EventCenterPage() {
           <label className="text-[10px] font-black text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-[0.2em] block mb-2">
             Type
           </label>
-          <select
+          <Select
             value={typeFilter}
-            onChange={(e) => setTypeFilter(e.target.value)}
-            className="bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg text-sm px-4 py-2.5 focus:ring-2 focus:ring-primary/20 text-on-surface dark:text-dark-on-surface"
-          >
-            <option value="">All Types</option>
-            <option value="face_recognized">Recognized</option>
-            <option value="unknown_face">Unknown</option>
-          </select>
+            onChange={setTypeFilter}
+            options={[
+              { value: "", label: "All Types" },
+              { value: "face_recognized", label: "Recognized" },
+              { value: "unknown_face", label: "Unknown" },
+            ]}
+          />
         </div>
         <form onSubmit={handleSearch} className="flex gap-3 items-end">
           <div>

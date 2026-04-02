@@ -1,6 +1,6 @@
 """FastAPI dependency functions."""
 
-from fastapi import Header, HTTPException
+from fastapi import Depends, Header, HTTPException
 from jose import JWTError
 
 from server.core.auth import decode_access_token
@@ -22,3 +22,26 @@ async def require_auth(authorization: str | None = Header(default=None)) -> dict
             detail={"code": "INVALID_TOKEN", "message": "Token is invalid or expired"},
         )
     return {"user_id": int(payload["sub"]), "username": payload["username"], "role": payload["role"]}
+
+
+ADMIN_ROLES = {"admin", "super_admin"}
+
+
+async def require_admin(current_user: dict = Depends(require_auth)) -> dict:
+    """Require admin or super_admin role."""
+    if current_user["role"] not in ADMIN_ROLES:
+        raise HTTPException(
+            403,
+            detail={"code": "FORBIDDEN", "message": "Admin access required"},
+        )
+    return current_user
+
+
+async def require_super_admin(current_user: dict = Depends(require_auth)) -> dict:
+    """Require super_admin role."""
+    if current_user["role"] != "super_admin":
+        raise HTTPException(
+            403,
+            detail={"code": "FORBIDDEN", "message": "Super admin access required"},
+        )
+    return current_user

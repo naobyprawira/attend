@@ -81,3 +81,15 @@ export interface Settings {
 }
 
 export type BgMode = "normal" | "green" | "blur" | "black";
+
+// ── User management ─────────────────────────────────────────
+
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+  role: string;    // "admin" | "operator" | "viewer"
+  status: string;  // "active" | "inactive" | "pending"
+  last_login: string | null;
+  created_at: string;
+}

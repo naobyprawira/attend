@@ -34,6 +34,7 @@ async def get_user_by_username(username: str) -> dict | None:
 
 
 async def get_user_by_id(user_id: int) -> dict | None:
+    """Fetch active user by ID."""
     async with get_session() as session:
         result = await session.execute(
             select(User).where(User.id == user_id, User.status == "active")
@@ -42,8 +43,16 @@ async def get_user_by_id(user_id: int) -> dict | None:
     return _user_to_dict(user) if user else None
 
 
+async def get_user_by_id_any(user_id: int) -> dict | None:
+    """Fetch user by ID regardless of status (for admin operations)."""
+    async with get_session() as session:
+        result = await session.execute(select(User).where(User.id == user_id))
+        user = result.scalar_one_or_none()
+    return _user_to_dict(user) if user else None
+
+
 async def create_user(
-    username: str, email: str, hashed_password: str, role: str = "operator"
+    username: str, email: str, hashed_password: str, role: str = "operator", status: str = "active"
 ) -> dict:
     now = datetime.now(timezone.utc).isoformat()
     async with get_session() as session:
@@ -52,12 +61,56 @@ async def create_user(
             email=email,
             hashed_password=hashed_password,
             role=role,
+            status=status,
             created_at=now,
         )
         session.add(user)
         await session.commit()
         await session.refresh(user)
         return _user_to_dict(user)
+
+
+async def get_all_users() -> list[dict]:
+    """Return all users regardless of status (admin view)."""
+    async with get_session() as session:
+        result = await session.execute(select(User).order_by(User.created_at.desc()))
+        users = result.scalars().all()
+    return [_user_to_dict(u) for u in users]
+
+
+async def get_user_by_username_any(username: str) -> dict | None:
+    """Fetch user by username regardless of status (for duplicate checks)."""
+    async with get_session() as session:
+        result = await session.execute(select(User).where(User.username == username))
+        user = result.scalar_one_or_none()
+    return _user_to_dict(user) if user else None
+
+
+async def get_user_by_email_any(email: str) -> dict | None:
+    """Fetch user by email regardless of status (for duplicate checks)."""
+    async with get_session() as session:
+        result = await session.execute(select(User).where(User.email == email))
+        user = result.scalar_one_or_none()
+    return _user_to_dict(user) if user else None
+
+
+async def update_user(user_id: int, **fields) -> dict | None:
+    """Update arbitrary fields on a user. Returns updated user dict or None."""
+    if not fields:
+        return await get_user_by_id(user_id)
+    async with get_session() as session:
+        await session.execute(update(User).where(User.id == user_id).values(**fields))
+        await session.commit()
+        result = await session.execute(select(User).where(User.id == user_id))
+        user = result.scalar_one_or_none()
+    return _user_to_dict(user) if user else None
+
+
+async def delete_user(user_id: int) -> None:
+    """Hard-delete a user (refresh tokens cascade-delete via FK)."""
+    async with get_session() as session:
+        await session.execute(delete(User).where(User.id == user_id))
+        await session.commit()
 
 
 async def update_last_login(user_id: int) -> None:

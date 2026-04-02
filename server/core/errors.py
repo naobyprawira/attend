@@ -33,9 +33,15 @@ def register_exception_handlers(app: FastAPI) -> None:
             500: "INTERNAL_ERROR",
         }
         code = code_map.get(exc.status_code, "HTTP_ERROR")
+        # If detail is a dict with explicit code/message, use them directly
+        if isinstance(exc.detail, dict):
+            code = exc.detail.get("code", code)
+            message = exc.detail.get("message", str(exc.detail))
+        else:
+            message = str(exc.detail)
         return JSONResponse(
             status_code=exc.status_code,
-            content=_error_body(code, str(exc.detail)),
+            content=_error_body(code, message),
         )
 
     @app.exception_handler(RequestValidationError)

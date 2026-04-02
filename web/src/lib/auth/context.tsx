@@ -66,7 +66,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      throw new Error(err?.detail?.message ?? err?.detail ?? "Login failed");
+      // errors.py wraps as { error: { code, message } }; fallback to legacy detail shape
+      throw new Error(
+        err?.error?.message ??
+        err?.detail?.message ??
+        (typeof err?.detail === "string" ? err.detail : null) ??
+        "Login failed"
+      );
     }
 
     const data = await res.json();

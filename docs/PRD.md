@@ -87,8 +87,8 @@ The roadmap is organized into **4 phases** (each 3–4 sprints of 2 weeks), with
 **Theme:** Fix critical infrastructure debt, establish production-grade foundations, make the system deployable for a single-site pilot.
 
 #### Sprint 1: Database & Auth Foundation (Week 1–2)
-- **Backend:** Replace aiosqlite per-call with connection pool; integrate Alembic for migrations; implement JWT auth (`/api/auth/login`, `/api/auth/refresh`); add Pydantic response models; add `/health` and `/ready` endpoints; centralized error handling.
-- **Frontend:** Login page with JWT token flow; AuthContext provider; React Query (TanStack Query) for all API calls; global error boundary + toast notifications (sonner/react-hot-toast).
+- **Backend:** Replace aiosqlite per-call with SQLAlchemy async + connection pool; integrate Alembic for migrations; implement JWT auth (`/api/auth/login`, `/api/auth/refresh`, `/api/auth/logout`, `/api/auth/me`); public self-registration endpoint (`/api/auth/request-access`, creates user with `status=pending`); admin-only user management API (`/api/users` CRUD); simple two-tier RBAC: `super_admin` (singleton, seeded) and general users (`admin`, `operator`, `viewer`) — configurable permissions deferred to Sprint 9; user status model (`active`/`inactive`/`pending`); centralized error handling with structured error responses (`{error: {code, message}}`); Pydantic request/response schemas.
+- **Frontend:** Login page with JWT token flow and "Request Access" modal; AuthContext provider with cookie-based refresh; React Query (TanStack Query) for all API calls with mutations and cache invalidation; admin User Management page with role/status editing and approval of pending requests; global error boundary + toast notifications (sonner); i18n framework (English + Bahasa Indonesia); dark mode with system preference detection.
 - **Data/Model:** Benchmark current Haar Cascade accuracy (precision, recall, F1 on LFW/WIDER FACE); benchmark Facenet512 ONNX vs ArcFace/AdaFace on LFW pairs; set up evaluation pipeline.
 
 #### Sprint 2: State Management & Multi-Camera Prep (Week 3–4)
@@ -138,9 +138,9 @@ The roadmap is organized into **4 phases** (each 3–4 sprints of 2 weeks), with
 
 **Theme:** Role-based access control, multi-site management, advanced analytics, and system administration.
 
-#### Sprint 9: RBAC & User Management (Week 17–18)
-- **Backend:** `users` table (username, password_hash/bcrypt, email, role_id); `roles` table with permission matrix; permission middleware (403 on missing permissions); per-camera and per-department access control; `/api/users` CRUD (admin-only); `/api/roles` CRUD.
-- **Frontend:** User Management page; Role Management page with visual permission matrix editor (checkboxes); scoped navigation (hide items user lacks permission for); user profile page; session management; admin impersonation mode.
+#### Sprint 9: Configurable RBAC & Permissions (Week 17–18)
+- **Backend:** `roles` table with configurable permission matrix (replacing Sprint 1's fixed roles); per-camera and per-department access control; permission middleware (403 on missing permissions); `/api/roles` CRUD (super_admin only); migration path from fixed roles to configurable roles; audit trail for permission changes.
+- **Frontend:** Role Management page with visual permission matrix editor (checkboxes per feature); scoped navigation (hide items user lacks permission for); user profile page with password change; session management.
 - **Data/Model:** HNSW index (hnswlib) for embedding similarity search instead of brute-force L2; benchmark at 1K/5K/10K/50K faces; embedding index auto-rebuild; GPU memory monitoring with graceful degradation.
 
 #### Sprint 10: Advanced Analytics & Heatmaps (Week 19–20)
@@ -192,7 +192,7 @@ The roadmap is organized into **4 phases** (each 3–4 sprints of 2 weeks), with
 
 | Feature | Phase | Acceptance Criteria |
 |---|---|---|
-| JWT Authentication & RBAC | 1 | Users must log in; admin can create roles with specific permissions; unauthorized access returns 403. |
+| JWT Authentication & RBAC | 1 | Users must log in; simple two-tier RBAC: super_admin (singleton) manages admins, admins manage general users; public self-registration creates pending accounts for admin approval; inactive/pending accounts cannot log in; configurable permissions deferred to Sprint 9. |
 | Multi-Camera Support (2–4) | 1 | System accepts 2–4 simultaneous feeds with independent pipelines and <200ms end-to-end latency. |
 | Department Hierarchy | 2 | Admin can create up to 5-level department tree; persons assigned to departments; filters work throughout app. |
 | Shift Scheduling | 2 | Admin can create normal and flexible shifts; assign to departments or individuals; grace period configurable. |
@@ -240,10 +240,15 @@ License plate recognition (ANPR), parking management, elevator control, video in
 
 | Method | Path | Description |
 |--------|------|-------------|
-| POST | /api/auth/login | Authenticate user, return access + refresh tokens |
-| POST | /api/auth/refresh | Refresh access token |
-| POST | /api/auth/logout | Revoke refresh token |
+| POST | /api/auth/login | Authenticate user, return access + refresh tokens (blocks inactive/pending) |
+| POST | /api/auth/refresh | Refresh access token (cookie or body) |
+| POST | /api/auth/logout | Revoke refresh token, clear cookie |
 | GET | /api/auth/me | Current authenticated user |
+| POST | /api/auth/request-access | Public — create pending account for admin approval |
+| GET | /api/users | List all users (admin+) |
+| POST | /api/users | Create user with role (admin+, super_admin for admin role) |
+| PUT | /api/users/:id | Update user role/status (admin+, super_admin for admin accounts) |
+| DELETE | /api/users/:id | Delete user (admin+, super_admin for admin accounts, super_admin immutable) |
 | GET | /api/status | System status (cameras, viewers, uptime, GPU) |
 | GET | /api/cameras | List cameras |
 | POST | /api/cameras | Register new camera |

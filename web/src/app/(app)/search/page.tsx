@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Select } from "@/components/Select";
 
 // --- Dummy Data ---
 const SEARCH_RESULTS = [
@@ -186,15 +187,11 @@ export default function SearchPage() {
               <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant block mb-2">
                 Camera
               </label>
-              <select
+              <Select
                 value={selectedCamera}
-                onChange={(e) => setSelectedCamera(e.target.value)}
-                className="w-full bg-surface-container dark:bg-dark-surface-container-high border border-outline-variant/20 rounded-lg px-3 py-2 text-xs text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
-              >
-                {FILTER_CAMERAS.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
+                onChange={setSelectedCamera}
+                options={FILTER_CAMERAS.map((c) => ({ value: c, label: c }))}
+              />
             </div>
           </div>
         </div>

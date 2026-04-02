@@ -18,6 +18,19 @@ function apiFetch(url: string, init: RequestInit = {}) {
   });
 }
 
+async function throwIfError(r: Response): Promise<Response> {
+  if (!r.ok) {
+    const body = await r.json().catch(() => ({}));
+    const msg =
+      body?.error?.message ??
+      body?.detail?.message ??
+      (typeof body?.detail === "string" ? body.detail : null) ??
+      `Request failed (${r.status})`;
+    throw new Error(msg);
+  }
+  return r;
+}
+
 // ── Status ──────────────────────────────────────────────────
 
 export const fetchStatus = () => apiFetch(`${API}/api/status`).then((r) => r.json());
@@ -61,6 +74,40 @@ export const updateSettings = (data: Record<string, unknown>) =>
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   }).then((r) => r.json());
+
+// ── Users (admin) ───────────────────────────────────────────
+
+export const fetchUsers = () =>
+  apiFetch(`${API}/api/users`).then((r) => {
+    if (!r.ok) throw new Error(`${r.status}`);
+    return r.json();
+  });
+
+export const createUser = (data: { username: string; email: string; password: string; role: string }) =>
+  apiFetch(`${API}/api/users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  }).then(throwIfError).then((r) => r.json());
+
+export const updateUser = (id: number, data: { role?: string; status?: string }) =>
+  apiFetch(`${API}/api/users/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  }).then(throwIfError).then((r) => r.json());
+
+export const deleteUser = (id: number) =>
+  apiFetch(`${API}/api/users/${id}`, { method: "DELETE" }).then(throwIfError);
+
+// ── Auth: Request Access (public) ───────────────────────────
+
+export const requestAccess = (data: { username: string; email: string; password: string }) =>
+  fetch(`${API}/api/auth/request-access`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  }).then(throwIfError).then((r) => r.json());
 
 // ── WebSocket ───────────────────────────────────────────────
 

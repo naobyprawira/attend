@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Select } from "@/components/Select";
 
 // --- Dummy Data ---
 const TEMPORAL_INSIGHTS = [
@@ -46,15 +47,11 @@ export default function HeatmapPage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <select
+          <Select
             value={selectedCamera}
-            onChange={(e) => setSelectedCamera(e.target.value)}
-            className="bg-surface-variant dark:bg-dark-surface-variant border border-outline-variant/20 rounded-xl px-4 py-2 text-sm text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
-          >
-            {cameras.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
+            onChange={setSelectedCamera}
+            options={cameras.map((c) => ({ value: c, label: c }))}
+          />
           <button className="primary-gradient text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all">
             <span className="material-symbols-outlined text-sm">download</span>
             Export Report

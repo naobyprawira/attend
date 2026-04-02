@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { Select } from "@/components/Select";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -988,17 +989,11 @@ function StepRegisterPerson({
                 <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider">
                   Department
                 </label>
-                <select
+                <Select
                   value={form.department}
-                  onChange={(e) => update("department", e.target.value)}
-                  className="w-full bg-surface-container-highest border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-container/20 text-on-surface transition-all"
-                >
-                  {DEPARTMENTS.map((d) => (
-                    <option key={d} value={d}>
-                      {d}
-                    </option>
-                  ))}
-                </select>
+                  onChange={(value) => update("department", value)}
+                  options={DEPARTMENTS.map((d) => ({ value: d, label: d }))}
+                />
               </div>
             </div>
           </div>

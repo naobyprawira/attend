@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "./ThemeProvider";
 import { useI18n } from "@/lib/i18n/provider";
+import { useAuth } from "@/lib/auth/context";
 import type { TranslationKey } from "@/lib/i18n/translations";
 
 const HEADER_TABS: { href: string; labelKey: TranslationKey }[] = [
@@ -33,8 +34,23 @@ export function Header() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const { t, locale, setLocale } = useI18n();
+  const { user, logout } = useAuth();
   const [mounted, setMounted] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => setMounted(true), []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setProfileOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const titleKey = PAGE_TITLE_MAP[pathname] ?? "nav.dashboard";
   const pageTitle = t(titleKey);
@@ -133,9 +149,40 @@ export function Header() {
             <span className="material-symbols-outlined">notifications</span>
           </button>
 
-          {/* Profile */}
-          <div className="h-10 w-10 rounded-full border-2 border-primary/30 overflow-hidden bg-primary/10 flex items-center justify-center">
-            <span className="material-symbols-outlined text-primary">person</span>
+          {/* Profile Dropdown */}
+          <div ref={profileRef} className="relative">
+            <button
+              onClick={() => setProfileOpen((v) => !v)}
+              className="h-10 w-10 rounded-full border-2 border-primary/30 bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+              title={user?.username ?? "Profile"}
+            >
+              <span className="material-symbols-outlined text-primary">person</span>
+            </button>
+            {profileOpen && (
+              <div className="absolute right-0 top-12 w-48 bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl shadow-xl border border-outline-variant/10 overflow-hidden z-50 animate-fade-in">
+                {user && (
+                  <div className="px-4 py-3 border-b border-outline-variant/10">
+                    <p className="text-sm font-bold text-on-surface dark:text-dark-on-surface truncate">{user.username}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant mt-0.5">{user.role}</p>
+                  </div>
+                )}
+                <Link
+                  href="/settings"
+                  onClick={() => setProfileOpen(false)}
+                  className="flex items-center gap-2.5 px-4 py-3 text-sm text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-container dark:hover:bg-dark-surface-container transition-colors"
+                >
+                  <span className="material-symbols-outlined text-base">settings</span>
+                  Settings
+                </Link>
+                <button
+                  onClick={() => { setProfileOpen(false); logout(); }}
+                  className="w-full flex items-center gap-2.5 px-4 py-3 text-sm text-error hover:bg-error/5 transition-colors"
+                >
+                  <span className="material-symbols-outlined text-base">logout</span>
+                  Sign out
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
