@@ -96,6 +96,7 @@ export default function PersonsPage() {
   });
 
   const selected = persons.find((p) => p.id === selectedId) ?? null;
+  const hasSelectedPerson = selected !== null;
 
   const deptCounts = persons.reduce<Record<string, number>>((acc, p) => {
     const d = p.department ?? "Engineering";
@@ -104,9 +105,16 @@ export default function PersonsPage() {
   }, {});
 
   return (
-    <div className="flex flex-col lg:flex-row flex-1 overflow-hidden h-full bg-surface">
+    <div className="min-h-screen bg-surface text-on-surface">
+      <div
+        className={`mx-auto grid w-full max-w-[1700px] gap-6 p-4 sm:p-6 lg:p-8 ${
+          hasSelectedPerson
+            ? "lg:grid-cols-[280px_minmax(0,1fr)_minmax(360px,0.95fr)]"
+            : "lg:grid-cols-[280px_minmax(0,1fr)]"
+        }`}
+      >
       {/* ── Left Panel: Department Tree ── */}
-      <section className="hidden lg:block lg:w-[20%] lg:min-w-[200px] bg-surface-container-low p-4 sm:p-6 overflow-y-auto border-r border-outline-variant/10">
+      <section className="hidden lg:block rounded-2xl border border-outline-variant/20 bg-surface-container-low p-4 sm:p-6 shadow-sm lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
             Departments
@@ -169,11 +177,15 @@ export default function PersonsPage() {
       </section>
 
       {/* ── Center Panel: Person Cards ── */}
-      <section className="w-full lg:w-[40%] flex-1 lg:flex-none bg-surface p-4 sm:p-6 overflow-y-auto border-r border-outline-variant/10">
+      <section
+        className={`w-full rounded-2xl border border-outline-variant/20 bg-surface-container-lowest p-4 sm:p-6 shadow-sm ${
+          hasSelectedPerson ? "" : ""
+        }`}
+      >
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-xl font-bold tracking-tight text-on-surface">Personnel</h2>
+            <h2 className="text-2xl font-extrabold tracking-tight text-on-surface">Personnel</h2>
             <p className="text-xs text-on-surface-variant">
               {filtered.length} active members{activeDept ? ` in ${activeDept}` : ""}
             </p>
@@ -204,6 +216,12 @@ export default function PersonsPage() {
           />
         </div>
 
+        {!hasSelectedPerson && filtered.length > 0 && (
+          <div className="mb-4 rounded-lg border border-outline-variant/20 bg-surface-container-low px-3 py-2 text-xs text-on-surface-variant">
+            Tip: select a person card to open the detailed profile panel.
+          </div>
+        )}
+
         {/* Card Grid */}
         {filtered.length === 0 ? (
           <div className="text-center py-20 text-on-surface-variant">
@@ -215,7 +233,7 @@ export default function PersonsPage() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
             {filtered.map((person) => {
               const isSelected = person.id === selectedId;
               const isInactive = person.status === "Inactive";
@@ -285,8 +303,9 @@ export default function PersonsPage() {
       </section>
 
       {/* ── Right Panel: Person Detail ── */}
-      <section className="hidden lg:block lg:w-[40%] bg-surface-container-low p-4 sm:p-6 lg:p-8 overflow-y-auto">
-        {selected ? (
+      {hasSelectedPerson && (
+        <section className="hidden lg:block rounded-2xl border border-outline-variant/20 bg-surface-container-low p-4 sm:p-6 lg:p-8 shadow-sm">
+          {selected ? (
           <>
             {/* Header with photo */}
             <div className="flex justify-between items-start mb-8">
@@ -425,13 +444,10 @@ export default function PersonsPage() {
               </p>
             </div>
           </>
-        ) : (
-          <div className="flex flex-col items-center justify-center h-full text-on-surface-variant">
-            <span className="material-symbols-outlined text-6xl opacity-20 mb-4">person_search</span>
-            <p className="text-sm">Select a person to view details</p>
-          </div>
-        )}
-      </section>
+          ) : null}
+        </section>
+      )}
+      </div>
 
       {/* ── Add Person Dialog ── */}
       {showDialog && (
