@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
 export default function SetupSuccessPage() {
@@ -21,17 +22,17 @@ export default function SetupSuccessPage() {
         {/* Card */}
         <div className="w-full rounded-2xl bg-surface-container-lowest/80 backdrop-blur-sm border border-[#85727b]/10 shadow-sm px-8 py-10 text-center">
           {/* Checkmark icon */}
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#923272]">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
             <span className="material-symbols-outlined text-[32px] text-white">
               check_circle
             </span>
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl font-extrabold text-[#1b1c1d] dark:text-[#e0e0e0] mb-3">
+          <h1 className="text-3xl font-extrabold text-on-surface mb-3">
             System Fully Initialized
           </h1>
-          <p className="text-sm text-[#53424a] dark:text-[#a09098] leading-relaxed max-w-sm mx-auto">
+          <p className="text-sm text-on-surface-variant leading-relaxed max-w-sm mx-auto">
             Attend.AI is now ready to monitor your workspace. All systems are
             operational.
           </p>
@@ -41,14 +42,14 @@ export default function SetupSuccessPage() {
             {statusChips.map((chip) => (
               <div
                 key={chip.label}
-                className="rounded-lg border border-[#85727b]/15 dark:border-[#85727b]/25 bg-surface-container-high px-4 py-2.5 text-left min-w-[120px]"
+                className="rounded-lg border border-outline/20 bg-surface-container-high px-4 py-2.5 text-left min-w-[120px]"
               >
-                <p className="text-[9px] font-semibold tracking-[0.15em] uppercase text-[#85727b] dark:text-[#85727b]">
+                <p className="text-[9px] font-semibold tracking-[0.15em] uppercase text-outline">
                   {chip.label}
                 </p>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
-                  <p className="text-xs font-medium text-[#1b1c1d] dark:text-[#e0e0e0]">
+                  <p className="text-xs font-medium text-on-surface">
                     {chip.value}
                   </p>
                 </div>
@@ -59,32 +60,32 @@ export default function SetupSuccessPage() {
           {/* Enter Dashboard button */}
           <Link
             href="/"
-            className="mt-8 inline-flex items-center justify-center rounded-xl bg-[#923272] hover:bg-[#751859] text-white font-semibold text-sm py-3 px-12 transition-colors"
+            className="mt-8 inline-flex items-center justify-center rounded-xl bg-primary hover:bg-primary-container text-white font-semibold text-sm py-3 px-12 transition-colors"
           >
             Enter Dashboard
           </Link>
 
           {/* View Setup Log */}
           <div className="mt-4">
-            <button className="inline-flex items-center gap-1.5 text-sm text-[#53424a] dark:text-[#a09098] hover:text-[#751859] dark:hover:text-[#d4a0c4] transition-colors">
+            <Button className="inline-flex items-center gap-1.5 text-sm text-on-surface-variant hover:text-primary transition-colors">
               <span className="material-symbols-outlined text-[16px]">
                 description
               </span>
               View Setup Log
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Footer */}
         <div className="mt-8 w-full">
-          <p className="text-center text-sm font-medium text-[#85727b]/60 dark:text-[#85727b]/40">
+          <p className="text-center text-sm font-medium text-outline/80">
             Attend.AI
           </p>
           <div className="mt-4 flex items-center justify-between px-2">
-            <span className="text-[9px] font-medium tracking-[0.1em] uppercase text-[#85727b]/50 dark:text-[#85727b]/30">
+            <span className="text-[9px] font-medium tracking-[0.1em] uppercase text-outline/75">
               Encryption: AES-256
             </span>
-            <span className="text-[9px] font-medium tracking-[0.1em] uppercase text-[#85727b]/50 dark:text-[#85727b]/30">
+            <span className="text-[9px] font-medium tracking-[0.1em] uppercase text-outline/75">
               Latency: 12ms
             </span>
           </div>
