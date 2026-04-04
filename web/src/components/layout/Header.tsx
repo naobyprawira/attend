@@ -9,21 +9,71 @@ import { useAuth } from "@/lib/auth/context";
 import type { TranslationKey } from "@/lib/i18n/translations";
 import { Button, buttonClasses } from "@/components/ui/Button";
 
-const PAGE_TITLE_MAP: Record<string, TranslationKey> = {
+const PAGE_TITLE_MAP: Record<string, TranslationKey | string> = {
   "/": "nav.dashboard",
   "/live": "nav.liveView",
   "/cameras": "cameras.title",
   "/persons": "nav.persons",
+  "/persons/import": "Import Persons",
   "/events": "events.title",
+  "/event-center": "Event Center",
   "/settings": "settings.title",
   "/attendance": "nav.attendance",
   "/shifts": "nav.shifts",
   "/analytics": "nav.analytics",
   "/reports": "nav.reports",
+  "/reports/department": "Department Report",
+  "/reports/exceptions": "Exception Report",
   "/zones": "nav.zones",
+  "/zones/map": "Zone Map",
   "/visitors": "nav.visitors",
+  "/visitors/badge": "Visitor Badge",
   "/violations": "nav.violations",
+  "/api-docs": "API Docs",
+  "/api-keys": "API Keys",
+  "/backups": "Backups",
+  "/cross-site": "Cross Site",
+  "/heatmap": "Heatmap",
+  "/network": "Network",
+  "/people-counting": "Occupancy Intelligence",
+  "/permissions": "Permissions",
+  "/search": "Search",
+  "/sites": "Sites",
+  "/system-health": "System Health",
+  "/system-logs": "System Logs",
+  "/users": "Users",
+  "/webhooks": "Webhooks",
 };
+
+function normalizePath(pathname: string): string {
+  if (pathname.startsWith("/attendance/")) {
+    return "/attendance";
+  }
+  return pathname;
+}
+
+function humanizePathname(pathname: string): string {
+  const parts = pathname.split("/").filter(Boolean);
+  const segment = parts[parts.length - 1] ?? "dashboard";
+  return segment
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (ch) => ch.toUpperCase());
+}
+
+function resolvePageTitle(pathname: string, t: (key: TranslationKey) => string): string {
+  const normalizedPath = normalizePath(pathname);
+  const mapped = PAGE_TITLE_MAP[normalizedPath];
+
+  if (!mapped) {
+    return humanizePathname(normalizedPath);
+  }
+
+  if (mapped.includes(".")) {
+    return t(mapped as TranslationKey);
+  }
+
+  return mapped;
+}
 
 export function Header() {
   const pathname = usePathname();
@@ -46,8 +96,7 @@ export function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const titleKey = PAGE_TITLE_MAP[pathname] ?? "nav.dashboard";
-  const pageTitle = t(titleKey);
+  const pageTitle = resolvePageTitle(pathname, t);
 
   return (
     <header className="sticky top-0 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/10 flex justify-between items-center w-full px-4 sm:px-6 lg:px-8 py-4">
@@ -127,7 +176,7 @@ export function Header() {
         <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
           {/* Search */}
           <div className="relative hidden lg:block">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">
+            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/75">
               search
             </span>
             <input
@@ -174,7 +223,7 @@ export function Header() {
                   onClick={() => setProfileOpen(false)}
                   className={buttonClasses(
                     { variant: "ghost", size: "sm", fullWidth: true },
-                    "justify-start rounded-none px-4",
+                    "justify-start rounded-md px-4",
                   )}
                 >
                   <span className="material-symbols-outlined text-base">settings</span>
@@ -188,7 +237,7 @@ export function Header() {
                   variant="dangerGhost"
                   size="sm"
                   fullWidth
-                  className="justify-start rounded-none px-4"
+                  className="justify-start rounded-md px-4"
                 >
                   <span className="material-symbols-outlined text-base">logout</span>
                   Sign out
