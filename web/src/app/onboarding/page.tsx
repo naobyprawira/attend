@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState, useCallback } from "react";
 import { Select } from "@/components/Select";
 
@@ -147,7 +149,7 @@ export default function OnboardingPage() {
             const isActive = step === idx;
             const isDone = step > idx;
             return (
-              <button
+              <Button
                 key={s.label}
                 onClick={() => setStep(idx)}
                 className={`flex items-center gap-3 w-full px-4 py-3 rounded-lg text-sm font-medium transition-all ${
@@ -165,7 +167,7 @@ export default function OnboardingPage() {
                   {isDone ? "check_circle" : s.icon}
                 </span>
                 <span>{s.label}</span>
-              </button>
+              </Button>
             );
           })}
         </nav>
@@ -202,12 +204,12 @@ export default function OnboardingPage() {
           </div>
           <div className="flex items-center gap-6">
             <div className="flex gap-2">
-              <button className="material-symbols-outlined text-secondary hover:bg-surface-container p-2 rounded-lg transition-colors">
+              <Button className="material-symbols-outlined text-secondary hover:bg-surface-container p-2 rounded-lg transition-colors">
                 help_outline
-              </button>
-              <button className="material-symbols-outlined text-secondary hover:bg-surface-container p-2 rounded-lg transition-colors">
+              </Button>
+              <Button className="material-symbols-outlined text-secondary hover:bg-surface-container p-2 rounded-lg transition-colors">
                 settings
-              </button>
+              </Button>
             </div>
             <div className="flex items-center gap-3 pl-6 border-l border-outline-variant/30">
               <span className="text-sm font-semibold text-primary">System Admin</span>
@@ -259,7 +261,7 @@ export default function OnboardingPage() {
             const idx = i + 1;
             const isActive = step === idx;
             return (
-              <button
+              <Button
                 key={s.label}
                 onClick={() => setStep(idx)}
                 className={`flex flex-col items-center gap-1 ${isActive ? "text-primary" : "text-secondary"}`}
@@ -271,7 +273,7 @@ export default function OnboardingPage() {
                   {s.icon}
                 </span>
                 <span className="text-[10px] font-bold">{s.label.split(" ").pop()}</span>
-              </button>
+              </Button>
             );
           })}
         </nav>
@@ -334,24 +336,24 @@ function StepHardwareValidation({ onNext }: { onNext: () => void }) {
         {/* Right: Visual feedback */}
         <section className="col-span-12 lg:col-span-5 space-y-6">
           {/* Server preview card */}
-          <div className="relative rounded-xl overflow-hidden aspect-video bg-on-secondary-fixed">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-on-secondary-fixed/80 flex items-center justify-center">
-              <span className="material-symbols-outlined text-white/10 text-8xl">dns</span>
+          <div className="relative rounded-xl overflow-hidden aspect-video bg-surface-container-high dark:bg-on-secondary-fixed border border-outline-variant/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-surface-container-highest dark:from-primary/30 dark:to-on-secondary-fixed/80 flex items-center justify-center">
+              <span className="material-symbols-outlined text-outline/70 dark:text-white/35 text-8xl">dns</span>
             </div>
             <div className="absolute top-4 left-4 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-error animate-pulse" />
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">
+              <span className="text-[10px] font-bold text-on-surface dark:text-white uppercase tracking-widest">
                 Live System Diagnostics
               </span>
             </div>
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
               <div>
-                <p className="text-white font-bold text-sm">datacenter-node-01</p>
-                <p className="text-white/60 text-[10px] uppercase">status: verifying packets...</p>
+                <p className="text-on-surface dark:text-white font-bold text-sm">datacenter-node-01</p>
+                <p className="text-on-surface-variant dark:text-white/60 text-[10px] uppercase">status: verifying packets...</p>
               </div>
               <div className="text-right">
                 <p className="text-primary-fixed-dim font-black text-2xl tracking-tighter">98%</p>
-                <p className="text-white/40 text-[10px] uppercase">load efficiency</p>
+                <p className="text-on-surface-variant dark:text-white/80 text-[10px] uppercase">load efficiency</p>
               </div>
             </div>
           </div>
@@ -391,21 +393,21 @@ function StepHardwareValidation({ onNext }: { onNext: () => void }) {
 
       {/* Footer */}
       <footer className="mt-8 pt-6 flex justify-between items-center border-t border-outline-variant/20">
-        <button className="flex items-center gap-2 text-secondary font-semibold hover:text-primary transition-colors">
+        <Button className="flex items-center gap-2 text-secondary font-semibold hover:text-primary transition-colors">
           <span className="material-symbols-outlined">restart_alt</span>
           Rerun Diagnostic
-        </button>
+        </Button>
         <div className="flex items-center gap-4">
-          <button className="px-6 py-3 text-primary font-bold hover:bg-surface-container transition-colors rounded-lg">
+          <Button className="px-6 py-3 text-primary font-bold hover:bg-surface-container transition-colors rounded-lg">
             Export Logs
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={onNext}
             className="px-10 py-3 primary-gradient text-white font-bold rounded-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform flex items-center gap-2"
           >
             Continue to Admin Setup
             <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
+          </Button>
         </div>
       </footer>
     </div>
@@ -533,19 +535,19 @@ function StepCreateAdmin({
             </div>
 
             <div className="pt-6 flex items-center justify-between border-t border-outline-variant/10">
-              <button
+              <Button
                 type="button"
                 onClick={onPrev}
                 className="px-6 py-3 text-primary font-bold text-sm hover:bg-surface-container-high rounded-lg transition-colors"
               >
                 Back to System Check
-              </button>
-              <button
+              </Button>
+              <Button
                 type="submit"
                 className="primary-gradient px-10 py-3 rounded-lg text-white font-bold text-sm shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
                 Initialize Admin Account
-              </button>
+              </Button>
             </div>
           </form>
         </div>
@@ -582,13 +584,13 @@ function StepCreateAdmin({
             </p>
           </div>
 
-          <div className="rounded-xl overflow-hidden aspect-video relative bg-on-secondary-fixed">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/40 to-on-secondary-fixed/80 flex items-center justify-center">
-              <span className="material-symbols-outlined text-white/10 text-8xl">shield</span>
+          <div className="rounded-xl overflow-hidden aspect-video relative bg-surface-container-high dark:bg-on-secondary-fixed border border-outline-variant/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-surface-container-highest dark:from-primary/40 dark:to-on-secondary-fixed/80 flex items-center justify-center">
+              <span className="material-symbols-outlined text-outline/70 dark:text-white/35 text-8xl">shield</span>
             </div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-white/20 backdrop-blur-md rounded-full p-3 border border-white/30">
-                <span className="material-symbols-outlined text-white">visibility</span>
+              <div className="bg-surface-container-low/70 dark:bg-white/20 backdrop-blur-md rounded-full p-3 border border-outline-variant/30 dark:border-white/30">
+                <span className="material-symbols-outlined text-on-surface dark:text-white">visibility</span>
               </div>
             </div>
           </div>
@@ -678,7 +680,7 @@ function StepAddCamera({
               </label>
               <div className="flex gap-3">
                 {(["websocket", "rtsp"] as const).map((proto) => (
-                  <button
+                  <Button
                     key={proto}
                     onClick={() => update("protocol", proto)}
                     className={`px-6 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wider transition-all ${
@@ -688,7 +690,7 @@ function StepAddCamera({
                     }`}
                   >
                     {proto === "websocket" ? "WebSocket" : "RTSP"}
-                  </button>
+                  </Button>
                 ))}
               </div>
             </div>
@@ -713,7 +715,7 @@ function StepAddCamera({
 
             {/* Test button */}
             <div className="flex items-center gap-4">
-              <button
+              <Button
                 type="button"
                 onClick={onTest}
                 disabled={testStatus === "testing" || !form.url}
@@ -723,7 +725,7 @@ function StepAddCamera({
                   {testStatus === "testing" ? "sync" : "cable"}
                 </span>
                 Test Connection
-              </button>
+              </Button>
               {testStatus === "success" && (
                 <span className="flex items-center gap-1 text-tertiary text-sm font-bold">
                   <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
@@ -745,9 +747,9 @@ function StepAddCamera({
         {/* Right: Preview + tips */}
         <section className="col-span-12 lg:col-span-5 space-y-6">
           {/* Preview */}
-          <div className="relative rounded-xl overflow-hidden aspect-video bg-on-secondary-fixed">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-on-secondary-fixed/90 flex items-center justify-center">
-              <span className="material-symbols-outlined text-white/10 text-8xl">videocam</span>
+          <div className="relative rounded-xl overflow-hidden aspect-video bg-surface-container-high dark:bg-on-secondary-fixed border border-outline-variant/20">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-surface-container-highest dark:from-primary/20 dark:to-on-secondary-fixed/90 flex items-center justify-center">
+              <span className="material-symbols-outlined text-outline/70 dark:text-white/35 text-8xl">videocam</span>
             </div>
             <div className="absolute top-4 left-4 flex items-center gap-2">
               <div
@@ -755,7 +757,7 @@ function StepAddCamera({
                   testStatus === "success" ? "bg-tertiary-fixed" : "bg-error"
                 } ${testStatus === "testing" ? "animate-pulse" : ""}`}
               />
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">
+              <span className="text-[10px] font-bold text-on-surface dark:text-white uppercase tracking-widest">
                 {testStatus === "success"
                   ? "Stream Active"
                   : testStatus === "testing"
@@ -767,10 +769,10 @@ function StepAddCamera({
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="flex justify-between items-end">
                   <div>
-                    <p className="text-white font-bold text-sm">{form.name || "Camera Feed"}</p>
-                    <p className="text-white/60 text-[10px] uppercase">{form.protocol} stream</p>
+                    <p className="text-on-surface dark:text-white font-bold text-sm">{form.name || "Camera Feed"}</p>
+                    <p className="text-on-surface-variant dark:text-white/60 text-[10px] uppercase">{form.protocol} stream</p>
                   </div>
-                  <span className="text-[10px] text-white/40 font-mono">LIVE</span>
+                  <span className="text-[10px] text-on-surface-variant dark:text-white/80 font-mono">LIVE</span>
                 </div>
               </div>
             )}
@@ -792,27 +794,27 @@ function StepAddCamera({
 
       {/* Footer */}
       <footer className="mt-8 pt-6 flex justify-between items-center border-t border-outline-variant/20">
-        <button
+        <Button
           onClick={onPrev}
           className="flex items-center gap-2 text-secondary font-semibold hover:text-primary transition-colors"
         >
           <span className="material-symbols-outlined">arrow_back</span>
           Previous Step
-        </button>
+        </Button>
         <div className="flex items-center gap-4">
-          <button
+          <Button
             onClick={onNext}
             className="px-6 py-3 text-primary font-bold hover:bg-surface-container transition-colors rounded-lg"
           >
             Skip for now
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={onNext}
             className="px-10 py-3 primary-gradient text-white font-bold rounded-lg shadow-xl shadow-primary/20 hover:scale-[1.02] transition-transform flex items-center gap-2"
           >
             Complete Connection & Next
             <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
+          </Button>
         </div>
       </footer>
     </div>
@@ -891,7 +893,7 @@ function StepRegisterPerson({
                 />
               ) : (
                 <>
-                  <span className="material-symbols-outlined text-4xl text-outline/40 mb-3">
+                  <span className="material-symbols-outlined text-4xl text-outline/60 mb-3">
                     add_a_photo
                   </span>
                   <p className="text-sm font-medium text-on-surface-variant mb-1">
@@ -934,22 +936,22 @@ function StepRegisterPerson({
         {/* Right: AI preview + form */}
         <div className="lg:col-span-5 space-y-6">
           {/* AI Crop Preview */}
-          <div className="bg-on-secondary-fixed rounded-xl p-6 text-center">
-            <p className="text-[10px] font-bold text-white/60 uppercase tracking-widest mb-4">
+          <div className="bg-surface-container-high dark:bg-on-secondary-fixed rounded-xl p-6 text-center border border-outline-variant/20">
+            <p className="text-[10px] font-bold text-on-surface-variant dark:text-white/60 uppercase tracking-widest mb-4">
               AI Crop Preview
             </p>
             <div className="w-28 h-28 mx-auto rounded-full overflow-hidden bg-surface-container-highest/20 mb-4 flex items-center justify-center">
               {uploadedImage ? (
                 <img src={uploadedImage} alt="AI crop" className="w-full h-full object-cover" />
               ) : (
-                <span className="material-symbols-outlined text-white/20 text-5xl">face</span>
+                <span className="material-symbols-outlined text-outline dark:text-white/35 text-5xl">face</span>
               )}
             </div>
-            <div className="inline-flex items-center gap-2 bg-primary-container/30 rounded-full px-4 py-1.5">
-              <span className="text-xs font-bold text-primary-fixed-dim uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 bg-primary/10 dark:bg-primary-container/30 rounded-full px-4 py-1.5">
+              <span className="text-xs font-bold text-primary uppercase tracking-wider">
                 Confidence Score
               </span>
-              <span className="text-lg font-black text-white">
+              <span className="text-lg font-black text-on-surface dark:text-white">
                 {uploadedImage ? "98.4%" : "--.--%"}
               </span>
             </div>
@@ -999,10 +1001,10 @@ function StepRegisterPerson({
           </div>
 
           {/* Finish button */}
-          <button className="w-full py-4 primary-gradient text-white font-bold rounded-xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-sm">
+          <Button className="w-full py-4 primary-gradient text-white font-bold rounded-xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-sm">
             Finish Setup
             <span className="material-symbols-outlined">check_circle</span>
-          </button>
+          </Button>
 
           <p className="text-[11px] text-on-surface-variant text-center leading-relaxed">
             By finishing, you acknowledge that biometric data will be stored securely in compliance
@@ -1013,13 +1015,13 @@ function StepRegisterPerson({
 
       {/* Footer */}
       <footer className="mt-8 pt-6 flex justify-between items-center border-t border-outline-variant/20">
-        <button
+        <Button
           onClick={onPrev}
           className="flex items-center gap-2 text-secondary font-semibold hover:text-primary transition-colors"
         >
           <span className="material-symbols-outlined">arrow_back</span>
           Previous Step
-        </button>
+        </Button>
       </footer>
     </div>
   );
