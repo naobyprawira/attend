@@ -1,6 +1,7 @@
 import { forwardRef, type ButtonHTMLAttributes } from "react";
 
 export type ButtonVariant =
+  | "plain"
   | "primary"
   | "secondary"
   | "outline"
@@ -8,9 +9,9 @@ export type ButtonVariant =
   | "danger"
   | "dangerGhost";
 
-export type ButtonSize = "xs" | "sm" | "md" | "lg" | "icon" | "iconSm";
+export type ButtonSize = "none" | "xs" | "sm" | "md" | "lg" | "icon" | "iconSm";
 
-export type ButtonShape = "default" | "full";
+export type ButtonShape = "none" | "default" | "full";
 
 interface ButtonStyleOptions {
   variant?: ButtonVariant;
@@ -25,6 +26,7 @@ export interface ButtonProps
     ButtonStyleOptions {}
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {
+  plain: "",
   primary:
     "primary-gradient text-white shadow-sm shadow-primary/20 hover:opacity-90 active:scale-[0.99]",
   secondary:
@@ -38,6 +40,7 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
 };
 
 const SIZE_STYLES: Record<ButtonSize, string> = {
+  none: "",
   xs: "h-8 px-3 text-[11px] sm:text-xs",
   sm: "h-9 px-3.5 text-xs sm:text-sm",
   md: "h-10 px-4 text-sm",
@@ -47,7 +50,8 @@ const SIZE_STYLES: Record<ButtonSize, string> = {
 };
 
 const SHAPE_STYLES: Record<ButtonShape, string> = {
-  default: "rounded-xl",
+  none: "",
+  default: "rounded-lg",
   full: "rounded-full",
 };
 
@@ -60,8 +64,8 @@ export function buttonClasses(
   className?: string,
 ): string {
   const {
-    variant = "secondary",
-    size = "md",
+    variant = "plain",
+    size = "none",
     shape = "default",
     fullWidth = false,
     uppercase = false,
@@ -82,8 +86,8 @@ export function buttonClasses(
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
-    variant = "secondary",
-    size = "md",
+    variant = "plain",
+    size = "none",
     shape = "default",
     fullWidth = false,
     uppercase = false,
