@@ -66,7 +66,7 @@ export function Select({ value, onChange, options, className = "", disabled = fa
                 onChange(option.value);
                 setOpen(false);
               }}
-              className={`rounded-none justify-start px-3.5 text-left text-sm font-normal capitalize ${
+              className={`rounded-md first:rounded-t-md last:rounded-b-md justify-start px-3.5 text-left text-sm font-normal capitalize ${
                 value === option.value
                   ? "bg-primary/10 text-primary font-semibold"
                   : "text-on-surface hover:bg-surface-container"
