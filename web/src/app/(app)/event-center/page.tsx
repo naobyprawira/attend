@@ -339,369 +339,265 @@ export default function EventCenterPage() {
   const removeFilter = (f: string) => setFilters((prev) => prev.filter((x) => x !== f));
 
   return (
-    <div className="flex min-h-screen bg-surface text-on-surface">
-      {/* Sidebar */}
-      <aside className="hidden md:flex flex-col py-6 w-64 bg-surface-container-lowest shrink-0 border-r border-outline-variant/5">
-        <div className="px-6 mb-8">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
-              <span
-                className="material-symbols-outlined text-on-primary-container text-sm"
-                style={{ fontVariationSettings: "'FILL' 1" }}
-              >
-                monitoring
-              </span>
-            </div>
+    <div className="min-h-screen bg-surface text-on-surface">
+      <main className="mx-auto w-full max-w-[1700px] p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8">
+        <section className="rounded-2xl border border-outline-variant/20 bg-surface-container-lowest p-4 sm:p-6 shadow-sm">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-on-surface">
-                Event Center
-              </h2>
-              <p className="text-[10px] text-primary font-bold tracking-tight">
-                High Priority Active
+              <h2 className="text-3xl font-extrabold tracking-tight text-on-surface">Event Center</h2>
+              <p className="mt-1 text-sm text-on-surface-variant">
+                Real-time anomaly stream, prioritization, and response workflow in one view.
               </p>
             </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <Button className="rounded-lg border border-outline-variant/30 bg-surface px-4 py-2 text-xs font-bold uppercase tracking-wider text-on-surface-variant hover:bg-surface-container">
+                Generate Report
+              </Button>
+              <Button className="rounded-lg bg-primary px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-sm hover:opacity-90">
+                Log Manual Event
+              </Button>
+            </div>
           </div>
-        </div>
 
-        <nav className="flex-1 space-y-1">
-          {CATEGORIES.map((cat) => (
-            <Button
-              key={cat.label}
-              onClick={() => setActiveCategory(cat.label)}
-              className={`flex items-center gap-3 mx-2 px-4 py-3 w-[calc(100%-1rem)] text-left transition-colors rounded-lg ${
-                activeCategory === cat.label
-                  ? "bg-fuchsia-50 text-fuchsia-800"
-                  : "text-on-surface-variant hover:bg-surface-container"
-              }`}
-            >
-              <span className="material-symbols-outlined">{cat.icon}</span>
-              <span className="text-sm font-semibold uppercase tracking-widest">
-                {cat.label}
-              </span>
-            </Button>
-          ))}
-        </nav>
-
-        <div className="px-4 mt-auto space-y-4">
-          <Button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-3 px-4 rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20">
-            Generate Report
-          </Button>
-          <div className="border-t border-outline-variant/10 pt-4 space-y-1">
-            <a
-              href="#"
-              className="flex items-center gap-3 text-on-surface-variant px-4 py-2 text-sm uppercase tracking-widest font-semibold"
-            >
-              <span className="material-symbols-outlined text-sm">help</span> Support
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-3 text-on-surface-variant px-4 py-2 text-sm uppercase tracking-widest font-semibold"
-            >
-              <span className="material-symbols-outlined text-sm">logout</span> Sign Out
-            </a>
+          <div className="mt-5 overflow-x-auto">
+            <div className="flex min-w-max gap-1 rounded-xl bg-surface-container p-1">
+              {CATEGORIES.map((cat) => (
+                <Button
+                  key={cat.label}
+                  onClick={() => setActiveCategory(cat.label)}
+                  className={`inline-flex items-center gap-2 whitespace-nowrap rounded-lg px-4 py-2.5 text-sm font-semibold transition-all ${
+                    activeCategory === cat.label
+                      ? "bg-surface-container-lowest text-on-surface shadow-sm"
+                      : "text-on-surface-variant hover:text-on-surface"
+                  }`}
+                >
+                  <span className="material-symbols-outlined text-base">{cat.icon}</span>
+                  {cat.label}
+                </Button>
+              ))}
+            </div>
           </div>
-        </div>
-      </aside>
+        </section>
 
-      {/* Main */}
-      <main className="flex-1 overflow-y-auto">
-        <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8">
-          {/* Filter Bar */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface-container-lowest p-4 sm:p-6 rounded-xl border border-outline-variant/5 shadow-sm">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <div className="flex flex-col">
-                <label className="text-[10px] font-bold text-secondary uppercase tracking-widest mb-1">
-                  Time Range
-                </label>
-                <div className="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-lg cursor-pointer">
-                  <span className="material-symbols-outlined text-primary text-sm">event</span>
-                  <span className="text-sm font-semibold">Oct 24, 2023 - Today</span>
-                  <span className="material-symbols-outlined text-secondary text-xs">
-                    expand_more
-                  </span>
-                </div>
+        <section className="flex flex-col gap-4 rounded-2xl border border-outline-variant/20 bg-surface-container-lowest p-4 sm:p-6 shadow-sm md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div>
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-secondary">Time Range</p>
+              <div className="flex items-center gap-2 rounded-lg bg-surface-container px-4 py-2 text-sm font-semibold">
+                <span className="material-symbols-outlined text-base text-primary">event</span>
+                Oct 24, 2023 - Today
+                <span className="material-symbols-outlined text-sm text-secondary">expand_more</span>
               </div>
-              <div className="h-10 w-[1px] bg-outline-variant/20 hidden md:block"></div>
-              <div className="flex flex-col">
-                <label className="text-[10px] font-bold text-secondary uppercase tracking-widest mb-1">
-                  Active Filters
-                </label>
-                <div className="flex gap-2 flex-wrap">
-                  {filters.map((f) => (
-                    <span
-                      key={f}
-                      className={`text-[11px] font-bold px-3 py-1 rounded-full flex items-center gap-1 ${
-                        f === "High Priority"
-                          ? "bg-primary/10 text-primary"
-                          : "bg-surface-container-high text-on-surface-variant"
-                      }`}
+            </div>
+            <div className="hidden h-10 w-px bg-outline-variant/30 sm:block"></div>
+            <div>
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-secondary">Active Filters</p>
+              <div className="flex flex-wrap gap-2">
+                {filters.map((f) => (
+                  <span
+                    key={f}
+                    className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-bold ${
+                      f === "High Priority"
+                        ? "bg-primary/10 text-primary"
+                        : "bg-surface-container text-on-surface-variant"
+                    }`}
+                  >
+                    {f}
+                    <Button
+                      onClick={() => removeFilter(f)}
+                      className="rounded-full p-0.5 text-current hover:bg-surface-container-high"
+                      aria-label={`Remove ${f} filter`}
                     >
-                      {f}
-                      <Button onClick={() => removeFilter(f)}>
-                        <span className="material-symbols-outlined text-[14px]">close</span>
-                      </Button>
-                    </span>
-                  ))}
-                </div>
+                      <span className="material-symbols-outlined text-sm">close</span>
+                    </Button>
+                  </span>
+                ))}
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button className="flex items-center gap-2 bg-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">
-                <span className="material-symbols-outlined text-lg">filter_list</span>
-                Advanced Filters
-              </Button>
-              <Button className="flex items-center gap-2 bg-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">
-                <span className="material-symbols-outlined text-lg">ios_share</span>
-                Export
-              </Button>
             </div>
           </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button className="inline-flex items-center gap-2 rounded-lg bg-surface-container px-4 py-2 text-sm font-bold text-primary hover:bg-surface-container-high">
+              <span className="material-symbols-outlined text-base">filter_list</span>
+              Advanced Filters
+            </Button>
+            <Button className="inline-flex items-center gap-2 rounded-lg bg-surface-container px-4 py-2 text-sm font-bold text-primary hover:bg-surface-container-high">
+              <span className="material-symbols-outlined text-base">ios_share</span>
+              Export
+            </Button>
+          </div>
+        </section>
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {/* Event Table */}
-            <div className="lg:col-span-3 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/5">
-              {/* Table Header */}
-              <div className="px-4 sm:px-6 py-4 border-b border-outline-variant/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-surface-container-lowest">
-                <h3 className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-error ai-pulse"></span>
-                  Real-Time Exception Feed
-                </h3>
-                <div className="flex items-center gap-4">
-                  <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">
-                    Showing 42 recent events
-                  </span>
-                  <div className="flex gap-1">
-                    <Button className="p-1 hover:bg-surface-container-low rounded">
-                      <span className="material-symbols-outlined text-lg">grid_view</span>
-                    </Button>
-                    <Button className="p-1 bg-primary/10 text-primary rounded">
-                      <span className="material-symbols-outlined text-lg">view_list</span>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Table */}
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse min-w-[800px]">
-                  <thead>
-                    <tr className="bg-surface-container-low/50">
-                      {["Timestamp", "Event Type", "Camera", "Person", "Priority", "Status"].map(
-                        (h) => (
-                          <th
-                            key={h}
-                            className={`px-4 sm:px-6 py-4 text-[10px] font-bold text-secondary uppercase tracking-widest ${
-                              h === "Priority" ? "text-center" : ""
-                            }`}
-                          >
-                            {h}
-                          </th>
-                        )
-                      )}
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-outline-variant/5">
-                    {EVENTS.map((ev) => {
-                      const badge = BADGE[ev.type];
-                      return (
-                        <tr
-                          key={ev.id}
-                          onClick={() => setSelectedEvent(ev)}
-                          className={`hover:bg-surface-container-low transition-colors group cursor-pointer ${
-                            ev.type === "UNKNOWN_FACE" ? "bg-error/5" : ""
-                          }`}
-                        >
-                          <td className="px-4 sm:px-6 py-4">
-                            <div className="flex flex-col">
-                              <span className="text-sm font-bold">{ev.time}</span>
-                              <span className="text-[10px] text-on-surface-variant/60 font-medium">
-                                {ev.date}
-                              </span>
-                            </div>
-                          </td>
-                          <td className="px-4 sm:px-6 py-4">
-                            <span
-                              className={`${badge.cls} px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-tighter flex items-center w-fit gap-1`}
-                            >
-                              <span
-                                className="material-symbols-outlined text-[14px]"
-                                style={{ fontVariationSettings: "'FILL' 1" }}
-                              >
-                                {badge.icon}
-                              </span>
-                              {badge.label}
-                            </span>
-                          </td>
-                          <td className="px-4 sm:px-6 py-4">
-                            <span className="text-xs font-semibold text-secondary">
-                              {ev.camera}
-                            </span>
-                          </td>
-                          <td className="px-4 sm:px-6 py-4">
-                            {ev.person ? (
-                              <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-[10px] font-bold">
-                                  {ev.personAvatar}
-                                </div>
-                                <span className="text-xs font-bold">{ev.person}</span>
-                              </div>
-                            ) : ev.type === "UNKNOWN_FACE" ? (
-                              <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant/20">
-                                  <span className="material-symbols-outlined text-secondary text-sm">
-                                    person_off
-                                  </span>
-                                </div>
-                                <span className="text-xs font-bold italic text-on-surface-variant">
-                                  Unknown
-                                </span>
-                              </div>
-                            ) : (
-                              <span className="text-xs font-bold text-on-surface-variant/75">&mdash;</span>
-                            )}
-                          </td>
-                          <td className="px-4 sm:px-6 py-4 text-center">
-                            {ev.priority === "high" ? (
-                              <span
-                                className="material-symbols-outlined text-error text-lg"
-                                style={{ fontVariationSettings: "'FILL' 1" }}
-                              >
-                                priority_high
-                              </span>
-                            ) : ev.priority === "medium" ? (
-                              <span
-                                className="material-symbols-outlined text-orange-500 text-lg"
-                                style={{ fontVariationSettings: "'FILL' 1" }}
-                              >
-                                priority_high
-                              </span>
-                            ) : ev.priority === "low" ? (
-                              <span className="material-symbols-outlined text-secondary text-lg">
-                                low_priority
-                              </span>
-                            ) : (
-                              <span className="material-symbols-outlined text-secondary/70 text-lg">
-                                drag_handle
-                              </span>
-                            )}
-                          </td>
-                          <td className="px-4 sm:px-6 py-4">
-                            {ev.status === "new" ? (
-                              <span className="text-[10px] font-black text-error uppercase tracking-widest">
-                                New
-                              </span>
-                            ) : (
-                              <span className="text-[10px] font-bold text-on-surface-variant/75 uppercase">
-                                Acknowledged
-                              </span>
-                            )}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Pagination */}
-              <div className="px-4 sm:px-6 py-4 border-t border-outline-variant/5 bg-surface-container-low/30 flex flex-col sm:flex-row justify-between items-center gap-2">
-                <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">
-                  Showing 4 of 1,240 Events
-                </span>
-                <div className="flex items-center gap-2">
-                  <Button className="p-1 rounded hover:bg-surface-container-high transition-colors">
-                    <span className="material-symbols-outlined text-lg">chevron_left</span>
-                  </Button>
-                  <span className="text-xs font-bold text-primary px-3">Page 1 of 310</span>
-                  <Button className="p-1 rounded hover:bg-surface-container-high transition-colors">
-                    <span className="material-symbols-outlined text-lg">chevron_right</span>
-                  </Button>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_320px]">
+          <section className="rounded-2xl border border-outline-variant/20 bg-surface-container-lowest shadow-sm overflow-hidden">
+            <div className="flex flex-col gap-2 border-b border-outline-variant/15 bg-surface-container-low px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+              <h3 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest">
+                <span className="h-2 w-2 rounded-full bg-error ai-pulse"></span>
+                Real-Time Exception Feed
+              </h3>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-secondary">Showing 42 recent events</span>
             </div>
 
-            {/* Right Panel */}
-            <div className="space-y-6">
-              {/* Last Violation */}
-              <div className="bg-surface-container-high dark:bg-on-secondary-fixed text-on-surface dark:text-white p-6 rounded-xl shadow-xl overflow-hidden relative border border-outline-variant/20">
-                <div className="absolute top-0 right-0 p-4">
-                  <span className="text-[10px] font-black text-primary-fixed-dim uppercase tracking-[0.2em] animate-pulse-live">
-                    Live
-                  </span>
-                </div>
-                <h4 className="text-[10px] font-bold text-on-surface-variant dark:text-white/80 uppercase tracking-widest mb-4">
-                  Last Violation Image
-                </h4>
-                <div className="aspect-video bg-surface-container rounded-lg mb-4 overflow-hidden group cursor-pointer relative">
-                  <div className="w-full h-full bg-gradient-to-br from-surface-container-high to-surface-container-highest dark:from-slate-700 dark:to-slate-900 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-outline/70 dark:text-white/35 text-6xl">
-                      security
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 border-[1.5px] border-primary/40 opacity-50"></div>
-                  <div className="absolute bottom-2 left-2 bg-error text-white px-2 py-0.5 rounded text-[8px] font-black uppercase">
-                    Unauthorized
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs text-on-surface-variant dark:text-white/80">Match Confidence</span>
-                    <span className="text-xs font-bold text-primary-fixed-dim">98.2%</span>
-                  </div>
-                  <div className="w-full h-1 bg-surface-container rounded-full overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-secondary-fixed-dim to-primary w-[98%]"></div>
-                  </div>
-                </div>
-                <Button className="w-full mt-6 bg-surface-container-highest/30 hover:bg-surface-container-highest/50 dark:bg-surface-container-highest/10 dark:hover:bg-surface-container-highest/20 text-on-surface dark:text-white py-2.5 rounded-lg text-xs font-bold border border-outline-variant/20 dark:border-white/10 transition-colors uppercase tracking-widest">
-                  View Full Incident
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[800px] border-collapse text-left">
+                <thead>
+                  <tr className="bg-surface-container-low/50">
+                    {["Timestamp", "Event Type", "Camera", "Person", "Priority", "Status"].map((h) => (
+                      <th
+                        key={h}
+                        className={`px-4 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary sm:px-6 ${
+                          h === "Priority" ? "text-center" : ""
+                        }`}
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-outline-variant/10">
+                  {EVENTS.map((ev) => {
+                    const badge = BADGE[ev.type];
+                    return (
+                      <tr
+                        key={ev.id}
+                        onClick={() => setSelectedEvent(ev)}
+                        className={`cursor-pointer transition-colors hover:bg-surface-container-low ${
+                          ev.type === "UNKNOWN_FACE" ? "bg-error/5" : ""
+                        }`}
+                      >
+                        <td className="px-4 py-4 sm:px-6">
+                          <div className="flex flex-col">
+                            <span className="text-sm font-bold">{ev.time}</span>
+                            <span className="text-[10px] font-medium text-on-surface-variant/70">{ev.date}</span>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 sm:px-6">
+                          <span className={`${badge.cls} inline-flex w-fit items-center gap-1 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-tighter`}>
+                            <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                              {badge.icon}
+                            </span>
+                            {badge.label}
+                          </span>
+                        </td>
+                        <td className="px-4 py-4 sm:px-6">
+                          <span className="text-xs font-semibold text-secondary">{ev.camera}</span>
+                        </td>
+                        <td className="px-4 py-4 sm:px-6">
+                          {ev.person ? (
+                            <div className="flex items-center gap-3">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-container text-[10px] font-bold text-on-primary-container">
+                                {ev.personAvatar}
+                              </div>
+                              <span className="text-xs font-bold">{ev.person}</span>
+                            </div>
+                          ) : ev.type === "UNKNOWN_FACE" ? (
+                            <div className="flex items-center gap-3">
+                              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-outline-variant/30 bg-surface-container-high">
+                                <span className="material-symbols-outlined text-sm text-secondary">person_off</span>
+                              </div>
+                              <span className="text-xs font-bold italic text-on-surface-variant">Unknown</span>
+                            </div>
+                          ) : (
+                            <span className="text-xs font-bold text-on-surface-variant/75">&mdash;</span>
+                          )}
+                        </td>
+                        <td className="px-4 py-4 text-center sm:px-6">
+                          {ev.priority === "high" ? (
+                            <span className="material-symbols-outlined text-lg text-error" style={{ fontVariationSettings: "'FILL' 1" }}>
+                              priority_high
+                            </span>
+                          ) : ev.priority === "medium" ? (
+                            <span className="material-symbols-outlined text-lg text-orange-500" style={{ fontVariationSettings: "'FILL' 1" }}>
+                              priority_high
+                            </span>
+                          ) : ev.priority === "low" ? (
+                            <span className="material-symbols-outlined text-lg text-secondary">low_priority</span>
+                          ) : (
+                            <span className="material-symbols-outlined text-lg text-secondary/70">drag_handle</span>
+                          )}
+                        </td>
+                        <td className="px-4 py-4 sm:px-6">
+                          {ev.status === "new" ? (
+                            <span className="text-[10px] font-black uppercase tracking-widest text-error">New</span>
+                          ) : (
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/80">Acknowledged</span>
+                          )}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="flex flex-col items-center justify-between gap-2 border-t border-outline-variant/15 bg-surface-container-low/40 px-4 py-4 sm:flex-row sm:px-6">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-secondary">Showing 4 of 1,240 events</span>
+              <div className="flex items-center gap-2">
+                <Button className="rounded p-1 hover:bg-surface-container-high">
+                  <span className="material-symbols-outlined text-lg">chevron_left</span>
+                </Button>
+                <span className="px-3 text-xs font-bold text-primary">Page 1 of 310</span>
+                <Button className="rounded p-1 hover:bg-surface-container-high">
+                  <span className="material-symbols-outlined text-lg">chevron_right</span>
                 </Button>
               </div>
+            </div>
+          </section>
 
-              {/* Intelligence Summary */}
-              <div className="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/5 shadow-sm space-y-4">
-                <h4 className="text-[10px] font-bold text-secondary uppercase tracking-widest">
-                  Intelligence Summary
-                </h4>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-surface-container-low p-4 rounded-lg">
-                    <span className="text-[8px] font-black text-secondary uppercase block mb-1">
-                      Criticals (24h)
-                    </span>
-                    <span className="text-xl font-black text-error">12</span>
-                  </div>
-                  <div className="bg-surface-container-low p-4 rounded-lg">
-                    <span className="text-[8px] font-black text-secondary uppercase block mb-1">
-                      Avg Resolution
-                    </span>
-                    <span className="text-xl font-black text-on-surface">
-                      4m
-                    </span>
-                  </div>
+          <aside className="space-y-6">
+            <section className="relative overflow-hidden rounded-2xl border border-outline-variant/20 bg-surface-container-high p-6 shadow-sm">
+              <div className="absolute right-4 top-4">
+                <span className="animate-pulse-live text-[10px] font-black uppercase tracking-[0.2em] text-primary-fixed-dim">Live</span>
+              </div>
+              <h4 className="mb-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Last Violation Image</h4>
+              <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-surface-container">
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-surface-container-high to-surface-container-highest">
+                  <span className="material-symbols-outlined text-6xl text-outline/70">security</span>
                 </div>
-                <div className="pt-4 space-y-3">
-                  <div className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-primary text-sm mt-0.5">
-                      lightbulb
-                    </span>
-                    <p className="text-[11px] leading-relaxed text-on-surface-variant font-medium">
-                      Unknown face frequency has increased by 14% at{" "}
-                      <span className="font-bold text-primary">Entrance A</span> today.
-                    </p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="material-symbols-outlined text-secondary text-sm mt-0.5">
-                      timer
-                    </span>
-                    <p className="text-[11px] leading-relaxed text-on-surface-variant font-medium">
-                      Peak event traffic detected between{" "}
-                      <span className="font-bold">08:00 AM - 09:30 AM</span>.
-                    </p>
-                  </div>
+                <div className="absolute inset-0 border-[1.5px] border-primary/40 opacity-50"></div>
+                <div className="absolute bottom-2 left-2 rounded bg-error px-2 py-0.5 text-[8px] font-black uppercase text-white">Unauthorized</div>
+              </div>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-on-surface-variant">Match Confidence</span>
+                  <span className="text-xs font-bold text-primary-fixed-dim">98.2%</span>
+                </div>
+                <div className="h-1 w-full overflow-hidden rounded-full bg-surface-container">
+                  <div className="h-full w-[98%] bg-gradient-to-r from-secondary-fixed-dim to-primary"></div>
                 </div>
               </div>
-            </div>
-          </div>
+              <Button className="mt-6 w-full rounded-lg border border-outline-variant/20 bg-surface-container-highest/30 py-2.5 text-xs font-bold uppercase tracking-widest text-on-surface hover:bg-surface-container-highest/50">
+                View Full Incident
+              </Button>
+            </section>
+
+            <section className="space-y-4 rounded-2xl border border-outline-variant/20 bg-surface-container-lowest p-6 shadow-sm">
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-secondary">Intelligence Summary</h4>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="rounded-lg bg-surface-container-low p-4">
+                  <span className="mb-1 block text-[8px] font-black uppercase text-secondary">Criticals (24h)</span>
+                  <span className="text-xl font-black text-error">12</span>
+                </div>
+                <div className="rounded-lg bg-surface-container-low p-4">
+                  <span className="mb-1 block text-[8px] font-black uppercase text-secondary">Avg Resolution</span>
+                  <span className="text-xl font-black text-on-surface">4m</span>
+                </div>
+              </div>
+              <div className="space-y-3 pt-4">
+                <div className="flex items-start gap-3">
+                  <span className="material-symbols-outlined mt-0.5 text-sm text-primary">lightbulb</span>
+                  <p className="text-[11px] font-medium leading-relaxed text-on-surface-variant">
+                    Unknown face frequency has increased by 14% at <span className="font-bold text-primary">Entrance A</span> today.
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="material-symbols-outlined mt-0.5 text-sm text-secondary">timer</span>
+                  <p className="text-[11px] font-medium leading-relaxed text-on-surface-variant">
+                    Peak event traffic detected between <span className="font-bold">08:00 AM - 09:30 AM</span>.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </aside>
         </div>
       </main>
 
