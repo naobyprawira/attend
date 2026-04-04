@@ -141,9 +141,10 @@ export default function ApiDocsPage() {
   const [expandedEndpoint, setExpandedEndpoint] = useState<number | null>(0);
 
   return (
-    <div className="flex flex-col lg:flex-row flex-1 overflow-hidden h-full bg-surface">
+    <div className="min-h-screen bg-surface text-on-surface">
+      <div className="mx-auto grid w-full max-w-[1700px] gap-6 p-4 sm:p-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:p-8">
       {/* ── Left Sidebar ── */}
-      <aside className="hidden lg:block lg:w-60 xl:w-64 bg-surface-container-low border-r border-outline-variant/10 p-4 sm:p-6 overflow-y-auto shrink-0">
+      <aside className="hidden lg:block rounded-2xl border border-outline-variant/20 bg-surface-container-low p-4 sm:p-6 shadow-sm lg:sticky lg:top-24 lg:max-h-[calc(100vh-8rem)] lg:overflow-y-auto">
         <div className="mb-6">
           <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">
             Core API
@@ -158,30 +159,30 @@ export default function ApiDocsPage() {
           </div>
         </div>
 
-        <nav className="space-y-1">
+        <nav className="space-y-1 rounded-xl border border-outline-variant/20 bg-surface-container p-1">
           {NAV_SECTIONS.map((section) => {
             const isActive = activeSection === section.label;
             return (
               <div key={section.label}>
                 <Button
                   onClick={() => setActiveSection(section.label)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
+                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-semibold transition-all ${
                     isActive
-                      ? "bg-primary-container text-white shadow-md"
-                      : "text-on-surface-variant hover:bg-surface-container"
+                      ? "bg-surface-container-lowest text-on-surface shadow-sm"
+                      : "text-on-surface-variant hover:text-on-surface"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-lg">
+                  <span className="material-symbols-outlined text-base">
                     {section.icon}
                   </span>
                   {section.label}
                 </Button>
                 {isActive && section.children.length > 0 && (
-                  <div className="ml-9 mt-1 space-y-0.5 border-l-2 border-outline-variant/20 pl-3">
+                  <div className="ml-7 mt-1 space-y-0.5 border-l border-outline-variant/30 pl-2">
                     {section.children.map((child) => (
                       <p
                         key={child}
-                        className="text-xs py-1.5 text-on-surface-variant hover:text-primary cursor-pointer transition-colors"
+                        className="py-1.5 text-[12px] font-medium text-on-surface-variant hover:text-primary cursor-pointer transition-colors"
                       >
                         {child}
                       </p>
@@ -194,9 +195,9 @@ export default function ApiDocsPage() {
         </nav>
 
         {/* Convert export button */}
-        <div className="mt-8">
-          <Button className="w-full primary-gradient text-white px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all text-xs uppercase tracking-widest">
-            <span className="material-symbols-outlined text-sm">
+        <div className="mt-4">
+          <Button className="w-full bg-primary text-white px-3 py-2 rounded-lg font-bold flex items-center justify-center gap-1.5 shadow-sm hover:opacity-90 transition-all text-[11px] uppercase tracking-wider">
+            <span className="material-symbols-outlined text-[16px]">
               download
             </span>
             Export OpenAPI
@@ -205,20 +206,19 @@ export default function ApiDocsPage() {
       </aside>
 
       {/* ── Main Content ── */}
-      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+      <main className="min-w-0">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <span className="inline-flex items-center px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] font-bold rounded-full uppercase lg:hidden">
-              Online
+        <div className="mb-8 rounded-2xl border border-outline-variant/20 bg-surface-container-lowest p-5 shadow-sm sm:p-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] font-bold rounded-full uppercase">
+              Core API Online
             </span>
-            <span className="text-[10px] text-on-surface-variant lg:hidden">
-              Last updated 2 hours ago
-            </span>
+            <span className="text-[10px] text-on-surface-variant">Last updated 2 hours ago</span>
           </div>
-          <h2 className="sr-only">
-            Persons Management
-          </h2>
+          <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-on-surface">API Docs</h1>
+          <p className="mt-2 max-w-3xl text-sm text-on-surface-variant">
+            Interactive reference for identity endpoints, payload contracts, and operational response examples.
+          </p>
         </div>
 
         {/* Endpoints */}
@@ -233,7 +233,7 @@ export default function ApiDocsPage() {
                 onClick={() =>
                   setExpandedEndpoint(expandedEndpoint === idx ? null : idx)
                 }
-                className="w-full flex items-center gap-3 px-6 py-5 text-left hover:bg-surface-container/50 transition-colors"
+                className="w-full flex items-center gap-3 px-6 py-4 text-left hover:bg-surface-container/50 transition-colors"
               >
                 <span
                   className={`px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md shrink-0 ${
@@ -349,8 +349,8 @@ export default function ApiDocsPage() {
                           <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
                             Request Body
                           </h4>
-                          <Button className="text-[10px] text-primary font-bold hover:underline flex items-center gap-1">
-                            <span className="material-symbols-outlined text-xs">
+                          <Button className="rounded-md border border-outline-variant/20 bg-surface-container px-2 py-1 text-[10px] text-on-surface-variant font-bold hover:text-primary flex items-center gap-1">
+                            <span className="material-symbols-outlined text-[14px]">
                               content_copy
                             </span>
                             Copy
@@ -372,8 +372,8 @@ export default function ApiDocsPage() {
                             ? `${ep.statusCode} Response`
                             : `${ep.statusCode} Implementation`}
                         </h4>
-                        <Button className="text-[10px] text-primary font-bold hover:underline flex items-center gap-1">
-                          <span className="material-symbols-outlined text-xs">
+                        <Button className="rounded-md border border-outline-variant/20 bg-surface-container px-2 py-1 text-[10px] text-on-surface-variant font-bold hover:text-primary flex items-center gap-1">
+                          <span className="material-symbols-outlined text-[14px]">
                             content_copy
                           </span>
                           Copy
@@ -400,6 +400,7 @@ export default function ApiDocsPage() {
           <span className="ml-auto">&copy; 2026 Observational Monolith</span>
         </div>
       </main>
+      </div>
     </div>
   );
 }
