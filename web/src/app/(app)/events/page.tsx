@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useMemo, useState } from "react";
 import { useEvents, useEventStats } from "@/lib/queries";
 import type { DetectionEvent, EventStats } from "@/lib/types";
@@ -56,12 +58,9 @@ export default function EventCenterPage() {
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-surface min-h-full">
       {/* Page Header */}
       <div>
-        <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
+        <h2 className="sr-only">
           Access Logs
         </h2>
-        <p className="text-on-surface-variant mt-2 font-medium">
-          View and search all detection events across your surveillance network.
-        </p>
       </div>
 
       {/* Stat Summary */}
@@ -109,12 +108,12 @@ export default function EventCenterPage() {
               className="bg-surface-container-highest border-none rounded-lg text-sm px-4 py-2.5 w-56 focus:ring-2 focus:ring-primary/20 text-on-surface"
             />
           </div>
-          <button
+          <Button
             type="submit"
             className="primary-gradient text-white text-xs font-bold px-6 py-3 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all"
           >
             Search
-          </button>
+          </Button>
         </form>
       </div>
 

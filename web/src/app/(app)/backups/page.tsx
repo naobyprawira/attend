@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 type BackupTab = "system" | "audit";
@@ -24,11 +26,11 @@ export default function BackupsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-6">
-          <h1 className="text-2xl font-black text-on-surface tracking-tight">
+          <h1 className="sr-only">
             Backups
           </h1>
           <div className="flex items-center gap-1 border-b border-outline-variant/10">
-            <button
+            <Button
               onClick={() => setActiveTab("system")}
               className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors ${
                 activeTab === "system"
@@ -37,8 +39,8 @@ export default function BackupsPage() {
               }`}
             >
               System Backups
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setActiveTab("audit")}
               className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-colors ${
                 activeTab === "audit"
@@ -47,13 +49,13 @@ export default function BackupsPage() {
               }`}
             >
               Audit Logs
-            </button>
+            </Button>
           </div>
         </div>
-        <button className="bg-gradient-to-r from-primary to-primary-container text-white px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:opacity-90 transition-opacity">
+        <Button className="bg-gradient-to-r from-primary to-primary-container text-white px-5 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:opacity-90 transition-opacity">
           <span className="material-symbols-outlined text-sm">backup</span>
           Backup Now
-        </button>
+        </Button>
       </div>
 
       {/* Configuration + Storage Info */}
@@ -106,7 +108,7 @@ export default function BackupsPage() {
                 Storage Location
               </label>
               <div className="flex gap-3">
-                <button
+                <Button
                   onClick={() => setStorageMode("cloud")}
                   className={`flex-1 py-3 px-4 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
                     storageMode === "cloud"
@@ -116,8 +118,8 @@ export default function BackupsPage() {
                 >
                   <span className="material-symbols-outlined text-sm">cloud</span>
                   Cloud
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => setStorageMode("local")}
                   className={`flex-1 py-3 px-4 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
                     storageMode === "local"
@@ -127,13 +129,13 @@ export default function BackupsPage() {
                 >
                   <span className="material-symbols-outlined text-sm">hard_drive</span>
                   Local
-                </button>
+                </Button>
               </div>
             </div>
 
-            <button className="w-full bg-on-surface text-surface py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+            <Button className="w-full bg-on-surface text-surface py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
               Save Configuration
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -151,9 +153,9 @@ export default function BackupsPage() {
               <div className="border-t border-white/20 pt-4">
                 <p className="text-[10px] uppercase tracking-widest opacity-70 font-bold">Last Validation</p>
                 <h3 className="text-lg font-bold mt-1">2 Hours Ago</h3>
-                <button className="text-xs underline opacity-80 hover:opacity-100 mt-1">
+                <Button className="text-xs underline opacity-80 hover:opacity-100 mt-1">
                   Integrity Check Details
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -257,15 +259,15 @@ export default function BackupsPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-2">
-                      <button className="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors">
+                      <Button className="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors">
                         <span className="material-symbols-outlined text-sm">download</span>
-                      </button>
-                      <button className="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors">
+                      </Button>
+                      <Button className="p-1.5 rounded-lg hover:bg-surface-container-high text-on-surface-variant transition-colors">
                         <span className="material-symbols-outlined text-sm">restore</span>
-                      </button>
-                      <button className="p-1.5 rounded-lg hover:bg-red-500/10 text-on-surface-variant hover:text-red-500 transition-colors">
+                      </Button>
+                      <Button className="p-1.5 rounded-lg hover:bg-red-500/10 text-on-surface-variant hover:text-red-500 transition-colors">
                         <span className="material-symbols-outlined text-sm">delete</span>
-                      </button>
+                      </Button>
                     </div>
                   </td>
                 </tr>
@@ -281,7 +283,7 @@ export default function BackupsPage() {
           </p>
           <div className="flex items-center gap-1">
             {[1, 2, 3].map((page) => (
-              <button
+              <Button
                 key={page}
                 onClick={() => setCurrentPage(page)}
                 className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors ${
@@ -291,11 +293,11 @@ export default function BackupsPage() {
                 }`}
               >
                 {page}
-              </button>
+              </Button>
             ))}
-            <button className="w-8 h-8 rounded-lg text-xs text-on-surface-variant hover:bg-surface-container-high">
+            <Button className="w-8 h-8 rounded-lg text-xs text-on-surface-variant hover:bg-surface-container-high">
               <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

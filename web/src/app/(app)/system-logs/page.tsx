@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 const LOG_ENTRIES = [
@@ -41,12 +43,9 @@ export default function SystemLogsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-on-surface tracking-tight">
+          <h1 className="sr-only">
             System Logs
           </h1>
-          <p className="text-xs text-on-surface-variant mt-1">
-            Real-time system event monitoring
-          </p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
@@ -61,23 +60,23 @@ export default function SystemLogsPage() {
               className="pl-9 pr-4 py-2.5 rounded-lg bg-surface-container border border-outline-variant/20 text-on-surface text-xs focus:outline-none focus:ring-2 focus:ring-primary/30 w-64"
             />
           </div>
-          <button className="bg-gradient-to-r from-primary to-primary-container text-white px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:opacity-90 transition-opacity">
+          <Button className="bg-gradient-to-r from-primary to-primary-container text-white px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:opacity-90 transition-opacity">
             <span className="material-symbols-outlined text-sm">add</span>
             Export
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Log Viewer */}
-      <div className="bg-on-secondary-fixed rounded-xl border border-outline-variant/10 overflow-hidden">
-        <div className="p-4 border-b border-white/5 flex items-center justify-between">
+      <div className="bg-surface-container-high dark:bg-on-secondary-fixed rounded-xl border border-outline-variant/20 overflow-hidden">
+        <div className="p-4 border-b border-outline-variant/20 dark:border-white/5 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-sm text-green-400">circle</span>
-            <span className="text-[10px] text-white/50 font-bold uppercase tracking-widest">
+            <span className="material-symbols-outlined text-sm text-tertiary">circle</span>
+            <span className="text-[10px] text-on-surface-variant dark:text-white/80 font-bold uppercase tracking-widest">
               Live Stream
             </span>
           </div>
-          <span className="text-[10px] text-white/30 font-mono">
+          <span className="text-[10px] text-on-surface-variant dark:text-white/70 font-mono">
             {filtered.length} entries
           </span>
         </div>
@@ -85,11 +84,11 @@ export default function SystemLogsPage() {
           {filtered.map((entry, i) => (
             <div
               key={i}
-              className={`px-5 py-2.5 flex flex-wrap items-start gap-3 border-b border-white/5 hover:bg-white/5 transition-colors ${
-                entry.level === "CRITICAL" ? "bg-red-900/10" : ""
+              className={`px-5 py-2.5 flex flex-wrap items-start gap-3 border-b border-outline-variant/10 dark:border-white/5 hover:bg-surface-container-highest/60 dark:hover:bg-white/5 transition-colors ${
+                entry.level === "CRITICAL" ? "bg-error/10" : ""
               }`}
             >
-              <span className="text-white/30 text-xs shrink-0 mt-0.5">
+              <span className="text-on-surface-variant dark:text-white/70 text-xs shrink-0 mt-0.5">
                 {entry.time}
               </span>
               <span
@@ -99,13 +98,13 @@ export default function SystemLogsPage() {
               >
                 [{entry.level}]
               </span>
-              <span className="text-white/80 text-xs break-all">
+              <span className="text-on-surface dark:text-white/80 text-xs break-all">
                 {entry.message}
               </span>
             </div>
           ))}
           {filtered.length === 0 && (
-            <div className="p-8 text-center text-white/30 text-sm">
+            <div className="p-8 text-center text-on-surface-variant dark:text-white/70 text-sm">
               No log entries match your search.
             </div>
           )}

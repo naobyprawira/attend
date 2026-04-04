@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -113,7 +115,7 @@ function EventDetailModal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-8 bg-on-secondary-fixed/40 backdrop-blur-sm"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-8 bg-on-surface/40 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
@@ -139,12 +141,12 @@ function EventDetailModal({
               Event ID: {event.id}
             </h2>
           </div>
-          <button
+          <Button
             onClick={onClose}
             className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors shrink-0"
           >
             <span className="material-symbols-outlined text-secondary">close</span>
-          </button>
+          </Button>
         </div>
 
         {/* Modal Content */}
@@ -152,7 +154,7 @@ function EventDetailModal({
           {/* Left: Visual Evidence */}
           <div className="flex-[1.8] bg-surface-container-lowest relative overflow-hidden min-h-[200px] lg:min-h-0">
             <div className="w-full h-full bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center">
-              <span className="material-symbols-outlined text-white/20 text-[120px]">
+              <span className="material-symbols-outlined text-white/35 text-[120px]">
                 videocam
               </span>
             </div>
@@ -179,7 +181,7 @@ function EventDetailModal({
             <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 w-28 h-28 sm:w-44 sm:h-44 rounded-xl border-4 border-surface-container-lowest shadow-2xl overflow-hidden glass-panel">
               <div className="absolute inset-0 bg-primary/10"></div>
               <div className="w-full h-full bg-surface-container-high flex items-center justify-center">
-                <span className="material-symbols-outlined text-white/40 text-5xl">face</span>
+                <span className="material-symbols-outlined text-white/80 text-5xl">face</span>
               </div>
               <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-black/80 to-transparent flex items-center px-3">
                 <span className="text-[9px] font-bold text-white tracking-widest uppercase">
@@ -310,12 +312,12 @@ function EventDetailModal({
 
               {/* Actions */}
               <div className="pt-6 border-t border-outline-variant/10 flex flex-col sm:flex-row gap-4">
-                <button className="flex-1 py-4 rounded-xl bg-surface-container-high text-primary font-bold text-xs uppercase tracking-widest hover:brightness-95 transition-all">
+                <Button className="flex-1 py-4 rounded-xl bg-surface-container-high text-primary font-bold text-xs uppercase tracking-widest hover:brightness-95 transition-all">
                   Flag for Review
-                </button>
-                <button className="flex-[1.5] py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
+                </Button>
+                <Button className="flex-[1.5] py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
                   Acknowledge &amp; Close
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -363,7 +365,7 @@ export default function EventCenterPage() {
 
         <nav className="flex-1 space-y-1">
           {CATEGORIES.map((cat) => (
-            <button
+            <Button
               key={cat.label}
               onClick={() => setActiveCategory(cat.label)}
               className={`flex items-center gap-3 mx-2 px-4 py-3 w-[calc(100%-1rem)] text-left transition-colors rounded-lg ${
@@ -376,14 +378,14 @@ export default function EventCenterPage() {
               <span className="text-sm font-semibold uppercase tracking-widest">
                 {cat.label}
               </span>
-            </button>
+            </Button>
           ))}
         </nav>
 
         <div className="px-4 mt-auto space-y-4">
-          <button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-3 px-4 rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20">
+          <Button className="w-full bg-gradient-to-r from-primary to-primary-container text-white py-3 px-4 rounded-lg font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20">
             Generate Report
-          </button>
+          </Button>
           <div className="border-t border-outline-variant/10 pt-4 space-y-1">
             <a
               href="#"
@@ -435,23 +437,23 @@ export default function EventCenterPage() {
                       }`}
                     >
                       {f}
-                      <button onClick={() => removeFilter(f)}>
+                      <Button onClick={() => removeFilter(f)}>
                         <span className="material-symbols-outlined text-[14px]">close</span>
-                      </button>
+                      </Button>
                     </span>
                   ))}
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 bg-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">
+              <Button className="flex items-center gap-2 bg-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">
                 <span className="material-symbols-outlined text-lg">filter_list</span>
                 Advanced Filters
-              </button>
-              <button className="flex items-center gap-2 bg-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">
+              </Button>
+              <Button className="flex items-center gap-2 bg-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">
                 <span className="material-symbols-outlined text-lg">ios_share</span>
                 Export
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -470,12 +472,12 @@ export default function EventCenterPage() {
                     Showing 42 recent events
                   </span>
                   <div className="flex gap-1">
-                    <button className="p-1 hover:bg-surface-container-low rounded">
+                    <Button className="p-1 hover:bg-surface-container-low rounded">
                       <span className="material-symbols-outlined text-lg">grid_view</span>
-                    </button>
-                    <button className="p-1 bg-primary/10 text-primary rounded">
+                    </Button>
+                    <Button className="p-1 bg-primary/10 text-primary rounded">
                       <span className="material-symbols-outlined text-lg">view_list</span>
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -556,7 +558,7 @@ export default function EventCenterPage() {
                                 </span>
                               </div>
                             ) : (
-                              <span className="text-xs font-bold text-on-surface-variant/40">&mdash;</span>
+                              <span className="text-xs font-bold text-on-surface-variant/75">&mdash;</span>
                             )}
                           </td>
                           <td className="px-4 sm:px-6 py-4 text-center">
@@ -579,7 +581,7 @@ export default function EventCenterPage() {
                                 low_priority
                               </span>
                             ) : (
-                              <span className="material-symbols-outlined text-secondary/40 text-lg">
+                              <span className="material-symbols-outlined text-secondary/70 text-lg">
                                 drag_handle
                               </span>
                             )}
@@ -590,7 +592,7 @@ export default function EventCenterPage() {
                                 New
                               </span>
                             ) : (
-                              <span className="text-[10px] font-bold text-on-surface-variant/40 uppercase">
+                              <span className="text-[10px] font-bold text-on-surface-variant/75 uppercase">
                                 Acknowledged
                               </span>
                             )}
@@ -608,13 +610,13 @@ export default function EventCenterPage() {
                   Showing 4 of 1,240 Events
                 </span>
                 <div className="flex items-center gap-2">
-                  <button className="p-1 rounded hover:bg-surface-container-high transition-colors">
+                  <Button className="p-1 rounded hover:bg-surface-container-high transition-colors">
                     <span className="material-symbols-outlined text-lg">chevron_left</span>
-                  </button>
+                  </Button>
                   <span className="text-xs font-bold text-primary px-3">Page 1 of 310</span>
-                  <button className="p-1 rounded hover:bg-surface-container-high transition-colors">
+                  <Button className="p-1 rounded hover:bg-surface-container-high transition-colors">
                     <span className="material-symbols-outlined text-lg">chevron_right</span>
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -622,38 +624,38 @@ export default function EventCenterPage() {
             {/* Right Panel */}
             <div className="space-y-6">
               {/* Last Violation */}
-              <div className="bg-on-secondary-fixed text-white p-6 rounded-xl shadow-xl overflow-hidden relative">
+              <div className="bg-surface-container-high dark:bg-on-secondary-fixed text-on-surface dark:text-white p-6 rounded-xl shadow-xl overflow-hidden relative border border-outline-variant/20">
                 <div className="absolute top-0 right-0 p-4">
                   <span className="text-[10px] font-black text-primary-fixed-dim uppercase tracking-[0.2em] animate-pulse-live">
                     Live
                   </span>
                 </div>
-                <h4 className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">
+                <h4 className="text-[10px] font-bold text-on-surface-variant dark:text-white/80 uppercase tracking-widest mb-4">
                   Last Violation Image
                 </h4>
                 <div className="aspect-video bg-surface-container rounded-lg mb-4 overflow-hidden group cursor-pointer relative">
-                  <div className="w-full h-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-white/20 text-6xl">
+                  <div className="w-full h-full bg-gradient-to-br from-surface-container-high to-surface-container-highest dark:from-slate-700 dark:to-slate-900 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-outline/70 dark:text-white/35 text-6xl">
                       security
                     </span>
                   </div>
                   <div className="absolute inset-0 border-[1.5px] border-primary/40 opacity-50"></div>
-                  <div className="absolute bottom-2 left-2 bg-error px-2 py-0.5 rounded text-[8px] font-black uppercase">
+                  <div className="absolute bottom-2 left-2 bg-error text-white px-2 py-0.5 rounded text-[8px] font-black uppercase">
                     Unauthorized
                   </div>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-on-surface-variant">Match Confidence</span>
+                    <span className="text-xs text-on-surface-variant dark:text-white/80">Match Confidence</span>
                     <span className="text-xs font-bold text-primary-fixed-dim">98.2%</span>
                   </div>
                   <div className="w-full h-1 bg-surface-container rounded-full overflow-hidden">
                     <div className="h-full bg-gradient-to-r from-secondary-fixed-dim to-primary w-[98%]"></div>
                   </div>
                 </div>
-                <button className="w-full mt-6 bg-surface-container-highest/10 hover:bg-surface-container-highest/20 text-white py-2.5 rounded-lg text-xs font-bold border border-white/10 transition-colors uppercase tracking-widest">
+                <Button className="w-full mt-6 bg-surface-container-highest/30 hover:bg-surface-container-highest/50 dark:bg-surface-container-highest/10 dark:hover:bg-surface-container-highest/20 text-on-surface dark:text-white py-2.5 rounded-lg text-xs font-bold border border-outline-variant/20 dark:border-white/10 transition-colors uppercase tracking-widest">
                   View Full Incident
-                </button>
+                </Button>
               </div>
 
               {/* Intelligence Summary */}
@@ -704,12 +706,12 @@ export default function EventCenterPage() {
       </main>
 
       {/* FAB */}
-      <button className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50 group">
+      <Button className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50 group">
         <span className="material-symbols-outlined text-2xl">add</span>
-        <span className="absolute right-16 bg-on-secondary-fixed text-white px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        <span className="absolute right-16 bg-surface-container-high text-on-surface dark:bg-on-secondary-fixed dark:text-white px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-outline-variant/20">
           Log Manual Event
         </span>
-      </button>
+      </Button>
 
       {/* Event Detail Modal */}
       {selectedEvent && (

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useEffect, useState } from "react";
 import type { Settings } from "@/lib/types";
 import { useI18n } from "@/lib/i18n/provider";
@@ -70,22 +72,19 @@ export default function SettingsPage() {
       {/* Page Header */}
       <div className="flex justify-between items-end">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-surface tracking-tight">
+          <h2 className="sr-only">
             {t("settings.title")}
           </h2>
-          <p className="text-on-surface-variant mt-2 font-medium">
-            {t("settings.subtitle")}
-          </p>
         </div>
         {dirty && (
-          <button
+          <Button
             onClick={handleSave}
             disabled={saving}
             className="primary-gradient text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all disabled:opacity-50"
           >
             <span className="material-symbols-outlined text-sm">save</span>
             {saving ? t("common.saving") : t("common.save")}
-          </button>
+          </Button>
         )}
       </div>
 
@@ -102,7 +101,7 @@ export default function SettingsPage() {
           <SettingsRow label={t("settings.languageLabel")}>
             <div className="flex items-center gap-2">
               {(["en", "id"] as Locale[]).map((lang) => (
-                <button
+                <Button
                   key={lang}
                   onClick={() => setLocale(lang)}
                   className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
@@ -112,7 +111,7 @@ export default function SettingsPage() {
                   }`}
                 >
                   {lang === "en" ? "English" : "Bahasa Indonesia"}
-                </button>
+                </Button>
               ))}
             </div>
           </SettingsRow>

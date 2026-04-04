@@ -38,12 +38,9 @@ export default function PeopleCountingPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
+          <h2 className="sr-only">
             Occupancy Intelligence
           </h2>
-          <p className="text-on-surface-variant mt-2 font-medium">
-            Real-time people counting and zone occupancy analytics.
-          </p>
         </div>
         <div className="flex items-center gap-3">
           <span className="material-symbols-outlined text-on-surface-variant text-sm">calendar_today</span>
@@ -147,11 +144,11 @@ export default function PeopleCountingPage() {
           <div className="mt-6 grid grid-cols-2 gap-4 relative z-10">
             <div>
               <p className="text-2xl font-black text-white">94.2%</p>
-              <p className="text-[9px] text-white/50 uppercase tracking-widest">Prediction Accuracy</p>
+              <p className="text-[9px] text-white/80 uppercase tracking-widest">Prediction Accuracy</p>
             </div>
             <div>
               <p className="text-2xl font-black text-primary-container">1.2k</p>
-              <p className="text-[9px] text-white/50 uppercase tracking-widest">Data Points / hr</p>
+              <p className="text-[9px] text-white/80 uppercase tracking-widest">Data Points / hr</p>
             </div>
           </div>
           <div className="mt-4 flex gap-1 relative z-10">

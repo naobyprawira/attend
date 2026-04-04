@@ -6,13 +6,13 @@
 
 :root {
   /* Primary */
-  --color-primary: 117 24 89;
-  --color-primary-container: 146 50 114;
+  --color-primary: 125 44 99;
+  --color-primary-container: 151 72 125;
   --color-on-primary: 255 255 255;
   --color-on-primary-container: 255 185 223;
 
   /* Secondary */
-  --color-secondary: 94 93 108;
+  --color-secondary: 106 102 118;
   --color-secondary-container: 227 224 242;
   --color-on-secondary: 255 255 255;
 
@@ -34,11 +34,11 @@
 
   /* On-surface */
   --color-on-surface: 27 28 29;
-  --color-on-surface-variant: 83 66 74;
+  --color-on-surface-variant: 97 81 88;
 
   /* Outline */
-  --color-outline: 133 114 123;
-  --color-outline-variant: 216 192 202;
+  --color-outline: 149 132 140;
+  --color-outline-variant: 224 208 215;
 
   /* Sidebar (distinct surface) */
   --color-sidebar: 255 255 255;
@@ -49,24 +49,24 @@
 
 .dark {
   /* Surfaces */
-  --color-surface: 0 0 0;
-  --color-surface-dim: 6 6 6;
-  --color-surface-bright: 10 10 10;
-  --color-surface-variant: 18 18 18;
+  --color-surface: 10 10 12;
+  --color-surface-dim: 14 14 16;
+  --color-surface-bright: 18 18 20;
+  --color-surface-variant: 24 24 28;
   --color-surface-tint: 117 24 89;
-  --color-surface-container: 18 18 18;
-  --color-surface-container-low: 14 14 14;
-  --color-surface-container-high: 24 24 24;
-  --color-surface-container-highest: 30 30 30;
-  --color-surface-container-lowest: 10 10 10;
+  --color-surface-container: 24 24 28;
+  --color-surface-container-low: 18 18 22;
+  --color-surface-container-high: 30 30 34;
+  --color-surface-container-highest: 36 36 40;
+  --color-surface-container-lowest: 14 14 18;
 
   /* On-surface */
-  --color-on-surface: 229 231 235;
-  --color-on-surface-variant: 176 160 168;
+  --color-on-surface: 233 228 232;
+  --color-on-surface-variant: 190 175 183;
 
   /* Outline */
-  --color-outline: 133 114 123;
-  --color-outline-variant: 58 58 58;
+  --color-outline: 154 138 146;
+  --color-outline-variant: 70 70 76;
 
   /* Sidebar */
   --color-sidebar: 0 0 0;
@@ -81,11 +81,14 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: rgb(var(--color-on-surface));
+  background-color: rgb(var(--color-surface));
 }
 
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   display: inline-block;
+  color: inherit;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
@@ -97,7 +100,7 @@ body {
 /* ── Utilities ────────────────────────────────────────────── */
 
 .primary-gradient {
-  background: linear-gradient(135deg, #751859 0%, #923272 100%);
+  background: linear-gradient(135deg, #7d3163 0%, #a35b88 100%);
 }
 
 .glass-panel {

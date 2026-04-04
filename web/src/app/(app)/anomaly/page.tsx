@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 // --- Dummy Data ---
@@ -63,14 +65,11 @@ export default function AnomalyPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
+          <h2 className="sr-only">
             Active Surveillance
           </h2>
-          <p className="text-on-surface-variant mt-2 font-medium">
-            Real-time anomaly detection and threat assessment dashboard.
-          </p>
         </div>
-        <button
+        <Button
           onClick={() => setActiveProtocol(!activeProtocol)}
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
             activeProtocol
@@ -80,7 +79,7 @@ export default function AnomalyPage() {
         >
           <span className="material-symbols-outlined text-sm">{activeProtocol ? "shield" : "shield"}</span>
           {activeProtocol ? "Protocols Active" : "Existing Protocols"}
-        </button>
+        </Button>
       </div>
 
       {/* Main Grid */}
@@ -146,7 +145,7 @@ export default function AnomalyPage() {
                   {/* Face placeholder */}
                   <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-surface-container-lowest flex-shrink-0 flex items-center justify-center overflow-hidden relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900" />
-                    <span className="material-symbols-outlined text-white/20 text-4xl relative z-10">
+                    <span className="material-symbols-outlined text-white/35 text-4xl relative z-10">
                       {alert.name === "Unknown Subject" ? "person_search" : "person"}
                     </span>
                     {/* Severity indicator */}
@@ -192,18 +191,18 @@ export default function AnomalyPage() {
                 </div>
                 {/* Action bar */}
                 <div className="flex border-t border-outline-variant/10 divide-x divide-outline-variant/10">
-                  <button className="flex-1 px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary/5 transition-colors flex items-center justify-center gap-1.5">
+                  <Button className="flex-1 px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary/5 transition-colors flex items-center justify-center gap-1.5">
                     <span className="material-symbols-outlined text-xs">visibility</span>
                     Review
-                  </button>
-                  <button className="flex-1 px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-error hover:bg-error/5 transition-colors flex items-center justify-center gap-1.5">
+                  </Button>
+                  <Button className="flex-1 px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-error hover:bg-error/5 transition-colors flex items-center justify-center gap-1.5">
                     <span className="material-symbols-outlined text-xs">flag</span>
                     Escalate
-                  </button>
-                  <button className="flex-1 px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center justify-center gap-1.5">
+                  </Button>
+                  <Button className="flex-1 px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center justify-center gap-1.5">
                     <span className="material-symbols-outlined text-xs">check</span>
                     Dismiss
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}
@@ -215,15 +214,15 @@ export default function AnomalyPage() {
               <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
                 Active Video Surveillance Feeds
               </h4>
-              <button className="text-on-surface-variant hover:text-primary transition-colors">
+              <Button className="text-on-surface-variant hover:text-primary transition-colors">
                 <span className="material-symbols-outlined text-sm">grid_view</span>
-              </button>
+              </Button>
             </div>
             <div className="p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {CAMERA_FEEDS.map((feed) => (
                 <div key={feed.id} className="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group bg-surface-container-lowest cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-white/15 text-5xl">videocam</span>
+                    <span className="material-symbols-outlined text-white/25 text-5xl">videocam</span>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                   {/* Status indicator */}
@@ -247,7 +246,7 @@ export default function AnomalyPage() {
                   )}
                   {/* Camera ID */}
                   <div className="absolute bottom-2 left-2">
-                    <span className="text-[9px] text-white/50 font-mono">{feed.id}</span>
+                    <span className="text-[9px] text-white/80 font-mono">{feed.id}</span>
                   </div>
                   {/* Hover border */}
                   <div className="absolute inset-0 border-2 border-primary/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity" />

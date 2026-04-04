@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 interface ImportEntry {
@@ -81,12 +83,9 @@ export default function BatchImportPage() {
     <div className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto space-y-8 sm:space-y-12">
       {/* Page Header */}
       <div className="space-y-2">
-        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-on-surface">
+        <h2 className="sr-only">
           Batch Import Preview
         </h2>
-        <p className="text-on-surface-variant font-medium">
-          Verify structural integrity of the uploaded observational registry.
-        </p>
       </div>
 
       {/* Upload Section */}
@@ -116,12 +115,12 @@ export default function BatchImportPage() {
                 ? `Selected: ${fileName}`
                 : "Drag and drop your .xlsx registry file here"}
             </p>
-            <button
+            <Button
               className="bg-primary hover:bg-primary-container text-white px-6 py-2.5 rounded-lg font-semibold text-sm transition-all active:scale-95"
               onClick={() => setFileName("sample_registry.xlsx")}
             >
               Select File
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -151,10 +150,10 @@ export default function BatchImportPage() {
       </div>
 
       {/* Validation Summary Bar */}
-      <div className="bg-on-secondary-fixed text-white p-4 sm:p-5 rounded-xl flex flex-wrap items-center justify-between gap-4 shadow-xl">
+      <div className="bg-surface-container-high dark:bg-on-secondary-fixed text-on-surface dark:text-white p-4 sm:p-5 rounded-xl flex flex-wrap items-center justify-between gap-4 shadow-xl border border-outline-variant/20">
         <div className="flex items-center gap-6 sm:gap-12 px-2 sm:px-4">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase tracking-widest text-white/50 mb-1">
+            <span className="text-[10px] uppercase tracking-widest text-on-surface-variant dark:text-white/80 mb-1">
               Status Report
             </span>
             <div className="flex items-center gap-4">
@@ -164,27 +163,27 @@ export default function BatchImportPage() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-error" />
-                <span className="font-bold text-lg text-error-container">
+                <span className="font-bold text-lg text-error">
                   3 Errors
                 </span>
               </div>
             </div>
           </div>
-          <div className="h-10 w-[1px] bg-white/10 hidden md:block" />
+          <div className="h-10 w-[1px] bg-outline-variant/40 dark:bg-white/10 hidden md:block" />
           <div className="hidden md:block">
-            <span className="text-[10px] uppercase tracking-widest text-white/50 mb-1">
+            <span className="text-[10px] uppercase tracking-widest text-on-surface-variant dark:text-white/80 mb-1">
               Total Records
             </span>
             <p className="font-bold text-lg">50 Entities Detected</p>
           </div>
         </div>
         <div className="flex items-center gap-4 px-2 sm:px-4">
-          <button className="text-white/70 hover:text-white px-4 py-2 font-semibold text-sm transition-colors">
+          <Button className="text-on-surface-variant dark:text-white/70 hover:text-on-surface dark:hover:text-white px-4 py-2 font-semibold text-sm transition-colors">
             Discard Batch
-          </button>
-          <button className="bg-gradient-to-br from-primary to-primary-container text-white px-6 sm:px-8 py-3 rounded-lg font-bold text-sm shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+          </Button>
+          <Button className="bg-gradient-to-br from-primary to-primary-container text-white px-6 sm:px-8 py-3 rounded-lg font-bold text-sm shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
             Import Valid
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -323,12 +322,12 @@ export default function BatchImportPage() {
             Showing first {entries.length} entries of 50
           </span>
           <div className="flex space-x-2">
-            <button className="p-2 rounded hover:bg-surface-container-high transition-colors text-secondary cursor-not-allowed opacity-30">
+            <Button className="p-2 rounded hover:bg-surface-container-high transition-colors text-secondary cursor-not-allowed opacity-30">
               <span className="material-symbols-outlined">chevron_left</span>
-            </button>
-            <button className="p-2 rounded hover:bg-surface-container-high transition-colors text-on-surface">
+            </Button>
+            <Button className="p-2 rounded hover:bg-surface-container-high transition-colors text-on-surface">
               <span className="material-symbols-outlined">chevron_right</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

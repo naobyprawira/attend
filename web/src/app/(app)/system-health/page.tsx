@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ── Gauge data ── */
@@ -135,15 +137,9 @@ export default function SystemHealthPage() {
     <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Page Header */}
       <div>
-        <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">
-          Observational Monolith
-        </p>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
+        <h2 className="sr-only">
           Core Telemetry
         </h2>
-        <p className="text-on-surface-variant mt-2 font-medium text-sm">
-          Real-time diagnostics across all surveillance processing nodes.
-        </p>
       </div>
 
       {/* Gauges */}
@@ -172,7 +168,7 @@ export default function SystemHealthPage() {
             >
               {/* Image placeholder */}
               <div className="h-28 bg-surface-container-high relative flex items-center justify-center overflow-hidden">
-                <span className="material-symbols-outlined text-4xl text-on-surface-variant/20">
+                <span className="material-symbols-outlined text-4xl text-on-surface-variant/35">
                   dns
                 </span>
                 <div className="absolute bottom-2 left-3 text-[9px] text-on-surface-variant/60 font-mono">
@@ -248,7 +244,7 @@ export default function SystemHealthPage() {
 
           {/* World map placeholder */}
           <div className="relative w-full h-48 sm:h-64 bg-surface-container rounded-xl flex items-center justify-center overflow-hidden">
-            <span className="material-symbols-outlined text-6xl text-on-surface-variant/10">
+            <span className="material-symbols-outlined text-6xl text-on-surface-variant/35">
               public
             </span>
             {/* Latency dots */}
@@ -335,7 +331,7 @@ export default function SystemHealthPage() {
           </div>
 
           {/* Generate Report */}
-          <button
+          <Button
             onClick={handleGenerateReport}
             disabled={reportGenerating}
             className="w-full primary-gradient text-white px-5 py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all disabled:opacity-50 text-sm"
@@ -344,7 +340,7 @@ export default function SystemHealthPage() {
               {reportGenerating ? "hourglass_top" : "description"}
             </span>
             {reportGenerating ? "Generating..." : "Export Report"}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 import { Select } from "@/components/Select";
 
@@ -46,7 +48,7 @@ export default function ReportsPage() {
         {/* Header */}
         <header className="mb-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-on-surface">
+            <h1 className="sr-only">
               Reports
             </h1>
             <div className="relative w-full sm:w-72">
@@ -58,7 +60,7 @@ export default function ReportsPage() {
                 placeholder="Search insights..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container border border-outline-variant/20 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container border border-outline-variant/20 text-sm text-on-surface placeholder:text-on-surface-variant/75 focus:outline-none focus:ring-2 focus:ring-primary/30"
               />
             </div>
           </div>
@@ -68,7 +70,7 @@ export default function ReportsPage() {
         <div className="mb-6 overflow-x-auto">
           <div className="flex gap-1 bg-surface-container-low rounded-xl p-1 min-w-max">
             {TABS.map((tab) => (
-              <button
+              <Button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all ${
@@ -78,7 +80,7 @@ export default function ReportsPage() {
                 }`}
               >
                 {tab}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -135,7 +137,7 @@ export default function ReportsPage() {
                 placeholder="Name or ID..."
                 value={personSearch}
                 onChange={(e) => setPersonSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container-lowest border border-outline-variant/20 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-surface-container-lowest border border-outline-variant/20 text-sm text-on-surface placeholder:text-on-surface-variant/75 focus:outline-none focus:ring-2 focus:ring-primary/30"
               />
             </div>
           </div>
@@ -143,41 +145,38 @@ export default function ReportsPage() {
 
         {/* Generate Row */}
         <div className="mb-8 flex flex-wrap items-center gap-3">
-          <button className="bg-primary hover:brightness-110 text-white px-6 py-2.5 rounded-xl text-sm font-bold tracking-tight transition-all shadow-lg shadow-primary/20">
+          <Button className="bg-primary hover:brightness-110 text-white px-6 py-2.5 rounded-xl text-sm font-bold tracking-tight transition-all shadow-lg shadow-primary/20">
             Generate
-          </button>
+          </Button>
           <div className="flex items-center gap-1">
-            <button className="p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+            <Button className="p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
               <span className="material-symbols-outlined text-on-surface-variant text-lg">
                 picture_as_pdf
               </span>
-            </button>
-            <button className="p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+            </Button>
+            <Button className="p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
               <span className="material-symbols-outlined text-on-surface-variant text-lg">
                 grid_on
               </span>
-            </button>
-            <button className="p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+            </Button>
+            <Button className="p-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
               <span className="material-symbols-outlined text-on-surface-variant text-lg">
                 mail
               </span>
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Empty State */}
         <div className="flex flex-col items-center justify-center py-16 sm:py-20">
           <div className="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center mb-6">
-            <span className="material-symbols-outlined text-on-surface-variant/40 text-3xl">
+            <span className="material-symbols-outlined text-on-surface-variant/75 text-3xl">
               bar_chart
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black tracking-tight text-on-surface mb-2">
             Ready to compile
           </h2>
-          <p className="text-sm text-on-surface-variant text-center max-w-sm mb-6">
-            Select report type and date range to generate high-fidelity, surveillance intelligence metrics.
-          </p>
           <div className="flex flex-wrap items-center justify-center gap-2">
             {FEATURE_TAGS.map((tag) => (
               <span
@@ -235,9 +234,9 @@ export default function ReportsPage() {
       </div>
 
       {/* FAB */}
-      <button className="fixed bottom-6 right-6 w-14 h-14 rounded-2xl bg-primary-container text-on-primary-container shadow-xl shadow-primary/20 flex items-center justify-center hover:brightness-110 transition-all z-30">
+      <Button className="fixed bottom-6 right-6 w-14 h-14 rounded-2xl bg-primary-container text-on-primary-container shadow-xl shadow-primary/20 flex items-center justify-center hover:brightness-110 transition-all z-30">
         <span className="material-symbols-outlined text-2xl">add</span>
-      </button>
+      </Button>
     </div>
   );
 }

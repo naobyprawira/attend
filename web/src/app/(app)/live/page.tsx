@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useAttendSocket } from "@/hooks/useAttendSocket";
 import type { BgMode, FaceCapture } from "@/lib/types";
 import { useCallback, useEffect, useState } from "react";
@@ -103,7 +105,7 @@ export default function LiveViewPage() {
         {/* Feed Selector Tabs */}
         <div className="bg-surface-container px-6 py-3 flex items-center gap-3 border-b border-outline-variant/10">
           {DUMMY_FEEDS.map((feed) => (
-            <button
+            <Button
               key={feed.id}
               onClick={() => setSelectedFeed(feed.id)}
               className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all ${
@@ -114,7 +116,7 @@ export default function LiveViewPage() {
             >
               <div className={`w-1.5 h-1.5 rounded-full ${feed.status === "live" ? "bg-red-500 animate-pulse" : "bg-green-500"}`} />
               {feed.name}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -130,9 +132,9 @@ export default function LiveViewPage() {
           {!connected && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/60">
               <div className="text-center">
-                <span className="material-symbols-outlined text-white/30 text-6xl mb-4 block">videocam_off</span>
-                <p className="text-white/50 text-sm tracking-[3px] font-mono uppercase">No Signal</p>
-                <p className="text-white/30 text-xs mt-2">Awaiting camera connection...</p>
+                <span className="material-symbols-outlined text-white/70 text-6xl mb-4 block">videocam_off</span>
+                <p className="text-white/80 text-sm tracking-[3px] font-mono uppercase">No Signal</p>
+                <p className="text-white/70 text-xs mt-2">Awaiting camera connection...</p>
               </div>
             </div>
           )}
@@ -224,7 +226,7 @@ export default function LiveViewPage() {
           </div>
           <div className="grid grid-cols-4 gap-2">
             {BG_MODES.map((m) => (
-              <button
+              <Button
                 key={m.value}
                 onClick={() => handleBgChange(m.value)}
                 className={`py-2 px-1 text-[9px] tracking-wider font-bold rounded-lg cursor-pointer transition-all flex flex-col items-center gap-1 ${
@@ -235,7 +237,7 @@ export default function LiveViewPage() {
               >
                 <span className="material-symbols-outlined text-sm">{m.icon}</span>
                 {m.label}
-              </button>
+              </Button>
             ))}
           </div>
         </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 const SITE_STATS = [
   { label: "Total Sites", value: "42", icon: "domain", trend: "+3 this month", trendColor: "text-green-500", trendIcon: "trending_up" },
   { label: "Total Personnel", value: "1,894", icon: "group", trend: "Across all sites", trendColor: "text-primary-fixed-dim", trendIcon: "groups" },
@@ -29,12 +31,9 @@ export default function SitesPage() {
     <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div>
-        <h2 className="text-4xl font-extrabold text-on-surface tracking-tight">
+        <h2 className="sr-only">
           Global Node Network
         </h2>
-        <p className="text-on-surface-variant mt-2 font-medium">
-          Manage and monitor all surveillance sites across your organization.
-        </p>
       </div>
 
       {/* Stat Cards */}
@@ -104,10 +103,10 @@ export default function SitesPage() {
                 className="bg-surface-container-highest border-none rounded-lg text-sm pl-9 pr-4 py-2 focus:ring-2 focus:ring-primary/20 text-on-surface w-48"
               />
             </div>
-            <button className="primary-gradient text-white text-xs font-bold px-4 py-2 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all flex items-center gap-1.5">
+            <Button className="primary-gradient text-white text-xs font-bold px-4 py-2 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all flex items-center gap-1.5">
               <span className="material-symbols-outlined text-sm">add</span>
               Add Site
-            </button>
+            </Button>
           </div>
         </div>
         <div className="overflow-x-auto">

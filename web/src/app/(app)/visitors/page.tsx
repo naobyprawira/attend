@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -80,8 +82,8 @@ export default function VisitorManagementPage() {
                 <p className="text-[10px] text-center px-4 mt-2">Required for biometric identification matching</p>
               </div>
               <div className="flex gap-2 w-full max-w-[192px]">
-                <button type="button" className="flex-1 py-2 text-[11px] font-bold uppercase border border-outline-variant rounded hover:bg-surface-container transition-colors text-on-surface">Capture</button>
-                <button type="button" className="flex-1 py-2 text-[11px] font-bold uppercase border border-outline-variant rounded hover:bg-surface-container transition-colors text-on-surface">Library</button>
+                <Button type="button" className="flex-1 py-2 text-[11px] font-bold uppercase border border-outline-variant rounded hover:bg-surface-container transition-colors text-on-surface">Capture</Button>
+                <Button type="button" className="flex-1 py-2 text-[11px] font-bold uppercase border border-outline-variant rounded hover:bg-surface-container transition-colors text-on-surface">Library</Button>
               </div>
             </div>
 
@@ -112,7 +114,7 @@ export default function VisitorManagementPage() {
                 <label className="text-[10px] font-black uppercase text-secondary tracking-widest px-1">Purpose of Visit</label>
                 <div className="flex flex-wrap gap-2">
                   {PURPOSES.map((p) => (
-                    <button
+                    <Button
                       key={p}
                       type="button"
                       onClick={() => setSelectedPurpose(p)}
@@ -123,7 +125,7 @@ export default function VisitorManagementPage() {
                       }`}
                     >
                       {p}
-                    </button>
+                    </Button>
                   ))}
                   <input
                     type="text"
@@ -148,12 +150,12 @@ export default function VisitorManagementPage() {
 
               {/* Submit */}
               <div className="sm:col-span-2 flex justify-end pt-4">
-                <button
+                <Button
                   type="submit"
                   className="bg-gradient-to-r from-primary to-primary-container text-white px-10 py-3 rounded-lg font-bold text-sm tracking-wide shadow-xl active:scale-95 transition-all"
                 >
                   GENERATE ACCESS PASS
-                </button>
+                </Button>
               </div>
             </div>
           </form>
@@ -179,9 +181,9 @@ export default function VisitorManagementPage() {
                 <span className="text-[11px] font-black uppercase text-secondary">08 Expected</span>
               </div>
             </div>
-            <button className="bg-surface-container-lowest border border-outline-variant/20 w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-lowest transition-colors">
+            <Button className="bg-surface-container-lowest border border-outline-variant/20 w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-lowest transition-colors">
               <span className="material-symbols-outlined text-secondary">filter_list</span>
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -214,7 +216,7 @@ export default function VisitorManagementPage() {
                     </td>
                     <td className="py-4 px-6">
                       <p className={`text-sm font-medium ${v.grayed ? "text-on-surface-variant" : "text-on-surface"}`}>{v.host}</p>
-                      <p className={`text-[10px] font-bold uppercase tracking-tighter ${v.grayed ? "text-secondary/50" : "text-secondary"}`}>{v.dept}</p>
+                      <p className={`text-[10px] font-bold uppercase tracking-tighter ${v.grayed ? "text-secondary/75" : "text-secondary"}`}>{v.dept}</p>
                     </td>
                     <td className="py-4 px-6">
                       <span className={`text-xs px-2.5 py-1 bg-surface-container-high rounded font-medium ${v.grayed ? "text-on-surface-variant" : "text-on-surface-variant"}`}>{v.purpose}</span>
@@ -239,17 +241,17 @@ export default function VisitorManagementPage() {
                       <div className="flex justify-end gap-1">
                         {v.expired ? (
                           <>
-                            <button className="p-2 text-error animate-pulse" title="Alert"><span className="material-symbols-outlined text-[20px]">priority_high</span></button>
-                            <button className="p-2 text-secondary hover:text-primary transition-colors" title="Extend Stay"><span className="material-symbols-outlined text-[20px]">more_time</span></button>
-                            <button className="p-2 text-secondary hover:text-error transition-colors" title="Block"><span className="material-symbols-outlined text-[20px]">block</span></button>
+                            <Button className="p-2 text-error animate-pulse" title="Alert"><span className="material-symbols-outlined text-[20px]">priority_high</span></Button>
+                            <Button className="p-2 text-secondary hover:text-primary transition-colors" title="Extend Stay"><span className="material-symbols-outlined text-[20px]">more_time</span></Button>
+                            <Button className="p-2 text-secondary hover:text-error transition-colors" title="Block"><span className="material-symbols-outlined text-[20px]">block</span></Button>
                           </>
                         ) : (
                           <>
-                            <button className="p-2 text-secondary hover:text-primary transition-colors" title="Print Badge"><span className="material-symbols-outlined text-[20px]">badge</span></button>
-                            <button className="p-2 text-secondary hover:text-primary transition-colors" title="Extend Stay"><span className="material-symbols-outlined text-[20px]">more_time</span></button>
-                            <button className={`p-2 text-secondary hover:text-error transition-colors ${v.status === "PRE-REGISTERED" ? "opacity-30 cursor-not-allowed" : ""}`} title="Check Out">
+                            <Button className="p-2 text-secondary hover:text-primary transition-colors" title="Print Badge"><span className="material-symbols-outlined text-[20px]">badge</span></Button>
+                            <Button className="p-2 text-secondary hover:text-primary transition-colors" title="Extend Stay"><span className="material-symbols-outlined text-[20px]">more_time</span></Button>
+                            <Button className={`p-2 text-secondary hover:text-error transition-colors ${v.status === "PRE-REGISTERED" ? "opacity-30 cursor-not-allowed" : ""}`} title="Check Out">
                               <span className="material-symbols-outlined text-[20px]">logout</span>
-                            </button>
+                            </Button>
                           </>
                         )}
                       </div>
@@ -264,11 +266,11 @@ export default function VisitorManagementPage() {
           <div className="bg-surface-container-low/50 py-3 px-6 flex items-center justify-between border-t border-outline-variant/10">
             <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">Displaying 1-3 of 22 entries</span>
             <div className="flex gap-2">
-              <button className="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-secondary disabled:opacity-30">
+              <Button className="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-secondary disabled:opacity-30">
                 <span className="material-symbols-outlined text-[18px]">chevron_left</span>
-              </button>
+              </Button>
               {[1, 2].map((p) => (
-                <button
+                <Button
                   key={p}
                   onClick={() => setCurrentPage(p)}
                   className={`w-8 h-8 flex items-center justify-center rounded text-[11px] font-bold ${
@@ -278,11 +280,11 @@ export default function VisitorManagementPage() {
                   }`}
                 >
                   {p}
-                </button>
+                </Button>
               ))}
-              <button className="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-secondary">
+              <Button className="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-secondary">
                 <span className="material-symbols-outlined text-[18px]">chevron_right</span>
-              </button>
+              </Button>
             </div>
           </div>
         </div>

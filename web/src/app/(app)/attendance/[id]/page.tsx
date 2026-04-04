@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, use } from "react";
+import { Button } from "@/components/ui/Button";
 
 type DayStatus = "present" | "absent" | "late" | "overtime" | "weekend" | "empty";
 
@@ -144,9 +145,9 @@ export default function IndividualAttendancePage({ params }: { params: Promise<{
               </div>
             </div>
 
-            <button className="w-full mt-6 py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-bold text-sm tracking-wide uppercase shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
+            <Button className="w-full mt-6 py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-bold text-sm tracking-wide uppercase shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
               Export Observation Report
-            </button>
+            </Button>
           </div>
 
           {/* Quick Stats */}
@@ -179,13 +180,13 @@ export default function IndividualAttendancePage({ params }: { params: Promise<{
                 <p className="text-sm text-on-surface-variant">October 2023 Visual Grid</p>
               </div>
               <div className="flex items-center space-x-2 bg-surface-container-low p-1 rounded-lg">
-                <button className="p-2 hover:bg-surface-container-lowest rounded-md transition-all">
+                <Button className="p-2 hover:bg-surface-container-lowest rounded-md transition-all">
                   <span className="material-symbols-outlined text-secondary">chevron_left</span>
-                </button>
+                </Button>
                 <span className="px-4 text-sm font-bold tracking-widest uppercase">{currentMonth}</span>
-                <button className="p-2 hover:bg-surface-container-lowest rounded-md transition-all">
+                <Button className="p-2 hover:bg-surface-container-lowest rounded-md transition-all">
                   <span className="material-symbols-outlined text-secondary">chevron_right</span>
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -280,9 +281,9 @@ export default function IndividualAttendancePage({ params }: { params: Promise<{
             </div>
 
             <div className="p-6 bg-surface-container-low text-center">
-              <button className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary hover:tracking-[0.3em] transition-all">
+              <Button className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary hover:tracking-[0.3em] transition-all">
                 Load Full History Archive
-              </button>
+              </Button>
             </div>
           </div>
         </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 interface Violation {
@@ -82,9 +84,9 @@ export default function ViolationsPage() {
             </p>
           </div>
         </div>
-        <button className="px-4 py-2 bg-error text-white font-bold rounded-lg hover:bg-red-700 transition-colors text-sm whitespace-nowrap active:scale-95">
+        <Button className="px-4 py-2 bg-error text-white font-bold rounded-lg hover:bg-red-700 transition-colors text-sm whitespace-nowrap active:scale-95">
           Deploy Alert Protocol
-        </button>
+        </Button>
       </div>
 
       {/* Violations Grid */}
@@ -97,9 +99,9 @@ export default function ViolationsPage() {
             {/* Image Area */}
             <div className="relative h-48 sm:h-56 group overflow-hidden bg-surface-container-high">
               {/* Placeholder gradient when no real image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-surface-container-highest to-on-secondary-fixed/80" />
+              <div className="absolute inset-0 bg-gradient-to-br from-surface-container-highest to-surface-container-high dark:to-on-secondary-fixed/80" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="material-symbols-outlined text-white/20 text-6xl">
+                <span className="material-symbols-outlined text-outline/70 dark:text-white/35 text-6xl">
                   person
                 </span>
               </div>
@@ -179,38 +181,38 @@ export default function ViolationsPage() {
 
               {/* Action Buttons */}
               <div className="flex gap-2 mt-auto">
-                <button className="flex-1 bg-surface-container-high text-primary font-bold py-2 rounded-lg text-sm hover:bg-surface-container-highest transition-colors active:scale-95">
+                <Button className="flex-1 bg-surface-container-high text-primary font-bold py-2 rounded-lg text-sm hover:bg-surface-container-highest transition-colors active:scale-95">
                   Acknowledge
-                </button>
-                <button className="flex-1 bg-primary text-white font-bold py-2 rounded-lg text-sm hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
+                </Button>
+                <Button className="flex-1 bg-primary text-white font-bold py-2 rounded-lg text-sm hover:shadow-lg hover:shadow-primary/20 transition-all active:scale-95">
                   Investigate
-                </button>
+                </Button>
               </div>
             </div>
           </div>
         ))}
 
         {/* Live Stream Feed */}
-        <div className="sm:col-span-2 bg-on-secondary-fixed rounded-xl overflow-hidden relative shadow-2xl flex flex-col">
+        <div className="sm:col-span-2 bg-surface-container-high dark:bg-on-secondary-fixed rounded-xl overflow-hidden relative shadow-2xl flex flex-col border border-outline-variant/20">
           {/* Stream Header */}
-          <div className="p-4 flex items-center justify-between border-b border-white/5 bg-black/20">
+          <div className="p-4 flex items-center justify-between border-b border-outline-variant/20 dark:border-white/5 bg-surface-container-highest/60 dark:bg-black/20">
             <div className="flex items-center gap-3">
               <div className="w-2 h-2 bg-error rounded-full animate-pulse" />
-              <h4 className="text-white text-xs font-black uppercase tracking-[0.2em]">
+              <h4 className="text-on-surface dark:text-white text-xs font-black uppercase tracking-[0.2em]">
                 Live Stream: Secure Zone Entry Spotlight
               </h4>
             </div>
             <div className="flex gap-2">
-              <button className="text-white/60 hover:text-white transition-colors">
+              <Button className="text-on-surface-variant dark:text-white/60 hover:text-on-surface dark:hover:text-white transition-colors">
                 <span className="material-symbols-outlined text-sm">
                   settings
                 </span>
-              </button>
-              <button className="text-white/60 hover:text-white transition-colors">
+              </Button>
+              <Button className="text-on-surface-variant dark:text-white/60 hover:text-on-surface dark:hover:text-white transition-colors">
                 <span className="material-symbols-outlined text-sm">
                   fullscreen
                 </span>
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -233,7 +235,7 @@ export default function ViolationsPage() {
             {/* Data Overlays */}
             <div className="absolute bottom-4 sm:bottom-6 right-4 sm:right-6 flex flex-col items-end gap-2">
               <div className="bg-black/60 backdrop-blur-lg rounded-lg p-3 border border-white/10 w-40 sm:w-48">
-                <div className="flex justify-between text-[10px] text-white/50 font-bold mb-1">
+                <div className="flex justify-between text-[10px] text-white/80 font-bold mb-1">
                   <span>CPU LOAD</span>
                   <span className="text-tertiary-fixed">42%</span>
                 </div>
@@ -242,7 +244,7 @@ export default function ViolationsPage() {
                 </div>
               </div>
               <div className="bg-black/60 backdrop-blur-lg rounded-lg p-3 border border-white/10 w-40 sm:w-48">
-                <div className="flex justify-between text-[10px] text-white/50 font-bold mb-1">
+                <div className="flex justify-between text-[10px] text-white/80 font-bold mb-1">
                   <span>AI CONFIDENCE</span>
                   <span className="text-primary-fixed-dim">99.8%</span>
                 </div>
@@ -256,11 +258,11 @@ export default function ViolationsPage() {
       </div>
 
       {/* Floating Action Button */}
-      <button className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 sm:w-16 sm:h-16 bg-error text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform active:scale-95 z-50">
+      <Button className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 sm:w-16 sm:h-16 bg-error text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform active:scale-95 z-50">
         <span className="material-symbols-outlined text-2xl sm:text-3xl">
           emergency_share
         </span>
-      </button>
+      </Button>
     </div>
   );
 }

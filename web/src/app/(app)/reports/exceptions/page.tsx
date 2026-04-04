@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -162,25 +164,22 @@ export default function ExceptionReportPage() {
         <header className="mb-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-on-surface">
+              <h1 className="sr-only">
                 Exception Report
               </h1>
-              <p className="text-sm text-on-surface-variant mt-0.5">
-                System-Identified Workforce Anomalies
-              </p>
             </div>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container text-xs font-medium text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">calendar_today</span>
                 Oct 01 &ndash; Oct 31, 2023
               </div>
-              <button className="flex items-center gap-2 bg-primary hover:brightness-110 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">
+              <Button className="flex items-center gap-2 bg-primary hover:brightness-110 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">
                 <span className="material-symbols-outlined text-lg">picture_as_pdf</span>
                 Export PDF
-              </button>
-              <button className="bg-primary-container hover:brightness-110 text-on-primary-container px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/10">
+              </Button>
+              <Button className="bg-primary-container hover:brightness-110 text-on-primary-container px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/10">
                 Generate PDF
-              </button>
+              </Button>
             </div>
           </div>
         </header>
@@ -191,7 +190,7 @@ export default function ExceptionReportPage() {
           <aside className="hidden lg:block">
             <nav className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm p-3 space-y-1">
               {REPORT_NAV.map((item) => (
-                <button
+                <Button
                   key={item.label}
                   className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
                     item.active
@@ -201,7 +200,7 @@ export default function ExceptionReportPage() {
                 >
                   <span className="material-symbols-outlined text-lg">{item.icon}</span>
                   {item.label}
-                </button>
+                </Button>
               ))}
             </nav>
           </aside>
@@ -211,7 +210,7 @@ export default function ExceptionReportPage() {
             {/* Filter Pills Row */}
             <div className="flex flex-wrap items-center gap-2">
               {FILTER_PILLS.map((pill) => (
-                <button
+                <Button
                   key={pill.label}
                   onClick={() => togglePill(pill.label)}
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
@@ -221,7 +220,7 @@ export default function ExceptionReportPage() {
                   }`}
                 >
                   {pill.label}
-                </button>
+                </Button>
               ))}
 
               <div className="ml-auto flex items-center gap-2">
@@ -241,9 +240,9 @@ export default function ExceptionReportPage() {
                     expand_more
                   </span>
                 </div>
-                <button className="bg-primary hover:brightness-110 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm">
+                <Button className="bg-primary hover:brightness-110 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm">
                   Apply Filter
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -301,27 +300,27 @@ export default function ExceptionReportPage() {
                             <span className="material-symbols-outlined text-sm">schedule</span>
                             {exc.time}
                           </span>
-                          <span className="text-on-surface-variant/40">
+                          <span className="text-on-surface-variant/75">
                             {exc.id}
                           </span>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <button className="p-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                          <Button className="p-1.5 rounded-lg hover:bg-surface-container transition-colors">
                             <span className="material-symbols-outlined text-on-surface-variant text-lg">
                               visibility
                             </span>
-                          </button>
-                          <button className="p-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                          </Button>
+                          <Button className="p-1.5 rounded-lg hover:bg-surface-container transition-colors">
                             <span className="material-symbols-outlined text-on-surface-variant text-lg">
                               edit
                             </span>
-                          </button>
-                          <button className="p-1.5 rounded-lg hover:bg-error/10 transition-colors">
+                          </Button>
+                          <Button className="p-1.5 rounded-lg hover:bg-error/10 transition-colors">
                             <span className="material-symbols-outlined text-error text-lg">
                               flag
                             </span>
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     </div>

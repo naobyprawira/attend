@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 import { Select } from "@/components/Select";
 
@@ -63,13 +65,9 @@ export default function SearchPage() {
     <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
+        <h2 className="sr-only">
           Unified AI Intelligence
         </h2>
-        <p className="text-on-surface-variant mt-3 font-medium leading-relaxed">
-          Seamlessly multi-vector search system. Upload a profile or specify attributes to locate
-          individuals across the regional surveillance grid.
-        </p>
       </div>
 
       {/* Search Area */}
@@ -114,17 +112,17 @@ export default function SearchPage() {
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder="Name, ID, or description..."
-                  className="w-full bg-surface-container-high border border-outline-variant/20 rounded-xl pl-10 pr-4 py-3 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="w-full bg-surface-container-high border border-outline-variant/20 rounded-xl pl-10 pr-4 py-3 text-sm text-on-surface placeholder:text-on-surface-variant/75 focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
               </div>
               <p className="text-[10px] text-on-surface-variant mt-3 leading-relaxed">
                 Search by name, employee ID, clothing description, or physical attributes.
               </p>
               <div className="mt-auto pt-4">
-                <button className="primary-gradient text-white w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all">
+                <Button className="primary-gradient text-white w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all">
                   <span className="material-symbols-outlined text-sm">search</span>
                   Run Search
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -223,7 +221,7 @@ export default function SearchPage() {
               {/* Thumbnail */}
               <div className="relative aspect-[4/3] bg-surface-container-lowest">
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
-                  <span className="material-symbols-outlined text-white/15 text-7xl">{result.thumbnail}</span>
+                  <span className="material-symbols-outlined text-white/25 text-7xl">{result.thumbnail}</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 {/* Confidence Badge */}
@@ -252,12 +250,12 @@ export default function SearchPage() {
                   <span>{result.timestamp}</span>
                 </div>
                 <div className="flex gap-2 mt-3">
-                  <button className="flex-1 text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 rounded-lg py-2 hover:bg-primary/20 transition-colors">
+                  <Button className="flex-1 text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 rounded-lg py-2 hover:bg-primary/20 transition-colors">
                     View Detail
-                  </button>
-                  <button className="text-on-surface-variant hover:text-primary transition-colors p-2">
+                  </Button>
+                  <Button className="text-on-surface-variant hover:text-primary transition-colors p-2">
                     <span className="material-symbols-outlined text-sm">more_vert</span>
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -266,13 +264,13 @@ export default function SearchPage() {
 
         {/* Advanced Retrieval Button */}
         <div className="flex justify-center mt-8">
-          <button className="bg-surface-variant border border-outline-variant/20 hover:border-primary/40 rounded-xl px-8 py-3 flex items-center gap-3 transition-all group">
+          <Button className="bg-surface-variant border border-outline-variant/20 hover:border-primary/40 rounded-xl px-8 py-3 flex items-center gap-3 transition-all group">
             <span className="material-symbols-outlined text-primary text-lg">manage_search</span>
             <span className="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
               Advanced Retrieval
             </span>
             <span className="material-symbols-outlined text-on-surface-variant text-sm">arrow_forward</span>
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 const ENDPOINTS = [
@@ -34,12 +36,9 @@ export default function WebhooksPage() {
       {/* Header */}
       <div className="flex flex-wrap justify-between items-start gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-surface tracking-tight">
+          <h2 className="sr-only">
             Webhook Management
           </h2>
-          <p className="text-on-surface-variant mt-2 font-medium">
-            Configure real-time intelligence feeds.
-          </p>
         </div>
         <div className="relative">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
@@ -84,10 +83,10 @@ export default function WebhooksPage() {
               Define custom intelligence endpoints for your infrastructure.
             </p>
           </div>
-          <button className="mt-6 w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 tracking-widest uppercase hover:opacity-90 transition-all">
+          <Button className="mt-6 w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 tracking-widest uppercase hover:opacity-90 transition-all">
             <span className="material-symbols-outlined text-sm">add</span>
             Create Webhook
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -97,10 +96,10 @@ export default function WebhooksPage() {
           <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
             Active Endpoints
           </h4>
-          <button className="text-xs text-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors">
+          <Button className="text-xs text-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors">
             <span className="material-symbols-outlined text-sm">filter_list</span>
             Filter
-          </button>
+          </Button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -135,7 +134,7 @@ export default function WebhooksPage() {
                     </div>
                   </td>
                   <td className="px-5 py-4">
-                    <button
+                    <Button
                       onClick={() => toggleStatus(i)}
                       className={`relative w-10 h-5 rounded-full transition-colors ${
                         ep.status ? "bg-green-500" : "bg-surface-container-high"
@@ -144,7 +143,7 @@ export default function WebhooksPage() {
                       <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${
                         ep.status ? "translate-x-5" : "translate-x-0.5"
                       }`} />
-                    </button>
+                    </Button>
                   </td>
                   <td className="px-5 py-4 text-xs text-on-surface-variant">{ep.lastTriggered}</td>
                 </tr>
@@ -189,12 +188,12 @@ export default function WebhooksPage() {
           </p>
           <div className="flex items-center gap-2">
             <span className="text-xs text-on-surface-variant">Page {currentPage} of 4</span>
-            <button className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant">
+            <Button className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant">
               <span className="material-symbols-outlined text-sm">chevron_left</span>
-            </button>
-            <button className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant">
+            </Button>
+            <Button className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant">
               <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

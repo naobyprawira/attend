@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 import Link from "next/link";
 
@@ -60,21 +62,18 @@ export default function TodayAttendancePage() {
       <section className="space-y-8">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
           <div>
-            <p className="text-[10px] font-bold tracking-[0.2em] text-primary uppercase mb-1">
-              Surveillance Log
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-on-surface">
+            <h2 className="sr-only">
               Today&apos;s Attendance
             </h2>
           </div>
           <div className="flex gap-2">
-            <button className="px-5 py-2.5 bg-surface-container-high text-primary rounded-xl text-sm font-semibold hover:bg-surface-container transition-colors">
+            <Button className="px-5 py-2.5 bg-surface-container-high text-primary rounded-xl text-sm font-semibold hover:bg-surface-container transition-colors">
               Export Report
-            </button>
-            <button className="px-5 py-2.5 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl text-sm font-semibold shadow-lg shadow-primary/20">
+            </Button>
+            <Button className="px-5 py-2.5 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl text-sm font-semibold shadow-lg shadow-primary/20">
               <span className="material-symbols-outlined text-sm align-middle mr-1">stream</span>
               Live Mode
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -136,7 +135,7 @@ export default function TodayAttendancePage() {
         </div>
         <div className="flex gap-2 p-1 bg-surface-container-low rounded-xl">
           {FILTERS.map((f) => (
-            <button
+            <Button
               key={f}
               onClick={() => setActiveFilter(f)}
               className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors ${
@@ -146,7 +145,7 @@ export default function TodayAttendancePage() {
               }`}
             >
               {f}
-            </button>
+            </Button>
           ))}
         </div>
         <div className="ml-auto flex items-center gap-2 text-on-surface-variant text-xs font-medium">
@@ -184,7 +183,7 @@ export default function TodayAttendancePage() {
               </div>
               <div className="mt-6 pt-6 border-t border-surface-container flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="text-[9px] font-bold text-on-surface-variant/50 uppercase tracking-tighter">
+                  <p className="text-[9px] font-bold text-on-surface-variant/75 uppercase tracking-tighter">
                     {emp.timeLabel}
                   </p>
                   <p className={`text-xs font-mono font-bold ${

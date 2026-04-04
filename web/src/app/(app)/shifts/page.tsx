@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 interface Shift {
@@ -29,17 +31,14 @@ export default function ShiftManagementPage() {
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
         <div>
           <span className="text-[10px] font-bold tracking-[0.25em] text-primary uppercase">Resource Allocation</span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-on-secondary-fixed mt-1">
+          <h2 className="sr-only">
             Shift Management
           </h2>
-          <p className="text-on-surface-variant mt-2 max-w-lg text-sm">
-            Define and oversee temporal operational frameworks. High-precision surveillance requires rigorous schedule enforcement.
-          </p>
         </div>
-        <button className="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg shadow-primary/20 flex items-center space-x-2 active:scale-95 duration-150 transition-all self-start sm:self-auto">
+        <Button className="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg shadow-primary/20 flex items-center space-x-2 active:scale-95 duration-150 transition-all self-start sm:self-auto">
           <span className="material-symbols-outlined text-sm">add</span>
           <span>CREATE SHIFT</span>
-        </button>
+        </Button>
       </div>
 
       {/* Stats Grid */}
@@ -132,23 +131,23 @@ export default function ShiftManagementPage() {
                     <td className="px-4 sm:px-8 py-6 text-center text-on-surface-variant">{shift.threshold}</td>
                     <td className="px-4 sm:px-8 py-6 text-right">
                       {expandedId === shift.id ? (
-                        <button
+                        <Button
                           onClick={() => setExpandedId("")}
                           className="p-2 text-primary"
                         >
                           <span className="material-symbols-outlined">visibility</span>
-                        </button>
+                        </Button>
                       ) : (
                         <>
-                          <button
+                          <Button
                             onClick={() => setExpandedId(shift.id)}
                             className="p-2 text-secondary hover:text-primary transition-colors"
                           >
                             <span className="material-symbols-outlined">edit</span>
-                          </button>
-                          <button className="p-2 text-secondary hover:text-primary transition-colors">
+                          </Button>
+                          <Button className="p-2 text-secondary hover:text-primary transition-colors">
                             <span className="material-symbols-outlined">more_vert</span>
-                          </button>
+                          </Button>
                         </>
                       )}
                     </td>
@@ -221,11 +220,11 @@ export default function ShiftManagementPage() {
             Showing 4 of 14 operational shifts
           </span>
           <div className="flex space-x-2">
-            <button className="p-2 hover:bg-surface-container transition-colors rounded">
+            <Button className="p-2 hover:bg-surface-container transition-colors rounded">
               <span className="material-symbols-outlined text-sm">chevron_left</span>
-            </button>
+            </Button>
             {[1, 2, 3].map((page) => (
-              <button
+              <Button
                 key={page}
                 onClick={() => setCurrentPage(page)}
                 className={`px-3 py-1 text-xs font-bold rounded ${
@@ -235,11 +234,11 @@ export default function ShiftManagementPage() {
                 }`}
               >
                 {page}
-              </button>
+              </Button>
             ))}
-            <button className="p-2 hover:bg-surface-container transition-colors rounded">
+            <Button className="p-2 hover:bg-surface-container transition-colors rounded">
               <span className="material-symbols-outlined text-sm">chevron_right</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -257,9 +256,9 @@ export default function ShiftManagementPage() {
             </p>
           </div>
         </div>
-        <button className="px-6 py-2 border border-primary-fixed/20 rounded-lg text-primary-fixed font-bold text-xs tracking-widest uppercase hover:bg-primary-fixed/10 transition-colors whitespace-nowrap">
+        <Button className="px-6 py-2 border border-primary-fixed/20 rounded-lg text-primary-fixed font-bold text-xs tracking-widest uppercase hover:bg-primary-fixed/10 transition-colors whitespace-nowrap">
           Review Suggestions
-        </button>
+        </Button>
       </div>
     </div>
   );

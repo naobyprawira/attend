@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 import { Select } from "@/components/Select";
 
@@ -38,13 +40,9 @@ export default function HeatmapPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
+          <h2 className="sr-only">
             Density Analysis
           </h2>
-          <p className="text-on-surface-variant mt-2 font-medium">
-            AI-powered behavioral mapping for{" "}
-            <span className="text-primary font-bold">{selectedCamera}</span>
-          </p>
         </div>
         <div className="flex items-center gap-3">
           <Select
@@ -52,10 +50,10 @@ export default function HeatmapPage() {
             onChange={setSelectedCamera}
             options={cameras.map((c) => ({ value: c, label: c }))}
           />
-          <button className="primary-gradient text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all">
+          <Button className="primary-gradient text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all">
             <span className="material-symbols-outlined text-sm">download</span>
             Export Report
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -112,15 +110,15 @@ export default function HeatmapPage() {
           {/* Timeline Scrubber */}
           <div className="bg-surface-variant rounded-xl border border-outline-variant/10 p-4">
             <div className="flex items-center gap-3 mb-3">
-              <button className="text-on-surface-variant hover:text-primary transition-colors">
+              <Button className="text-on-surface-variant hover:text-primary transition-colors">
                 <span className="material-symbols-outlined text-lg">skip_previous</span>
-              </button>
-              <button className="text-primary">
+              </Button>
+              <Button className="text-primary">
                 <span className="material-symbols-outlined text-lg">play_arrow</span>
-              </button>
-              <button className="text-on-surface-variant hover:text-primary transition-colors">
+              </Button>
+              <Button className="text-on-surface-variant hover:text-primary transition-colors">
                 <span className="material-symbols-outlined text-lg">skip_next</span>
-              </button>
+              </Button>
               <span className="text-xs text-on-surface-variant font-mono ml-2">14:32:15</span>
             </div>
             <div className="relative">

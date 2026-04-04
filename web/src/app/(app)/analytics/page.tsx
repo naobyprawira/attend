@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -78,10 +80,10 @@ export default function AnalyticsPage() {
                 expand_more
               </span>
             </div>
-            <button className="flex items-center gap-2 bg-surface-container-high hover:bg-surface-container-highest transition-colors px-4 py-2 rounded-lg text-primary font-semibold text-sm">
+            <Button className="flex items-center gap-2 bg-surface-container-high hover:bg-surface-container-highest transition-colors px-4 py-2 rounded-lg text-primary font-semibold text-sm">
               <span className="material-symbols-outlined text-sm">download</span>
               Export
-            </button>
+            </Button>
           </div>
         </div>
 

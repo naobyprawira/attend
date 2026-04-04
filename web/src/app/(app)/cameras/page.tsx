@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 interface Camera {
@@ -211,20 +213,17 @@ export default function CameraManagementPage() {
       {/* Page Header */}
       <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-3xl font-extrabold text-on-secondary-fixed tracking-tight">
+          <h1 className="sr-only">
             Camera Management
           </h1>
-          <p className="text-secondary mt-1 text-sm font-medium">
-            Global Surveillance Infrastructure
-          </p>
         </div>
-        <button
+        <Button
           onClick={openNewModal}
           className="primary-gradient text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all text-sm"
         >
           <span className="material-symbols-outlined text-[20px]">add</span>
           Add Camera
-        </button>
+        </Button>
       </div>
 
       {/* Stat Cards */}
@@ -267,7 +266,7 @@ export default function CameraManagementPage() {
               { key: "online" as FilterTab, label: "Online Only" },
               { key: "maintenance" as FilterTab, label: "Maintenance" },
             ]).map((tab) => (
-              <button
+              <Button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
                 className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
@@ -277,16 +276,16 @@ export default function CameraManagementPage() {
                 }`}
               >
                 {tab.label}
-              </button>
+              </Button>
             ))}
           </div>
           <div className="flex items-center gap-2">
-            <button className="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors">
+            <Button className="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors">
               <span className="material-symbols-outlined text-[20px]">filter_list</span>
-            </button>
-            <button className="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors">
+            </Button>
+            <Button className="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors">
               <span className="material-symbols-outlined text-[20px]">download</span>
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -328,7 +327,7 @@ export default function CameraManagementPage() {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
-                        <span className="material-symbols-outlined text-secondary/40 text-lg">videocam</span>
+                        <span className="material-symbols-outlined text-secondary/70 text-lg">videocam</span>
                       </div>
                       <div>
                         <p className="text-sm font-semibold text-on-surface">
@@ -381,20 +380,20 @@ export default function CameraManagementPage() {
                   {/* Actions */}
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-1">
-                      <button
+                      <Button
                         onClick={() => openEditModal(cam)}
                         className="p-2 rounded-lg text-secondary hover:text-primary hover:bg-primary/10 transition-all"
                         title="Edit camera"
                       >
                         <span className="material-symbols-outlined text-[18px]">edit</span>
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         onClick={() => handleDelete(cam.id)}
                         className="p-2 rounded-lg text-secondary hover:text-error hover:bg-error/10 transition-all"
                         title="Delete camera"
                       >
                         <span className="material-symbols-outlined text-[18px]">delete</span>
-                      </button>
+                      </Button>
                     </div>
                   </td>
                 </tr>
@@ -419,11 +418,11 @@ export default function CameraManagementPage() {
             <span className="font-semibold text-on-surface">128</span> results
           </p>
           <div className="flex items-center gap-1">
-            <button className="w-8 h-8 rounded-lg text-secondary hover:bg-surface-container transition-colors flex items-center justify-center">
+            <Button className="w-8 h-8 rounded-lg text-secondary hover:bg-surface-container transition-colors flex items-center justify-center">
               <span className="material-symbols-outlined text-[18px]">chevron_left</span>
-            </button>
+            </Button>
             {[1, 2, 3, "...", 26].map((page, i) => (
-              <button
+              <Button
                 key={i}
                 className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors flex items-center justify-center ${
                   page === 1
@@ -434,41 +433,41 @@ export default function CameraManagementPage() {
                 }`}
               >
                 {page}
-              </button>
+              </Button>
             ))}
-            <button className="w-8 h-8 rounded-lg text-secondary hover:bg-surface-container transition-colors flex items-center justify-center">
+            <Button className="w-8 h-8 rounded-lg text-secondary hover:bg-surface-container transition-colors flex items-center justify-center">
               <span className="material-symbols-outlined text-[18px]">chevron_right</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
 
       {/* AI Optimization Banner */}
-      <div className="bg-on-secondary-fixed rounded-xl p-6 flex items-center justify-between">
+      <div className="bg-surface-container-high dark:bg-on-secondary-fixed rounded-xl p-6 flex items-center justify-between border border-outline-variant/20">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
-            <span className="material-symbols-outlined text-primary-fixed text-[22px]">auto_awesome</span>
+          <div className="w-10 h-10 rounded-xl bg-primary/15 dark:bg-primary/20 flex items-center justify-center">
+            <span className="material-symbols-outlined text-primary text-[22px]">auto_awesome</span>
           </div>
           <div>
-            <p className="text-white font-bold text-sm">
+            <p className="text-on-surface dark:text-white font-bold text-sm">
               Bandwidth Alert: Adaptive Streaming
             </p>
-            <p className="text-white/50 text-xs mt-0.5">
+            <p className="text-on-surface-variant dark:text-white/80 text-xs mt-0.5">
               AI has detected 3 cameras with suboptimal bitrate settings. Optimization can reduce bandwidth by 23%.
             </p>
           </div>
         </div>
-        <button className="px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-colors shrink-0">
+        <Button className="px-5 py-2.5 rounded-xl bg-primary text-white text-xs font-bold uppercase tracking-widest hover:bg-primary-container transition-colors shrink-0">
           Apply Optimization
-        </button>
+        </Button>
       </div>
 
       {/* RTSP Setup Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-on-secondary-fixed/40 backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-on-surface/40 backdrop-blur-sm animate-fade-in">
           <div className="w-full max-w-4xl bg-surface-container-lowest rounded-xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.25)] overflow-hidden flex flex-col md:flex-row">
             {/* Left: Preview Frame */}
-            <div className="md:w-5/12 bg-on-secondary-fixed p-4 sm:p-6 lg:p-8 flex flex-col">
+            <div className="md:w-5/12 bg-surface-container-high dark:bg-on-secondary-fixed p-4 sm:p-6 lg:p-8 flex flex-col">
               <div className="flex items-center gap-2 mb-6">
                 <div
                   className={`w-2 h-2 rounded-full ${
@@ -479,7 +478,7 @@ export default function CameraManagementPage() {
                         : "bg-primary"
                   } ${testStatus === "testing" ? "animate-pulse" : ""}`}
                 />
-                <h3 className="text-white font-bold tracking-tight uppercase text-xs">
+                <h3 className="text-on-surface dark:text-white font-bold tracking-tight uppercase text-xs">
                   {testStatus === "testing"
                     ? "Testing Connection..."
                     : testStatus === "success"
@@ -492,14 +491,14 @@ export default function CameraManagementPage() {
 
               <div className="flex-1 rounded-xl overflow-hidden bg-surface-container-highest relative aspect-video md:aspect-auto">
                 <div className="absolute inset-0 bg-surface-container-highest flex items-center justify-center">
-                  <span className="material-symbols-outlined text-white/10 text-8xl">videocam</span>
+                  <span className="material-symbols-outlined text-outline/70 dark:text-white/35 text-8xl">videocam</span>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center p-4">
-                    <span className="material-symbols-outlined text-white/40 text-4xl mb-2">
+                    <span className="material-symbols-outlined text-on-surface dark:text-white/80 text-4xl mb-2">
                       {testStatus === "success" ? "videocam" : testStatus === "testing" ? "sync" : "videocam_off"}
                     </span>
-                    <p className="text-white/60 text-xs font-medium uppercase tracking-widest">
+                    <p className="text-on-surface-variant dark:text-white/60 text-xs font-medium uppercase tracking-widest">
                       {testStatus === "success"
                         ? "Stream Active"
                         : testStatus === "testing"
@@ -508,22 +507,22 @@ export default function CameraManagementPage() {
                     </p>
                   </div>
                 </div>
-                <div className="absolute top-4 left-4 text-[10px] text-white/50 font-mono">00:00:00:00</div>
+                <div className="absolute top-4 left-4 text-[10px] text-on-surface-variant dark:text-white/80 font-mono">00:00:00:00</div>
                 <div className="absolute bottom-4 right-4 flex gap-1">
-                  <div className="w-1 h-3 bg-white/20" />
-                  <div className="w-1 h-3 bg-white/20" />
-                  <div className="w-1 h-3 bg-white/20" />
+                  <div className="w-1 h-3 bg-outline-variant/70 dark:bg-white/20" />
+                  <div className="w-1 h-3 bg-outline-variant/70 dark:bg-white/20" />
+                  <div className="w-1 h-3 bg-outline-variant/70 dark:bg-white/20" />
                 </div>
               </div>
 
               <div className="mt-6 flex flex-col gap-3">
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-white/40 uppercase font-bold tracking-widest">Resolution</span>
-                  <span className="text-white font-medium">1080p (FHD)</span>
+                  <span className="text-on-surface-variant dark:text-white/80 uppercase font-bold tracking-widest">Resolution</span>
+                  <span className="text-on-surface dark:text-white font-medium">1080p (FHD)</span>
                 </div>
                 <div className="flex justify-between items-center text-xs">
-                  <span className="text-white/40 uppercase font-bold tracking-widest">Framerate</span>
-                  <span className="text-white font-medium">30 FPS</span>
+                  <span className="text-on-surface-variant dark:text-white/80 uppercase font-bold tracking-widest">Framerate</span>
+                  <span className="text-on-surface dark:text-white font-medium">30 FPS</span>
                 </div>
               </div>
             </div>
@@ -535,16 +534,13 @@ export default function CameraManagementPage() {
                   <h2 className="text-2xl font-black text-on-surface tracking-tighter">
                     {editingCamera ? "Edit Camera" : "RTSP Camera Setup"}
                   </h2>
-                  <p className="text-on-surface-variant text-sm mt-1">
-                    Configure your stream endpoint and metadata.
-                  </p>
                 </div>
-                <button
+                <Button
                   onClick={() => setShowModal(false)}
                   className="text-secondary hover:text-on-surface p-2 transition-colors"
                 >
                   <span className="material-symbols-outlined">close</span>
-                </button>
+                </Button>
               </div>
 
               <form
@@ -565,16 +561,16 @@ export default function CameraManagementPage() {
                       value={formUrl}
                       onChange={(e) => setFormUrl(e.target.value)}
                       placeholder="rtsp://admin:password@192.168.1.100:554/live"
-                      className="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/50 text-on-surface"
+                      className="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/70 text-on-surface"
                     />
-                    <button
+                    <Button
                       type="button"
                       onClick={handleTestConnection}
                       disabled={testStatus === "testing" || !formUrl}
                       className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-surface-container-low text-primary text-[10px] font-bold rounded-md hover:bg-surface-container-high transition-colors uppercase tracking-widest disabled:opacity-50"
                     >
                       {testStatus === "testing" ? "Testing..." : "Test Connection"}
-                    </button>
+                    </Button>
                   </div>
                   {testStatus === "success" && (
                     <p className="text-green-500 text-xs flex items-center gap-1">
@@ -610,7 +606,7 @@ export default function CameraManagementPage() {
                       Location
                     </label>
                     <div className="relative">
-                      <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline/50 text-lg">
+                      <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline/70 text-lg">
                         location_on
                       </span>
                       <input
@@ -657,19 +653,19 @@ export default function CameraManagementPage() {
 
                 {/* Actions */}
                 <div className="pt-6 flex gap-4">
-                  <button
+                  <Button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="flex-1 py-4 bg-surface-container-high text-on-surface-variant font-bold rounded-xl hover:bg-surface-container-highestest transition-all uppercase tracking-widest text-xs"
+                    className="flex-1 py-4 bg-surface-container-high text-on-surface-variant font-bold rounded-xl hover:bg-surface-container-highest transition-all uppercase tracking-widest text-xs"
                   >
                     Discard
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     type="submit"
                     className="flex-[2] py-4 primary-gradient text-white font-bold rounded-xl shadow-xl shadow-primary/20 hover:opacity-90 transition-all uppercase tracking-[0.2em] text-xs"
                   >
                     Save Configuration
-                  </button>
+                  </Button>
                 </div>
               </form>
             </div>

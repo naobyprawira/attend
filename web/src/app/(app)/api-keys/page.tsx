@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 const KEYS = [
@@ -18,16 +20,13 @@ export default function ApiKeysPage() {
       {/* Header */}
       <div className="flex flex-wrap justify-between items-start gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-surface tracking-tight">
+          <h2 className="sr-only">
             API Key Management
           </h2>
-          <p className="text-on-surface-variant mt-2 font-medium">
-            Create, manage, and monitor API access credentials.
-          </p>
         </div>
         {/* Tabs */}
         <div className="flex bg-surface-container-highest rounded-lg p-1">
-          <button
+          <Button
             onClick={() => setActiveTab("active")}
             className={`px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-all ${
               activeTab === "active"
@@ -36,8 +35,8 @@ export default function ApiKeysPage() {
             }`}
           >
             Active Keys
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => setActiveTab("revoked")}
             className={`px-4 py-2 rounded-md text-xs font-bold uppercase tracking-widest transition-all ${
               activeTab === "revoked"
@@ -46,7 +45,7 @@ export default function ApiKeysPage() {
             }`}
           >
             Revoked
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -98,9 +97,9 @@ export default function ApiKeysPage() {
           <p className="text-[10px] font-bold tracking-[0.2em] uppercase mb-2 text-white/70">Upgrade</p>
           <h3 className="text-lg font-black">Upgrade to Enterprise</h3>
           <p className="text-xs mt-2 text-white/70 leading-relaxed">Unlimited API keys and higher rate limits.</p>
-          <button className="mt-4 bg-white/20 hover:bg-white/30 text-white text-xs font-bold px-4 py-2 rounded-lg uppercase tracking-widest transition-all">
+          <Button className="mt-4 bg-white/20 hover:bg-white/30 text-white text-xs font-bold px-4 py-2 rounded-lg uppercase tracking-widest transition-all">
             Learn More
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -110,10 +109,10 @@ export default function ApiKeysPage() {
           <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
             Infrastructure Keys
           </h4>
-          <button className="primary-gradient text-white text-xs font-bold px-4 py-2 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all flex items-center gap-1.5">
+          <Button className="primary-gradient text-white text-xs font-bold px-4 py-2 rounded-lg uppercase tracking-widest hover:opacity-90 transition-all flex items-center gap-1.5">
             <span className="material-symbols-outlined text-sm">add</span>
             Generate Key
-          </button>
+          </Button>
         </div>
         {activeTab === "active" ? (
           <div className="overflow-x-auto">
@@ -141,9 +140,9 @@ export default function ApiKeysPage() {
                     <td className="px-5 py-4 font-mono text-xs text-on-surface-variant">
                       <div className="flex items-center gap-2">
                         {k.key}
-                        <button className="text-on-surface-variant hover:text-primary transition-colors">
+                        <Button className="text-on-surface-variant hover:text-primary transition-colors">
                           <span className="material-symbols-outlined text-sm">content_copy</span>
-                        </button>
+                        </Button>
                       </div>
                     </td>
                     <td className="px-5 py-4">
@@ -168,12 +167,12 @@ export default function ApiKeysPage() {
                     <td className="px-5 py-4 text-xs text-on-surface-variant">{k.created}</td>
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-2">
-                        <button className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant hover:text-primary">
+                        <Button className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant hover:text-primary">
                           <span className="material-symbols-outlined text-sm">edit</span>
-                        </button>
-                        <button className="p-1.5 rounded-lg hover:bg-error/10 transition-colors text-on-surface-variant hover:text-error">
+                        </Button>
+                        <Button className="p-1.5 rounded-lg hover:bg-error/10 transition-colors text-on-surface-variant hover:text-error">
                           <span className="material-symbols-outlined text-sm">block</span>
-                        </button>
+                        </Button>
                       </div>
                     </td>
                   </tr>
@@ -227,10 +226,10 @@ export default function ApiKeysPage() {
               Explore the full Attend.AI API reference, including authentication, endpoints, rate limits, and webhook configuration.
             </p>
           </div>
-          <button className="mt-6 primary-gradient text-white text-xs font-bold px-5 py-3 rounded-xl uppercase tracking-widest hover:opacity-90 transition-all flex items-center gap-2 self-start">
+          <Button className="mt-6 primary-gradient text-white text-xs font-bold px-5 py-3 rounded-xl uppercase tracking-widest hover:opacity-90 transition-all flex items-center gap-2 self-start">
             <span className="material-symbols-outlined text-sm">open_in_new</span>
             View Documentation
-          </button>
+          </Button>
         </div>
       </div>
     </div>

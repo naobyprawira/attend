@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useStatus, useEvents, useEventStats } from "@/lib/queries";
 
 // Dummy data for when backend is offline
@@ -192,19 +194,19 @@ export default function DashboardPage() {
               Live Feeds
             </h4>
             <div className="flex gap-2">
-              <button className="p-1 hover:text-primary transition-colors text-on-surface-variant">
+              <Button className="p-1 hover:text-primary transition-colors text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">fullscreen</span>
-              </button>
-              <button className="p-1 hover:text-primary transition-colors text-on-surface-variant">
+              </Button>
+              <Button className="p-1 hover:text-primary transition-colors text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">more_vert</span>
-              </button>
+              </Button>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 flex-1">
             {DUMMY_FEEDS.map((feed) => (
               <div key={feed.id} className="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group bg-surface-container-highest">
                 <div className="absolute inset-0 bg-surface-container-highest flex items-center justify-center">
-                  <span className="material-symbols-outlined text-white/20 text-6xl">videocam</span>
+                  <span className="material-symbols-outlined text-white/35 text-6xl">videocam</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute top-3 left-3 flex items-center gap-2">

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 const INCIDENTS = [
   { title: "Site Delta Latency Spike", time: "10:42 AM", severity: "warning", detail: "Latency exceeded 50ms threshold for 3 minutes" },
   { title: "Node 07 Reconnected", time: "10:18 AM", severity: "info", detail: "Auto-recovery successful after 12s downtime" },
@@ -32,7 +34,7 @@ export default function NetworkPage() {
     <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div className="flex flex-wrap items-center gap-4">
-        <h2 className="text-4xl font-extrabold text-on-surface tracking-tight">
+        <h2 className="sr-only">
           Network Topology Viewer
         </h2>
         <span className="flex items-center gap-1.5 bg-green-500/10 text-green-500 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
@@ -124,10 +126,10 @@ export default function NetworkPage() {
             ))}
           </div>
           <div className="p-4 border-t border-outline-variant/10">
-            <button className="text-primary text-xs font-bold hover:underline flex items-center gap-1">
+            <Button className="text-primary text-xs font-bold hover:underline flex items-center gap-1">
               <span className="material-symbols-outlined text-sm">history</span>
               View All Incidents
-            </button>
+            </Button>
           </div>
         </div>
       </div>

@@ -30,12 +30,9 @@ export default function CrossSitePage() {
     <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div>
-        <h2 className="text-4xl font-extrabold text-on-surface tracking-tight">
+        <h2 className="sr-only">
           Cross-Site Intelligence
         </h2>
-        <p className="text-on-surface-variant mt-2 font-medium">
-          Unified intelligence across all connected surveillance nodes.
-        </p>
       </div>
 
       {/* Top Stats Row */}

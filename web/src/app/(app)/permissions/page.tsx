@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ── Types ── */
@@ -102,34 +104,28 @@ export default function PermissionsPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">
-            Role Management
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
+          <h2 className="sr-only">
             Permission Matrix
           </h2>
-          <p className="text-on-surface-variant mt-2 font-medium text-sm">
-            Define granular access control across role hierarchies and system nodes.
-          </p>
         </div>
         <div className="flex gap-3 self-start sm:self-auto">
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-surface-container-highest text-on-surface rounded-xl text-sm font-bold hover:bg-surface-container transition-all">
+          <Button className="flex items-center gap-2 px-4 py-2.5 bg-surface-container-highest text-on-surface rounded-xl text-sm font-bold hover:bg-surface-container transition-all">
             <span className="material-symbols-outlined text-sm">
               history
             </span>
             Audit Log
-          </button>
-          <button className="primary-gradient text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all text-sm">
+          </Button>
+          <Button className="primary-gradient text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all text-sm">
             <span className="material-symbols-outlined text-sm">add</span>
             Create Role
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Tabs */}
       <div className="flex gap-1 bg-surface-container rounded-lg p-1 w-fit overflow-x-auto">
         {TABS.map((tab) => (
-          <button
+          <Button
             key={tab}
             onClick={() => {
               if (tab === "Reset Matrix") {
@@ -145,7 +141,7 @@ export default function PermissionsPage() {
             }`}
           >
             {tab}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -200,7 +196,7 @@ export default function PermissionsPage() {
                         const granted = matrix[perm.key]?.[role] ?? false;
                         return (
                           <td key={role} className="px-4 py-3.5 text-center">
-                            <button
+                            <Button
                               onClick={() =>
                                 togglePermission(perm.key, role)
                               }
@@ -215,7 +211,7 @@ export default function PermissionsPage() {
                                   granted ? "left-[18px]" : "left-0.5"
                                 }`}
                               />
-                            </button>
+                            </Button>
                           </td>
                         );
                       })}
@@ -232,14 +228,14 @@ export default function PermissionsPage() {
           <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">
             {totalPermissions} permissions &times; {ROLES.length} roles
           </p>
-          <button
+          <Button
             onClick={handleSave}
             disabled={!hasChanges}
             className="primary-gradient text-white px-5 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all text-xs disabled:opacity-40"
           >
             <span className="material-symbols-outlined text-sm">save</span>
             Save Changes
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -310,9 +306,9 @@ export default function PermissionsPage() {
             API token scoping and service account permissions are managed
             separately via the developer console.
           </p>
-          <button className="w-full bg-primary text-white px-4 py-2.5 rounded-lg font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all">
+          <Button className="w-full bg-primary text-white px-4 py-2.5 rounded-lg font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all">
             Configure
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { personPhotoUrl } from "@/lib/api";
@@ -177,22 +179,22 @@ export default function PersonsPage() {
             </p>
           </div>
           <div className="flex gap-2">
-            <button className="p-2 bg-surface-container-high rounded-lg text-primary hover:bg-surface-container transition-all">
+            <Button className="p-2 bg-surface-container-high rounded-lg text-primary hover:bg-surface-container transition-all">
               <span className="material-symbols-outlined">upload</span>
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setShowDialog(true)}
               className="flex items-center gap-2 px-4 py-2 primary-gradient text-white rounded-lg shadow-lg hover:shadow-primary/20 transition-all text-sm font-medium"
             >
               <span className="material-symbols-outlined text-sm">add</span>
               Add Person
-            </button>
+            </Button>
           </div>
         </div>
 
         {/* Search */}
         <div className="relative mb-4">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/75">search</span>
           <input
             type="text"
             placeholder="Search personnel..."
@@ -237,7 +239,7 @@ export default function PersonsPage() {
                           onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                         />
                       ) : null}
-                      <span className="material-symbols-outlined text-2xl text-on-surface-variant/30 absolute">person</span>
+                      <span className="material-symbols-outlined text-2xl text-on-surface-variant/45 absolute">person</span>
                     </div>
                     <span className={`px-2 py-1 text-[10px] font-bold uppercase rounded-full tracking-wider ${
                       isInactive
@@ -247,7 +249,7 @@ export default function PersonsPage() {
                       {person.status ?? "Active"}
                     </span>
                   </div>
-                  <h4 className={`font-bold text-sm ${isInactive ? "text-on-surface/60" : "text-on-surface"}`}>
+                  <h4 className={`font-bold text-sm ${isInactive ? "text-on-surface/80" : "text-on-surface"}`}>
                     {person.name}
                   </h4>
                   <p className={`text-[10px] mb-3 ${isInactive ? "text-on-surface-variant/60" : "text-on-surface-variant"}`}>
@@ -265,12 +267,12 @@ export default function PersonsPage() {
                   </div>
 
                   {/* Delete on hover */}
-                  <button
+                  <Button
                     onClick={(e) => { e.stopPropagation(); handleDelete(person.id); }}
                     className="mt-3 opacity-0 group-hover:opacity-100 text-error text-[10px] font-bold uppercase tracking-wider hover:underline transition-all"
                   >
                     Remove
-                  </button>
+                  </Button>
                 </div>
               );
             })}
@@ -299,7 +301,7 @@ export default function PersonsPage() {
                         onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                       />
                     ) : null}
-                    <span className="material-symbols-outlined text-5xl text-on-surface-variant/20 absolute">person</span>
+                    <span className="material-symbols-outlined text-5xl text-on-surface-variant/35 absolute">person</span>
                   </div>
                   {selected.status !== "Inactive" && (
                     <div className="absolute -bottom-2 -right-2 bg-on-tertiary-container p-1 rounded-lg text-white shadow-lg">
@@ -313,15 +315,15 @@ export default function PersonsPage() {
                   </h2>
                   <p className="text-primary font-medium mb-4">{selected.role ?? "Member"}</p>
                   <div className="flex gap-4">
-                    <button className="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
+                    <Button className="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
                       <span className="material-symbols-outlined text-sm">edit</span>
-                    </button>
-                    <button className="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
+                    </Button>
+                    <Button className="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
                       <span className="material-symbols-outlined text-sm">mail</span>
-                    </button>
-                    <button className="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
+                    </Button>
+                    <Button className="p-2 bg-surface-container-lowest rounded-lg text-secondary hover:text-primary transition-all shadow-sm">
                       <span className="material-symbols-outlined text-sm">more_horiz</span>
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -398,7 +400,7 @@ export default function PersonsPage() {
                   <div key={evt.id} className="flex items-center justify-between p-3 bg-surface-container-lowest/50 rounded-lg hover:bg-surface-container-lowest transition-all">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-surface-dim overflow-hidden relative flex items-center justify-center">
-                        <span className="material-symbols-outlined text-on-surface-variant/30 text-lg">videocam</span>
+                        <span className="material-symbols-outlined text-on-surface-variant/45 text-lg">videocam</span>
                         <div className="absolute inset-0 border border-primary-container/40 rounded-lg"></div>
                       </div>
                       <div>
@@ -445,12 +447,12 @@ export default function PersonsPage() {
                     Add a new identity to the recognition database.
                   </p>
                 </div>
-                <button
+                <Button
                   onClick={() => setShowDialog(false)}
                   className="text-secondary hover:text-on-surface p-1 transition-colors"
                 >
                   <span className="material-symbols-outlined">close</span>
-                </button>
+                </Button>
               </div>
 
               <div className="space-y-5">
@@ -481,19 +483,19 @@ export default function PersonsPage() {
               </div>
 
               <div className="pt-8 flex gap-4">
-                <button
+                <Button
                   onClick={() => setShowDialog(false)}
                   className="flex-1 py-3.5 bg-surface-container-high text-on-surface-variant font-bold rounded-xl hover:bg-surface-container-highest transition-all uppercase tracking-widest text-xs"
                 >
                   Cancel
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={handleRegister}
                   disabled={registerMutation.isPending || !name.trim()}
                   className="flex-[2] py-3.5 primary-gradient text-white font-bold rounded-xl shadow-xl shadow-primary/20 hover:opacity-90 transition-all uppercase tracking-[0.2em] text-xs disabled:opacity-50"
                 >
                   {registerMutation.isPending ? "Registering..." : "Register Person"}
-                </button>
+                </Button>
               </div>
             </div>
           </div>

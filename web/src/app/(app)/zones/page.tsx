@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -30,18 +32,17 @@ export default function ZoneManagementPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
-          <p className="text-[10px] uppercase tracking-widest text-primary font-bold mb-1">Surveillance Core</p>
-          <h1 className="text-3xl font-black text-on-surface tracking-tight">Zone Architecture</h1>
+          <h1 className="sr-only">Zone Architecture</h1>
         </div>
         <div className="flex items-center gap-4">
-          <button className="flex items-center gap-2 px-5 py-2.5 bg-surface-container-high text-primary font-semibold rounded-lg hover:brightness-95 transition-all text-sm">
+          <Button className="flex items-center gap-2 px-5 py-2.5 bg-surface-container-high text-primary font-semibold rounded-lg hover:brightness-95 transition-all text-sm">
             <span className="material-symbols-outlined text-lg">filter_list</span>
             Filter Zones
-          </button>
-          <button className="flex items-center gap-2 px-5 py-2.5 bg-primary-container text-white font-semibold rounded-lg hover:shadow-lg hover:brightness-110 active:scale-95 transition-all text-sm">
+          </Button>
+          <Button className="flex items-center gap-2 px-5 py-2.5 bg-primary-container text-white font-semibold rounded-lg hover:shadow-lg hover:brightness-110 active:scale-95 transition-all text-sm">
             <span className="material-symbols-outlined text-lg">add</span>
             Create Zone
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -148,18 +149,18 @@ export default function ZoneManagementPage() {
         <div className="px-6 py-4 bg-surface-container-low flex items-center justify-between">
           <span className="text-xs text-secondary font-medium">Showing 4 of 24 surveillance zones</span>
           <div className="flex gap-2">
-            <button
+            <Button
               onClick={() => setPage(Math.max(1, page - 1))}
               className="px-3 py-1 bg-surface-container-lowest text-xs font-bold rounded border border-outline-variant/10 text-secondary hover:bg-surface-container-lowest transition-colors"
             >
               Previous
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setPage(page + 1)}
               className="px-3 py-1 bg-primary text-white text-xs font-bold rounded hover:brightness-110 transition-colors"
             >
               Next
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -171,13 +172,13 @@ export default function ZoneManagementPage() {
           <div className="w-full h-full bg-gradient-to-br from-surface-container to-surface-container-highest flex items-center justify-center">
             <span className="material-symbols-outlined text-on-surface-variant text-[120px]">map</span>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-on-secondary-fixed to-transparent opacity-80" />
-          <div className="absolute bottom-0 left-0 p-8 text-white">
+          <div className="absolute inset-0 bg-gradient-to-t from-surface-container-high/85 dark:from-on-secondary-fixed to-transparent opacity-90" />
+          <div className="absolute bottom-0 left-0 p-8 text-on-surface dark:text-white">
             <h4 className="text-xl font-black mb-2 tracking-tight">Real-time Zone Overlay</h4>
-            <p className="text-sm text-on-surface-variant max-w-md">Access advanced telemetry and facial recognition heatmaps directly from the integrated floor plan module.</p>
-            <button className="mt-4 text-xs font-bold uppercase tracking-widest text-primary-fixed-dim hover:text-white transition-colors flex items-center gap-2">
+            <p className="text-sm text-on-surface-variant dark:text-white/80 max-w-md">Access advanced telemetry and facial recognition heatmaps directly from the integrated floor plan module.</p>
+            <Button className="mt-4 text-xs font-bold uppercase tracking-widest text-primary dark:text-primary-fixed-dim hover:text-on-surface dark:hover:text-white transition-colors flex items-center gap-2">
               Launch Floor Plan <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </button>
+            </Button>
           </div>
         </div>
 

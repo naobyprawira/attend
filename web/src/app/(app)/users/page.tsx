@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/lib/auth/context";
@@ -111,9 +113,9 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
       <div className="bg-surface-container-lowest rounded-2xl w-[26rem] overflow-hidden shadow-2xl">
         <div className="flex items-center justify-between px-6 py-5 border-b border-outline-variant/10">
           <h3 className="font-bold text-on-surface">Add User</h3>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors">
+          <Button onClick={onClose} className="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors">
             <span className="material-symbols-outlined text-lg">close</span>
-          </button>
+          </Button>
         </div>
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="space-y-1.5">
@@ -152,9 +154,9 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
                 maxLength={128}
                 required
               />
-              <button type="button" onClick={() => setShowPw(!showPw)} className="absolute inset-y-0 right-0 pr-3 text-on-surface-variant/60 hover:text-primary transition-colors">
+              <Button type="button" onClick={() => setShowPw(!showPw)} className="absolute inset-y-0 right-0 pr-3 text-on-surface-variant/60 hover:text-primary transition-colors">
                 <span className="material-symbols-outlined text-lg">{showPw ? "visibility_off" : "visibility"}</span>
-              </button>
+              </Button>
             </div>
             <p className="text-[11px] text-on-surface-variant">
               Use 12+ characters with uppercase, lowercase, number, and symbol.
@@ -169,16 +171,16 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
             />
           </div>
           <div className="flex gap-3 pt-2">
-            <button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
+            <Button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={createUser.isPending}
               className="flex-1 py-2.5 rounded-xl text-sm font-bold primary-gradient text-white shadow-lg shadow-primary/20 hover:opacity-90 disabled:opacity-60 transition-all"
             >
               {createUser.isPending ? "Creating…" : "Create User"}
-            </button>
+            </Button>
           </div>
         </form>
       </div>
@@ -215,9 +217,9 @@ function EditUserDialog({ user, onClose, currentUserRole }: { user: User; onClos
             <h3 className="font-bold text-on-surface">Edit User</h3>
             <p className="text-xs text-on-surface-variant">{user.username}</p>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors">
+          <Button onClick={onClose} className="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors">
             <span className="material-symbols-outlined text-lg">close</span>
-          </button>
+          </Button>
         </div>
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="space-y-1.5">
@@ -240,16 +242,16 @@ function EditUserDialog({ user, onClose, currentUserRole }: { user: User; onClos
             />
           </div>
           <div className="flex gap-3 pt-2">
-            <button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
+            <Button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
               Cancel
-            </button>
-            <button
+            </Button>
+            <Button
               type="submit"
               disabled={updateUser.isPending}
               className="flex-1 py-2.5 rounded-xl text-sm font-bold primary-gradient text-white shadow-lg shadow-primary/20 hover:opacity-90 disabled:opacity-60 transition-all"
             >
               {updateUser.isPending ? "Saving…" : "Save Changes"}
-            </button>
+            </Button>
           </div>
         </form>
       </div>
@@ -281,7 +283,7 @@ function DeleteButton({ userId, onDeleted }: { userId: number; onDeleted: () => 
   useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
 
   return (
-    <button
+    <Button
       onClick={handleClick}
       disabled={deleteUser.isPending}
       title={confirming ? "Click again to confirm" : "Delete user"}
@@ -294,7 +296,7 @@ function DeleteButton({ userId, onDeleted }: { userId: number; onDeleted: () => 
       <span className="material-symbols-outlined text-lg">
         {confirming ? "warning" : "delete"}
       </span>
-    </button>
+    </Button>
   );
 }
 
@@ -392,20 +394,17 @@ export default function UsersPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
+          <h2 className="sr-only">
             User Management
           </h2>
-          <p className="text-on-surface-variant mt-2 font-medium text-sm">
-            Manage accounts, roles, and access requests.
-          </p>
         </div>
-        <button
+        <Button
           onClick={() => setShowAddDialog(true)}
           className="primary-gradient text-white px-5 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all text-sm self-start sm:self-auto"
         >
           <span className="material-symbols-outlined text-sm">person_add</span>
           Add User
-        </button>
+        </Button>
       </div>
 
       {/* Stats */}
@@ -429,7 +428,7 @@ export default function UsersPage() {
       {/* Search + Tabs */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
         <div className="relative flex-1 max-w-md">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50 text-lg">search</span>
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/75 text-lg">search</span>
           <input
             type="text"
             placeholder="Search by username or email…"
@@ -440,7 +439,7 @@ export default function UsersPage() {
         </div>
         <div className="flex gap-1 bg-surface-container rounded-lg p-1">
           {TABS.map((tab) => (
-            <button
+            <Button
               key={tab}
               onClick={() => { setActiveTab(tab); setCurrentPage(1); }}
               className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
@@ -455,7 +454,7 @@ export default function UsersPage() {
                   {totalPending}
                 </span>
               )}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -466,7 +465,7 @@ export default function UsersPage() {
           <div className="flex flex-col items-center gap-3 py-16 text-on-surface-variant">
             <span className="material-symbols-outlined text-3xl text-error">error</span>
             <p className="text-sm">Failed to load users.</p>
-            <button onClick={() => refetch()} className="text-xs font-bold text-primary hover:underline">Retry</button>
+            <Button onClick={() => refetch()} className="text-xs font-bold text-primary hover:underline">Retry</Button>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -533,25 +532,25 @@ export default function UsersPage() {
                         <div className="flex items-center justify-end gap-1">
                           {user.status === "pending" ? (
                             <>
-                              <button
+                              <Button
                                 onClick={() => handleApprove(user)}
                                 title="Approve"
                                 className="p-1.5 rounded-lg hover:bg-green-500/10 text-green-500 transition-all"
                               >
                                 <span className="material-symbols-outlined text-lg">check_circle</span>
-                              </button>
+                              </Button>
                               <DeleteButton userId={user.id} onDeleted={() => {}} />
                             </>
                           ) : (
                             <>
-                              <button
+                              <Button
                                 onClick={() => setEditingUser(user)}
                                 disabled={user.id === me?.id || user.role === "super_admin" || (user.role === "admin" && me?.role !== "super_admin")}
                                 title={user.role === "super_admin" ? "Super admin cannot be edited" : user.role === "admin" && me?.role !== "super_admin" ? "Only super admin can edit admin accounts" : "Edit"}
                                 className="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant disabled:opacity-30 transition-all"
                               >
                                 <span className="material-symbols-outlined text-lg">edit</span>
-                              </button>
+                              </Button>
                               <DeleteButton userId={user.id} onDeleted={() => {}} />
                             </>
                           )}
@@ -571,17 +570,17 @@ export default function UsersPage() {
               Showing {(currentPage - 1) * PER_PAGE + 1}–{Math.min(currentPage * PER_PAGE, filtered.length)} of {filtered.length}
             </p>
             <div className="flex gap-1">
-              <button onClick={() => setCurrentPage((p) => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-1.5 rounded-lg hover:bg-surface-container disabled:opacity-30 transition-all text-on-surface-variant">
+              <Button onClick={() => setCurrentPage((p) => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-1.5 rounded-lg hover:bg-surface-container disabled:opacity-30 transition-all text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">chevron_left</span>
-              </button>
+              </Button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button key={page} onClick={() => setCurrentPage(page)} className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${currentPage === page ? "bg-primary text-white" : "text-on-surface-variant hover:bg-surface-container"}`}>
+                <Button key={page} onClick={() => setCurrentPage(page)} className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${currentPage === page ? "bg-primary text-white" : "text-on-surface-variant hover:bg-surface-container"}`}>
                   {page}
-                </button>
+                </Button>
               ))}
-              <button onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="p-1.5 rounded-lg hover:bg-surface-container disabled:opacity-30 transition-all text-on-surface-variant">
+              <Button onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="p-1.5 rounded-lg hover:bg-surface-container disabled:opacity-30 transition-all text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">chevron_right</span>
-              </button>
+              </Button>
             </div>
           </div>
         )}

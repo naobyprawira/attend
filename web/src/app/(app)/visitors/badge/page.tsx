@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -17,18 +19,17 @@ export default function VisitorBadgePage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 gap-4">
           <div>
-            <h1 className="text-3xl font-black text-on-surface tracking-tight font-headline">Visitor Badge Preview</h1>
-            <p className="text-on-surface-variant mt-2">Generate and verify secure credentials for arriving guests.</p>
+            <h1 className="sr-only">Visitor Badge Preview</h1>
           </div>
           <div className="flex gap-3">
-            <button className="bg-surface-container-high text-primary px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 hover:bg-surface-container-highest transition-colors active:scale-95">
+            <Button className="bg-surface-container-high text-primary px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 hover:bg-surface-container-highest transition-colors active:scale-95">
               <span className="material-symbols-outlined">edit</span>
               Edit Details
-            </button>
-            <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 shadow-lg hover:brightness-110 transition-all active:scale-95">
+            </Button>
+            <Button className="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 shadow-lg hover:brightness-110 transition-all active:scale-95">
               <span className="material-symbols-outlined">print</span>
               Print Badge
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -153,12 +154,12 @@ export default function VisitorBadgePage() {
                     <p className="text-sm font-bold text-on-surface">Add Wi-Fi Access</p>
                     <p className="text-xs text-on-surface-variant">Include temporary guest credentials</p>
                   </div>
-                  <button
+                  <Button
                     onClick={() => setWifiAccess(!wifiAccess)}
                     className={`w-12 h-6 rounded-full relative transition-colors ${wifiAccess ? "bg-primary/20" : "bg-surface-container-high"}`}
                   >
                     <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${wifiAccess ? "right-1 bg-primary" : "left-1 bg-surface-container-lowest shadow-sm"}`} />
-                  </button>
+                  </Button>
                 </div>
 
                 {/* NDA toggle */}
@@ -167,12 +168,12 @@ export default function VisitorBadgePage() {
                     <p className="text-sm font-bold text-on-surface">NDA Required</p>
                     <p className="text-xs text-on-surface-variant">Mark as &quot;Signed&quot; on badge</p>
                   </div>
-                  <button
+                  <Button
                     onClick={() => setNdaRequired(!ndaRequired)}
                     className={`w-12 h-6 rounded-full relative transition-colors ${ndaRequired ? "bg-primary/20" : "bg-surface-container-high"}`}
                   >
                     <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${ndaRequired ? "right-1 bg-primary" : "left-1 bg-surface-container-lowest shadow-sm"}`} />
-                  </button>
+                  </Button>
                 </div>
 
                 {/* Escort toggle */}
@@ -181,12 +182,12 @@ export default function VisitorBadgePage() {
                     <p className="text-sm font-bold text-on-surface">Escort Required</p>
                     <p className="text-xs text-on-surface-variant">Visual flag for security personnel</p>
                   </div>
-                  <button
+                  <Button
                     onClick={() => setEscortRequired(!escortRequired)}
                     className={`w-12 h-6 rounded-full relative transition-colors ${escortRequired ? "bg-primary/20" : "bg-surface-container-high"}`}
                   >
                     <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${escortRequired ? "right-1 bg-primary" : "left-1 bg-surface-container-lowest shadow-sm"}`} />
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

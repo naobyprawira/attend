@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -119,17 +121,14 @@ export default function DepartmentSummaryPage() {
         {/* Header */}
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-on-surface">
+            <h1 className="sr-only">
               Department Summary
             </h1>
-            <p className="text-sm text-on-surface-variant mt-0.5">
-              Q4 Monthly Compliance &middot; October 2023
-            </p>
           </div>
-          <button className="flex items-center gap-2 bg-primary hover:brightness-110 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">
+          <Button className="flex items-center gap-2 bg-primary hover:brightness-110 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">
             <span className="material-symbols-outlined text-lg">picture_as_pdf</span>
             Export PDF
-          </button>
+          </Button>
         </header>
 
         {/* Stat Cards */}
@@ -315,12 +314,12 @@ export default function DepartmentSummaryPage() {
                 with sub-95% present rates.
               </p>
               <div className="flex items-center gap-3">
-                <button className="bg-primary hover:brightness-110 text-white px-4 py-2 rounded-lg text-xs font-bold transition-all shadow-lg shadow-primary/20">
+                <Button className="bg-primary hover:brightness-110 text-white px-4 py-2 rounded-lg text-xs font-bold transition-all shadow-lg shadow-primary/20">
                   Apply Recommendation
-                </button>
-                <button className="text-xs font-bold text-on-surface-variant hover:text-on-surface transition-colors">
+                </Button>
+                <Button className="text-xs font-bold text-on-surface-variant hover:text-on-surface transition-colors">
                   Dismiss
-                </button>
+                </Button>
               </div>
             </div>
 

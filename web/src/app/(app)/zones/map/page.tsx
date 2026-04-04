@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ------------------------------------------------------------------ */
@@ -45,38 +47,35 @@ export default function ZoneMapPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 className="text-3xl font-extrabold text-on-surface tracking-tight font-headline">Main Building Floor Plan</h1>
-          <p className="text-on-surface-variant text-sm mt-1">
-            {FLOORS[selectedFloor]} — Corporate HQ | High-Precision Occupancy Data
-          </p>
+          <h1 className="sr-only">Main Building Floor Plan</h1>
         </div>
         <div className="flex gap-3 flex-wrap">
           {/* View mode toggle */}
           <div className="flex p-1 bg-surface-container-high rounded-lg">
-            <button
+            <Button
               onClick={() => setViewMode("2D")}
               className={`px-4 py-1.5 text-xs font-bold rounded ${viewMode === "2D" ? "bg-surface-container-lowest text-primary shadow-sm" : "text-secondary"}`}
             >
               2D VIEW
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setViewMode("3D")}
               className={`px-4 py-1.5 text-xs font-bold rounded ${viewMode === "3D" ? "bg-surface-container-lowest text-primary shadow-sm" : "text-secondary"}`}
             >
               3D PERSPECTIVE
-            </button>
+            </Button>
           </div>
-          <button className="px-4 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant/30 rounded-lg flex items-center gap-2 text-sm font-medium hover:bg-surface-container-low transition-colors">
+          <Button className="px-4 py-2 bg-surface-container-lowest text-on-surface border border-outline-variant/30 rounded-lg flex items-center gap-2 text-sm font-medium hover:bg-surface-container-low transition-colors">
             <span className="material-symbols-outlined text-[18px]">file_download</span>
             Export PDF
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Floor selector */}
       <div className="flex gap-2 mb-6 overflow-x-auto pb-2">
         {FLOORS.map((f, i) => (
-          <button
+          <Button
             key={f}
             onClick={() => setSelectedFloor(i)}
             className={`px-4 py-2 rounded-lg text-xs font-bold whitespace-nowrap transition-colors ${
@@ -86,7 +85,7 @@ export default function ZoneMapPage() {
             }`}
           >
             {f}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -158,7 +157,7 @@ export default function ZoneMapPage() {
             };
             return (
               <div key={cam.id} className="absolute group cursor-pointer" style={style}>
-                <div className={`w-10 h-10 ${cam.highlight ? "bg-primary ring-4 ring-primary/20" : "bg-on-secondary-fixed"} text-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                <div className={`w-10 h-10 ${cam.highlight ? "bg-primary ring-4 ring-primary/20 text-white" : "bg-surface-container-high dark:bg-on-secondary-fixed text-on-surface dark:text-white border border-outline-variant/20"} rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
                   <span className="material-symbols-outlined text-[20px]">videocam</span>
                 </div>
                 <div className="hidden group-hover:block absolute top-12 left-1/2 -translate-x-1/2 glass-panel p-2 rounded-lg whitespace-nowrap text-[10px] font-bold text-on-surface shadow-xl border border-white/20 z-10">
@@ -184,17 +183,17 @@ export default function ZoneMapPage() {
           {/* Zoom controls */}
           <div className="absolute bottom-4 left-4 flex flex-col gap-2">
             <div className="glass-panel p-1 rounded-lg shadow-xl flex flex-col border border-white/40">
-              <button className="p-2 hover:bg-surface-container-low rounded text-secondary transition-colors">
+              <Button className="p-2 hover:bg-surface-container-low rounded text-secondary transition-colors">
                 <span className="material-symbols-outlined">add</span>
-              </button>
+              </Button>
               <div className="h-px bg-outline-variant/30 mx-1" />
-              <button className="p-2 hover:bg-surface-container-low rounded text-secondary transition-colors">
+              <Button className="p-2 hover:bg-surface-container-low rounded text-secondary transition-colors">
                 <span className="material-symbols-outlined">remove</span>
-              </button>
+              </Button>
             </div>
-            <button className="glass-panel p-3 rounded-lg shadow-xl text-secondary border border-white/40 hover:text-primary transition-colors">
+            <Button className="glass-panel p-3 rounded-lg shadow-xl text-secondary border border-white/40 hover:text-primary transition-colors">
               <span className="material-symbols-outlined">my_location</span>
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -205,9 +204,9 @@ export default function ZoneMapPage() {
             <div className="p-6 border-b border-outline-variant/20">
               <div className="flex items-center justify-between mb-2">
                 <span className="px-2 py-0.5 bg-error/10 text-error text-[10px] font-bold rounded uppercase tracking-wider">Selected Zone</span>
-                <button onClick={() => setSelectedZone(null)} className="text-secondary hover:text-on-surface transition-colors">
+                <Button onClick={() => setSelectedZone(null)} className="text-secondary hover:text-on-surface transition-colors">
                   <span className="material-symbols-outlined text-[20px]">close</span>
-                </button>
+                </Button>
               </div>
               <h2 className="text-xl font-bold text-on-surface">Zone C: Secure Vault</h2>
               <p className="text-on-surface-variant text-xs">Level 4 — Sector 12</p>
@@ -297,10 +296,10 @@ export default function ZoneMapPage() {
 
             {/* Footer action */}
             <div className="p-4 bg-surface-container-high">
-              <button className="w-full py-2.5 bg-on-secondary-fixed text-white font-bold text-xs rounded-lg hover:opacity-90 transition-colors uppercase tracking-widest flex items-center justify-center gap-2">
+              <Button className="w-full py-2.5 bg-surface-container-high dark:bg-on-secondary-fixed text-on-surface dark:text-white font-bold text-xs rounded-lg hover:bg-surface-container dark:hover:opacity-90 transition-colors uppercase tracking-widest flex items-center justify-center gap-2 border border-outline-variant/20">
                 <span className="material-symbols-outlined text-sm">lock</span>
                 Manual Lockdown
-              </button>
+              </Button>
             </div>
           </div>
         )}

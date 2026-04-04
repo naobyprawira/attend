@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState } from "react";
 
 /* ── Sidebar Nav ── */
@@ -161,7 +163,7 @@ export default function ApiDocsPage() {
             const isActive = activeSection === section.label;
             return (
               <div key={section.label}>
-                <button
+                <Button
                   onClick={() => setActiveSection(section.label)}
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                     isActive
@@ -173,7 +175,7 @@ export default function ApiDocsPage() {
                     {section.icon}
                   </span>
                   {section.label}
-                </button>
+                </Button>
                 {isActive && section.children.length > 0 && (
                   <div className="ml-9 mt-1 space-y-0.5 border-l-2 border-outline-variant/20 pl-3">
                     {section.children.map((child) => (
@@ -193,12 +195,12 @@ export default function ApiDocsPage() {
 
         {/* Convert export button */}
         <div className="mt-8">
-          <button className="w-full primary-gradient text-white px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all text-xs uppercase tracking-widest">
+          <Button className="w-full primary-gradient text-white px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:opacity-90 transition-all text-xs uppercase tracking-widest">
             <span className="material-symbols-outlined text-sm">
               download
             </span>
             Export OpenAPI
-          </button>
+          </Button>
         </div>
       </aside>
 
@@ -214,13 +216,9 @@ export default function ApiDocsPage() {
               Last updated 2 hours ago
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
+          <h2 className="sr-only">
             Persons Management
           </h2>
-          <p className="text-on-surface-variant mt-3 font-medium text-sm max-w-2xl leading-relaxed">
-            Interface with the core identity engine. This API allows for real-time person registration,
-            biometric template management, and historical sighting retrieval. Powered by high-velocity neural processing.
-          </p>
         </div>
 
         {/* Endpoints */}
@@ -231,7 +229,7 @@ export default function ApiDocsPage() {
               className="bg-surface-container-lowest rounded-2xl border border-outline-variant/10 overflow-hidden"
             >
               {/* Endpoint header */}
-              <button
+              <Button
                 onClick={() =>
                   setExpandedEndpoint(expandedEndpoint === idx ? null : idx)
                 }
@@ -252,7 +250,7 @@ export default function ApiDocsPage() {
                 >
                   expand_more
                 </span>
-              </button>
+              </Button>
 
               {/* Expanded content */}
               {expandedEndpoint === idx && (
@@ -351,12 +349,12 @@ export default function ApiDocsPage() {
                           <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
                             Request Body
                           </h4>
-                          <button className="text-[10px] text-primary font-bold hover:underline flex items-center gap-1">
+                          <Button className="text-[10px] text-primary font-bold hover:underline flex items-center gap-1">
                             <span className="material-symbols-outlined text-xs">
                               content_copy
                             </span>
                             Copy
-                          </button>
+                          </Button>
                         </div>
                         <div className="bg-surface-container-highest rounded-xl p-4 overflow-x-auto">
                           <pre className="text-xs font-mono text-on-surface-variant leading-relaxed whitespace-pre">
@@ -374,12 +372,12 @@ export default function ApiDocsPage() {
                             ? `${ep.statusCode} Response`
                             : `${ep.statusCode} Implementation`}
                         </h4>
-                        <button className="text-[10px] text-primary font-bold hover:underline flex items-center gap-1">
+                        <Button className="text-[10px] text-primary font-bold hover:underline flex items-center gap-1">
                           <span className="material-symbols-outlined text-xs">
                             content_copy
                           </span>
                           Copy
-                        </button>
+                        </Button>
                       </div>
                       <div className="bg-surface-container-highest rounded-xl p-4 overflow-x-auto">
                         <pre className="text-xs font-mono text-on-surface-variant leading-relaxed whitespace-pre">
