@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/Button";
+
 import { useState, FormEvent } from "react";
 import { toast } from "sonner";
 import { useAuth } from "@/lib/auth/context";
@@ -60,12 +62,12 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
               Submit a request for an admin to review.
             </p>
           </div>
-          <button
+          <Button
             onClick={onClose}
             className="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors"
           >
             <span className="material-symbols-outlined">close</span>
-          </button>
+          </Button>
         </div>
 
         <form className="space-y-4" onSubmit={handleSubmit}>
@@ -130,7 +132,7 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
                 maxLength={128}
                 required
               />
-              <button
+              <Button
                 type="button"
                 onClick={() => setShowPw(!showPw)}
                 className="absolute inset-y-0 right-0 pr-4 flex items-center text-outline hover:text-primary transition-colors"
@@ -138,7 +140,7 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
                 <span className="material-symbols-outlined text-xl">
                   {showPw ? "visibility_off" : "visibility"}
                 </span>
-              </button>
+              </Button>
             </div>
             <p className="text-[11px] text-on-surface-variant">
               Use 12+ characters with uppercase, lowercase, number, and symbol.
@@ -168,20 +170,20 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
           </div>
 
           <div className="pt-2 space-y-2">
-            <button
+            <Button
               type="submit"
               disabled={isLoading}
               className="w-full py-3.5 bg-primary-container text-white font-bold rounded-lg shadow-lg shadow-primary-container/30 hover:opacity-90 active:scale-[0.98] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {isLoading ? "Submitting…" : "Submit Request"}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
               onClick={onClose}
               className="w-full py-3 bg-surface-container text-on-surface-variant font-bold rounded-lg hover:bg-surface-container-high transition-colors"
             >
               Back to Login
-            </button>
+            </Button>
           </div>
         </form>
       </div>
@@ -294,7 +296,7 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full pl-11 pr-12 py-3 bg-surface-container-highest border-none rounded-lg focus:ring-2 focus:ring-primary-container/20 text-on-surface placeholder:text-outline transition-all duration-200 outline-none"
                   />
-                  <button
+                  <Button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute inset-y-0 right-0 pr-4 flex items-center text-outline hover:text-primary transition-colors"
@@ -302,7 +304,7 @@ export default function LoginPage() {
                     <span className="material-symbols-outlined text-xl">
                       {showPassword ? "visibility_off" : "visibility"}
                     </span>
-                  </button>
+                  </Button>
                 </div>
               </div>
 
@@ -329,13 +331,13 @@ export default function LoginPage() {
 
               {/* Sign In Button */}
               <div className="pt-4">
-                <button
+                <Button
                   type="submit"
                   disabled={isLoading}
                   className="w-full py-4 bg-primary-container text-white font-bold rounded-lg shadow-lg shadow-primary-container/30 hover:shadow-primary-container/40 active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isLoading ? "Signing in…" : "Sign In"}
-                </button>
+                </Button>
               </div>
             </form>
 
@@ -344,13 +346,13 @@ export default function LoginPage() {
               <p className="text-sm text-on-surface-variant">
                 Don&apos;t have an account?
               </p>
-              <button
+              <Button
                 type="button"
                 onClick={() => setShowRequestModal(true)}
                 className="w-full py-3 bg-surface-container-high text-primary font-bold rounded-lg hover:bg-surface-container transition-colors"
               >
                 Request Access
-              </button>
+              </Button>
             </div>
           </div>
 
