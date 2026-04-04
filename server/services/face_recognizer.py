@@ -1,8 +1,7 @@
-"""Face recognition service using ONNX Runtime (GPU-accelerated).
+"""Face recognition service using DeepFace (Facenet512).
 
-Uses a Facenet512 ONNX model for embedding extraction, with GPU inference
-via ONNX Runtime's CUDA execution provider. Falls back to CPU if CUDA is
-unavailable. Maintains compatibility with DeepFace-generated embeddings.
+Uses DeepFace's official Facenet512 model for embedding extraction.
+Model is auto-downloaded by DeepFace on first use.
 
 Also tracks unknown faces across frames so the same unrecognized person
 keeps a consistent label (e.g. "Unknown #3") instead of getting a new
@@ -15,7 +14,7 @@ import time
 
 import cv2
 import numpy as np
-import onnxruntime as ort
+from deepface import DeepFace
 
 from server.config import (
     FACE_DISTANCE_THRESHOLD,
@@ -23,11 +22,6 @@ from server.config import (
 )
 
 logger = logging.getLogger(__name__)
-
-# ── ONNX session ────────────────────────────────────────────
-_onnx_session: ort.InferenceSession | None = None
-_ONNX_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "facenet512.onnx")
-_INPUT_SIZE = (160, 160)
 
 # Known face embeddings: [(name, embedding_vector), ...]
 _known_embeddings: list[tuple[str, np.ndarray]] = []
@@ -40,67 +34,20 @@ _UNKNOWN_MATCH_THRESHOLD = 15.0  # L2 distance to consider same unknown person
 _UNKNOWN_EXPIRE_SECONDS = 300    # forget unknowns after 5 minutes
 _MAX_UNKNOWN_CACHE = 200         # cap unknown cache size
 
-
-def _get_onnx_session() -> ort.InferenceSession:
-    """Lazy-load the ONNX session with GPU support."""
-    global _onnx_session
-    if _onnx_session is not None:
-        return _onnx_session
-
-    # Add PyTorch's bundled CUDA DLLs to PATH so ONNX Runtime can find them
-    try:
-        import torch
-        import pathlib
-        torch_lib = str(pathlib.Path(torch.__file__).parent / 'lib')
-        os.environ['PATH'] = torch_lib + os.pathsep + os.environ.get('PATH', '')
-    except ImportError:
-        pass
-
-    providers = ["CUDAExecutionProvider", "CPUExecutionProvider"]
-    _onnx_session = ort.InferenceSession(_ONNX_MODEL_PATH, providers=providers)
-    active = _onnx_session.get_providers()
-    device = "GPU (CUDA)" if "CUDAExecutionProvider" in active else "CPU"
-    logger.info("Facenet512 ONNX loaded on %s", device)
-
-    # Warm up
-    dummy = np.zeros((1, 160, 160, 3), dtype=np.float32)
-    _onnx_session.run(None, {"input_1": dummy})
-
-    return _onnx_session
-
-
-def _preprocess_face(face_bgr: np.ndarray) -> np.ndarray:
-    """Resize and normalize a face crop for Facenet512 input.
-
-    Matches DeepFace's preprocessing pipeline exactly:
-    1. Normalize pixels to [0, 1]
-    2. Letterbox-resize to 160x160 (pad with black, preserve aspect ratio)
-    """
-    h, w = face_bgr.shape[:2]
-    face_float = face_bgr.astype(np.float32) / 255.0
-
-    # Letterbox resize (same as DeepFace's resize_image)
-    target_h, target_w = _INPUT_SIZE
-    scale = min(target_h / h, target_w / w)
-    new_w, new_h = int(w * scale), int(h * scale)
-    resized = cv2.resize(face_float, (new_w, new_h))
-
-    # Pad to target size
-    pad_top = (target_h - new_h) // 2
-    pad_left = (target_w - new_w) // 2
-    canvas = np.zeros((target_h, target_w, 3), dtype=np.float32)
-    canvas[pad_top:pad_top + new_h, pad_left:pad_left + new_w] = resized
-
-    return np.expand_dims(canvas, axis=0)
+_MODEL_NAME = "Facenet512"
 
 
 def extract_embedding(face_bgr: np.ndarray) -> np.ndarray | None:
-    """Extract a face embedding vector from a BGR face crop using ONNX."""
+    """Extract a face embedding vector from a BGR face crop using DeepFace."""
     try:
-        session = _get_onnx_session()
-        input_tensor = _preprocess_face(face_bgr)
-        result = session.run(None, {"input_1": input_tensor})
-        return result[0][0].astype(np.float32)
+        face_rgb = cv2.cvtColor(face_bgr, cv2.COLOR_BGR2RGB)
+        result = DeepFace.represent(
+            img_path=face_rgb,
+            model_name=_MODEL_NAME,
+            enforce_detection=False,
+            detector_backend="skip",
+        )
+        return np.array(result[0]["embedding"], dtype=np.float32)
     except Exception:
         logger.debug("Embedding extraction failed", exc_info=True)
         return None
