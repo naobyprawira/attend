@@ -98,22 +98,22 @@ export default function PermissionsPage() {
   );
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-surface min-h-full">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">
             Role Management
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
             Permission Matrix
           </h2>
-          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium text-sm">
+          <p className="text-on-surface-variant mt-2 font-medium text-sm">
             Define granular access control across role hierarchies and system nodes.
           </p>
         </div>
         <div className="flex gap-3 self-start sm:self-auto">
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-surface-container-highest dark:bg-dark-surface-container-highest text-on-surface dark:text-dark-on-surface rounded-xl text-sm font-bold hover:bg-surface-container dark:hover:bg-dark-surface-container transition-all">
+          <button className="flex items-center gap-2 px-4 py-2.5 bg-surface-container-highest text-on-surface rounded-xl text-sm font-bold hover:bg-surface-container transition-all">
             <span className="material-symbols-outlined text-sm">
               history
             </span>
@@ -127,7 +127,7 @@ export default function PermissionsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-surface-container dark:bg-dark-surface-container rounded-lg p-1 w-fit overflow-x-auto">
+      <div className="flex gap-1 bg-surface-container rounded-lg p-1 w-fit overflow-x-auto">
         {TABS.map((tab) => (
           <button
             key={tab}
@@ -140,8 +140,8 @@ export default function PermissionsPage() {
             }}
             className={`px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
               activeTab === tab && tab !== "Reset Matrix"
-                ? "bg-surface-container-lowest dark:bg-dark-surface-container-lowest text-on-surface dark:text-dark-on-surface shadow-sm"
-                : "text-on-surface-variant dark:text-dark-on-surface-variant hover:text-on-surface dark:hover:text-dark-on-surface"
+                ? "bg-surface-container-lowest text-on-surface shadow-sm"
+                : "text-on-surface-variant hover:text-on-surface"
             }`}
           >
             {tab}
@@ -150,18 +150,18 @@ export default function PermissionsPage() {
       </div>
 
       {/* Permission Matrix Table */}
-      <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-2xl border border-outline-variant/10 overflow-hidden">
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/10 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-outline-variant/10">
-                <th className="text-left px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant min-w-[220px]">
+                <th className="text-left px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant min-w-[220px]">
                   Permission
                 </th>
                 {ROLES.map((role) => (
                   <th
                     key={role}
-                    className="px-4 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant text-center min-w-[120px]"
+                    className="px-4 py-4 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center min-w-[120px]"
                   >
                     {role}
                   </th>
@@ -189,10 +189,10 @@ export default function PermissionsPage() {
                   {cat.permissions.map((perm) => (
                     <tr
                       key={perm.key}
-                      className="border-b border-outline-variant/5 hover:bg-surface-container/50 dark:hover:bg-dark-surface-container/50 transition-colors"
+                      className="border-b border-outline-variant/5 hover:bg-surface-container/50 transition-colors"
                     >
                       <td className="px-6 py-3.5">
-                        <code className="text-xs font-mono text-on-surface dark:text-dark-on-surface">
+                        <code className="text-xs font-mono text-on-surface">
                           {perm.label}
                         </code>
                       </td>
@@ -207,7 +207,7 @@ export default function PermissionsPage() {
                               className={`w-9 h-5 rounded-full relative transition-all ${
                                 granted
                                   ? "bg-primary"
-                                  : "bg-surface-container-highest dark:bg-dark-surface-container-highest"
+                                  : "bg-surface-container-highest"
                               }`}
                             >
                               <span
@@ -228,8 +228,8 @@ export default function PermissionsPage() {
         </div>
 
         {/* Save bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-t border-outline-variant/10 bg-surface-container/30 dark:bg-dark-surface-container/30">
-          <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest font-bold">
+        <div className="flex items-center justify-between px-6 py-4 border-t border-outline-variant/10 bg-surface-container/30">
+          <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">
             {totalPermissions} permissions &times; {ROLES.length} roles
           </p>
           <button
@@ -246,15 +246,15 @@ export default function PermissionsPage() {
       {/* Bottom Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Policy Compliance */}
-        <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-2xl p-6 border border-outline-variant/10">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+        <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/10">
+          <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">
             Policy Compliance
           </h4>
-          <p className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed mb-3">
+          <p className="text-sm text-on-surface-variant leading-relaxed mb-3">
             Current matrix configuration meets {compliancePercent}% of the
             organization&apos;s least-privilege security policy requirements.
           </p>
-          <div className="h-2 bg-surface-container dark:bg-dark-surface-container rounded-full overflow-hidden">
+          <div className="h-2 bg-surface-container rounded-full overflow-hidden">
             <div
               className="h-full rounded-full bg-primary transition-all"
               style={{ width: `${compliancePercent}%` }}
@@ -266,14 +266,14 @@ export default function PermissionsPage() {
         </div>
 
         {/* Active Assignments */}
-        <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-2xl p-6 border border-outline-variant/10">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+        <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/10">
+          <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">
             Active Assignments
           </h4>
           <div className="space-y-3">
             {ASSIGNMENTS.map((a) => (
               <div key={a.role} className="flex items-center justify-between">
-                <span className="text-sm text-on-surface dark:text-dark-on-surface font-medium">
+                <span className="text-sm text-on-surface font-medium">
                   {a.role}
                 </span>
                 <div className="flex items-center gap-2">
@@ -283,7 +283,7 @@ export default function PermissionsPage() {
                       (_, i) => (
                         <div
                           key={i}
-                          className="w-6 h-6 rounded-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-2 border-surface-container-lowest dark:border-dark-surface-container-lowest flex items-center justify-center"
+                          className="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-surface-container-lowest flex items-center justify-center"
                         >
                           <span className="material-symbols-outlined text-[10px] text-on-surface-variant">
                             person
@@ -292,7 +292,7 @@ export default function PermissionsPage() {
                       )
                     )}
                   </div>
-                  <span className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant font-mono">
+                  <span className="text-xs text-on-surface-variant font-mono">
                     {a.count}
                   </span>
                 </div>
@@ -302,11 +302,11 @@ export default function PermissionsPage() {
         </div>
 
         {/* Developer Access - dark card */}
-        <div className="bg-dark-surface-container dark:bg-dark-surface-container rounded-2xl p-6 border border-outline-variant/5">
-          <h4 className="text-xs font-bold uppercase tracking-widest text-dark-on-surface-variant mb-3">
+        <div className="bg-surface-container-highest rounded-2xl p-6 border border-outline-variant/5">
+          <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-3">
             Developer Access
           </h4>
-          <p className="text-sm text-dark-on-surface-variant leading-relaxed mb-4">
+          <p className="text-sm text-on-surface-variant leading-relaxed mb-4">
             API token scoping and service account permissions are managed
             separately via the developer console.
           </p>

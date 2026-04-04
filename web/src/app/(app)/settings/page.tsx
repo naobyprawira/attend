@@ -66,14 +66,14 @@ export default function SettingsPage() {
   const backendOnline = !!data && !isError;
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Page Header */}
       <div className="flex justify-between items-end">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h2 className="text-4xl font-extrabold text-on-surface tracking-tight">
             {t("settings.title")}
           </h2>
-          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium">
+          <p className="text-on-surface-variant mt-2 font-medium">
             {t("settings.subtitle")}
           </p>
         </div>
@@ -108,7 +108,7 @@ export default function SettingsPage() {
                   className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${
                     locale === lang
                       ? "bg-primary text-white shadow-lg shadow-primary/20"
-                      : "bg-surface-container-high dark:bg-dark-surface-container-high text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-dark-surface-container-highest"
+                      : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest"
                   }`}
                 >
                   {lang === "en" ? "English" : "Bahasa Indonesia"}
@@ -116,7 +116,7 @@ export default function SettingsPage() {
               ))}
             </div>
           </SettingsRow>
-          <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+          <p className="text-xs text-on-surface-variant">
             {t("settings.languageDesc")}
           </p>
         </SettingsCard>
@@ -137,7 +137,7 @@ export default function SettingsPage() {
             />
           </SettingsRow>
           <SettingsRow label={t("settings.recognitionModel")}>
-            <span className="text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant bg-surface-container dark:bg-dark-surface-container-high px-3 py-1 rounded-lg">
+            <span className="text-xs font-mono text-on-surface-variant bg-surface-container px-3 py-1 rounded-lg">
               {settings.recognition_model}
             </span>
           </SettingsRow>
@@ -178,22 +178,22 @@ export default function SettingsPage() {
         {/* System Info */}
         <SettingsCard title={t("settings.systemInfo")} icon="info">
           <SettingsRow label={t("settings.serverUptime")}>
-            <span className="text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant">
+            <span className="text-xs font-mono text-on-surface-variant">
               {Math.floor(settings.server_uptime / 60)}m {settings.server_uptime % 60}s
             </span>
           </SettingsRow>
           <SettingsRow label={t("settings.gpu")}>
-            <span className={`text-xs font-mono ${settings.gpu_available ? "text-green-500" : "text-on-surface-variant dark:text-dark-on-surface-variant"}`}>
+            <span className={`text-xs font-mono ${settings.gpu_available ? "text-green-500" : "text-on-surface-variant"}`}>
               {settings.gpu_available ? settings.gpu_name : t("settings.notAvailable")}
             </span>
           </SettingsRow>
           <SettingsRow label={t("settings.yoloModel")}>
-            <span className="text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant bg-surface-container dark:bg-dark-surface-container-high px-3 py-1 rounded-lg">
+            <span className="text-xs font-mono text-on-surface-variant bg-surface-container px-3 py-1 rounded-lg">
               {settings.yolo_model}
             </span>
           </SettingsRow>
           <SettingsRow label={t("settings.faceModel")}>
-            <span className="text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant bg-surface-container dark:bg-dark-surface-container-high px-3 py-1 rounded-lg">
+            <span className="text-xs font-mono text-on-surface-variant bg-surface-container px-3 py-1 rounded-lg">
               {settings.face_model}
             </span>
           </SettingsRow>
@@ -205,10 +205,10 @@ export default function SettingsPage() {
 
 function SettingsCard({ title, icon, children }: { title: string; icon: string; children: React.ReactNode }) {
   return (
-    <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
-      <div className="px-6 py-4 border-b border-outline-variant/10 dark:border-dark-outline-variant/10 flex items-center gap-3">
+    <div className="bg-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
+      <div className="px-6 py-4 border-b border-outline-variant/10 flex items-center gap-3">
         <span className="material-symbols-outlined text-primary">{icon}</span>
-        <h3 className="text-sm font-bold tracking-widest uppercase text-on-surface dark:text-dark-on-surface">
+        <h3 className="text-sm font-bold tracking-widest uppercase text-on-surface">
           {title}
         </h3>
       </div>
@@ -220,7 +220,7 @@ function SettingsCard({ title, icon, children }: { title: string; icon: string; 
 function SettingsRow({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between">
-      <span className="text-sm text-on-surface dark:text-dark-on-surface font-medium">{label}</span>
+      <span className="text-sm text-on-surface font-medium">{label}</span>
       {children}
     </div>
   );

@@ -109,20 +109,20 @@ export default function DepartmentSummaryPage() {
   const [departments] = useState(DEPARTMENTS);
 
   return (
-    <div className="min-h-screen bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface">
+    <div className="min-h-screen bg-surface text-on-surface">
       <div className="p-4 sm:p-6 lg:p-8">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-1.5 text-xs text-on-surface-variant dark:text-dark-on-surface-variant mb-1">
+        <div className="flex items-center gap-1.5 text-xs text-on-surface-variant mb-1">
           <span className="font-medium opacity-60">Surveillance Intelligence</span>
         </div>
 
         {/* Header */}
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-on-surface dark:text-dark-on-surface">
+            <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-on-surface">
               Department Summary
             </h1>
-            <p className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant mt-0.5">
+            <p className="text-sm text-on-surface-variant mt-0.5">
               Q4 Monthly Compliance &middot; October 2023
             </p>
           </div>
@@ -137,10 +137,10 @@ export default function DepartmentSummaryPage() {
           {STATS.map((stat) => (
             <div
               key={stat.label}
-              className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl border border-outline-variant/10 dark:border-dark-outline-variant/10 p-4 sm:p-5 shadow-sm"
+              className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 p-4 sm:p-5 shadow-sm"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
                   {stat.label}
                 </span>
                 <span className={`material-symbols-outlined text-base ${stat.iconColor}`}>
@@ -148,11 +148,11 @@ export default function DepartmentSummaryPage() {
                 </span>
               </div>
               <div className="flex items-baseline gap-1">
-                <span className="text-3xl sm:text-4xl font-black text-on-surface dark:text-dark-on-surface">
+                <span className="text-3xl sm:text-4xl font-black text-on-surface">
                   {stat.value}
                 </span>
                 {stat.unit && (
-                  <span className="text-base font-bold text-on-surface-variant dark:text-dark-on-surface-variant">
+                  <span className="text-base font-bold text-on-surface-variant">
                     {stat.unit}
                   </span>
                 )}
@@ -175,32 +175,32 @@ export default function DepartmentSummaryPage() {
           {/* Left: Table & Summary */}
           <div className="lg:col-span-2 space-y-6">
             {/* Department Table */}
-            <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl border border-outline-variant/10 dark:border-dark-outline-variant/10 shadow-sm overflow-hidden">
-              <div className="p-4 sm:p-5 border-b border-outline-variant/10 dark:border-dark-outline-variant/10">
-                <h2 className="text-sm font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+            <div className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm overflow-hidden">
+              <div className="p-4 sm:p-5 border-b border-outline-variant/10">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-on-surface-variant">
                   Balance Performance Metrics
                 </h2>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-left min-w-[600px]">
                   <thead>
-                    <tr className="border-b border-outline-variant/10 dark:border-dark-outline-variant/10">
-                      <th className="px-4 sm:px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <tr className="border-b border-outline-variant/10">
+                      <th className="px-4 sm:px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
                         Department
                       </th>
-                      <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant text-center">
+                      <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">
                         Headcount
                       </th>
-                      <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+                      <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
                         Present Rate
                       </th>
-                      <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant text-center">
+                      <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">
                         Avg Hours
                       </th>
-                      <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant text-center">
+                      <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">
                         Exceptions
                       </th>
-                      <th className="px-4 sm:px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant text-center">
+                      <th className="px-4 sm:px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant text-center">
                         Grade
                       </th>
                     </tr>
@@ -209,38 +209,38 @@ export default function DepartmentSummaryPage() {
                     {departments.map((dept) => (
                       <tr
                         key={dept.name}
-                        className="border-b border-outline-variant/5 dark:border-dark-outline-variant/5 hover:bg-surface-container-low/50 dark:hover:bg-dark-surface-container-low/50 transition-colors"
+                        className="border-b border-outline-variant/5 hover:bg-surface-container-low/50 transition-colors"
                       >
                         <td className="px-4 sm:px-5 py-4">
                           <div className="flex items-center gap-2.5">
                             <span
                               className={`w-2.5 h-2.5 rounded-full shrink-0 ${dept.color}`}
                             ></span>
-                            <span className="text-sm font-bold text-on-surface dark:text-dark-on-surface">
+                            <span className="text-sm font-bold text-on-surface">
                               {dept.name}
                             </span>
                           </div>
                         </td>
                         <td className="px-4 py-4 text-center">
-                          <span className="text-sm font-semibold text-on-surface dark:text-dark-on-surface">
+                          <span className="text-sm font-semibold text-on-surface">
                             {dept.headcount}
                           </span>
                         </td>
                         <td className="px-4 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="flex-1 h-2 rounded-full bg-surface-container-high dark:bg-dark-surface-container-high overflow-hidden">
+                            <div className="flex-1 h-2 rounded-full bg-surface-container-high overflow-hidden">
                               <div
                                 className="h-full rounded-full bg-primary"
                                 style={{ width: `${dept.presentRate}%` }}
                               ></div>
                             </div>
-                            <span className="text-xs font-bold text-on-surface dark:text-dark-on-surface w-12 text-right">
+                            <span className="text-xs font-bold text-on-surface w-12 text-right">
                               {dept.presentRate}%
                             </span>
                           </div>
                         </td>
                         <td className="px-4 py-4 text-center">
-                          <span className="text-sm font-semibold text-on-surface dark:text-dark-on-surface">
+                          <span className="text-sm font-semibold text-on-surface">
                             {dept.avgHours}h
                           </span>
                         </td>
@@ -270,10 +270,10 @@ export default function DepartmentSummaryPage() {
             </div>
 
             {/* Observational Summary */}
-            <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl border border-outline-variant/10 dark:border-dark-outline-variant/10 shadow-sm p-5 sm:p-6">
+            <div className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm p-5 sm:p-6">
               <div className="flex items-center gap-2 mb-4">
                 <span className="material-symbols-outlined text-primary text-lg">auto_awesome</span>
-                <h2 className="text-sm font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-on-surface-variant">
                   Observational Summary
                 </h2>
               </div>
@@ -281,18 +281,18 @@ export default function DepartmentSummaryPage() {
                 {INSIGHTS.map((insight, i) => (
                   <p
                     key={i}
-                    className="text-sm leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant"
+                    className="text-sm leading-relaxed text-on-surface-variant"
                   >
                     {insight}
                   </p>
                 ))}
               </div>
-              <div className="flex flex-wrap items-center gap-2 mt-5 pt-4 border-t border-outline-variant/10 dark:border-dark-outline-variant/10">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container dark:bg-dark-surface-container text-[11px] font-semibold text-on-surface-variant dark:text-dark-on-surface-variant">
+              <div className="flex flex-wrap items-center gap-2 mt-5 pt-4 border-t border-outline-variant/10">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-[11px] font-semibold text-on-surface-variant">
                   <span className="material-symbols-outlined text-xs text-primary">insights</span>
                   Attendance Byline
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container dark:bg-dark-surface-container text-[11px] font-semibold text-on-surface-variant dark:text-dark-on-surface-variant">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container text-[11px] font-semibold text-on-surface-variant">
                   <span className="material-symbols-outlined text-xs text-primary">query_stats</span>
                   AI Overlay (84%)
                 </span>
@@ -305,11 +305,11 @@ export default function DepartmentSummaryPage() {
             <div className="bg-primary/5 dark:bg-primary/10 rounded-xl border border-primary/20 p-5 sm:p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-3">
                 <span className="material-symbols-outlined text-primary text-lg">tune</span>
-                <h3 className="text-sm font-bold text-on-surface dark:text-dark-on-surface">
+                <h3 className="text-sm font-bold text-on-surface">
                   Optimize Operations Shift Buffer
                 </h3>
               </div>
-              <p className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed mb-4">
+              <p className="text-sm text-on-surface-variant leading-relaxed mb-4">
                 Based on current compliance metrics, consider adjusting the shift buffer
                 window by 15 minutes to reduce late-arrival exceptions across departments
                 with sub-95% present rates.
@@ -318,28 +318,28 @@ export default function DepartmentSummaryPage() {
                 <button className="bg-primary hover:brightness-110 text-white px-4 py-2 rounded-lg text-xs font-bold transition-all shadow-lg shadow-primary/20">
                   Apply Recommendation
                 </button>
-                <button className="text-xs font-bold text-on-surface-variant dark:text-dark-on-surface-variant hover:text-on-surface dark:hover:text-dark-on-surface transition-colors">
+                <button className="text-xs font-bold text-on-surface-variant hover:text-on-surface transition-colors">
                   Dismiss
                 </button>
               </div>
             </div>
 
             {/* Mini stats */}
-            <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl border border-outline-variant/10 dark:border-dark-outline-variant/10 shadow-sm p-5">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+            <div className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm p-5">
+              <h3 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-4">
                 Quick Metrics
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+                  <span className="text-sm text-on-surface-variant">
                     Total Employees
                   </span>
-                  <span className="text-sm font-black text-on-surface dark:text-dark-on-surface">
+                  <span className="text-sm font-black text-on-surface">
                     120
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+                  <span className="text-sm text-on-surface-variant">
                     Active Today
                   </span>
                   <span className="text-sm font-black text-emerald-600 dark:text-emerald-400">
@@ -347,7 +347,7 @@ export default function DepartmentSummaryPage() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+                  <span className="text-sm text-on-surface-variant">
                     On Leave
                   </span>
                   <span className="text-sm font-black text-amber-600 dark:text-amber-400">8</span>

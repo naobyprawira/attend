@@ -12,7 +12,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-[#ffffff] dark:bg-[#1b1c1d] overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-surface overflow-hidden">
       {/* Gradient background blobs */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 top-0 h-[600px] w-[600px] rounded-full bg-[#751859]/10 blur-[120px]" />
@@ -21,7 +21,7 @@ export default function ForgotPasswordPage() {
 
       <div className="relative z-10 w-full max-w-md px-4">
         {/* Card */}
-        <div className="rounded-2xl bg-white/80 dark:bg-[#2a2a2b]/80 backdrop-blur-sm border border-[#85727b]/10 shadow-sm px-8 py-10">
+        <div className="rounded-2xl bg-surface-container-lowest/80 backdrop-blur-sm border border-[#85727b]/10 shadow-sm px-8 py-10">
           {/* Logo */}
           <div className="text-center mb-8">
             <h1 className="text-2xl font-bold text-[#751859] dark:text-[#d4a0c4]">
@@ -60,7 +60,7 @@ export default function ForgotPasswordPage() {
                 placeholder="name@enterprise.ai"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border border-[#85727b]/20 bg-[#f8f5f7] dark:bg-[#2a2a2b] dark:border-[#85727b]/30 px-4 py-2.5 text-sm text-[#1b1c1d] dark:text-[#e0e0e0] placeholder:text-[#85727b]/50 outline-none focus:border-[#751859] focus:ring-1 focus:ring-[#751859]/30 transition-colors"
+                className="w-full rounded-lg border border-[#85727b]/20 bg-surface-container-high dark:border-[#85727b]/30 px-4 py-2.5 text-sm text-[#1b1c1d] dark:text-[#e0e0e0] placeholder:text-[#85727b]/50 outline-none focus:border-[#751859] focus:ring-1 focus:ring-[#751859]/30 transition-colors"
               />
             </div>
 

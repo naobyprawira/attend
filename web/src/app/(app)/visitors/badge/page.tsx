@@ -12,16 +12,16 @@ export default function VisitorBadgePage() {
   const [escortRequired, setEscortRequired] = useState(true);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-surface dark:bg-dark-surface min-h-screen">
+    <div className="p-4 sm:p-6 lg:p-8 bg-surface min-h-screen">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-10 gap-4">
           <div>
-            <h1 className="text-3xl font-black text-on-secondary-fixed dark:text-dark-on-surface tracking-tight font-headline">Visitor Badge Preview</h1>
-            <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2">Generate and verify secure credentials for arriving guests.</p>
+            <h1 className="text-3xl font-black text-on-surface tracking-tight font-headline">Visitor Badge Preview</h1>
+            <p className="text-on-surface-variant mt-2">Generate and verify secure credentials for arriving guests.</p>
           </div>
           <div className="flex gap-3">
-            <button className="bg-surface-container-high dark:bg-dark-surface-container-high text-primary px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 hover:bg-surface-container-highest dark:hover:bg-dark-surface-container-highest transition-colors active:scale-95">
+            <button className="bg-surface-container-high text-primary px-6 py-2.5 rounded-lg font-bold flex items-center gap-2 hover:bg-surface-container-highest transition-colors active:scale-95">
               <span className="material-symbols-outlined">edit</span>
               Edit Details
             </button>
@@ -36,18 +36,18 @@ export default function VisitorBadgePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* ---- Badge Card ---- */}
           <div className="lg:col-span-7 flex justify-center">
-            <div className="w-full max-w-[380px] bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)] overflow-hidden flex flex-col relative border-t-[10px] border-primary-container">
+            <div className="w-full max-w-[380px] bg-surface-container-lowest rounded-xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.08)] overflow-hidden flex flex-col relative border-t-[10px] border-primary-container">
               {/* Branding header */}
               <div className="p-6 flex justify-between items-start">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 bg-primary rounded flex items-center justify-center">
                     <span className="material-symbols-outlined text-white text-lg">radar</span>
                   </div>
-                  <span className="font-black text-on-secondary-fixed dark:text-dark-on-surface text-sm tracking-tighter">Attend.AI</span>
+                  <span className="font-black text-on-surface text-sm tracking-tighter">Attend.AI</span>
                 </div>
                 <div className="text-right">
-                  <p className="text-[10px] font-bold text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-[0.15em]">Official Credential</p>
-                  <p className="text-[10px] text-on-surface-variant/60 dark:text-dark-on-surface-variant/60">ID: V-294021-X</p>
+                  <p className="text-[10px] font-bold text-on-surface-variant uppercase tracking-[0.15em]">Official Credential</p>
+                  <p className="text-[10px] text-on-surface-variant/60">ID: V-294021-X</p>
                 </div>
               </div>
 
@@ -60,11 +60,11 @@ export default function VisitorBadgePage() {
               {/* Photo */}
               <div className="flex justify-center mt-8">
                 <div className="relative">
-                  <div className="w-44 h-44 rounded-full border-4 border-surface-container-low dark:border-dark-surface-container-low overflow-hidden shadow-sm bg-surface-container-high dark:bg-dark-surface-container-high flex items-center justify-center">
+                  <div className="w-44 h-44 rounded-full border-4 border-surface-container-low overflow-hidden shadow-sm bg-surface-container-high flex items-center justify-center">
                     <span className="material-symbols-outlined text-secondary text-7xl">person</span>
                   </div>
                   {/* Verified badge */}
-                  <div className="absolute bottom-2 right-2 bg-green-500 text-white p-1.5 rounded-full shadow-md border-2 border-white dark:border-dark-surface-container-lowest">
+                  <div className="absolute bottom-2 right-2 bg-green-500 text-white p-1.5 rounded-full shadow-md border-2 border-surface-container-lowest">
                     <span className="material-symbols-outlined text-sm block" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
                   </div>
                 </div>
@@ -72,41 +72,41 @@ export default function VisitorBadgePage() {
 
               {/* Person details */}
               <div className="flex-1 px-8 pt-6 pb-4 flex flex-col items-center text-center">
-                <h3 className="text-2xl font-black text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">Marcus Richardson</h3>
-                <p className="text-on-surface-variant dark:text-dark-on-surface-variant font-medium text-sm mt-1">Lead Developer, Skybound Systems</p>
+                <h3 className="text-2xl font-black text-on-surface tracking-tight">Marcus Richardson</h3>
+                <p className="text-on-surface-variant font-medium text-sm mt-1">Lead Developer, Skybound Systems</p>
 
                 <div className="mt-8 grid grid-cols-2 gap-x-8 gap-y-4 w-full text-left">
                   <div>
-                    <p className="text-[9px] font-bold text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest opacity-60">Host</p>
-                    <p className="text-sm font-bold text-on-secondary-fixed dark:text-dark-on-surface">Sarah Chen</p>
+                    <p className="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Host</p>
+                    <p className="text-sm font-bold text-on-surface">Sarah Chen</p>
                   </div>
                   <div>
-                    <p className="text-[9px] font-bold text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest opacity-60">Purpose</p>
-                    <p className="text-sm font-bold text-on-secondary-fixed dark:text-dark-on-surface">Technical Audit</p>
+                    <p className="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Purpose</p>
+                    <p className="text-sm font-bold text-on-surface">Technical Audit</p>
                   </div>
                   <div>
-                    <p className="text-[9px] font-bold text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest opacity-60">Date</p>
-                    <p className="text-sm font-bold text-on-secondary-fixed dark:text-dark-on-surface">Oct 24, 2023</p>
+                    <p className="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Date</p>
+                    <p className="text-sm font-bold text-on-surface">Oct 24, 2023</p>
                   </div>
                   <div>
-                    <p className="text-[9px] font-bold text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest opacity-60">Valid Until</p>
+                    <p className="text-[9px] font-bold text-on-surface-variant uppercase tracking-widest opacity-60">Valid Until</p>
                     <p className="text-sm font-bold text-primary">06:00 PM</p>
                   </div>
                 </div>
               </div>
 
               {/* Footer */}
-              <div className="bg-surface-container-low/50 dark:bg-dark-surface-container-low/50 px-8 py-4 flex justify-between items-center">
+              <div className="bg-surface-container-low/50 px-8 py-4 flex justify-between items-center">
                 <div className="flex flex-col">
-                  <p className="text-[8px] text-on-surface-variant dark:text-dark-on-surface-variant leading-tight max-w-[140px]">This badge must be displayed at all times while on the premises.</p>
+                  <p className="text-[8px] text-on-surface-variant leading-tight max-w-[140px]">This badge must be displayed at all times while on the premises.</p>
                   <div className="flex gap-2 mt-2">
-                    <span className="material-symbols-outlined text-xs text-on-surface-variant dark:text-dark-on-surface-variant">wifi</span>
-                    <span className="material-symbols-outlined text-xs text-on-surface-variant dark:text-dark-on-surface-variant">lock</span>
+                    <span className="material-symbols-outlined text-xs text-on-surface-variant">wifi</span>
+                    <span className="material-symbols-outlined text-xs text-on-surface-variant">lock</span>
                   </div>
                 </div>
                 {/* QR placeholder */}
-                <div className="bg-white dark:bg-dark-surface-container-lowest p-2 rounded-lg shadow-sm border border-outline-variant/10 dark:border-dark-outline-variant/10">
-                  <div className="w-16 h-16 bg-surface-container-highest dark:bg-dark-surface-container-high rounded flex items-center justify-center">
+                <div className="bg-surface-container-lowest p-2 rounded-lg shadow-sm border border-outline-variant/10">
+                  <div className="w-16 h-16 bg-surface-container-highest rounded flex items-center justify-center">
                     <span className="material-symbols-outlined text-secondary text-2xl">qr_code_2</span>
                   </div>
                 </div>
@@ -117,84 +117,84 @@ export default function VisitorBadgePage() {
           {/* ---- Right panel ---- */}
           <div className="lg:col-span-5 space-y-8">
             {/* Security Validation */}
-            <div className="bg-surface-container-low dark:bg-dark-surface-container-low rounded-xl p-6">
-              <h4 className="text-sm font-bold text-on-secondary-fixed dark:text-dark-on-surface uppercase tracking-widest mb-4">Security Validation</h4>
+            <div className="bg-surface-container-low rounded-xl p-6">
+              <h4 className="text-sm font-bold text-on-surface uppercase tracking-widest mb-4">Security Validation</h4>
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-3 bg-white dark:bg-dark-surface-container-lowest rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg">
                   <div className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-primary">face</span>
-                    <span className="text-sm font-medium text-on-surface dark:text-dark-on-surface">Face Match Confidence</span>
+                    <span className="text-sm font-medium text-on-surface">Face Match Confidence</span>
                   </div>
                   <span className="text-sm font-black text-primary">98.4%</span>
                 </div>
-                <div className="flex items-center justify-between p-3 bg-white dark:bg-dark-surface-container-lowest rounded-lg">
+                <div className="flex items-center justify-between p-3 bg-surface-container-lowest rounded-lg">
                   <div className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-primary">fact_check</span>
-                    <span className="text-sm font-medium text-on-surface dark:text-dark-on-surface">ID Verification</span>
+                    <span className="text-sm font-medium text-on-surface">ID Verification</span>
                   </div>
-                  <span className="text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-2 py-0.5 rounded">PASSED</span>
+                  <span className="text-xs font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded">PASSED</span>
                 </div>
                 <div className="pt-2">
-                  <div className="w-full bg-surface-container dark:bg-dark-surface-container h-1.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
                     <div className="h-full bg-gradient-to-r from-primary-fixed-dim to-primary w-[98%]" />
                   </div>
-                  <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-2">AI Scan complete. Biological markers aligned with database record.</p>
+                  <p className="text-[10px] text-on-surface-variant mt-2">AI Scan complete. Biological markers aligned with database record.</p>
                 </div>
               </div>
             </div>
 
             {/* Badge Options */}
-            <div className="bg-white dark:bg-dark-surface-container-lowest border border-outline-variant/20 dark:border-dark-outline-variant/20 rounded-xl p-6 shadow-sm">
-              <h4 className="text-sm font-bold text-on-secondary-fixed dark:text-dark-on-surface uppercase tracking-widest mb-6">Badge Options</h4>
+            <div className="bg-surface-container-lowest border border-outline-variant/20 rounded-xl p-6 shadow-sm">
+              <h4 className="text-sm font-bold text-on-surface uppercase tracking-widest mb-6">Badge Options</h4>
               <div className="space-y-6">
                 {/* Wi-Fi toggle */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-bold text-on-secondary-fixed dark:text-dark-on-surface">Add Wi-Fi Access</p>
-                    <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">Include temporary guest credentials</p>
+                    <p className="text-sm font-bold text-on-surface">Add Wi-Fi Access</p>
+                    <p className="text-xs text-on-surface-variant">Include temporary guest credentials</p>
                   </div>
                   <button
                     onClick={() => setWifiAccess(!wifiAccess)}
-                    className={`w-12 h-6 rounded-full relative transition-colors ${wifiAccess ? "bg-primary/20" : "bg-slate-200 dark:bg-dark-surface-container-high"}`}
+                    className={`w-12 h-6 rounded-full relative transition-colors ${wifiAccess ? "bg-primary/20" : "bg-surface-container-high"}`}
                   >
-                    <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${wifiAccess ? "right-1 bg-primary" : "left-1 bg-white dark:bg-slate-400 shadow-sm"}`} />
+                    <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${wifiAccess ? "right-1 bg-primary" : "left-1 bg-surface-container-lowest shadow-sm"}`} />
                   </button>
                 </div>
 
                 {/* NDA toggle */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-bold text-on-secondary-fixed dark:text-dark-on-surface">NDA Required</p>
-                    <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">Mark as &quot;Signed&quot; on badge</p>
+                    <p className="text-sm font-bold text-on-surface">NDA Required</p>
+                    <p className="text-xs text-on-surface-variant">Mark as &quot;Signed&quot; on badge</p>
                   </div>
                   <button
                     onClick={() => setNdaRequired(!ndaRequired)}
-                    className={`w-12 h-6 rounded-full relative transition-colors ${ndaRequired ? "bg-primary/20" : "bg-slate-200 dark:bg-dark-surface-container-high"}`}
+                    className={`w-12 h-6 rounded-full relative transition-colors ${ndaRequired ? "bg-primary/20" : "bg-surface-container-high"}`}
                   >
-                    <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${ndaRequired ? "right-1 bg-primary" : "left-1 bg-white dark:bg-slate-400 shadow-sm"}`} />
+                    <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${ndaRequired ? "right-1 bg-primary" : "left-1 bg-surface-container-lowest shadow-sm"}`} />
                   </button>
                 </div>
 
                 {/* Escort toggle */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-bold text-on-secondary-fixed dark:text-dark-on-surface">Escort Required</p>
-                    <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">Visual flag for security personnel</p>
+                    <p className="text-sm font-bold text-on-surface">Escort Required</p>
+                    <p className="text-xs text-on-surface-variant">Visual flag for security personnel</p>
                   </div>
                   <button
                     onClick={() => setEscortRequired(!escortRequired)}
-                    className={`w-12 h-6 rounded-full relative transition-colors ${escortRequired ? "bg-primary/20" : "bg-slate-200 dark:bg-dark-surface-container-high"}`}
+                    className={`w-12 h-6 rounded-full relative transition-colors ${escortRequired ? "bg-primary/20" : "bg-surface-container-high"}`}
                   >
-                    <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${escortRequired ? "right-1 bg-primary" : "left-1 bg-white dark:bg-slate-400 shadow-sm"}`} />
+                    <div className={`absolute top-1 w-4 h-4 rounded-full transition-all ${escortRequired ? "right-1 bg-primary" : "left-1 bg-surface-container-lowest shadow-sm"}`} />
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Pro Tip */}
-            <div className="bg-secondary-container/30 dark:bg-dark-surface-container border border-secondary-container dark:border-dark-outline-variant p-4 rounded-xl flex gap-4">
+            <div className="bg-secondary-container/30 border border-secondary-container p-4 rounded-xl flex gap-4">
               <span className="material-symbols-outlined text-secondary shrink-0">info</span>
-              <p className="text-xs text-on-secondary-container dark:text-dark-on-surface-variant leading-relaxed">
+              <p className="text-xs text-on-secondary-container leading-relaxed">
                 <strong>Pro Tip:</strong> Use high-density thermal paper for the best results. Badges are valid for 12 hours from the moment of printing.
               </p>
             </div>

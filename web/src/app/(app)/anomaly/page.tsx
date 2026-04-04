@@ -59,14 +59,14 @@ export default function AnomalyPage() {
   const [activeProtocol, setActiveProtocol] = useState(false);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
             Active Surveillance
           </h2>
-          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium">
+          <p className="text-on-surface-variant mt-2 font-medium">
             Real-time anomaly detection and threat assessment dashboard.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function AnomalyPage() {
           className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all ${
             activeProtocol
               ? "bg-error text-white shadow-lg shadow-error/20"
-              : "bg-surface-variant dark:bg-dark-surface-variant border border-outline-variant/20 text-on-surface dark:text-dark-on-surface hover:border-primary/40"
+              : "bg-surface-variant border border-outline-variant/20 text-on-surface hover:border-primary/40"
           }`}
         >
           <span className="material-symbols-outlined text-sm">{activeProtocol ? "shield" : "shield"}</span>
@@ -88,23 +88,23 @@ export default function AnomalyPage() {
         {/* Left: Charts + Person Alerts */}
         <div className="lg:col-span-8 space-y-6">
           {/* Variance Timeline Chart */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/10">
+          <div className="bg-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/10">
             <div className="flex justify-between items-center mb-6">
-              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
                 Status Microservice Variance Timeline
               </h4>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-sm bg-primary" />
-                  <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">Anomalies</span>
+                  <span className="text-[10px] text-on-surface-variant">Anomalies</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-sm bg-error" />
-                  <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">Critical</span>
+                  <span className="text-[10px] text-on-surface-variant">Critical</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-sm bg-tertiary" />
-                  <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">Warnings</span>
+                  <span className="text-[10px] text-on-surface-variant">Warnings</span>
                 </div>
               </div>
             </div>
@@ -123,7 +123,7 @@ export default function AnomalyPage() {
                       />
                     ))}
                   </div>
-                  <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-medium mt-1">
+                  <span className="text-[10px] text-on-surface-variant font-medium mt-1">
                     {day.label}
                   </span>
                 </div>
@@ -136,7 +136,7 @@ export default function AnomalyPage() {
             {PERSON_ALERTS.map((alert, i) => (
               <div
                 key={i}
-                className={`bg-surface-variant dark:bg-dark-surface-variant rounded-xl border overflow-hidden ${
+                className={`bg-surface-variant rounded-xl border overflow-hidden ${
                   alert.severity === "critical"
                     ? "border-error/30"
                     : "border-outline-variant/10"
@@ -144,7 +144,7 @@ export default function AnomalyPage() {
               >
                 <div className="flex gap-4 p-4 sm:p-5">
                   {/* Face placeholder */}
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-dark-surface-container-lowest flex-shrink-0 flex items-center justify-center overflow-hidden relative">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl bg-surface-container-lowest flex-shrink-0 flex items-center justify-center overflow-hidden relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900" />
                     <span className="material-symbols-outlined text-white/20 text-4xl relative z-10">
                       {alert.name === "Unknown Subject" ? "person_search" : "person"}
@@ -158,7 +158,7 @@ export default function AnomalyPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <h5 className="text-sm font-bold text-on-surface dark:text-dark-on-surface truncate">
+                        <h5 className="text-sm font-bold text-on-surface truncate">
                           {alert.name}
                         </h5>
                         <span className={`text-[10px] font-bold uppercase tracking-widest ${
@@ -175,10 +175,10 @@ export default function AnomalyPage() {
                         {alert.confidence}%
                       </span>
                     </div>
-                    <p className="text-[11px] text-on-surface-variant dark:text-dark-on-surface-variant mt-2 leading-relaxed line-clamp-2">
+                    <p className="text-[11px] text-on-surface-variant mt-2 leading-relaxed line-clamp-2">
                       {alert.description}
                     </p>
-                    <div className="flex items-center gap-3 mt-3 text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <div className="flex items-center gap-3 mt-3 text-[10px] text-on-surface-variant">
                       <span className="flex items-center gap-1">
                         <span className="material-symbols-outlined text-xs">videocam</span>
                         {alert.camera}
@@ -200,7 +200,7 @@ export default function AnomalyPage() {
                     <span className="material-symbols-outlined text-xs">flag</span>
                     Escalate
                   </button>
-                  <button className="flex-1 px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors flex items-center justify-center gap-1.5">
+                  <button className="flex-1 px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:bg-surface-container-high transition-colors flex items-center justify-center gap-1.5">
                     <span className="material-symbols-outlined text-xs">check</span>
                     Dismiss
                   </button>
@@ -210,18 +210,18 @@ export default function AnomalyPage() {
           </div>
 
           {/* Active Video Surveillance Feeds */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
+          <div className="bg-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
             <div className="p-4 sm:p-6 border-b border-outline-variant/10 flex justify-between items-center">
-              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
                 Active Video Surveillance Feeds
               </h4>
-              <button className="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors">
+              <button className="text-on-surface-variant hover:text-primary transition-colors">
                 <span className="material-symbols-outlined text-sm">grid_view</span>
               </button>
             </div>
             <div className="p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {CAMERA_FEEDS.map((feed) => (
-                <div key={feed.id} className="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group bg-dark-surface-container-lowest cursor-pointer">
+                <div key={feed.id} className="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group bg-surface-container-lowest cursor-pointer">
                   <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
                     <span className="material-symbols-outlined text-white/15 text-5xl">videocam</span>
                   </div>
@@ -261,28 +261,28 @@ export default function AnomalyPage() {
         <div className="lg:col-span-4 space-y-6">
           {/* Summary Stats */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 rounded-xl border border-outline-variant/10 text-center">
+            <div className="bg-surface-variant p-4 rounded-xl border border-outline-variant/10 text-center">
               <p className="text-2xl font-black text-error">12</p>
-              <p className="text-[9px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest mt-1">Critical</p>
+              <p className="text-[9px] text-on-surface-variant uppercase tracking-widest mt-1">Critical</p>
             </div>
-            <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 rounded-xl border border-outline-variant/10 text-center">
+            <div className="bg-surface-variant p-4 rounded-xl border border-outline-variant/10 text-center">
               <p className="text-2xl font-black text-tertiary">28</p>
-              <p className="text-[9px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest mt-1">Warnings</p>
+              <p className="text-[9px] text-on-surface-variant uppercase tracking-widest mt-1">Warnings</p>
             </div>
-            <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 rounded-xl border border-outline-variant/10 text-center">
-              <p className="text-2xl font-black text-on-surface dark:text-dark-on-surface">156</p>
-              <p className="text-[9px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest mt-1">Total Today</p>
+            <div className="bg-surface-variant p-4 rounded-xl border border-outline-variant/10 text-center">
+              <p className="text-2xl font-black text-on-surface">156</p>
+              <p className="text-[9px] text-on-surface-variant uppercase tracking-widest mt-1">Total Today</p>
             </div>
-            <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 rounded-xl border border-outline-variant/10 text-center">
+            <div className="bg-surface-variant p-4 rounded-xl border border-outline-variant/10 text-center">
               <p className="text-2xl font-black text-green-500">94%</p>
-              <p className="text-[9px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest mt-1">Resolved</p>
+              <p className="text-[9px] text-on-surface-variant uppercase tracking-widest mt-1">Resolved</p>
             </div>
           </div>
 
           {/* Recent Alerts */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
+          <div className="bg-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
             <div className="p-4 sm:p-5 border-b border-outline-variant/10 flex justify-between items-center">
-              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
                 Recent Alerts
               </h4>
               <a href="/events" className="text-primary font-bold text-xs hover:underline">View All</a>
@@ -292,7 +292,7 @@ export default function AnomalyPage() {
                 <div key={i} className="flex gap-3 pb-4 relative">
                   {/* Timeline connector */}
                   {i < RECENT_ALERTS.length - 1 && (
-                    <div className="absolute left-[15px] top-8 w-px h-[calc(100%-16px)] bg-outline-variant/20 dark:bg-dark-outline-variant/20" />
+                    <div className="absolute left-[15px] top-8 w-px h-[calc(100%-16px)] bg-outline-variant/20" />
                   )}
                   {/* Icon */}
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
@@ -310,11 +310,11 @@ export default function AnomalyPage() {
                   </div>
                   {/* Content */}
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-on-surface dark:text-dark-on-surface font-medium leading-snug">
+                    <p className="text-xs text-on-surface font-medium leading-snug">
                       {alert.message}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+                      <span className="text-[10px] text-on-surface-variant">
                         {alert.time}
                       </span>
                       <span className={`text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded ${
@@ -332,15 +332,15 @@ export default function AnomalyPage() {
           </div>
 
           {/* Threat Level Indicator */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+          <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-4">
               Threat Level
             </h4>
             <div className="flex items-center gap-4">
               <div className="relative w-20 h-20 flex items-center justify-center">
                 <svg className="w-full h-full transform -rotate-90">
                   <circle cx="40" cy="40" r="34" fill="transparent" stroke="currentColor" strokeWidth="6"
-                    className="text-surface-container-high dark:text-dark-surface-container-high" />
+                    className="text-surface-container-high" />
                   <circle cx="40" cy="40" r="34" fill="transparent" stroke="#ef4444" strokeWidth="6"
                     strokeDasharray="214" strokeDashoffset="64" strokeLinecap="round" />
                 </svg>
@@ -348,7 +348,7 @@ export default function AnomalyPage() {
               </div>
               <div>
                 <p className="text-sm font-bold text-error">Elevated</p>
-                <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-1 leading-relaxed">
+                <p className="text-[10px] text-on-surface-variant mt-1 leading-relaxed">
                   Multiple concurrent anomalies detected across zones. Enhanced monitoring active.
                 </p>
               </div>

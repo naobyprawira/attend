@@ -108,46 +108,46 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
 
   return (
     <div className="fixed inset-0 bg-on-surface/40 backdrop-blur-sm flex items-center justify-center z-[60] animate-fade-in">
-      <div className="bg-surface-container-lowest dark:bg-dark-surface-container rounded-2xl w-[26rem] overflow-hidden shadow-2xl">
+      <div className="bg-surface-container-lowest rounded-2xl w-[26rem] overflow-hidden shadow-2xl">
         <div className="flex items-center justify-between px-6 py-5 border-b border-outline-variant/10">
-          <h3 className="font-bold text-on-surface dark:text-dark-on-surface">Add User</h3>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-surface-container dark:hover:bg-dark-surface-container-high text-on-surface-variant transition-colors">
+          <h3 className="font-bold text-on-surface">Add User</h3>
+          <button onClick={onClose} className="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors">
             <span className="material-symbols-outlined text-lg">close</span>
           </button>
         </div>
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">Username</label>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Username</label>
             <input
               autoFocus
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="johndoe"
-              className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-2.5 px-3.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface"
+              className="w-full bg-surface-container-highest border-none rounded-lg py-2.5 px-3.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface"
               required
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">Email</label>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="john@example.com"
-              className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-2.5 px-3.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface"
+              className="w-full bg-surface-container-highest border-none rounded-lg py-2.5 px-3.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface"
               maxLength={254}
               required
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">Password</label>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Password</label>
             <div className="relative">
               <input
                 type={showPw ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-2.5 px-3.5 pr-10 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface"
+                className="w-full bg-surface-container-highest border-none rounded-lg py-2.5 px-3.5 pr-10 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface"
                 minLength={12}
                 maxLength={128}
                 required
@@ -156,12 +156,12 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
                 <span className="material-symbols-outlined text-lg">{showPw ? "visibility_off" : "visibility"}</span>
               </button>
             </div>
-            <p className="text-[11px] text-on-surface-variant dark:text-dark-on-surface-variant">
+            <p className="text-[11px] text-on-surface-variant">
               Use 12+ characters with uppercase, lowercase, number, and symbol.
             </p>
           </div>
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">Role</label>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Role</label>
             <Select
               value={role}
               onChange={(v) => setRole(v as Role)}
@@ -169,7 +169,7 @@ function AddUserDialog({ onClose, currentUserRole }: { onClose: () => void; curr
             />
           </div>
           <div className="flex gap-3 pt-2">
-            <button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-surface-container dark:bg-dark-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
+            <button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
               Cancel
             </button>
             <button
@@ -209,19 +209,19 @@ function EditUserDialog({ user, onClose, currentUserRole }: { user: User; onClos
 
   return (
     <div className="fixed inset-0 bg-on-surface/40 backdrop-blur-sm flex items-center justify-center z-[60] animate-fade-in">
-      <div className="bg-surface-container-lowest dark:bg-dark-surface-container rounded-2xl w-[24rem] overflow-hidden shadow-2xl">
+      <div className="bg-surface-container-lowest rounded-2xl w-[24rem] overflow-hidden shadow-2xl">
         <div className="flex items-center justify-between px-6 py-5 border-b border-outline-variant/10">
           <div>
-            <h3 className="font-bold text-on-surface dark:text-dark-on-surface">Edit User</h3>
-            <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">{user.username}</p>
+            <h3 className="font-bold text-on-surface">Edit User</h3>
+            <p className="text-xs text-on-surface-variant">{user.username}</p>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg hover:bg-surface-container dark:hover:bg-dark-surface-container-high text-on-surface-variant transition-colors">
+          <button onClick={onClose} className="p-1 rounded-lg hover:bg-surface-container text-on-surface-variant transition-colors">
             <span className="material-symbols-outlined text-lg">close</span>
           </button>
         </div>
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">Role</label>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Role</label>
             <Select
               value={role}
               onChange={(v) => setRole(v as Role)}
@@ -229,7 +229,7 @@ function EditUserDialog({ user, onClose, currentUserRole }: { user: User; onClos
             />
           </div>
           <div className="space-y-1.5">
-            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">Status</label>
+            <label className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Status</label>
             <Select
               value={status}
               onChange={setStatus}
@@ -240,7 +240,7 @@ function EditUserDialog({ user, onClose, currentUserRole }: { user: User; onClos
             />
           </div>
           <div className="flex gap-3 pt-2">
-            <button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-surface-container dark:bg-dark-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
+            <button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl text-sm font-bold bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
               Cancel
             </button>
             <button
@@ -288,7 +288,7 @@ function DeleteButton({ userId, onDeleted }: { userId: number; onDeleted: () => 
       className={`p-1.5 rounded-lg transition-all text-sm ${
         confirming
           ? "bg-error/10 text-error"
-          : "hover:bg-surface-container dark:hover:bg-dark-surface-container-high text-on-surface-variant dark:text-dark-on-surface-variant"
+          : "hover:bg-surface-container text-on-surface-variant"
       }`}
     >
       <span className="material-symbols-outlined text-lg">
@@ -305,7 +305,7 @@ function SkeletonRow() {
     <tr className="border-b border-outline-variant/5">
       {[...Array(6)].map((_, i) => (
         <td key={i} className="px-4 py-4">
-          <div className="h-4 bg-surface-container dark:bg-dark-surface-container rounded animate-pulse" style={{ width: i === 0 ? "80%" : "60%" }} />
+          <div className="h-4 bg-surface-container rounded animate-pulse" style={{ width: i === 0 ? "80%" : "60%" }} />
         </td>
       ))}
     </tr>
@@ -378,8 +378,8 @@ export default function UsersPage() {
         <div className="p-5 rounded-full bg-error/10">
           <span className="material-symbols-outlined text-error text-4xl">lock</span>
         </div>
-        <h2 className="text-xl font-bold text-on-surface dark:text-dark-on-surface">Access Denied</h2>
-        <p className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant text-center max-w-sm">
+        <h2 className="text-xl font-bold text-on-surface">Access Denied</h2>
+        <p className="text-sm text-on-surface-variant text-center max-w-sm">
           User management is restricted to administrators. Contact your admin to request access.
         </p>
       </div>
@@ -387,15 +387,15 @@ export default function UsersPage() {
   }
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-surface min-h-full">
 
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
             User Management
           </h2>
-          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium text-sm">
+          <p className="text-on-surface-variant mt-2 font-medium text-sm">
             Manage accounts, roles, and access requests.
           </p>
         </div>
@@ -416,12 +416,12 @@ export default function UsersPage() {
           { label: "Pending", value: totalPending, icon: "pending", color: "text-amber-500" },
           { label: "Admins", value: totalAdmins, icon: "admin_panel_settings", color: "text-primary" },
         ].map(({ label, value, icon, color }) => (
-          <div key={label} className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl p-4 border border-outline-variant/10">
+          <div key={label} className="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/10">
             <div className="flex items-center gap-2 mb-2">
               <span className={`material-symbols-outlined text-lg ${color}`}>{icon}</span>
             </div>
-            <p className="text-2xl font-extrabold text-on-surface dark:text-dark-on-surface">{isLoading ? "—" : value}</p>
-            <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest font-bold mt-0.5">{label}</p>
+            <p className="text-2xl font-extrabold text-on-surface">{isLoading ? "—" : value}</p>
+            <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold mt-0.5">{label}</p>
           </div>
         ))}
       </div>
@@ -435,18 +435,18 @@ export default function UsersPage() {
             placeholder="Search by username or email…"
             value={search}
             onChange={(e) => { setSearch(e.target.value); setCurrentPage(1); }}
-            className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface"
+            className="w-full bg-surface-container-highest border-none rounded-lg pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface"
           />
         </div>
-        <div className="flex gap-1 bg-surface-container dark:bg-dark-surface-container rounded-lg p-1">
+        <div className="flex gap-1 bg-surface-container rounded-lg p-1">
           {TABS.map((tab) => (
             <button
               key={tab}
               onClick={() => { setActiveTab(tab); setCurrentPage(1); }}
               className={`px-3.5 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                 activeTab === tab
-                  ? "bg-surface-container-lowest dark:bg-dark-surface-container-lowest text-on-surface dark:text-dark-on-surface shadow-sm"
-                  : "text-on-surface-variant dark:text-dark-on-surface-variant hover:text-on-surface dark:hover:text-dark-on-surface"
+                  ? "bg-surface-container-lowest text-on-surface shadow-sm"
+                  : "text-on-surface-variant hover:text-on-surface"
               }`}
             >
               {tab}
@@ -461,9 +461,9 @@ export default function UsersPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-2xl border border-outline-variant/10 overflow-hidden">
+      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/10 overflow-hidden">
         {isError ? (
-          <div className="flex flex-col items-center gap-3 py-16 text-on-surface-variant dark:text-dark-on-surface-variant">
+          <div className="flex flex-col items-center gap-3 py-16 text-on-surface-variant">
             <span className="material-symbols-outlined text-3xl text-error">error</span>
             <p className="text-sm">Failed to load users.</p>
             <button onClick={() => refetch()} className="text-xs font-bold text-primary hover:underline">Retry</button>
@@ -472,7 +472,7 @@ export default function UsersPage() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant border-b border-outline-variant/10">
+                <tr className="text-left text-[10px] font-bold uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/10">
                   <th className="px-6 py-4">User</th>
                   <th className="px-4 py-4">Role</th>
                   <th className="px-4 py-4 hidden sm:table-cell">Email</th>
@@ -488,20 +488,20 @@ export default function UsersPage() {
                   : paginated.length === 0
                   ? (
                     <tr>
-                      <td colSpan={7} className="text-center py-16 text-on-surface-variant dark:text-dark-on-surface-variant text-sm">
+                      <td colSpan={7} className="text-center py-16 text-on-surface-variant text-sm">
                         No users found.
                       </td>
                     </tr>
                   )
                   : paginated.map((user) => (
-                    <tr key={user.id} className="border-b border-outline-variant/5 hover:bg-surface-container dark:hover:bg-dark-surface-container transition-colors">
+                    <tr key={user.id} className="border-b border-outline-variant/5 hover:bg-surface-container transition-colors">
                       {/* Avatar + username */}
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           <div className="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center text-white text-xs font-bold shrink-0">
                             {initials(user.username)}
                           </div>
-                          <span className="font-semibold text-on-surface dark:text-dark-on-surface whitespace-nowrap">
+                          <span className="font-semibold text-on-surface whitespace-nowrap">
                             {user.username}
                             {user.id === me?.id && (
                               <span className="ml-1.5 text-[9px] font-bold text-primary bg-primary/10 rounded-full px-1.5 py-0.5 uppercase">you</span>
@@ -516,11 +516,11 @@ export default function UsersPage() {
                         </span>
                       </td>
                       {/* Email */}
-                      <td className="px-4 py-4 hidden sm:table-cell text-on-surface-variant dark:text-dark-on-surface-variant text-xs">{user.email}</td>
+                      <td className="px-4 py-4 hidden sm:table-cell text-on-surface-variant text-xs">{user.email}</td>
                       {/* Joined */}
-                      <td className="px-4 py-4 hidden lg:table-cell text-on-surface-variant dark:text-dark-on-surface-variant text-xs whitespace-nowrap">{fmtDate(user.created_at)}</td>
+                      <td className="px-4 py-4 hidden lg:table-cell text-on-surface-variant text-xs whitespace-nowrap">{fmtDate(user.created_at)}</td>
                       {/* Last seen */}
-                      <td className="px-4 py-4 hidden lg:table-cell text-on-surface-variant dark:text-dark-on-surface-variant text-xs whitespace-nowrap">{fmtLastSeen(user.last_login)}</td>
+                      <td className="px-4 py-4 hidden lg:table-cell text-on-surface-variant text-xs whitespace-nowrap">{fmtLastSeen(user.last_login)}</td>
                       {/* Status */}
                       <td className="px-4 py-4">
                         <span className={`inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider ${statusStyle(user.status)}`}>
@@ -548,7 +548,7 @@ export default function UsersPage() {
                                 onClick={() => setEditingUser(user)}
                                 disabled={user.id === me?.id || user.role === "super_admin" || (user.role === "admin" && me?.role !== "super_admin")}
                                 title={user.role === "super_admin" ? "Super admin cannot be edited" : user.role === "admin" && me?.role !== "super_admin" ? "Only super admin can edit admin accounts" : "Edit"}
-                                className="p-1.5 rounded-lg hover:bg-surface-container dark:hover:bg-dark-surface-container-high text-on-surface-variant dark:text-dark-on-surface-variant disabled:opacity-30 transition-all"
+                                className="p-1.5 rounded-lg hover:bg-surface-container text-on-surface-variant disabled:opacity-30 transition-all"
                               >
                                 <span className="material-symbols-outlined text-lg">edit</span>
                               </button>
@@ -567,19 +567,19 @@ export default function UsersPage() {
         {/* Pagination */}
         {!isLoading && !isError && totalPages > 1 && (
           <div className="flex items-center justify-between px-6 py-4 border-t border-outline-variant/10">
-            <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+            <p className="text-xs text-on-surface-variant">
               Showing {(currentPage - 1) * PER_PAGE + 1}–{Math.min(currentPage * PER_PAGE, filtered.length)} of {filtered.length}
             </p>
             <div className="flex gap-1">
-              <button onClick={() => setCurrentPage((p) => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-1.5 rounded-lg hover:bg-surface-container dark:hover:bg-dark-surface-container disabled:opacity-30 transition-all text-on-surface-variant">
+              <button onClick={() => setCurrentPage((p) => Math.max(1, p - 1))} disabled={currentPage === 1} className="p-1.5 rounded-lg hover:bg-surface-container disabled:opacity-30 transition-all text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">chevron_left</span>
               </button>
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button key={page} onClick={() => setCurrentPage(page)} className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${currentPage === page ? "bg-primary text-white" : "text-on-surface-variant hover:bg-surface-container dark:hover:bg-dark-surface-container"}`}>
+                <button key={page} onClick={() => setCurrentPage(page)} className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${currentPage === page ? "bg-primary text-white" : "text-on-surface-variant hover:bg-surface-container"}`}>
                   {page}
                 </button>
               ))}
-              <button onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="p-1.5 rounded-lg hover:bg-surface-container dark:hover:bg-dark-surface-container disabled:opacity-30 transition-all text-on-surface-variant">
+              <button onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} className="p-1.5 rounded-lg hover:bg-surface-container disabled:opacity-30 transition-all text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">chevron_right</span>
               </button>
             </div>

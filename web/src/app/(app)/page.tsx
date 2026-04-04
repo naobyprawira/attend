@@ -39,7 +39,7 @@ export default function DashboardPage() {
   const unrecognized = backendOnline ? (stats?.today?.unknown_face ?? 0) : 14;
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* 4 Stat Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
@@ -79,14 +79,14 @@ export default function DashboardPage() {
         {/* Left Column: Charts */}
         <div className="col-span-1 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {/* Donut Chart */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col items-center justify-center">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-8 self-start">
+          <div className="bg-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col items-center justify-center">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-8 self-start">
               Daily Attendance Rate
             </h4>
             <div className="relative w-64 h-64 flex items-center justify-center">
               <svg className="w-full h-full transform -rotate-90">
                 <circle
-                  className="text-surface-container-high dark:text-dark-surface-container-high"
+                  className="text-surface-container-high"
                   cx="128" cy="128" r="110" fill="transparent"
                   stroke="currentColor" strokeWidth="20"
                 />
@@ -104,8 +104,8 @@ export default function DashboardPage() {
                 </defs>
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-5xl font-black text-on-surface dark:text-dark-on-surface">84%</span>
-                <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest mt-1">
+                <span className="text-5xl font-black text-on-surface">84%</span>
+                <span className="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1">
                   Present Today
                 </span>
               </div>
@@ -114,30 +114,30 @@ export default function DashboardPage() {
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-primary" />
                 <div>
-                  <p className="text-xs text-on-surface dark:text-dark-on-surface font-bold">482</p>
-                  <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">Present</p>
+                  <p className="text-xs text-on-surface font-bold">482</p>
+                  <p className="text-[10px] text-on-surface-variant">Present</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-surface-container-high dark:bg-dark-surface-container-high" />
+                <div className="w-3 h-3 rounded-full bg-surface-container-high" />
                 <div>
-                  <p className="text-xs text-on-surface dark:text-dark-on-surface font-bold">92</p>
-                  <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">Absent</p>
+                  <p className="text-xs text-on-surface font-bold">92</p>
+                  <p className="text-[10px] text-on-surface-variant">Absent</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Bar Chart */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+          <div className="bg-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-4">
               7-Day Peak Trends
             </h4>
             <div className="flex-1 flex items-end gap-2 px-2 pb-4 mt-8">
               {BAR_HEIGHTS.map((h, i) => (
                 <div
                   key={i}
-                  className="flex-1 bg-surface-container-high dark:bg-dark-surface-container-high rounded-t-lg relative group"
+                  className="flex-1 bg-surface-container-high rounded-t-lg relative group"
                   style={{ height: `${h}%` }}
                 >
                   <div
@@ -149,7 +149,7 @@ export default function DashboardPage() {
                 </div>
               ))}
             </div>
-            <div className="flex justify-between mt-4 text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-medium">
+            <div className="flex justify-between mt-4 text-[10px] text-on-surface-variant font-medium">
               {DAYS.map((d) => (
                 <span key={d}>{d}</span>
               ))}
@@ -157,9 +157,9 @@ export default function DashboardPage() {
           </div>
 
           {/* Department Occupancy */}
-          <div className="col-span-1 md:col-span-2 bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5">
+          <div className="col-span-1 md:col-span-2 bg-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5">
             <div className="flex justify-between items-center mb-8">
-              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
                 Department Occupancy
               </h4>
               <span className="text-[10px] bg-primary/20 text-primary-fixed-dim px-2 py-1 rounded">
@@ -169,11 +169,11 @@ export default function DashboardPage() {
             <div className="space-y-6">
               {DEPARTMENTS.map((dept) => (
                 <div key={dept.name} className="space-y-2">
-                  <div className="flex justify-between text-xs text-on-surface dark:text-dark-on-surface">
+                  <div className="flex justify-between text-xs text-on-surface">
                     <span className="font-medium">{dept.name}</span>
                     <span className="font-bold">{dept.count} people</span>
                   </div>
-                  <div className="w-full h-2 bg-surface-container-high dark:bg-dark-surface-container-high rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
                     <div
                       className="h-full bg-primary transition-all duration-1000"
                       style={{ width: `${dept.pct}%`, opacity: dept.pct > 60 ? 1 : dept.pct > 30 ? 0.7 : 0.5 }}
@@ -186,24 +186,24 @@ export default function DashboardPage() {
         </div>
 
         {/* Right Column: Camera Feeds */}
-        <div className="col-span-1 lg:col-span-4 bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col">
+        <div className="col-span-1 lg:col-span-4 bg-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/5 flex flex-col">
           <div className="flex justify-between items-center mb-6">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
               Live Feeds
             </h4>
             <div className="flex gap-2">
-              <button className="p-1 hover:text-primary transition-colors text-on-surface-variant dark:text-dark-on-surface-variant">
+              <button className="p-1 hover:text-primary transition-colors text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">fullscreen</span>
               </button>
-              <button className="p-1 hover:text-primary transition-colors text-on-surface-variant dark:text-dark-on-surface-variant">
+              <button className="p-1 hover:text-primary transition-colors text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">more_vert</span>
               </button>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 flex-1">
             {DUMMY_FEEDS.map((feed) => (
-              <div key={feed.id} className="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group bg-dark-surface-container-lowest">
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+              <div key={feed.id} className="relative rounded-xl overflow-hidden aspect-video border border-outline-variant/10 group bg-surface-container-highest">
+                <div className="absolute inset-0 bg-surface-container-highest flex items-center justify-center">
                   <span className="material-symbols-outlined text-white/20 text-6xl">videocam</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -224,16 +224,16 @@ export default function DashboardPage() {
       </div>
 
       {/* Live Activity Stream */}
-      <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
+      <div className="bg-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
         <div className="p-6 border-b border-outline-variant/10 flex justify-between items-center">
-          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
             Live Activity Stream
           </h4>
           <a href="/events" className="text-primary font-bold text-xs hover:underline">
             View Full Logs
           </a>
         </div>
-        <div className="divide-y divide-outline-variant/5 dark:divide-dark-outline-variant/5">
+        <div className="divide-y divide-outline-variant/5">
           {(backendOnline ? events.slice(0, 5) : []).map((event) => (
             <ActivityRow
               key={event.id}
@@ -279,12 +279,12 @@ function StatCard({
   progressPct?: number;
 }) {
   return (
-    <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
+    <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden group">
       <div className="relative z-10">
-        <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-2">
+        <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">
           {label}
         </p>
-        <h3 className="text-3xl font-black text-on-surface dark:text-dark-on-surface">{value}</h3>
+        <h3 className="text-3xl font-black text-on-surface">{value}</h3>
         {trend && (
           <p className={`text-xs mt-2 flex items-center gap-1 ${trendColor}`}>
             {trendIcon && <span className="material-symbols-outlined text-sm">{trendIcon}</span>}
@@ -292,7 +292,7 @@ function StatCard({
           </p>
         )}
         {progressPct != null && (
-          <div className="w-full h-1 bg-surface-container-high dark:bg-dark-surface-container-high rounded-full mt-4 overflow-hidden">
+          <div className="w-full h-1 bg-surface-container-high rounded-full mt-4 overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-primary to-primary-container transition-all duration-1000"
               style={{ width: `${progressPct}%` }}
@@ -323,7 +323,7 @@ function ActivityRow({
   const isFlagged = status === "flagged";
 
   return (
-    <div className={`p-4 flex flex-wrap items-center justify-between gap-4 hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors group ${isFlagged ? "bg-error/5" : ""}`}>
+    <div className={`p-4 flex flex-wrap items-center justify-between gap-4 hover:bg-surface-container-high transition-colors group ${isFlagged ? "bg-error/5" : ""}`}>
       <div className="flex items-center gap-4 min-w-0">
         <div className={`w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center ${
           isFlagged
@@ -335,10 +335,10 @@ function ActivityRow({
           </span>
         </div>
         <div>
-          <h5 className={`text-sm font-bold text-on-surface dark:text-dark-on-surface ${isFlagged ? "italic" : ""}`}>
+          <h5 className={`text-sm font-bold text-on-surface ${isFlagged ? "italic" : ""}`}>
             {name || "Unrecognized Entity"}
           </h5>
-          <p className={`text-[10px] uppercase ${isFlagged ? "text-error font-bold" : "text-on-surface-variant dark:text-dark-on-surface-variant"}`}>
+          <p className={`text-[10px] uppercase ${isFlagged ? "text-error font-bold" : "text-on-surface-variant"}`}>
             {dept} &bull; {time}
           </p>
         </div>
@@ -348,7 +348,7 @@ function ActivityRow({
           <p className={`text-xs font-bold ${isFlagged ? "text-error" : "text-primary-fixed-dim"}`}>
             {isFlagged ? "No Match" : `${confidence.toFixed(1)}% Match`}
           </p>
-          <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase">Confidence</p>
+          <p className="text-[10px] text-on-surface-variant uppercase">Confidence</p>
         </div>
         <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
           isFlagged

@@ -8,10 +8,10 @@ import { useState } from "react";
 
 const FILTER_PILLS = [
   { label: "Critical", color: "bg-error/10 text-error border-error/20" },
-  { label: "Access Violation", color: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20" },
+  { label: "Access Violation", color: "bg-amber-500/10 text-amber-600 border-amber-500/20" },
   { label: "Late Arrival", color: "bg-primary/10 text-primary border-primary/20" },
   { label: "Early Departure", color: "bg-tertiary/10 text-tertiary border-tertiary/20" },
-  { label: "Unauthorized Zone", color: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20" },
+  { label: "Unauthorized Zone", color: "bg-rose-500/10 text-rose-600 border-rose-500/20" },
 ];
 
 const REPORT_NAV = [
@@ -49,7 +49,7 @@ const EXCEPTIONS: ExceptionCard[] = [
     initials: "MT",
     avatar: "",
     violationType: "Access Violation",
-    violationColor: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+    violationColor: "bg-amber-500/10 text-amber-600",
     date: "Oct 15, 2023",
     time: "09:42 AM",
     description: "Attempted access to restricted server room without proper clearance badge during non-scheduled hours.",
@@ -147,30 +147,30 @@ export default function ExceptionReportPage() {
   const statusBadge = (status: ExceptionCard["status"]) => {
     switch (status) {
       case "pending":
-        return "bg-amber-500/10 text-amber-600 dark:text-amber-400";
+        return "bg-amber-500/10 text-amber-600";
       case "escalated":
         return "bg-error/10 text-error";
       case "resolved":
-        return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400";
+        return "bg-emerald-500/10 text-emerald-600";
     }
   };
 
   return (
-    <div className="min-h-screen bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface">
+    <div className="min-h-screen bg-surface text-on-surface">
       <div className="p-4 sm:p-6 lg:p-8">
         {/* Header */}
         <header className="mb-6">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-on-surface dark:text-dark-on-surface">
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-on-surface">
                 Exception Report
               </h1>
-              <p className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant mt-0.5">
+              <p className="text-sm text-on-surface-variant mt-0.5">
                 System-Identified Workforce Anomalies
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container dark:bg-dark-surface-container text-xs font-medium text-on-surface-variant dark:text-dark-on-surface-variant">
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-surface-container text-xs font-medium text-on-surface-variant">
                 <span className="material-symbols-outlined text-sm">calendar_today</span>
                 Oct 01 &ndash; Oct 31, 2023
               </div>
@@ -189,14 +189,14 @@ export default function ExceptionReportPage() {
         <div className="grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-6">
           {/* Left Nav Sidebar */}
           <aside className="hidden lg:block">
-            <nav className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl border border-outline-variant/10 dark:border-dark-outline-variant/10 shadow-sm p-3 space-y-1">
+            <nav className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm p-3 space-y-1">
               {REPORT_NAV.map((item) => (
                 <button
                   key={item.label}
                   className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
                     item.active
                       ? "bg-primary/10 text-primary"
-                      : "text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-container dark:hover:bg-dark-surface-container"
+                      : "text-on-surface-variant hover:bg-surface-container"
                   }`}
                 >
                   <span className="material-symbols-outlined text-lg">{item.icon}</span>
@@ -217,7 +217,7 @@ export default function ExceptionReportPage() {
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all ${
                     activePills.has(pill.label)
                       ? pill.color + " ring-2 ring-primary/30"
-                      : "bg-surface-container dark:bg-dark-surface-container text-on-surface-variant dark:text-dark-on-surface-variant border-outline-variant/20 dark:border-dark-outline-variant/20 hover:border-outline-variant/40"
+                      : "bg-surface-container text-on-surface-variant border-outline-variant/20 hover:border-outline-variant/40"
                   }`}
                 >
                   {pill.label}
@@ -229,7 +229,7 @@ export default function ExceptionReportPage() {
                   <select
                     value={department}
                     onChange={(e) => setDepartment(e.target.value)}
-                    className="pl-3 pr-8 py-1.5 rounded-lg bg-surface-container dark:bg-dark-surface-container border border-outline-variant/20 dark:border-dark-outline-variant/20 text-xs font-semibold text-on-surface dark:text-dark-on-surface appearance-none focus:outline-none focus:ring-2 focus:ring-primary/30"
+                    className="pl-3 pr-8 py-1.5 rounded-lg bg-surface-container border border-outline-variant/20 text-xs font-semibold text-on-surface appearance-none focus:outline-none focus:ring-2 focus:ring-primary/30"
                   >
                     {DEPARTMENTS.map((d) => (
                       <option key={d} value={d}>
@@ -237,7 +237,7 @@ export default function ExceptionReportPage() {
                       </option>
                     ))}
                   </select>
-                  <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant pointer-events-none">
+                  <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-sm text-on-surface-variant pointer-events-none">
                     expand_more
                   </span>
                 </div>
@@ -252,7 +252,7 @@ export default function ExceptionReportPage() {
               {EXCEPTIONS.map((exc) => (
                 <div
                   key={exc.id}
-                  className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl border border-outline-variant/10 dark:border-dark-outline-variant/10 shadow-sm p-4 sm:p-5 hover:border-outline-variant/20 dark:hover:border-dark-outline-variant/20 transition-colors"
+                  className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm p-4 sm:p-5 hover:border-outline-variant/20 transition-colors"
                 >
                   <div className="flex flex-col sm:flex-row gap-4">
                     {/* Avatar */}
@@ -266,10 +266,10 @@ export default function ExceptionReportPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                         <div>
-                          <h3 className="text-sm font-bold text-on-surface dark:text-dark-on-surface">
+                          <h3 className="text-sm font-bold text-on-surface">
                             {exc.name}
                           </h3>
-                          <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+                          <p className="text-xs text-on-surface-variant">
                             {exc.department}
                           </p>
                         </div>
@@ -287,12 +287,12 @@ export default function ExceptionReportPage() {
                         </div>
                       </div>
 
-                      <p className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed mb-3">
+                      <p className="text-sm text-on-surface-variant leading-relaxed mb-3">
                         {exc.description}
                       </p>
 
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <div className="flex items-center gap-3 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+                        <div className="flex items-center gap-3 text-xs text-on-surface-variant">
                           <span className="flex items-center gap-1">
                             <span className="material-symbols-outlined text-sm">calendar_today</span>
                             {exc.date}
@@ -301,19 +301,19 @@ export default function ExceptionReportPage() {
                             <span className="material-symbols-outlined text-sm">schedule</span>
                             {exc.time}
                           </span>
-                          <span className="text-on-surface-variant/40 dark:text-dark-on-surface-variant/40">
+                          <span className="text-on-surface-variant/40">
                             {exc.id}
                           </span>
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <button className="p-1.5 rounded-lg hover:bg-surface-container dark:hover:bg-dark-surface-container transition-colors">
-                            <span className="material-symbols-outlined text-on-surface-variant dark:text-dark-on-surface-variant text-lg">
+                          <button className="p-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                            <span className="material-symbols-outlined text-on-surface-variant text-lg">
                               visibility
                             </span>
                           </button>
-                          <button className="p-1.5 rounded-lg hover:bg-surface-container dark:hover:bg-dark-surface-container transition-colors">
-                            <span className="material-symbols-outlined text-on-surface-variant dark:text-dark-on-surface-variant text-lg">
+                          <button className="p-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                            <span className="material-symbols-outlined text-on-surface-variant text-lg">
                               edit
                             </span>
                           </button>
@@ -335,20 +335,20 @@ export default function ExceptionReportPage() {
               {BOTTOM_STATS.map((stat) => (
                 <div
                   key={stat.label}
-                  className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl border border-outline-variant/10 dark:border-dark-outline-variant/10 shadow-sm p-4 sm:p-5"
+                  className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm p-4 sm:p-5"
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <span className={`material-symbols-outlined text-base ${stat.iconColor}`}>
                       {stat.icon}
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
                       {stat.label}
                     </span>
                   </div>
-                  <span className="text-2xl sm:text-3xl font-black text-on-surface dark:text-dark-on-surface">
+                  <span className="text-2xl sm:text-3xl font-black text-on-surface">
                     {stat.value}
                   </span>
-                  <p className="text-[11px] text-on-surface-variant dark:text-dark-on-surface-variant mt-1">
+                  <p className="text-[11px] text-on-surface-variant mt-1">
                     {stat.sub}
                   </p>
                 </div>

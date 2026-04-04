@@ -34,24 +34,24 @@ export default function PeopleCountingPage() {
   const [selectedDate, setSelectedDate] = useState("2026-03-30");
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
             Occupancy Intelligence
           </h2>
-          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium">
+          <p className="text-on-surface-variant mt-2 font-medium">
             Real-time people counting and zone occupancy analytics.
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <span className="material-symbols-outlined text-on-surface-variant dark:text-dark-on-surface-variant text-sm">calendar_today</span>
+          <span className="material-symbols-outlined text-on-surface-variant text-sm">calendar_today</span>
           <input
             type="date"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
-            className="bg-surface-variant dark:bg-dark-surface-variant border border-outline-variant/20 rounded-xl px-4 py-2 text-sm text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="bg-surface-variant border border-outline-variant/20 rounded-xl px-4 py-2 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
           />
         </div>
       </div>
@@ -61,14 +61,14 @@ export default function PeopleCountingPage() {
         {/* Stat Circles */}
         <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
           {/* Current Occupancy */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10 flex flex-col items-center justify-center">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-4">
+          <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10 flex flex-col items-center justify-center">
+            <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-4">
               Current Occupancy
             </p>
             <div className="relative w-32 h-32 flex items-center justify-center">
               <svg className="w-full h-full transform -rotate-90">
                 <circle cx="64" cy="64" r="54" fill="transparent" stroke="currentColor" strokeWidth="10"
-                  className="text-surface-container-high dark:text-dark-surface-container-high" />
+                  className="text-surface-container-high" />
                 <circle cx="64" cy="64" r="54" fill="transparent" stroke="url(#occGrad1)" strokeWidth="10"
                   strokeDasharray="339" strokeDashoffset="220" strokeLinecap="round" />
                 <defs>
@@ -79,40 +79,40 @@ export default function PeopleCountingPage() {
                 </defs>
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-3xl font-black text-on-surface dark:text-dark-on-surface">23</span>
-                <span className="text-[9px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest">People</span>
+                <span className="text-3xl font-black text-on-surface">23</span>
+                <span className="text-[9px] text-on-surface-variant uppercase tracking-widest">People</span>
               </div>
             </div>
           </div>
 
           {/* Zones Active */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10 flex flex-col items-center justify-center">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-4">
+          <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10 flex flex-col items-center justify-center">
+            <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-4">
               Zones Active
             </p>
             <div className="relative w-32 h-32 flex items-center justify-center">
               <svg className="w-full h-full transform -rotate-90">
                 <circle cx="64" cy="64" r="54" fill="transparent" stroke="currentColor" strokeWidth="10"
-                  className="text-surface-container-high dark:text-dark-surface-container-high" />
+                  className="text-surface-container-high" />
                 <circle cx="64" cy="64" r="54" fill="transparent" stroke="#923272" strokeWidth="10"
                   strokeDasharray="339" strokeDashoffset="0" strokeLinecap="round" />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-3xl font-black text-on-surface dark:text-dark-on-surface">4</span>
-                <span className="text-[9px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest">Active</span>
+                <span className="text-3xl font-black text-on-surface">4</span>
+                <span className="text-[9px] text-on-surface-variant uppercase tracking-widest">Active</span>
               </div>
             </div>
           </div>
 
           {/* Capacity Usage */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10 flex flex-col items-center justify-center">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-4">
+          <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10 flex flex-col items-center justify-center">
+            <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-4">
               Capacity Usage
             </p>
             <div className="relative w-32 h-32 flex items-center justify-center">
               <svg className="w-full h-full transform -rotate-90">
                 <circle cx="64" cy="64" r="54" fill="transparent" stroke="currentColor" strokeWidth="10"
-                  className="text-surface-container-high dark:text-dark-surface-container-high" />
+                  className="text-surface-container-high" />
                 <circle cx="64" cy="64" r="54" fill="transparent" stroke="url(#occGrad2)" strokeWidth="10"
                   strokeDasharray="339" strokeDashoffset="40" strokeLinecap="round" />
                 <defs>
@@ -123,15 +123,15 @@ export default function PeopleCountingPage() {
                 </defs>
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-3xl font-black text-on-surface dark:text-dark-on-surface">88%</span>
-                <span className="text-[9px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest">Utilized</span>
+                <span className="text-3xl font-black text-on-surface">88%</span>
+                <span className="text-[9px] text-on-surface-variant uppercase tracking-widest">Utilized</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* World of Entropy - Dark Card */}
-        <div className="lg:col-span-4 bg-dark-surface-container-lowest rounded-xl p-6 flex flex-col justify-between border border-outline-variant/10 relative overflow-hidden">
+        <div className="lg:col-span-4 bg-surface-container-lowest rounded-xl p-6 flex flex-col justify-between border border-outline-variant/10 relative overflow-hidden">
           <div className="absolute -right-6 -top-6 opacity-10">
             <span className="material-symbols-outlined text-[120px] text-white">blur_on</span>
           </div>
@@ -168,9 +168,9 @@ export default function PeopleCountingPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Hourly People Count */}
         <div className="lg:col-span-8 space-y-6">
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/10">
+          <div className="bg-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/10">
             <div className="flex justify-between items-center mb-6">
-              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
                 Hourly People Count
               </h4>
               <span className="text-[10px] bg-primary/20 text-primary-fixed-dim px-2 py-1 rounded font-bold">
@@ -189,7 +189,7 @@ export default function PeopleCountingPage() {
                 {/* Grid lines */}
                 {[0, 48, 96, 144, 192].map((y) => (
                   <line key={y} x1="0" y1={y} x2="480" y2={y} stroke="currentColor" strokeWidth="0.5"
-                    className="text-outline-variant/10 dark:text-dark-outline-variant/20" />
+                    className="text-outline-variant/10" />
                 ))}
                 {/* Area */}
                 <path
@@ -203,7 +203,7 @@ export default function PeopleCountingPage() {
                 />
               </svg>
             </div>
-            <div className="flex justify-between mt-2 text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-medium">
+            <div className="flex justify-between mt-2 text-[10px] text-on-surface-variant font-medium">
               {["00:00", "04:00", "08:00", "12:00", "16:00", "20:00"].map((t) => (
                 <span key={t}>{t}</span>
               ))}
@@ -211,12 +211,12 @@ export default function PeopleCountingPage() {
           </div>
 
           {/* Camera Traffic Comparison */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/10">
+          <div className="bg-surface-variant p-4 sm:p-6 lg:p-8 rounded-xl border border-outline-variant/10">
             <div className="flex justify-between items-center mb-6">
-              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
                 Camera Traffic Comparison
               </h4>
-              <span className="material-symbols-outlined text-on-surface-variant dark:text-dark-on-surface-variant text-sm cursor-pointer hover:text-primary transition-colors">
+              <span className="material-symbols-outlined text-on-surface-variant text-sm cursor-pointer hover:text-primary transition-colors">
                 more_vert
               </span>
             </div>
@@ -224,10 +224,10 @@ export default function PeopleCountingPage() {
               {CAMERA_TRAFFIC.map((cam) => (
                 <div key={cam.id} className="space-y-1.5">
                   <div className="flex justify-between text-xs">
-                    <span className="text-on-surface dark:text-dark-on-surface font-medium">{cam.name}</span>
-                    <span className="text-on-surface-variant dark:text-dark-on-surface-variant font-bold">{cam.count}</span>
+                    <span className="text-on-surface font-medium">{cam.name}</span>
+                    <span className="text-on-surface-variant font-bold">{cam.count}</span>
                   </div>
-                  <div className="w-full h-2.5 bg-surface-container-high dark:bg-dark-surface-container-high rounded-full overflow-hidden">
+                  <div className="w-full h-2.5 bg-surface-container-high rounded-full overflow-hidden">
                     <div
                       className="h-full bg-gradient-to-r from-primary to-primary-container rounded-full transition-all duration-1000"
                       style={{ width: `${(cam.count / cam.max) * 100}%` }}
@@ -240,8 +240,8 @@ export default function PeopleCountingPage() {
         </div>
 
         {/* Security Pulse */}
-        <div className="lg:col-span-4 bg-surface-variant dark:bg-dark-surface-variant p-4 sm:p-6 rounded-xl border border-outline-variant/10">
-          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-6">
+        <div className="lg:col-span-4 bg-surface-variant p-4 sm:p-6 rounded-xl border border-outline-variant/10">
+          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-6">
             Security Pulse
           </h4>
           <div className="space-y-0">
@@ -249,7 +249,7 @@ export default function PeopleCountingPage() {
               <div key={i} className="flex gap-4 pb-5 relative">
                 {/* Timeline line */}
                 {i < SECURITY_PULSE.length - 1 && (
-                  <div className="absolute left-[7px] top-5 w-px h-full bg-outline-variant/20 dark:bg-dark-outline-variant/20" />
+                  <div className="absolute left-[7px] top-5 w-px h-full bg-outline-variant/20" />
                 )}
                 {/* Dot */}
                 <div className={`w-4 h-4 rounded-full flex-shrink-0 mt-0.5 ${
@@ -258,10 +258,10 @@ export default function PeopleCountingPage() {
                   "bg-green-500"
                 }`} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-on-surface dark:text-dark-on-surface font-medium leading-snug">
+                  <p className="text-xs text-on-surface font-medium leading-snug">
                     {item.event}
                   </p>
-                  <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-1">
+                  <p className="text-[10px] text-on-surface-variant mt-1">
                     {item.time}
                   </p>
                 </div>
@@ -272,9 +272,9 @@ export default function PeopleCountingPage() {
       </div>
 
       {/* Zone Occupancy Table */}
-      <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
+      <div className="bg-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
         <div className="p-6 border-b border-outline-variant/10 flex justify-between items-center">
-          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
             Zone Occupancy Breakdown
           </h4>
           <span className="text-[10px] bg-primary/20 text-primary-fixed-dim px-2 py-1 rounded font-bold">
@@ -285,27 +285,27 @@ export default function PeopleCountingPage() {
           <table className="w-full text-left">
             <thead>
               <tr className="border-b border-outline-variant/10">
-                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">Zone</th>
-                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">Occupancy</th>
-                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">Capacity</th>
-                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">Usage</th>
-                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">Status</th>
+                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Zone</th>
+                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Occupancy</th>
+                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Capacity</th>
+                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Usage</th>
+                <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-outline-variant/5">
               {ZONES.map((zone) => {
                 const pct = Math.round((zone.occupancy / zone.capacity) * 100);
                 return (
-                  <tr key={zone.name} className="hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors">
-                    <td className="px-6 py-4 text-sm font-medium text-on-surface dark:text-dark-on-surface">{zone.name}</td>
-                    <td className="px-6 py-4 text-sm font-bold text-on-surface dark:text-dark-on-surface">{zone.occupancy}</td>
-                    <td className="px-6 py-4 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">{zone.capacity}</td>
+                  <tr key={zone.name} className="hover:bg-surface-container-high transition-colors">
+                    <td className="px-6 py-4 text-sm font-medium text-on-surface">{zone.name}</td>
+                    <td className="px-6 py-4 text-sm font-bold text-on-surface">{zone.occupancy}</td>
+                    <td className="px-6 py-4 text-sm text-on-surface-variant">{zone.capacity}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-20 h-1.5 bg-surface-container-high dark:bg-dark-surface-container-high rounded-full overflow-hidden">
+                        <div className="w-20 h-1.5 bg-surface-container-high rounded-full overflow-hidden">
                           <div className="h-full bg-primary rounded-full" style={{ width: `${pct}%` }} />
                         </div>
-                        <span className="text-xs font-bold text-on-surface dark:text-dark-on-surface">{pct}%</span>
+                        <span className="text-xs font-bold text-on-surface">{pct}%</span>
                       </div>
                     </td>
                     <td className="px-6 py-4">

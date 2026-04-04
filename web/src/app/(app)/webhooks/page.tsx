@@ -30,23 +30,23 @@ export default function WebhooksPage() {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div className="flex flex-wrap justify-between items-start gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h2 className="text-4xl font-extrabold text-on-surface tracking-tight">
             Webhook Management
           </h2>
-          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium">
+          <p className="text-on-surface-variant mt-2 font-medium">
             Configure real-time intelligence feeds.
           </p>
         </div>
         <div className="relative">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-dark-on-surface-variant text-sm">search</span>
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
           <input
             type="text"
             placeholder="Search webhooks..."
-            className="bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg text-sm pl-9 pr-4 py-2 focus:ring-2 focus:ring-primary/20 text-on-surface dark:text-dark-on-surface w-56"
+            className="bg-surface-container-highest border-none rounded-lg text-sm pl-9 pr-4 py-2 focus:ring-2 focus:ring-primary/20 text-on-surface w-56"
           />
         </div>
       </div>
@@ -54,12 +54,12 @@ export default function WebhooksPage() {
       {/* Top Row: Traffic Stat + Config Card */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Traffic */}
-        <div className="lg:col-span-2 bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden">
-          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-2">
+        <div className="lg:col-span-2 bg-surface-variant p-6 rounded-xl border border-outline-variant/10 relative overflow-hidden">
+          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">
             Total Webhook Traffic
           </p>
-          <h3 className="text-4xl font-black text-on-surface dark:text-dark-on-surface">124.8k</h3>
-          <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant mt-1">Deliveries this period</p>
+          <h3 className="text-4xl font-black text-on-surface">124.8k</h3>
+          <p className="text-xs text-on-surface-variant mt-1">Deliveries this period</p>
           <div className="flex items-end gap-2 mt-6 h-20">
             {TRAFFIC_BARS.map((h, i) => (
               <div key={i} className="flex-1 flex flex-col items-center gap-1">
@@ -67,20 +67,20 @@ export default function WebhooksPage() {
                   className="w-full bg-gradient-to-t from-primary to-primary-container rounded-t-md transition-all hover:opacity-80"
                   style={{ height: `${h}%` }}
                 />
-                <span className="text-[9px] text-on-surface-variant dark:text-dark-on-surface-variant">{DAYS[i]}</span>
+                <span className="text-[9px] text-on-surface-variant">{DAYS[i]}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Configuration Card */}
-        <div className="bg-dark-surface-container-lowest dark:bg-dark-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 flex flex-col justify-between text-white">
+        <div className="bg-surface-container-highest p-6 rounded-xl border border-outline-variant/10 flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-3">
               <span className="material-symbols-outlined text-primary-fixed-dim">settings</span>
-              <h4 className="text-sm font-bold uppercase tracking-widest">Configuration</h4>
+              <h4 className="text-sm font-bold uppercase tracking-widest text-on-surface">Configuration</h4>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-on-surface-variant leading-relaxed">
               Define custom intelligence endpoints for your infrastructure.
             </p>
           </div>
@@ -92,12 +92,12 @@ export default function WebhooksPage() {
       </div>
 
       {/* Active Endpoints */}
-      <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
-        <div className="p-5 border-b border-outline-variant/10 dark:border-dark-outline-variant/10 flex flex-wrap justify-between items-center gap-4">
-          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+      <div className="bg-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
+        <div className="p-5 border-b border-outline-variant/10 flex flex-wrap justify-between items-center gap-4">
+          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
             Active Endpoints
           </h4>
-          <button className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors">
+          <button className="text-xs text-on-surface-variant flex items-center gap-1 hover:text-primary transition-colors">
             <span className="material-symbols-outlined text-sm">filter_list</span>
             Filter
           </button>
@@ -105,7 +105,7 @@ export default function WebhooksPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-[10px] uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant border-b border-outline-variant/10 dark:border-dark-outline-variant/10">
+              <tr className="text-[10px] uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/10">
                 <th className="text-left px-5 py-4 font-bold">Webhook Name</th>
                 <th className="text-left px-5 py-4 font-bold">URL</th>
                 <th className="text-left px-5 py-4 font-bold">Event Types</th>
@@ -115,14 +115,14 @@ export default function WebhooksPage() {
             </thead>
             <tbody>
               {activeEndpoints.map((ep, i) => (
-                <tr key={ep.name} className="border-b border-outline-variant/5 dark:border-dark-outline-variant/5 hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors">
-                  <td className="px-5 py-4 font-bold text-on-surface dark:text-dark-on-surface">
+                <tr key={ep.name} className="border-b border-outline-variant/5 hover:bg-surface-container-high transition-colors">
+                  <td className="px-5 py-4 font-bold text-on-surface">
                     <div className="flex items-center gap-2">
                       <span className="material-symbols-outlined text-primary text-sm">webhook</span>
                       {ep.name}
                     </div>
                   </td>
-                  <td className="px-5 py-4 text-xs font-mono text-on-surface-variant dark:text-dark-on-surface-variant max-w-[200px] truncate">
+                  <td className="px-5 py-4 text-xs font-mono text-on-surface-variant max-w-[200px] truncate">
                     {ep.url}
                   </td>
                   <td className="px-5 py-4">
@@ -138,7 +138,7 @@ export default function WebhooksPage() {
                     <button
                       onClick={() => toggleStatus(i)}
                       className={`relative w-10 h-5 rounded-full transition-colors ${
-                        ep.status ? "bg-green-500" : "bg-surface-container-high dark:bg-dark-surface-container-high"
+                        ep.status ? "bg-green-500" : "bg-surface-container-high"
                       }`}
                     >
                       <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${
@@ -146,7 +146,7 @@ export default function WebhooksPage() {
                       }`} />
                     </button>
                   </td>
-                  <td className="px-5 py-4 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">{ep.lastTriggered}</td>
+                  <td className="px-5 py-4 text-xs text-on-surface-variant">{ep.lastTriggered}</td>
                 </tr>
               ))}
             </tbody>
@@ -155,15 +155,15 @@ export default function WebhooksPage() {
       </div>
 
       {/* Recent Delivery History */}
-      <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
-        <div className="p-5 border-b border-outline-variant/10 dark:border-dark-outline-variant/10">
-          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+      <div className="bg-surface-variant rounded-xl border border-outline-variant/5 overflow-hidden">
+        <div className="p-5 border-b border-outline-variant/10">
+          <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
             Recent Delivery History
           </h4>
         </div>
-        <div className="divide-y divide-outline-variant/5 dark:divide-dark-outline-variant/5">
+        <div className="divide-y divide-outline-variant/5">
           {DELIVERY_LOG.map((log) => (
-            <div key={log.id} className="px-5 py-3.5 flex flex-wrap items-center justify-between gap-3 hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors">
+            <div key={log.id} className="px-5 py-3.5 flex flex-wrap items-center justify-between gap-3 hover:bg-surface-container-high transition-colors">
               <div className="flex items-center gap-3">
                 <span className={`text-[10px] px-2 py-0.5 rounded font-bold font-mono ${
                   log.status === 200 ? "bg-green-500/10 text-green-500" : "bg-error/10 text-error"
@@ -171,11 +171,11 @@ export default function WebhooksPage() {
                   {log.status}
                 </span>
                 <div>
-                  <p className="text-xs font-bold text-on-surface dark:text-dark-on-surface">{log.endpoint}</p>
-                  <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-mono">{log.id}</p>
+                  <p className="text-xs font-bold text-on-surface">{log.endpoint}</p>
+                  <p className="text-[10px] text-on-surface-variant font-mono">{log.id}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+              <div className="flex items-center gap-4 text-xs text-on-surface-variant">
                 <span>{log.duration}</span>
                 <span>{log.time}</span>
               </div>
@@ -183,16 +183,16 @@ export default function WebhooksPage() {
           ))}
         </div>
         {/* Pagination */}
-        <div className="p-4 border-t border-outline-variant/10 dark:border-dark-outline-variant/10 flex flex-wrap justify-between items-center gap-3">
-          <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+        <div className="p-4 border-t border-outline-variant/10 flex flex-wrap justify-between items-center gap-3">
+          <p className="text-[10px] text-on-surface-variant">
             Showing 5 of 12 webhooks
           </p>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">Page {currentPage} of 4</span>
-            <button className="p-1.5 rounded-lg hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors text-on-surface-variant dark:text-dark-on-surface-variant">
+            <span className="text-xs text-on-surface-variant">Page {currentPage} of 4</span>
+            <button className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant">
               <span className="material-symbols-outlined text-sm">chevron_left</span>
             </button>
-            <button className="p-1.5 rounded-lg hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors text-on-surface-variant dark:text-dark-on-surface-variant">
+            <button className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors text-on-surface-variant">
               <span className="material-symbols-outlined text-sm">chevron_right</span>
             </button>
           </div>

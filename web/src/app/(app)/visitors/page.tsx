@@ -19,7 +19,7 @@ const VISITORS = [
     timeExp: "05:00 PM",
     timeIcon: "login",
     status: "CHECKED IN",
-    statusColor: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
+    statusColor: "bg-emerald-100 text-emerald-800",
     expired: false,
     grayed: false,
   },
@@ -33,7 +33,7 @@ const VISITORS = [
     timeExp: "01:00 PM",
     timeIcon: "calendar_today",
     status: "PRE-REGISTERED",
-    statusColor: "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400",
+    statusColor: "bg-blue-100 text-blue-800",
     expired: false,
     grayed: false,
   },
@@ -47,7 +47,7 @@ const VISITORS = [
     timeExp: "Overstayed: 2h",
     timeIcon: "history",
     status: "EXPIRED",
-    statusColor: "bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-300",
+    statusColor: "bg-surface-container text-on-surface-variant",
     expired: true,
     grayed: true,
   },
@@ -62,26 +62,26 @@ export default function VisitorManagementPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-surface dark:bg-dark-surface min-h-screen">
+    <div className="p-4 sm:p-6 lg:p-8 bg-surface min-h-screen">
       {/* ---- Pre-Register Visitor ---- */}
       <section className="mb-12">
         <div className="mb-6">
-          <h3 className="text-sm font-bold tracking-[0.05em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase">Registration Terminal</h3>
-          <p className="text-2xl font-semibold text-on-surface dark:text-dark-on-surface mt-1">Pre-Register Visitor</p>
+          <h3 className="text-sm font-bold tracking-[0.05em] text-on-surface-variant uppercase">Registration Terminal</h3>
+          <p className="text-2xl font-semibold text-on-surface mt-1">Pre-Register Visitor</p>
         </div>
 
-        <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl p-4 sm:p-6 lg:p-8 border border-outline-variant/10 dark:border-dark-outline-variant/10">
+        <div className="bg-surface-container-lowest rounded-xl p-4 sm:p-6 lg:p-8 border border-outline-variant/10">
           <form className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10" onSubmit={(e) => e.preventDefault()}>
             {/* Photo upload */}
             <div className="lg:col-span-3 flex flex-col items-center gap-4">
-              <div className="w-48 h-48 rounded-xl bg-surface-container-high dark:bg-dark-surface-container-high flex flex-col items-center justify-center border-2 border-dashed border-outline-variant dark:border-dark-outline-variant text-secondary group cursor-pointer hover:border-primary transition-colors">
+              <div className="w-48 h-48 rounded-xl bg-surface-container-high flex flex-col items-center justify-center border-2 border-dashed border-outline-variant text-secondary group cursor-pointer hover:border-primary transition-colors">
                 <span className="material-symbols-outlined text-4xl mb-2">add_a_photo</span>
                 <span className="text-xs font-bold uppercase tracking-wider">Upload Portrait</span>
                 <p className="text-[10px] text-center px-4 mt-2">Required for biometric identification matching</p>
               </div>
               <div className="flex gap-2 w-full max-w-[192px]">
-                <button type="button" className="flex-1 py-2 text-[11px] font-bold uppercase border border-outline-variant dark:border-dark-outline-variant rounded hover:bg-surface-container dark:hover:bg-dark-surface-container transition-colors text-on-surface dark:text-dark-on-surface">Capture</button>
-                <button type="button" className="flex-1 py-2 text-[11px] font-bold uppercase border border-outline-variant dark:border-dark-outline-variant rounded hover:bg-surface-container dark:hover:bg-dark-surface-container transition-colors text-on-surface dark:text-dark-on-surface">Library</button>
+                <button type="button" className="flex-1 py-2 text-[11px] font-bold uppercase border border-outline-variant rounded hover:bg-surface-container transition-colors text-on-surface">Capture</button>
+                <button type="button" className="flex-1 py-2 text-[11px] font-bold uppercase border border-outline-variant rounded hover:bg-surface-container transition-colors text-on-surface">Library</button>
               </div>
             </div>
 
@@ -91,7 +91,7 @@ export default function VisitorManagementPage() {
                 <label className="text-[10px] font-black uppercase text-secondary tracking-widest px-1">Visitor Full Name</label>
                 <input
                   type="text"
-                  className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface dark:text-dark-on-surface"
+                  className="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface"
                   placeholder="e.g. Jonathan Wick"
                 />
               </div>
@@ -100,7 +100,7 @@ export default function VisitorManagementPage() {
                 <div className="relative">
                   <input
                     type="text"
-                    className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-3 px-4 pr-10 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface dark:text-dark-on-surface"
+                    className="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 pr-10 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface"
                     placeholder="Search by name or department..."
                   />
                   <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary text-[18px]">person_search</span>
@@ -119,7 +119,7 @@ export default function VisitorManagementPage() {
                       className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
                         selectedPurpose === p
                           ? "bg-primary text-white"
-                          : "bg-surface-container-high dark:bg-dark-surface-container-high text-secondary hover:bg-surface-container-highest dark:hover:bg-dark-surface-container-highest"
+                          : "bg-surface-container-high text-secondary hover:bg-surface-container-highest"
                       }`}
                     >
                       {p}
@@ -127,7 +127,7 @@ export default function VisitorManagementPage() {
                   ))}
                   <input
                     type="text"
-                    className="px-4 py-1.5 bg-transparent border-b border-outline-variant dark:border-dark-outline-variant text-xs outline-none focus:border-primary min-w-[120px] text-on-surface dark:text-dark-on-surface"
+                    className="px-4 py-1.5 bg-transparent border-b border-outline-variant text-xs outline-none focus:border-primary min-w-[120px] text-on-surface"
                     placeholder="Other..."
                   />
                 </div>
@@ -137,13 +137,13 @@ export default function VisitorManagementPage() {
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase text-secondary tracking-widest px-1">Arrival Schedule</label>
                 <div className="flex gap-2">
-                  <input type="date" className="flex-1 bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface dark:text-dark-on-surface" />
-                  <input type="time" className="w-32 bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface dark:text-dark-on-surface" />
+                  <input type="date" className="flex-1 bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface" />
+                  <input type="time" className="w-32 bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface" />
                 </div>
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase text-secondary tracking-widest px-1">Expected Departure</label>
-                <input type="time" className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface dark:text-dark-on-surface" />
+                <input type="time" className="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary-container outline-none transition-all text-on-surface" />
               </div>
 
               {/* Submit */}
@@ -164,11 +164,11 @@ export default function VisitorManagementPage() {
       <section>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-4">
           <div>
-            <h3 className="text-sm font-bold tracking-[0.05em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase">Operational Monitoring</h3>
-            <p className="text-2xl font-semibold text-on-surface dark:text-dark-on-surface mt-1">Active Visitors</p>
+            <h3 className="text-sm font-bold tracking-[0.05em] text-on-surface-variant uppercase">Operational Monitoring</h3>
+            <p className="text-2xl font-semibold text-on-surface mt-1">Active Visitors</p>
           </div>
           <div className="flex gap-3">
-            <div className="bg-surface-container dark:bg-dark-surface-container px-4 py-2 rounded-lg flex items-center gap-4">
+            <div className="bg-surface-container px-4 py-2 rounded-lg flex items-center gap-4">
               <div className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 <span className="text-[11px] font-black uppercase text-secondary">14 Present</span>
@@ -179,17 +179,17 @@ export default function VisitorManagementPage() {
                 <span className="text-[11px] font-black uppercase text-secondary">08 Expected</span>
               </div>
             </div>
-            <button className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest border border-outline-variant/20 dark:border-dark-outline-variant/20 w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white dark:hover:bg-dark-surface-container transition-colors">
+            <button className="bg-surface-container-lowest border border-outline-variant/20 w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-lowest transition-colors">
               <span className="material-symbols-outlined text-secondary">filter_list</span>
             </button>
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 dark:border-dark-outline-variant/10 shadow-sm">
+        <div className="bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[800px]">
               <thead>
-                <tr className="bg-surface-container-low dark:bg-dark-surface-container-low border-b border-outline-variant/10 dark:border-dark-outline-variant/10">
+                <tr className="bg-surface-container-low border-b border-outline-variant/10">
                   <th className="py-4 px-6 text-[10px] font-black uppercase text-secondary tracking-widest">Identity</th>
                   <th className="py-4 px-6 text-[10px] font-black uppercase text-secondary tracking-widest">Host / Department</th>
                   <th className="py-4 px-6 text-[10px] font-black uppercase text-secondary tracking-widest">Purpose</th>
@@ -200,28 +200,28 @@ export default function VisitorManagementPage() {
               </thead>
               <tbody className="divide-y divide-outline-variant/5">
                 {VISITORS.map((v) => (
-                  <tr key={v.id} className="hover:bg-surface-container-low/30 dark:hover:bg-dark-surface-container/30 transition-colors">
+                  <tr key={v.id} className="hover:bg-surface-container-low/30 transition-colors">
                     <td className="py-4 px-6">
                       <div className="flex items-center gap-4">
-                        <div className={`w-10 h-10 rounded-full overflow-hidden border-2 ${v.grayed ? "border-slate-200 dark:border-slate-600 grayscale" : "border-primary-fixed"} bg-surface-container-high dark:bg-dark-surface-container-high flex items-center justify-center`}>
+                        <div className={`w-10 h-10 rounded-full overflow-hidden border-2 ${v.grayed ? "border-outline-variant grayscale" : "border-primary-fixed"} bg-surface-container-high flex items-center justify-center`}>
                           <span className="material-symbols-outlined text-secondary">person</span>
                         </div>
                         <div>
-                          <p className={`text-sm font-bold ${v.grayed ? "text-slate-400 line-through" : "text-on-surface dark:text-dark-on-surface"}`}>{v.name}</p>
-                          <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-medium">ID: {v.id}</p>
+                          <p className={`text-sm font-bold ${v.grayed ? "text-on-surface-variant line-through" : "text-on-surface"}`}>{v.name}</p>
+                          <p className="text-[10px] text-on-surface-variant font-medium">ID: {v.id}</p>
                         </div>
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <p className={`text-sm font-medium ${v.grayed ? "text-slate-400" : "text-on-surface dark:text-dark-on-surface"}`}>{v.host}</p>
+                      <p className={`text-sm font-medium ${v.grayed ? "text-on-surface-variant" : "text-on-surface"}`}>{v.host}</p>
                       <p className={`text-[10px] font-bold uppercase tracking-tighter ${v.grayed ? "text-secondary/50" : "text-secondary"}`}>{v.dept}</p>
                     </td>
                     <td className="py-4 px-6">
-                      <span className={`text-xs px-2.5 py-1 bg-surface-container-high dark:bg-dark-surface-container-high rounded font-medium ${v.grayed ? "text-slate-400" : "text-on-surface-variant dark:text-dark-on-surface-variant"}`}>{v.purpose}</span>
+                      <span className={`text-xs px-2.5 py-1 bg-surface-container-high rounded font-medium ${v.grayed ? "text-on-surface-variant" : "text-on-surface-variant"}`}>{v.purpose}</span>
                     </td>
                     <td className="py-4 px-6">
                       <div className="flex flex-col">
-                        <span className={`text-xs font-bold flex items-center gap-1 ${v.grayed ? "text-slate-400" : v.status === "PRE-REGISTERED" ? "text-secondary italic" : "text-on-surface dark:text-dark-on-surface"}`}>
+                        <span className={`text-xs font-bold flex items-center gap-1 ${v.grayed ? "text-on-surface-variant" : v.status === "PRE-REGISTERED" ? "text-secondary italic" : "text-on-surface"}`}>
                           <span className={`material-symbols-outlined text-[14px] ${!v.grayed && !v.expired ? "text-emerald-500" : ""}`}>{v.timeIcon}</span>
                           {v.timeIn}
                         </span>
@@ -261,10 +261,10 @@ export default function VisitorManagementPage() {
           </div>
 
           {/* Pagination */}
-          <div className="bg-surface-container-low/50 dark:bg-dark-surface-container-low/50 py-3 px-6 flex items-center justify-between border-t border-outline-variant/10 dark:border-dark-outline-variant/10">
+          <div className="bg-surface-container-low/50 py-3 px-6 flex items-center justify-between border-t border-outline-variant/10">
             <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">Displaying 1-3 of 22 entries</span>
             <div className="flex gap-2">
-              <button className="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest dark:bg-dark-surface-container-highest text-secondary disabled:opacity-30">
+              <button className="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-secondary disabled:opacity-30">
                 <span className="material-symbols-outlined text-[18px]">chevron_left</span>
               </button>
               {[1, 2].map((p) => (
@@ -274,13 +274,13 @@ export default function VisitorManagementPage() {
                   className={`w-8 h-8 flex items-center justify-center rounded text-[11px] font-bold ${
                     currentPage === p
                       ? "bg-primary text-white"
-                      : "bg-surface-container-highest dark:bg-dark-surface-container-highest text-secondary"
+                      : "bg-surface-container-highest text-secondary"
                   }`}
                 >
                   {p}
                 </button>
               ))}
-              <button className="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest dark:bg-dark-surface-container-highest text-secondary">
+              <button className="w-8 h-8 flex items-center justify-center rounded bg-surface-container-highest text-secondary">
                 <span className="material-symbols-outlined text-[18px]">chevron_right</span>
               </button>
             </div>

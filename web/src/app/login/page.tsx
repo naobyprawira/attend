@@ -51,7 +51,7 @@ function RequestAccessModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-6">
+    <div className="fixed inset-0 bg-on-surface/40 backdrop-blur-sm flex items-center justify-center z-50 p-6">
       <div className="w-full max-w-md bg-surface-container-lowest/95 backdrop-blur-xl rounded-xl p-8 shadow-2xl">
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -224,7 +224,7 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           {/* Brand Identity */}
           <div className="flex flex-col items-center mb-10">
-            <div className="mb-4 p-4 rounded-full bg-white/10 backdrop-blur-md">
+            <div className="mb-4 p-4 rounded-full bg-surface-container-lowest/10 backdrop-blur-md">
               <span className="material-symbols-outlined text-white text-4xl">
                 lens_blur
               </span>
@@ -232,7 +232,7 @@ export default function LoginPage() {
             <h1 className="text-4xl font-extrabold tracking-tighter text-white font-headline">
               Attend.AI
             </h1>
-            <p className="text-white/70 text-sm mt-2 font-medium tracking-wide uppercase">
+            <p className="text-on-surface-variant text-sm mt-2 font-medium tracking-wide uppercase">
               Institutional Intelligence
             </p>
           </div>
@@ -356,13 +356,13 @@ export default function LoginPage() {
 
           {/* Footer Links */}
           <footer className="mt-12 flex justify-center space-x-6">
-            <a href="#" className="text-white/60 text-xs font-medium hover:text-white transition-colors">
+            <a href="#" className="text-on-surface-variant text-xs font-medium hover:text-white transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-white/60 text-xs font-medium hover:text-white transition-colors">
+            <a href="#" className="text-on-surface-variant text-xs font-medium hover:text-white transition-colors">
               Terms of Service
             </a>
-            <a href="#" className="text-white/60 text-xs font-medium hover:text-white transition-colors">
+            <a href="#" className="text-on-surface-variant text-xs font-medium hover:text-white transition-colors">
               Contact Support
             </a>
           </footer>

@@ -90,7 +90,7 @@ function CircularGauge({
             r={radius}
             fill="none"
             stroke="currentColor"
-            className="text-surface-container-highest dark:text-dark-surface-container-highest"
+            className="text-surface-container-highest"
             strokeWidth="10"
           />
           <circle
@@ -107,16 +107,16 @@ function CircularGauge({
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-2xl font-extrabold text-on-surface dark:text-dark-on-surface">
+          <span className="text-2xl font-extrabold text-on-surface">
             {value}
             <span className="text-sm">%</span>
           </span>
         </div>
       </div>
-      <p className="text-sm font-bold text-on-surface dark:text-dark-on-surface mt-3">
+      <p className="text-sm font-bold text-on-surface mt-3">
         {label}
       </p>
-      <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-0.5 text-center">
+      <p className="text-[10px] text-on-surface-variant mt-0.5 text-center">
         {sub}
       </p>
     </div>
@@ -132,22 +132,22 @@ export default function SystemHealthPage() {
   };
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Page Header */}
       <div>
         <p className="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">
           Observational Monolith
         </p>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
           Core Telemetry
         </h2>
-        <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium text-sm">
+        <p className="text-on-surface-variant mt-2 font-medium text-sm">
           Real-time diagnostics across all surveillance processing nodes.
         </p>
       </div>
 
       {/* Gauges */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-2xl p-6 border border-outline-variant/10">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/10">
         {GAUGES.map((g) => (
           <CircularGauge
             key={g.label}
@@ -161,27 +161,27 @@ export default function SystemHealthPage() {
 
       {/* Surveillance Node Health */}
       <div>
-        <h3 className="text-lg font-bold text-on-surface dark:text-dark-on-surface mb-4 tracking-tight">
+        <h3 className="text-lg font-bold text-on-surface mb-4 tracking-tight">
           Surveillance Node Health
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {NODES.map((node) => (
             <div
               key={node.name}
-              className="bg-dark-surface-container dark:bg-dark-surface-container rounded-xl overflow-hidden border border-outline-variant/5"
+              className="bg-surface-container rounded-xl overflow-hidden border border-outline-variant/5"
             >
               {/* Image placeholder */}
-              <div className="h-28 bg-dark-surface-container-high relative flex items-center justify-center overflow-hidden">
-                <span className="material-symbols-outlined text-4xl text-dark-on-surface-variant/20">
+              <div className="h-28 bg-surface-container-high relative flex items-center justify-center overflow-hidden">
+                <span className="material-symbols-outlined text-4xl text-on-surface-variant/20">
                   dns
                 </span>
-                <div className="absolute bottom-2 left-3 text-[9px] text-dark-on-surface-variant/60 font-mono">
+                <div className="absolute bottom-2 left-3 text-[9px] text-on-surface-variant/60 font-mono">
                   {node.image}
                 </div>
               </div>
               <div className="p-4 space-y-3">
                 <div className="flex items-center justify-between">
-                  <h4 className="text-sm font-bold text-dark-on-surface">
+                  <h4 className="text-sm font-bold text-on-surface">
                     {node.name}
                   </h4>
                   <span
@@ -190,17 +190,17 @@ export default function SystemHealthPage() {
                     {node.status}
                   </span>
                 </div>
-                <p className="text-[10px] text-dark-on-surface-variant font-mono">
+                <p className="text-[10px] text-on-surface-variant font-mono">
                   {node.ip} &bull; Up {node.uptime}
                 </p>
                 {/* Mini bars */}
                 <div className="space-y-2">
                   <div>
-                    <div className="flex justify-between text-[9px] text-dark-on-surface-variant mb-1">
+                    <div className="flex justify-between text-[9px] text-on-surface-variant mb-1">
                       <span>CPU</span>
                       <span>{node.cpu}%</span>
                     </div>
-                    <div className="h-1.5 bg-dark-surface-container-highest rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all"
                         style={{
@@ -212,11 +212,11 @@ export default function SystemHealthPage() {
                     </div>
                   </div>
                   <div>
-                    <div className="flex justify-between text-[9px] text-dark-on-surface-variant mb-1">
+                    <div className="flex justify-between text-[9px] text-on-surface-variant mb-1">
                       <span>RAM</span>
                       <span>{node.ram}%</span>
                     </div>
-                    <div className="h-1.5 bg-dark-surface-container-highest rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all"
                         style={{
@@ -237,17 +237,17 @@ export default function SystemHealthPage() {
       {/* Global Latency Map + Sidebar */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Map section */}
-        <div className="lg:col-span-3 bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-2xl p-6 border border-outline-variant/10">
-          <h3 className="text-lg font-bold text-on-surface dark:text-dark-on-surface mb-2 tracking-tight">
+        <div className="lg:col-span-3 bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/10">
+          <h3 className="text-lg font-bold text-on-surface mb-2 tracking-tight">
             Global Latency Map
           </h3>
-          <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant mb-6">
+          <p className="text-xs text-on-surface-variant mb-6">
             Node-to-node latency, measuring end-to-end processing roundtrip. Cooled
             regions indicate nominal operation levels.
           </p>
 
           {/* World map placeholder */}
-          <div className="relative w-full h-48 sm:h-64 bg-surface-container dark:bg-dark-surface-container rounded-xl flex items-center justify-center overflow-hidden">
+          <div className="relative w-full h-48 sm:h-64 bg-surface-container rounded-xl flex items-center justify-center overflow-hidden">
             <span className="material-symbols-outlined text-6xl text-on-surface-variant/10">
               public
             </span>
@@ -264,7 +264,7 @@ export default function SystemHealthPage() {
           <div className="overflow-x-auto mt-4">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-left text-on-surface-variant dark:text-dark-on-surface-variant border-b border-outline-variant/10">
+                <tr className="text-left text-on-surface-variant border-b border-outline-variant/10">
                   <th className="pb-2 font-bold">Region</th>
                   <th className="pb-2 font-bold">Latency</th>
                   <th className="pb-2 font-bold">Status</th>
@@ -274,7 +274,7 @@ export default function SystemHealthPage() {
                 {REGIONS.map((r) => (
                   <tr
                     key={r.name}
-                    className="border-b border-outline-variant/5 text-on-surface dark:text-dark-on-surface"
+                    className="border-b border-outline-variant/5 text-on-surface"
                   >
                     <td className="py-2 font-medium">{r.name}</td>
                     <td className="py-2 font-mono">{r.latency}</td>
@@ -306,29 +306,29 @@ export default function SystemHealthPage() {
         {/* Sidebar */}
         <div className="space-y-4">
           {/* Quick stats */}
-          <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-2xl p-5 border border-outline-variant/10 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+          <div className="bg-surface-container-lowest rounded-2xl p-5 border border-outline-variant/10 space-y-4">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-on-surface-variant">
               Network Overview
             </h4>
             <div>
               <p className="text-2xl font-extrabold text-primary">4</p>
-              <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+              <p className="text-[10px] text-on-surface-variant">
                 Active Nodes
               </p>
             </div>
             <div>
-              <p className="text-2xl font-extrabold text-on-surface dark:text-dark-on-surface">
+              <p className="text-2xl font-extrabold text-on-surface">
                 99.7%
               </p>
-              <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+              <p className="text-[10px] text-on-surface-variant">
                 Fleet Uptime (30d)
               </p>
             </div>
             <div>
-              <p className="text-2xl font-extrabold text-on-surface dark:text-dark-on-surface">
+              <p className="text-2xl font-extrabold text-on-surface">
                 2.1M
               </p>
-              <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+              <p className="text-[10px] text-on-surface-variant">
                 Frames Processed Today
               </p>
             </div>

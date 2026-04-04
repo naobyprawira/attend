@@ -10,7 +10,7 @@ export default function SetupSuccessPage() {
   ];
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-[#ffffff] dark:bg-[#1b1c1d] overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-surface overflow-hidden">
       {/* Gradient background blobs */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-32 top-0 h-[600px] w-[600px] rounded-full bg-[#751859]/10 blur-[120px]" />
@@ -19,7 +19,7 @@ export default function SetupSuccessPage() {
 
       <div className="relative z-10 w-full max-w-lg px-4 flex flex-col items-center">
         {/* Card */}
-        <div className="w-full rounded-2xl bg-white/80 dark:bg-[#2a2a2b]/80 backdrop-blur-sm border border-[#85727b]/10 shadow-sm px-8 py-10 text-center">
+        <div className="w-full rounded-2xl bg-surface-container-lowest/80 backdrop-blur-sm border border-[#85727b]/10 shadow-sm px-8 py-10 text-center">
           {/* Checkmark icon */}
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#923272]">
             <span className="material-symbols-outlined text-[32px] text-white">
@@ -41,7 +41,7 @@ export default function SetupSuccessPage() {
             {statusChips.map((chip) => (
               <div
                 key={chip.label}
-                className="rounded-lg border border-[#85727b]/15 dark:border-[#85727b]/25 bg-[#f8f5f7] dark:bg-[#1b1c1d] px-4 py-2.5 text-left min-w-[120px]"
+                className="rounded-lg border border-[#85727b]/15 dark:border-[#85727b]/25 bg-surface-container-high px-4 py-2.5 text-left min-w-[120px]"
               >
                 <p className="text-[9px] font-semibold tracking-[0.15em] uppercase text-[#85727b] dark:text-[#85727b]">
                   {chip.label}

@@ -97,11 +97,11 @@ export default function LiveViewPage() {
   ];
 
   return (
-    <div className="flex-1 flex overflow-hidden bg-surface dark:bg-dark-surface relative">
+    <div className="flex-1 flex overflow-hidden bg-surface relative">
       {/* Main Video Area */}
       <div className="flex-1 flex flex-col">
         {/* Feed Selector Tabs */}
-        <div className="bg-surface-container dark:bg-dark-surface-container px-6 py-3 flex items-center gap-3 border-b border-outline-variant/10 dark:border-dark-outline-variant/10">
+        <div className="bg-surface-container px-6 py-3 flex items-center gap-3 border-b border-outline-variant/10">
           {DUMMY_FEEDS.map((feed) => (
             <button
               key={feed.id}
@@ -109,7 +109,7 @@ export default function LiveViewPage() {
               className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition-all ${
                 selectedFeed === feed.id
                   ? "bg-primary text-white shadow-lg shadow-primary/20"
-                  : "bg-surface-container-high dark:bg-dark-surface-container-high text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-dark-surface-container-highest"
+                  : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest"
               }`}
             >
               <div className={`w-1.5 h-1.5 rounded-full ${feed.status === "live" ? "bg-red-500 animate-pulse" : "bg-green-500"}`} />
@@ -119,7 +119,7 @@ export default function LiveViewPage() {
         </div>
 
         {/* Video Canvas */}
-        <div className="flex-1 flex items-center justify-center relative bg-dark-surface-container-lowest">
+        <div className="flex-1 flex items-center justify-center relative bg-surface-container-highest">
           <canvas
             ref={canvasRef}
             width={640}
@@ -164,7 +164,7 @@ export default function LiveViewPage() {
 
         {/* Face Strip */}
         {faceCaptures.length > 0 && (
-          <div className="bg-dark-surface-container-lowest border-t border-white/10 px-4 py-3 flex gap-3 overflow-x-auto">
+          <div className="bg-surface-container-highest border-t border-outline-variant/10 px-4 py-3 flex gap-3 overflow-x-auto">
             {faceCaptures.slice(0, 20).map((cap, i) => (
               <div key={i} className="shrink-0 text-center group">
                 <div className="relative">
@@ -195,9 +195,9 @@ export default function LiveViewPage() {
       </div>
 
       {/* Right Control Panel */}
-      <div className="w-80 bg-surface-container-lowest dark:bg-dark-surface-container border-l border-outline-variant/10 dark:border-dark-outline-variant/10 flex flex-col">
+      <div className="w-80 bg-surface-container-lowest border-l border-outline-variant/10 flex flex-col">
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-px bg-outline-variant/10 dark:bg-dark-outline-variant/10">
+        <div className="grid grid-cols-2 gap-px bg-outline-variant/10">
           {[
             { label: "FPS", value: fps, color: "text-primary" },
             {
@@ -205,12 +205,12 @@ export default function LiveViewPage() {
               value: processingMs > 0 ? `${Math.round(processingMs)}ms` : "--",
               color: processingMs < 50 ? "text-green-500" : processingMs < 100 ? "text-yellow-500" : "text-red-500",
             },
-            { label: "FRAMES", value: frameCount.toLocaleString(), color: "text-on-surface dark:text-dark-on-surface" },
-            { label: "FACES", value: metadata?.faces ?? 0, color: "text-on-surface dark:text-dark-on-surface" },
+            { label: "FRAMES", value: frameCount.toLocaleString(), color: "text-on-surface" },
+            { label: "FACES", value: metadata?.faces ?? 0, color: "text-on-surface" },
           ].map((s) => (
-            <div key={s.label} className="bg-surface-container-lowest dark:bg-dark-surface-container p-4 text-center">
+            <div key={s.label} className="bg-surface-container-lowest p-4 text-center">
               <div className={`text-xl font-black font-mono ${s.color}`}>{s.value}</div>
-              <div className="text-[9px] mt-1 tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant font-bold uppercase">
+              <div className="text-[9px] mt-1 tracking-widest text-on-surface-variant font-bold uppercase">
                 {s.label}
               </div>
             </div>
@@ -218,8 +218,8 @@ export default function LiveViewPage() {
         </div>
 
         {/* BG Mode */}
-        <div className="px-5 py-4 border-b border-outline-variant/10 dark:border-dark-outline-variant/10">
-          <div className="text-[10px] tracking-widest mb-3 text-on-surface-variant dark:text-dark-on-surface-variant font-bold uppercase">
+        <div className="px-5 py-4 border-b border-outline-variant/10">
+          <div className="text-[10px] tracking-widest mb-3 text-on-surface-variant font-bold uppercase">
             Background Mode
           </div>
           <div className="grid grid-cols-4 gap-2">
@@ -230,7 +230,7 @@ export default function LiveViewPage() {
                 className={`py-2 px-1 text-[9px] tracking-wider font-bold rounded-lg cursor-pointer transition-all flex flex-col items-center gap-1 ${
                   activeBg === m.value
                     ? "bg-primary/10 text-primary border border-primary/30"
-                    : "bg-surface-container dark:bg-dark-surface-container-high text-on-surface-variant dark:text-dark-on-surface-variant border border-transparent hover:border-outline-variant/20"
+                    : "bg-surface-container text-on-surface-variant border border-transparent hover:border-outline-variant/20"
                 }`}
               >
                 <span className="material-symbols-outlined text-sm">{m.icon}</span>
@@ -241,7 +241,7 @@ export default function LiveViewPage() {
         </div>
 
         {/* Connection Status */}
-        <div className="px-5 py-3 border-b border-outline-variant/10 dark:border-dark-outline-variant/10 flex items-center gap-3">
+        <div className="px-5 py-3 border-b border-outline-variant/10 flex items-center gap-3">
           <div
             className="w-2.5 h-2.5 rounded-full"
             style={{
@@ -249,14 +249,14 @@ export default function LiveViewPage() {
               animation: connected ? "pulse-live 1.5s infinite" : "none",
             }}
           />
-          <span className="text-xs font-mono font-bold text-on-surface-variant dark:text-dark-on-surface-variant">
+          <span className="text-xs font-mono font-bold text-on-surface-variant">
             {connected ? "CONNECTED" : "DISCONNECTED"}
           </span>
         </div>
 
         {/* Live Log */}
         <div className="flex-1 flex flex-col min-h-0">
-          <div className="px-5 py-3 text-[10px] tracking-widest border-b border-outline-variant/10 dark:border-dark-outline-variant/10 text-on-surface-variant dark:text-dark-on-surface-variant font-bold uppercase flex items-center justify-between">
+          <div className="px-5 py-3 text-[10px] tracking-widest border-b border-outline-variant/10 text-on-surface-variant font-bold uppercase flex items-center justify-between">
             <span>Live Log</span>
             <span className="text-primary">{faceCaptures.length}</span>
           </div>
@@ -264,10 +264,10 @@ export default function LiveViewPage() {
             {faceCaptures.slice(0, 30).map((cap, i) => (
               <div
                 key={i}
-                className="px-5 py-3 border-b border-outline-variant/5 dark:border-dark-outline-variant/5 hover:bg-surface-container dark:hover:bg-dark-surface-container-high transition-colors"
+                className="px-5 py-3 border-b border-outline-variant/5 hover:bg-surface-container transition-colors"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+                  <span className="font-mono text-[10px] text-on-surface-variant">
                     {new Date(cap.timestamp).toLocaleTimeString("en-GB")}
                   </span>
                   <span
@@ -280,13 +280,13 @@ export default function LiveViewPage() {
                     {cap.name ? `${Math.round(cap.confidence * 100)}%` : "NO MATCH"}
                   </span>
                 </div>
-                <p className={`text-xs font-bold mt-1 ${cap.name ? "text-on-surface dark:text-dark-on-surface" : "text-red-400 italic"}`}>
+                <p className={`text-xs font-bold mt-1 ${cap.name ? "text-on-surface" : "text-red-400 italic"}`}>
                   {cap.name || "Unknown face"}
                 </p>
               </div>
             ))}
             {faceCaptures.length === 0 && (
-              <div className="flex flex-col items-center justify-center py-12 text-on-surface-variant dark:text-dark-on-surface-variant">
+              <div className="flex flex-col items-center justify-center py-12 text-on-surface-variant">
                 <span className="material-symbols-outlined text-3xl mb-2 opacity-30">face</span>
                 <p className="text-xs">Waiting for detections...</p>
               </div>
@@ -322,7 +322,7 @@ function CheckInToast({ capture, exiting }: { capture: FaceCapture; exiting: boo
           {isRecognized ? "Check-In Confirmed" : "Unrecognized Face"}
         </span>
       </div>
-      <div className="bg-white dark:bg-dark-surface-container-high p-4 flex items-center gap-4">
+      <div className="bg-surface-container-lowest p-4 flex items-center gap-4">
         <div className="relative">
           {capture.thumbnail ? (
             <img
@@ -337,10 +337,10 @@ function CheckInToast({ capture, exiting }: { capture: FaceCapture; exiting: boo
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="font-bold text-sm text-on-surface dark:text-dark-on-surface truncate">
+          <p className="font-bold text-sm text-on-surface truncate">
             {capture.name || "Unknown Person"}
           </p>
-          <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-wider mt-0.5">
+          <p className="text-[10px] text-on-surface-variant uppercase tracking-wider mt-0.5">
             {new Date(capture.timestamp).toLocaleTimeString("en-US")}
           </p>
         </div>
@@ -349,7 +349,7 @@ function CheckInToast({ capture, exiting }: { capture: FaceCapture; exiting: boo
             <p className="text-lg font-black text-green-600">
               {Math.round(capture.confidence * 100)}%
             </p>
-            <p className="text-[8px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest">Match</p>
+            <p className="text-[8px] text-on-surface-variant uppercase tracking-widest">Match</p>
           </div>
         )}
       </div>

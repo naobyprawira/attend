@@ -37,20 +37,20 @@ export default function SystemLogsPage() {
   );
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-6 bg-surface min-h-full">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-on-surface dark:text-dark-on-surface tracking-tight">
+          <h1 className="text-2xl font-black text-on-surface tracking-tight">
             System Logs
           </h1>
-          <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant mt-1">
+          <p className="text-xs text-on-surface-variant mt-1">
             Real-time system event monitoring
           </p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-dark-on-surface-variant text-sm">
+            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">
               search
             </span>
             <input
@@ -58,7 +58,7 @@ export default function SystemLogsPage() {
               placeholder="Search logs..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2.5 rounded-lg bg-surface-container dark:bg-dark-surface-container border border-outline-variant/20 dark:border-dark-outline-variant/20 text-on-surface dark:text-dark-on-surface text-xs focus:outline-none focus:ring-2 focus:ring-primary/30 w-64"
+              className="pl-9 pr-4 py-2.5 rounded-lg bg-surface-container border border-outline-variant/20 text-on-surface text-xs focus:outline-none focus:ring-2 focus:ring-primary/30 w-64"
             />
           </div>
           <button className="bg-gradient-to-r from-primary to-primary-container text-white px-4 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center gap-2 hover:opacity-90 transition-opacity">
@@ -69,7 +69,7 @@ export default function SystemLogsPage() {
       </div>
 
       {/* Log Viewer */}
-      <div className="bg-on-secondary-fixed dark:bg-black rounded-xl border border-outline-variant/10 dark:border-dark-outline-variant/10 overflow-hidden">
+      <div className="bg-on-secondary-fixed rounded-xl border border-outline-variant/10 overflow-hidden">
         <div className="p-4 border-b border-white/5 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-sm text-green-400">circle</span>
@@ -114,31 +114,31 @@ export default function SystemLogsPage() {
 
       {/* Bottom Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10">
-          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-2">
+        <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10">
+          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">
             Error Rate
           </p>
-          <h3 className="text-3xl font-black text-on-surface dark:text-dark-on-surface">0.02%</h3>
+          <h3 className="text-3xl font-black text-on-surface">0.02%</h3>
           <p className="text-xs text-green-500 mt-1 flex items-center gap-1">
             <span className="material-symbols-outlined text-sm">trending_down</span>
             Below threshold
           </p>
         </div>
-        <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10">
-          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-2">
+        <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10">
+          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">
             Events Processed
           </p>
-          <h3 className="text-3xl font-black text-on-surface dark:text-dark-on-surface">1,240</h3>
-          <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant mt-1">
+          <h3 className="text-3xl font-black text-on-surface">1,240</h3>
+          <p className="text-xs text-on-surface-variant mt-1">
             Last 24 hours
           </p>
         </div>
-        <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10">
-          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant dark:text-dark-on-surface-variant uppercase mb-2">
+        <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10">
+          <p className="text-[10px] font-bold tracking-[0.2em] text-on-surface-variant uppercase mb-2">
             Storage
           </p>
-          <h3 className="text-3xl font-black text-on-surface dark:text-dark-on-surface">84.2 GB</h3>
-          <div className="w-full h-1.5 bg-surface-container-high dark:bg-dark-surface-container-high rounded-full mt-3 overflow-hidden">
+          <h3 className="text-3xl font-black text-on-surface">84.2 GB</h3>
+          <div className="w-full h-1.5 bg-surface-container-high rounded-full mt-3 overflow-hidden">
             <div className="h-full bg-gradient-to-r from-primary to-primary-container w-[84%] rounded-full" />
           </div>
         </div>

@@ -179,42 +179,42 @@ export default function CameraManagementPage() {
       label: "Total Assets",
       value: "128",
       icon: "videocam",
-      iconBg: "bg-primary-fixed dark:bg-dark-surface-container-high",
+      iconBg: "bg-primary-fixed",
       iconColor: "text-primary",
     },
     {
       label: "Live Feeds",
       value: "124",
       icon: "sensors",
-      iconBg: "bg-tertiary-fixed/20 dark:bg-dark-surface-container-high",
+      iconBg: "bg-tertiary-fixed/20",
       iconColor: "text-tertiary",
     },
     {
       label: "Avg Frame Rate",
       value: `${avgFps} FPS`,
       icon: "speed",
-      iconBg: "bg-primary-fixed dark:bg-dark-surface-container-high",
+      iconBg: "bg-primary-fixed",
       iconColor: "text-primary",
     },
     {
       label: "System Health",
       value: `${healthPct}%`,
       icon: "monitor_heart",
-      iconBg: "bg-tertiary-fixed/20 dark:bg-dark-surface-container-high",
+      iconBg: "bg-tertiary-fixed/20",
       iconColor: "text-tertiary",
       pulse: true,
     },
   ];
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Page Header */}
       <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-3xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h1 className="text-3xl font-extrabold text-on-secondary-fixed tracking-tight">
             Camera Management
           </h1>
-          <p className="text-secondary dark:text-dark-on-surface-variant mt-1 text-sm font-medium">
+          <p className="text-secondary mt-1 text-sm font-medium">
             Global Surveillance Infrastructure
           </p>
         </div>
@@ -232,17 +232,17 @@ export default function CameraManagementPage() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-surface-container-lowest dark:bg-dark-surface-variant rounded-xl p-5 border border-outline-variant/10 flex items-center gap-4"
+            className="bg-surface-container-lowest rounded-xl p-5 border border-outline-variant/10 flex items-center gap-4"
           >
             <div className={`w-11 h-11 rounded-xl ${stat.iconBg} flex items-center justify-center`}>
               <span className={`material-symbols-outlined text-[22px] ${stat.iconColor}`}>{stat.icon}</span>
             </div>
             <div>
-              <p className="text-[11px] font-semibold text-secondary dark:text-dark-on-surface-variant uppercase tracking-wider">
+              <p className="text-[11px] font-semibold text-secondary uppercase tracking-wider">
                 {stat.label}
               </p>
               <div className="flex items-center gap-2">
-                <p className="text-xl font-extrabold text-on-surface dark:text-dark-on-surface tracking-tight">
+                <p className="text-xl font-extrabold text-on-surface tracking-tight">
                   {stat.value}
                 </p>
                 {stat.pulse && (
@@ -258,7 +258,7 @@ export default function CameraManagementPage() {
       </div>
 
       {/* Table Card */}
-      <div className="bg-surface-container-lowest dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
+      <div className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 overflow-hidden">
         {/* Filter Bar */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-outline-variant/10">
           <div className="flex flex-wrap items-center gap-1">
@@ -272,8 +272,8 @@ export default function CameraManagementPage() {
                 onClick={() => setActiveTab(tab.key)}
                 className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
                   activeTab === tab.key
-                    ? "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-fixed"
-                    : "text-secondary dark:text-dark-on-surface-variant hover:bg-surface-container dark:hover:bg-dark-surface-container-high"
+                    ? "bg-primary/10 text-primary"
+                    : "text-secondary hover:bg-surface-container"
                 }`}
               >
                 {tab.label}
@@ -281,10 +281,10 @@ export default function CameraManagementPage() {
             ))}
           </div>
           <div className="flex items-center gap-2">
-            <button className="p-2 rounded-lg text-secondary hover:bg-surface-container dark:hover:bg-dark-surface-container-high transition-colors">
+            <button className="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors">
               <span className="material-symbols-outlined text-[20px]">filter_list</span>
             </button>
-            <button className="p-2 rounded-lg text-secondary hover:bg-surface-container dark:hover:bg-dark-surface-container-high transition-colors">
+            <button className="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors">
               <span className="material-symbols-outlined text-[20px]">download</span>
             </button>
           </div>
@@ -322,19 +322,19 @@ export default function CameraManagementPage() {
               {filteredCameras.map((cam) => (
                 <tr
                   key={cam.id}
-                  className="border-b border-outline-variant/5 hover:bg-surface-container-low/50 dark:hover:bg-dark-surface-container-low/50 transition-colors"
+                  className="border-b border-outline-variant/5 hover:bg-surface-container-low/50 transition-colors"
                 >
                   {/* Name with thumbnail */}
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-surface-container dark:bg-dark-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
+                      <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center overflow-hidden shrink-0">
                         <span className="material-symbols-outlined text-secondary/40 text-lg">videocam</span>
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-on-surface dark:text-dark-on-surface">
+                        <p className="text-sm font-semibold text-on-surface">
                           {cam.name}
                         </p>
-                        <p className="text-[11px] text-secondary dark:text-dark-on-surface-variant font-mono">
+                        <p className="text-[11px] text-secondary font-mono">
                           {cam.id}
                         </p>
                       </div>
@@ -342,13 +342,13 @@ export default function CameraManagementPage() {
                   </td>
                   {/* Location */}
                   <td className="px-4 py-4">
-                    <span className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <span className="text-sm text-on-surface-variant">
                       {cam.location}
                     </span>
                   </td>
                   {/* Type */}
                   <td className="px-4 py-4">
-                    <span className="text-xs font-mono tracking-tighter text-secondary dark:text-dark-on-surface-variant">
+                    <span className="text-xs font-mono tracking-tighter text-secondary">
                       {cam.type}
                     </span>
                   </td>
@@ -368,13 +368,13 @@ export default function CameraManagementPage() {
                   </td>
                   {/* FPS */}
                   <td className="px-4 py-4">
-                    <span className="text-sm font-semibold text-on-surface dark:text-dark-on-surface">
+                    <span className="text-sm font-semibold text-on-surface">
                       {cam.fps}
                     </span>
                   </td>
                   {/* Last Seen */}
                   <td className="px-4 py-4">
-                    <span className="text-sm text-secondary dark:text-dark-on-surface-variant">
+                    <span className="text-sm text-secondary">
                       {cam.lastSeen}
                     </span>
                   </td>
@@ -413,13 +413,13 @@ export default function CameraManagementPage() {
 
         {/* Pagination Footer */}
         <div className="flex items-center justify-between px-6 py-4 border-t border-outline-variant/10">
-          <p className="text-xs text-secondary dark:text-dark-on-surface-variant">
-            Showing <span className="font-semibold text-on-surface dark:text-dark-on-surface">1</span> to{" "}
-            <span className="font-semibold text-on-surface dark:text-dark-on-surface">{filteredCameras.length}</span> of{" "}
-            <span className="font-semibold text-on-surface dark:text-dark-on-surface">128</span> results
+          <p className="text-xs text-secondary">
+            Showing <span className="font-semibold text-on-surface">1</span> to{" "}
+            <span className="font-semibold text-on-surface">{filteredCameras.length}</span> of{" "}
+            <span className="font-semibold text-on-surface">128</span> results
           </p>
           <div className="flex items-center gap-1">
-            <button className="w-8 h-8 rounded-lg text-secondary hover:bg-surface-container dark:hover:bg-dark-surface-container-high transition-colors flex items-center justify-center">
+            <button className="w-8 h-8 rounded-lg text-secondary hover:bg-surface-container transition-colors flex items-center justify-center">
               <span className="material-symbols-outlined text-[18px]">chevron_left</span>
             </button>
             {[1, 2, 3, "...", 26].map((page, i) => (
@@ -429,14 +429,14 @@ export default function CameraManagementPage() {
                   page === 1
                     ? "bg-primary text-white"
                     : typeof page === "number"
-                      ? "text-secondary hover:bg-surface-container dark:hover:bg-dark-surface-container-high"
+                      ? "text-secondary hover:bg-surface-container"
                       : "text-secondary cursor-default"
                 }`}
               >
                 {page}
               </button>
             ))}
-            <button className="w-8 h-8 rounded-lg text-secondary hover:bg-surface-container dark:hover:bg-dark-surface-container-high transition-colors flex items-center justify-center">
+            <button className="w-8 h-8 rounded-lg text-secondary hover:bg-surface-container transition-colors flex items-center justify-center">
               <span className="material-symbols-outlined text-[18px]">chevron_right</span>
             </button>
           </div>
@@ -444,7 +444,7 @@ export default function CameraManagementPage() {
       </div>
 
       {/* AI Optimization Banner */}
-      <div className="bg-on-secondary-fixed dark:bg-dark-surface-container-lowest rounded-xl p-6 flex items-center justify-between">
+      <div className="bg-on-secondary-fixed rounded-xl p-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
             <span className="material-symbols-outlined text-primary-fixed text-[22px]">auto_awesome</span>
@@ -466,7 +466,7 @@ export default function CameraManagementPage() {
       {/* RTSP Setup Modal */}
       {showModal && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-on-secondary-fixed/40 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-4xl bg-surface-container-lowest dark:bg-dark-surface-container rounded-xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.25)] overflow-hidden flex flex-col md:flex-row">
+          <div className="w-full max-w-4xl bg-surface-container-lowest rounded-xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.25)] overflow-hidden flex flex-col md:flex-row">
             {/* Left: Preview Frame */}
             <div className="md:w-5/12 bg-on-secondary-fixed p-4 sm:p-6 lg:p-8 flex flex-col">
               <div className="flex items-center gap-2 mb-6">
@@ -476,7 +476,7 @@ export default function CameraManagementPage() {
                       ? "bg-green-500"
                       : testStatus === "fail"
                         ? "bg-red-500"
-                        : "bg-rose-500"
+                        : "bg-primary"
                   } ${testStatus === "testing" ? "animate-pulse" : ""}`}
                 />
                 <h3 className="text-white font-bold tracking-tight uppercase text-xs">
@@ -490,8 +490,8 @@ export default function CameraManagementPage() {
                 </h3>
               </div>
 
-              <div className="flex-1 rounded-xl overflow-hidden bg-slate-800 relative aspect-video md:aspect-auto">
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+              <div className="flex-1 rounded-xl overflow-hidden bg-surface-container-highest relative aspect-video md:aspect-auto">
+                <div className="absolute inset-0 bg-surface-container-highest flex items-center justify-center">
                   <span className="material-symbols-outlined text-white/10 text-8xl">videocam</span>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -529,19 +529,19 @@ export default function CameraManagementPage() {
             </div>
 
             {/* Right: Form */}
-            <div className="md:w-7/12 p-10 bg-surface-container-lowest dark:bg-dark-surface-container">
+            <div className="md:w-7/12 p-10 bg-surface-container-lowest">
               <div className="flex justify-between items-start mb-8">
                 <div>
-                  <h2 className="text-2xl font-black text-on-surface dark:text-dark-on-surface tracking-tighter">
+                  <h2 className="text-2xl font-black text-on-surface tracking-tighter">
                     {editingCamera ? "Edit Camera" : "RTSP Camera Setup"}
                   </h2>
-                  <p className="text-on-surface-variant dark:text-dark-on-surface-variant text-sm mt-1">
+                  <p className="text-on-surface-variant text-sm mt-1">
                     Configure your stream endpoint and metadata.
                   </p>
                 </div>
                 <button
                   onClick={() => setShowModal(false)}
-                  className="text-secondary hover:text-on-surface dark:hover:text-dark-on-surface p-2 transition-colors"
+                  className="text-secondary hover:text-on-surface p-2 transition-colors"
                 >
                   <span className="material-symbols-outlined">close</span>
                 </button>
@@ -556,7 +556,7 @@ export default function CameraManagementPage() {
               >
                 {/* RTSP URL */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-[0.2em]">
+                  <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em]">
                     RTSP Stream URL
                   </label>
                   <div className="relative group">
@@ -565,13 +565,13 @@ export default function CameraManagementPage() {
                       value={formUrl}
                       onChange={(e) => setFormUrl(e.target.value)}
                       placeholder="rtsp://admin:password@192.168.1.100:554/live"
-                      className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/50 text-on-surface dark:text-dark-on-surface"
+                      className="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/50 text-on-surface"
                     />
                     <button
                       type="button"
                       onClick={handleTestConnection}
                       disabled={testStatus === "testing" || !formUrl}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-surface-container-low dark:bg-dark-surface-container-low text-primary text-[10px] font-bold rounded-md hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors uppercase tracking-widest disabled:opacity-50"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-surface-container-low text-primary text-[10px] font-bold rounded-md hover:bg-surface-container-high transition-colors uppercase tracking-widest disabled:opacity-50"
                     >
                       {testStatus === "testing" ? "Testing..." : "Test Connection"}
                     </button>
@@ -593,7 +593,7 @@ export default function CameraManagementPage() {
                 <div className="grid grid-cols-2 gap-6">
                   {/* Camera Name */}
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-[0.2em]">
+                    <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em]">
                       Camera Name
                     </label>
                     <input
@@ -601,12 +601,12 @@ export default function CameraManagementPage() {
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
                       placeholder="e.g. Lobby South-East"
-                      className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface"
+                      className="w-full bg-surface-container-highest border-none rounded-lg py-3 px-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all text-on-surface"
                     />
                   </div>
                   {/* Location */}
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-[0.2em]">
+                    <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em]">
                       Location
                     </label>
                     <div className="relative">
@@ -618,7 +618,7 @@ export default function CameraManagementPage() {
                         value={formLocation}
                         onChange={(e) => setFormLocation(e.target.value)}
                         placeholder="Building B, Floor 2"
-                        className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-3 pl-10 pr-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface"
+                        className="w-full bg-surface-container-highest border-none rounded-lg py-3 pl-10 pr-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all text-on-surface"
                       />
                     </div>
                   </div>
@@ -626,7 +626,7 @@ export default function CameraManagementPage() {
 
                 {/* Checkpoint Type */}
                 <div className="space-y-2">
-                  <label className="text-[10px] font-black text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-[0.2em]">
+                  <label className="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.2em]">
                     Checkpoint Type
                   </label>
                   <div className="grid grid-cols-3 gap-3">
@@ -636,7 +636,7 @@ export default function CameraManagementPage() {
                         className={`relative flex items-center justify-center p-3 rounded-lg border-2 cursor-pointer transition-all ${
                           formCheckpoint === val
                             ? "border-primary/40 bg-primary/5"
-                            : "border-transparent bg-surface-container-low dark:bg-dark-surface-container-low hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high"
+                            : "border-transparent bg-surface-container-low hover:bg-surface-container-high"
                         }`}
                       >
                         <input
@@ -647,7 +647,7 @@ export default function CameraManagementPage() {
                           onChange={() => setFormCheckpoint(val)}
                           className="sr-only"
                         />
-                        <span className="text-xs font-bold text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest">
+                        <span className="text-xs font-bold text-on-surface-variant uppercase tracking-widest">
                           {val === "in" ? "Check-In" : val === "out" ? "Check-Out" : "Both"}
                         </span>
                       </label>
@@ -660,7 +660,7 @@ export default function CameraManagementPage() {
                   <button
                     type="button"
                     onClick={() => setShowModal(false)}
-                    className="flex-1 py-4 bg-surface-container-high dark:bg-dark-surface-container-high text-on-surface-variant dark:text-dark-on-surface-variant font-bold rounded-xl hover:bg-surface-container-highest dark:hover:bg-dark-surface-container-highest transition-all uppercase tracking-widest text-xs"
+                    className="flex-1 py-4 bg-surface-container-high text-on-surface-variant font-bold rounded-xl hover:bg-surface-container-highestest transition-all uppercase tracking-widest text-xs"
                   >
                     Discard
                   </button>

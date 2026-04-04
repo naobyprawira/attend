@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { Button } from "@/components/ui/Button";
 
 interface SelectProps {
   value: string;
@@ -36,9 +37,10 @@ export function Select({ value, onChange, options, className = "", disabled = fa
 
   return (
     <div ref={ref} className={`relative ${className}`}>
-      <button
+      <Button
         ref={buttonRef}
-        type="button"
+        size="md"
+        fullWidth
         onClick={(e) => {
           e.stopPropagation();
           if (!disabled) {
@@ -46,29 +48,32 @@ export function Select({ value, onChange, options, className = "", disabled = fa
           }
         }}
         disabled={disabled}
-        className="w-full bg-surface-container-highest dark:bg-dark-surface-container-highest border-none rounded-lg py-2.5 px-3.5 text-sm focus:ring-2 focus:ring-primary/20 transition-all text-on-surface dark:text-dark-on-surface text-left flex items-center justify-between disabled:opacity-50 disabled:cursor-not-allowed hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high"
+        className="bg-surface-container-highest border-none rounded-lg px-3.5 text-sm font-normal text-on-surface text-left justify-between hover:bg-surface-container-high"
       >
         <span className="capitalize">{selectedLabel}</span>
         <span className="material-symbols-outlined text-base">{open ? "expand_less" : "expand_more"}</span>
-      </button>
+      </Button>
 
       {open && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-surface-container-lowest dark:bg-dark-surface-container-lowest border border-outline-variant/10 rounded-lg shadow-lg z-50 overflow-hidden animate-fade-in">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-surface-container-lowest border border-outline-variant/10 rounded-lg shadow-lg z-50 overflow-hidden animate-fade-in">
           {options.map((option) => (
-            <button
+            <Button
               key={option.value}
+              variant="ghost"
+              size="md"
+              fullWidth
               onClick={() => {
                 onChange(option.value);
                 setOpen(false);
               }}
-              className={`w-full px-3.5 py-2.5 text-left text-sm transition-all capitalize ${
+              className={`rounded-none justify-start px-3.5 text-left text-sm font-normal capitalize ${
                 value === option.value
                   ? "bg-primary/10 text-primary font-semibold"
-                  : "text-on-surface dark:text-dark-on-surface hover:bg-surface-container dark:hover:bg-dark-surface-container"
+                  : "text-on-surface hover:bg-surface-container"
               }`}
             >
               {option.label}
-            </button>
+            </Button>
           ))}
         </div>
       )}

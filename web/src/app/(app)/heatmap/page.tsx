@@ -34,14 +34,14 @@ export default function HeatmapPage() {
   const cameras = ["Main Lobby", "East Wing", "Cafeteria", "Parking"];
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
-          <h2 className="text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
             Density Analysis
           </h2>
-          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-2 font-medium">
+          <p className="text-on-surface-variant mt-2 font-medium">
             AI-powered behavioral mapping for{" "}
             <span className="text-primary font-bold">{selectedCamera}</span>
           </p>
@@ -64,7 +64,7 @@ export default function HeatmapPage() {
         {/* Left: Camera View */}
         <div className="lg:col-span-8 space-y-4">
           {/* Camera View with Lens Overlay */}
-          <div className="relative bg-dark-surface-container-lowest rounded-xl overflow-hidden aspect-video border border-outline-variant/10">
+          <div className="relative bg-surface-container-lowest rounded-xl overflow-hidden aspect-video border border-outline-variant/10">
             {/* Dark background with lens effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-black flex items-center justify-center">
               {/* Circular lens overlay */}
@@ -110,18 +110,18 @@ export default function HeatmapPage() {
           </div>
 
           {/* Timeline Scrubber */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 p-4">
+          <div className="bg-surface-variant rounded-xl border border-outline-variant/10 p-4">
             <div className="flex items-center gap-3 mb-3">
-              <button className="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors">
+              <button className="text-on-surface-variant hover:text-primary transition-colors">
                 <span className="material-symbols-outlined text-lg">skip_previous</span>
               </button>
               <button className="text-primary">
                 <span className="material-symbols-outlined text-lg">play_arrow</span>
               </button>
-              <button className="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors">
+              <button className="text-on-surface-variant hover:text-primary transition-colors">
                 <span className="material-symbols-outlined text-lg">skip_next</span>
               </button>
-              <span className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant font-mono ml-2">14:32:15</span>
+              <span className="text-xs text-on-surface-variant font-mono ml-2">14:32:15</span>
             </div>
             <div className="relative">
               <input
@@ -133,7 +133,7 @@ export default function HeatmapPage() {
                 className="w-full accent-primary h-1.5"
               />
               {/* Density intensity bars behind scrubber */}
-              <div className="flex justify-between mt-2 text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-medium">
+              <div className="flex justify-between mt-2 text-[10px] text-on-surface-variant font-medium">
                 {TIMELINE_MARKS.map((t) => (
                   <span key={t}>{t}</span>
                 ))}
@@ -142,12 +142,12 @@ export default function HeatmapPage() {
           </div>
 
           {/* Detected Persons */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
+          <div className="bg-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden">
             <div className="p-4 sm:p-6 border-b border-outline-variant/10 flex justify-between items-center">
-              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">
+              <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant">
                 Detected Persons
               </h4>
-              <span className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant font-bold">
+              <span className="text-xs text-on-surface-variant font-bold">
                 {DETECTED_PERSONS.length} tracked
               </span>
             </div>
@@ -155,18 +155,18 @@ export default function HeatmapPage() {
               <table className="w-full text-left">
                 <thead>
                   <tr className="border-b border-outline-variant/10">
-                    <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">ID</th>
-                    <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">Zone</th>
-                    <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">Dwell Time</th>
-                    <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant">Status</th>
+                    <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">ID</th>
+                    <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Zone</th>
+                    <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Dwell Time</th>
+                    <th className="px-6 py-3 text-[10px] font-bold tracking-widest uppercase text-on-surface-variant">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/5">
                   {DETECTED_PERSONS.map((p) => (
-                    <tr key={p.id} className="hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors">
-                      <td className="px-6 py-3 text-sm font-mono text-on-surface dark:text-dark-on-surface">#{String(p.id).padStart(3, "0")}</td>
-                      <td className="px-6 py-3 text-sm text-on-surface dark:text-dark-on-surface font-medium">{p.zone}</td>
-                      <td className="px-6 py-3 text-sm font-mono text-on-surface-variant dark:text-dark-on-surface-variant">{p.dwell}</td>
+                    <tr key={p.id} className="hover:bg-surface-container-high transition-colors">
+                      <td className="px-6 py-3 text-sm font-mono text-on-surface">#{String(p.id).padStart(3, "0")}</td>
+                      <td className="px-6 py-3 text-sm text-on-surface font-medium">{p.zone}</td>
+                      <td className="px-6 py-3 text-sm font-mono text-on-surface-variant">{p.dwell}</td>
                       <td className="px-6 py-3">
                         <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest ${
                           p.status === "stationary" ? "bg-tertiary/10 text-tertiary" : "bg-green-500/10 text-green-500"
@@ -185,12 +185,12 @@ export default function HeatmapPage() {
         {/* Right Panel */}
         <div className="lg:col-span-4 space-y-6">
           {/* Density Scale */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+          <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-4">
               Density Scale
             </h4>
             <div className="h-4 rounded-full overflow-hidden bg-gradient-to-r from-blue-500 via-green-500 via-yellow-400 via-orange-500 to-red-600" />
-            <div className="flex justify-between mt-2 text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-medium">
+            <div className="flex justify-between mt-2 text-[10px] text-on-surface-variant font-medium">
               <span>Low</span>
               <span>Medium</span>
               <span>High</span>
@@ -199,8 +199,8 @@ export default function HeatmapPage() {
           </div>
 
           {/* Temporal Insights */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-5">
+          <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-5">
               Temporal Insights
             </h4>
             <div className="space-y-4">
@@ -210,8 +210,8 @@ export default function HeatmapPage() {
                     <span className="material-symbols-outlined text-primary text-lg">{item.icon}</span>
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-on-surface dark:text-dark-on-surface">{item.value}</p>
-                    <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant uppercase tracking-widest">{item.label}</p>
+                    <p className="text-sm font-bold text-on-surface">{item.value}</p>
+                    <p className="text-[10px] text-on-surface-variant uppercase tracking-widest">{item.label}</p>
                   </div>
                 </div>
               ))}
@@ -219,16 +219,16 @@ export default function HeatmapPage() {
           </div>
 
           {/* Threshold Metrics */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-5">
+          <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-5">
               Threshold Metrics
             </h4>
             <div className="space-y-3">
               {THRESHOLD_METRICS.map((m) => (
-                <div key={m.label} className="flex items-center justify-between bg-surface-container dark:bg-dark-surface-container-high rounded-lg px-4 py-3">
+                <div key={m.label} className="flex items-center justify-between bg-surface-container rounded-lg px-4 py-3">
                   <div className="flex items-center gap-3">
                     <div className={`w-3 h-3 rounded-full ${m.color}`} />
-                    <span className="text-xs text-on-surface dark:text-dark-on-surface font-medium">{m.label}</span>
+                    <span className="text-xs text-on-surface font-medium">{m.label}</span>
                   </div>
                   <span className={`text-lg font-black ${m.textColor}`}>{m.value}</span>
                 </div>
@@ -237,8 +237,8 @@ export default function HeatmapPage() {
           </div>
 
           {/* Zone Summary */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant p-6 rounded-xl border border-outline-variant/10">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+          <div className="bg-surface-variant p-6 rounded-xl border border-outline-variant/10">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-4">
               Active Zone Heatmap
             </h4>
             <div className="grid grid-cols-3 gap-2">

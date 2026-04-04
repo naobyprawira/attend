@@ -1,6 +1,7 @@
 "use client";
 
 import { Component, type ReactNode } from "react";
+import { Button } from "@/components/ui/Button";
 
 interface Props {
   children: ReactNode;
@@ -26,12 +27,14 @@ export class ErrorBoundary extends Component<Props, State> {
           <div className="flex flex-col items-center justify-center min-h-[40vh] gap-4 text-on-surface-variant">
             <span className="material-symbols-outlined text-5xl opacity-30">error</span>
             <p className="text-sm">Something went wrong. Please refresh the page.</p>
-            <button
+            <Button
               onClick={() => this.setState({ hasError: false, message: "" })}
-              className="text-xs text-primary hover:underline"
+              variant="ghost"
+              size="sm"
+              className="text-primary"
             >
               Try again
-            </button>
+            </Button>
           </div>
         )
       );

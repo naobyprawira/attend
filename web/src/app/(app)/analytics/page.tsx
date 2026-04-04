@@ -56,20 +56,20 @@ export default function AnalyticsPage() {
   const [dateRange] = useState("Oct 01, 2023 - Oct 31, 2023");
 
   return (
-    <div className="min-h-screen bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface">
+    <div className="min-h-screen bg-surface text-on-surface">
       <div className="p-4 sm:p-6 lg:p-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-on-surface">
               Attendance Analytics
             </h1>
-            <p className="text-on-surface-variant dark:text-dark-on-surface-variant text-sm mt-1">
+            <p className="text-on-surface-variant text-sm mt-1">
               Surveillance metrics and behavioral intelligence across all sectors.
             </p>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
-            <div className="flex items-center bg-surface-container-lowest dark:bg-dark-surface-container-lowest border border-outline-variant/20 dark:border-dark-outline-variant/20 rounded-lg px-3 py-2 gap-2 text-sm font-medium shadow-sm">
+            <div className="flex items-center bg-surface-container-lowest border border-outline-variant/20 rounded-lg px-3 py-2 gap-2 text-sm font-medium shadow-sm">
               <span className="material-symbols-outlined text-primary text-sm">
                 calendar_month
               </span>
@@ -78,7 +78,7 @@ export default function AnalyticsPage() {
                 expand_more
               </span>
             </div>
-            <button className="flex items-center gap-2 bg-surface-container-high dark:bg-dark-surface-container-high hover:bg-surface-container-highest dark:hover:bg-dark-surface-container-highest transition-colors px-4 py-2 rounded-lg text-primary font-semibold text-sm">
+            <button className="flex items-center gap-2 bg-surface-container-high hover:bg-surface-container-highest transition-colors px-4 py-2 rounded-lg text-primary font-semibold text-sm">
               <span className="material-symbols-outlined text-sm">download</span>
               Export
             </button>
@@ -88,13 +88,13 @@ export default function AnalyticsPage() {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6">
           {/* Top: Attendance Rate Over Time */}
-          <section className="col-span-1 sm:col-span-2 lg:col-span-12 bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl p-4 sm:p-6 relative overflow-hidden">
+          <section className="col-span-1 sm:col-span-2 lg:col-span-12 bg-surface-container-lowest rounded-xl p-4 sm:p-6 relative overflow-hidden">
             <div className="flex flex-col sm:flex-row justify-between items-start mb-8 gap-4">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-[0.05em] text-primary">
                   Intelligence Feed
                 </span>
-                <h2 className="text-lg font-bold text-on-surface dark:text-dark-on-surface mt-1">
+                <h2 className="text-lg font-bold text-on-surface mt-1">
                   Attendance Rate Over Time
                 </h2>
               </div>
@@ -138,7 +138,7 @@ export default function AnalyticsPage() {
           </section>
 
           {/* Bottom Left: Late Frequency by Department */}
-          <section className="col-span-1 lg:col-span-7 bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl p-4 sm:p-6">
+          <section className="col-span-1 lg:col-span-7 bg-surface-container-lowest rounded-xl p-4 sm:p-6">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xs font-semibold uppercase tracking-[0.05em] text-secondary">
                 Late Frequency by Department
@@ -151,12 +151,12 @@ export default function AnalyticsPage() {
               {DEPARTMENTS.map((dept) => (
                 <div key={dept.name} className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-bold text-on-surface dark:text-dark-on-surface">
+                    <span className="text-sm font-bold text-on-surface">
                       {dept.name}
                     </span>
                     <span className="text-xs font-semibold text-primary">{dept.pct}% Late</span>
                   </div>
-                  <div className="h-3 w-full bg-surface-container-low dark:bg-dark-surface-container-low rounded-full flex overflow-hidden">
+                  <div className="h-3 w-full bg-surface-container-low rounded-full flex overflow-hidden">
                     <div className="h-full bg-primary" style={{ width: `${dept.pct}%` }}></div>
                     <div
                       className="h-full bg-primary-container/30"
@@ -169,7 +169,7 @@ export default function AnalyticsPage() {
           </section>
 
           {/* Bottom Right: Status Distribution */}
-          <section className="col-span-1 lg:col-span-5 bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl p-4 sm:p-6 flex flex-col">
+          <section className="col-span-1 lg:col-span-5 bg-surface-container-lowest rounded-xl p-4 sm:p-6 flex flex-col">
             <h2 className="text-xs font-semibold uppercase tracking-[0.05em] text-secondary mb-6">
               Status Distribution
             </h2>
@@ -186,7 +186,7 @@ export default function AnalyticsPage() {
                     r="40"
                     fill="none"
                     stroke="currentColor"
-                    className="text-surface-container-low dark:text-dark-surface-container-low"
+                    className="text-surface-container-low"
                     strokeWidth="12"
                   />
                   <circle
@@ -211,7 +211,7 @@ export default function AnalyticsPage() {
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="text-3xl font-black text-on-surface dark:text-dark-on-surface">
+                  <span className="text-3xl font-black text-on-surface">
                     92%
                   </span>
                   <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">
@@ -220,19 +220,19 @@ export default function AnalyticsPage() {
                 </div>
               </div>
               <div className="w-full grid grid-cols-2 gap-4">
-                <div className="p-3 bg-surface-container-low dark:bg-dark-surface-container-low rounded-lg">
+                <div className="p-3 bg-surface-container-low rounded-lg">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="w-2 h-2 rounded-full bg-primary"></span>
-                    <span className="text-xs font-bold text-on-surface dark:text-dark-on-surface">
+                    <span className="text-xs font-bold text-on-surface">
                       Present
                     </span>
                   </div>
                   <span className="text-xl font-bold">842</span>
                 </div>
-                <div className="p-3 bg-surface-container-low dark:bg-dark-surface-container-low rounded-lg">
+                <div className="p-3 bg-surface-container-low rounded-lg">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
-                    <span className="text-xs font-bold text-on-surface dark:text-dark-on-surface">
+                    <span className="text-xs font-bold text-on-surface">
                       Remote
                     </span>
                   </div>
@@ -248,7 +248,7 @@ export default function AnalyticsPage() {
           {INSIGHTS.map((ins) => (
             <div
               key={ins.title}
-              className="bg-surface-container-low dark:bg-dark-surface-container-low border border-outline-variant/10 dark:border-dark-outline-variant/10 p-6 rounded-xl flex items-start gap-4"
+              className="bg-surface-container-low border border-outline-variant/10 p-6 rounded-xl flex items-start gap-4"
             >
               <div
                 className={`w-10 h-10 rounded-full ${ins.iconBg} flex items-center justify-center shrink-0`}
@@ -258,10 +258,10 @@ export default function AnalyticsPage() {
                 </span>
               </div>
               <div>
-                <h4 className="font-bold text-sm text-on-surface dark:text-dark-on-surface">
+                <h4 className="font-bold text-sm text-on-surface">
                   {ins.title}
                 </h4>
-                <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant mt-1">
+                <p className="text-xs text-on-surface-variant mt-1">
                   {ins.desc}
                 </p>
               </div>

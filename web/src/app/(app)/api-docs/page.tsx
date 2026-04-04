@@ -47,10 +47,10 @@ interface Endpoint {
 }
 
 const METHOD_STYLES: Record<string, string> = {
-  GET: "bg-green-500/10 text-green-600 dark:text-green-400",
-  POST: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-  PUT: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-  DELETE: "bg-red-500/10 text-red-600 dark:text-red-400",
+  GET: "bg-green-500/10 text-green-600",
+  POST: "bg-blue-500/10 text-blue-600",
+  PUT: "bg-amber-500/10 text-amber-600",
+  DELETE: "bg-red-500/10 text-red-600",
 };
 
 const ENDPOINTS: Endpoint[] = [
@@ -139,18 +139,18 @@ export default function ApiDocsPage() {
   const [expandedEndpoint, setExpandedEndpoint] = useState<number | null>(0);
 
   return (
-    <div className="flex flex-col lg:flex-row flex-1 overflow-hidden h-full bg-surface dark:bg-dark-surface">
+    <div className="flex flex-col lg:flex-row flex-1 overflow-hidden h-full bg-surface">
       {/* ── Left Sidebar ── */}
-      <aside className="hidden lg:block lg:w-60 xl:w-64 bg-surface-container-low dark:bg-dark-surface-container-low border-r border-outline-variant/10 p-4 sm:p-6 overflow-y-auto shrink-0">
+      <aside className="hidden lg:block lg:w-60 xl:w-64 bg-surface-container-low border-r border-outline-variant/10 p-4 sm:p-6 overflow-y-auto shrink-0">
         <div className="mb-6">
-          <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant mb-1">
+          <p className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">
             Core API
           </p>
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] font-bold rounded-full uppercase">
               Online
             </span>
-            <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+            <span className="text-[10px] text-on-surface-variant">
               Last updated 2 hours ago
             </span>
           </div>
@@ -166,7 +166,7 @@ export default function ApiDocsPage() {
                   className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${
                     isActive
                       ? "bg-primary-container text-white shadow-md"
-                      : "text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-container dark:hover:bg-dark-surface-container"
+                      : "text-on-surface-variant hover:bg-surface-container"
                   }`}
                 >
                   <span className="material-symbols-outlined text-lg">
@@ -179,7 +179,7 @@ export default function ApiDocsPage() {
                     {section.children.map((child) => (
                       <p
                         key={child}
-                        className="text-xs py-1.5 text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary cursor-pointer transition-colors"
+                        className="text-xs py-1.5 text-on-surface-variant hover:text-primary cursor-pointer transition-colors"
                       >
                         {child}
                       </p>
@@ -210,14 +210,14 @@ export default function ApiDocsPage() {
             <span className="inline-flex items-center px-2 py-0.5 bg-green-500/10 text-green-500 text-[10px] font-bold rounded-full uppercase lg:hidden">
               Online
             </span>
-            <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant lg:hidden">
+            <span className="text-[10px] text-on-surface-variant lg:hidden">
               Last updated 2 hours ago
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
             Persons Management
           </h2>
-          <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-3 font-medium text-sm max-w-2xl leading-relaxed">
+          <p className="text-on-surface-variant mt-3 font-medium text-sm max-w-2xl leading-relaxed">
             Interface with the core identity engine. This API allows for real-time person registration,
             biometric template management, and historical sighting retrieval. Powered by high-velocity neural processing.
           </p>
@@ -228,14 +228,14 @@ export default function ApiDocsPage() {
           {ENDPOINTS.map((ep, idx) => (
             <div
               key={idx}
-              className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-2xl border border-outline-variant/10 overflow-hidden"
+              className="bg-surface-container-lowest rounded-2xl border border-outline-variant/10 overflow-hidden"
             >
               {/* Endpoint header */}
               <button
                 onClick={() =>
                   setExpandedEndpoint(expandedEndpoint === idx ? null : idx)
                 }
-                className="w-full flex items-center gap-3 px-6 py-5 text-left hover:bg-surface-container/50 dark:hover:bg-dark-surface-container/50 transition-colors"
+                className="w-full flex items-center gap-3 px-6 py-5 text-left hover:bg-surface-container/50 transition-colors"
               >
                 <span
                   className={`px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md shrink-0 ${
@@ -244,7 +244,7 @@ export default function ApiDocsPage() {
                 >
                   {ep.method}
                 </span>
-                <code className="text-sm font-mono font-bold text-on-surface dark:text-dark-on-surface">
+                <code className="text-sm font-mono font-bold text-on-surface">
                   {ep.path}
                 </code>
                 <span className="material-symbols-outlined ml-auto text-on-surface-variant text-sm transition-transform duration-200"
@@ -260,10 +260,10 @@ export default function ApiDocsPage() {
                   {/* Left: description + params */}
                   <div className="space-y-5">
                     <div>
-                      <h3 className="text-lg font-bold text-on-surface dark:text-dark-on-surface mb-2">
+                      <h3 className="text-lg font-bold text-on-surface mb-2">
                         {ep.title}
                       </h3>
-                      <p className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
+                      <p className="text-sm text-on-surface-variant leading-relaxed">
                         {ep.description}
                       </p>
                     </div>
@@ -271,7 +271,7 @@ export default function ApiDocsPage() {
                     {/* Query params */}
                     {ep.queryParams && ep.queryParams.length > 0 && (
                       <div>
-                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant mb-3">
+                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-3">
                           Query Parameters
                         </h4>
                         <div className="space-y-2">
@@ -283,10 +283,10 @@ export default function ApiDocsPage() {
                               <code className="text-xs font-mono font-bold text-primary bg-primary/5 px-2 py-0.5 rounded shrink-0">
                                 {p.name}
                               </code>
-                              <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant bg-surface-container dark:bg-dark-surface-container px-2 py-0.5 rounded shrink-0">
+                              <span className="text-[10px] text-on-surface-variant bg-surface-container px-2 py-0.5 rounded shrink-0">
                                 {p.type}
                               </span>
-                              <span className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+                              <span className="text-xs text-on-surface-variant">
                                 {p.description}
                               </span>
                             </div>
@@ -298,7 +298,7 @@ export default function ApiDocsPage() {
                     {/* Path params */}
                     {ep.pathParams && ep.pathParams.length > 0 && (
                       <div>
-                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant mb-3">
+                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-3">
                           Path Parameters
                         </h4>
                         <div className="space-y-2">
@@ -310,7 +310,7 @@ export default function ApiDocsPage() {
                               <code className="text-xs font-mono font-bold text-primary bg-primary/5 px-2 py-0.5 rounded shrink-0">
                                 {p.name}
                               </code>
-                              <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant bg-surface-container dark:bg-dark-surface-container px-2 py-0.5 rounded shrink-0">
+                              <span className="text-[10px] text-on-surface-variant bg-surface-container px-2 py-0.5 rounded shrink-0">
                                 {p.type}
                               </span>
                               {p.required && (
@@ -318,7 +318,7 @@ export default function ApiDocsPage() {
                                   required
                                 </span>
                               )}
-                              <span className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+                              <span className="text-xs text-on-surface-variant">
                                 {p.description}
                               </span>
                             </div>
@@ -348,7 +348,7 @@ export default function ApiDocsPage() {
                     {ep.requestBody && (
                       <div>
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+                          <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
                             Request Body
                           </h4>
                           <button className="text-[10px] text-primary font-bold hover:underline flex items-center gap-1">
@@ -358,8 +358,8 @@ export default function ApiDocsPage() {
                             Copy
                           </button>
                         </div>
-                        <div className="bg-dark-surface dark:bg-dark-surface-container rounded-xl p-4 overflow-x-auto">
-                          <pre className="text-xs font-mono text-dark-on-surface-variant leading-relaxed whitespace-pre">
+                        <div className="bg-surface-container-highest rounded-xl p-4 overflow-x-auto">
+                          <pre className="text-xs font-mono text-on-surface-variant leading-relaxed whitespace-pre">
                             {ep.requestBody}
                           </pre>
                         </div>
@@ -369,7 +369,7 @@ export default function ApiDocsPage() {
                     {/* Response */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant dark:text-dark-on-surface-variant">
+                        <h4 className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
                           {ep.method === "GET"
                             ? `${ep.statusCode} Response`
                             : `${ep.statusCode} Implementation`}
@@ -381,8 +381,8 @@ export default function ApiDocsPage() {
                           Copy
                         </button>
                       </div>
-                      <div className="bg-dark-surface dark:bg-dark-surface-container rounded-xl p-4 overflow-x-auto">
-                        <pre className="text-xs font-mono text-dark-on-surface-variant leading-relaxed whitespace-pre">
+                      <div className="bg-surface-container-highest rounded-xl p-4 overflow-x-auto">
+                        <pre className="text-xs font-mono text-on-surface-variant leading-relaxed whitespace-pre">
                           {ep.responseExample}
                         </pre>
                       </div>
@@ -395,7 +395,7 @@ export default function ApiDocsPage() {
         </div>
 
         {/* Footer */}
-        <div className="mt-12 pt-6 border-t border-outline-variant/10 flex flex-wrap gap-6 text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant">
+        <div className="mt-12 pt-6 border-t border-outline-variant/10 flex flex-wrap gap-6 text-[10px] text-on-surface-variant">
           <span className="hover:text-primary cursor-pointer transition-colors">Security Policy</span>
           <span className="hover:text-primary cursor-pointer transition-colors">Service Status</span>
           <span className="hover:text-primary cursor-pointer transition-colors">Developer Forum</span>

@@ -60,13 +60,13 @@ export default function SearchPage() {
   const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface dark:bg-dark-surface min-h-full">
+    <div className="p-4 sm:p-6 lg:p-8 space-y-8 bg-surface min-h-full">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto">
-        <h2 className="text-4xl font-extrabold text-on-secondary-fixed dark:text-dark-on-surface tracking-tight">
+        <h2 className="text-4xl font-extrabold text-on-secondary-fixed tracking-tight">
           Unified AI Intelligence
         </h2>
-        <p className="text-on-surface-variant dark:text-dark-on-surface-variant mt-3 font-medium leading-relaxed">
+        <p className="text-on-surface-variant mt-3 font-medium leading-relaxed">
           Seamlessly multi-vector search system. Upload a profile or specify attributes to locate
           individuals across the regional surveillance grid.
         </p>
@@ -78,7 +78,7 @@ export default function SearchPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Upload Face Photo */}
           <div
-            className={`bg-surface-variant dark:bg-dark-surface-variant rounded-xl border-2 border-dashed p-8 flex flex-col items-center justify-center cursor-pointer transition-all ${
+            className={`bg-surface-variant rounded-xl border-2 border-dashed p-8 flex flex-col items-center justify-center cursor-pointer transition-all ${
               isDragging
                 ? "border-primary bg-primary/5"
                 : "border-outline-variant/30 hover:border-primary/50"
@@ -90,23 +90,23 @@ export default function SearchPage() {
             <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <span className="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
             </div>
-            <p className="text-sm font-bold text-on-surface dark:text-dark-on-surface">Upload Face Photo</p>
-            <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-1 uppercase tracking-widest">
+            <p className="text-sm font-bold text-on-surface">Upload Face Photo</p>
+            <p className="text-[10px] text-on-surface-variant mt-1 uppercase tracking-widest">
               Drag & drop or click to browse
             </p>
-            <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-3">
+            <p className="text-[10px] text-on-surface-variant mt-3">
               JPG, PNG up to 10MB
             </p>
           </div>
 
           {/* Text Search */}
-          <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 p-6 flex flex-col">
-            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant mb-4">
+          <div className="bg-surface-variant rounded-xl border border-outline-variant/10 p-6 flex flex-col">
+            <h4 className="text-sm font-bold tracking-widest uppercase text-on-surface-variant mb-4">
               Text Search
             </h4>
             <div className="relative flex-1 flex flex-col">
               <div className="relative">
-                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant dark:text-dark-on-surface-variant text-lg">
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">
                   search
                 </span>
                 <input
@@ -114,10 +114,10 @@ export default function SearchPage() {
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}
                   placeholder="Name, ID, or description..."
-                  className="w-full bg-surface-container dark:bg-dark-surface-container-high border border-outline-variant/20 rounded-xl pl-10 pr-4 py-3 text-sm text-on-surface dark:text-dark-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="w-full bg-surface-container-high border border-outline-variant/20 rounded-xl pl-10 pr-4 py-3 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
               </div>
-              <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-3 leading-relaxed">
+              <p className="text-[10px] text-on-surface-variant mt-3 leading-relaxed">
                 Search by name, employee ID, clothing description, or physical attributes.
               </p>
               <div className="mt-auto pt-4">
@@ -131,11 +131,11 @@ export default function SearchPage() {
         </div>
 
         {/* Filters Bar */}
-        <div className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 p-4 sm:p-6">
+        <div className="bg-surface-variant rounded-xl border border-outline-variant/10 p-4 sm:p-6">
           <div className="flex flex-wrap items-end gap-4 sm:gap-6">
             {/* Confidence Range */}
             <div className="flex-1 min-w-[180px]">
-              <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant block mb-2">
+              <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant block mb-2">
                 Confidence Range
               </label>
               <div className="flex items-center gap-2">
@@ -145,24 +145,24 @@ export default function SearchPage() {
                   max={100}
                   value={confidenceRange[0]}
                   onChange={(e) => setConfidenceRange([Number(e.target.value), confidenceRange[1]])}
-                  className="w-16 bg-surface-container dark:bg-dark-surface-container-high border border-outline-variant/20 rounded-lg px-2 py-2 text-xs text-center text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="w-16 bg-surface-container-high border border-outline-variant/20 rounded-lg px-2 py-2 text-xs text-center text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
-                <span className="text-on-surface-variant dark:text-dark-on-surface-variant text-xs">to</span>
+                <span className="text-on-surface-variant text-xs">to</span>
                 <input
                   type="number"
                   min={0}
                   max={100}
                   value={confidenceRange[1]}
                   onChange={(e) => setConfidenceRange([confidenceRange[0], Number(e.target.value)])}
-                  className="w-16 bg-surface-container dark:bg-dark-surface-container-high border border-outline-variant/20 rounded-lg px-2 py-2 text-xs text-center text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="w-16 bg-surface-container-high border border-outline-variant/20 rounded-lg px-2 py-2 text-xs text-center text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
-                <span className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant font-bold">%</span>
+                <span className="text-[10px] text-on-surface-variant font-bold">%</span>
               </div>
             </div>
 
             {/* Date Range */}
             <div className="flex-1 min-w-[220px]">
-              <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant block mb-2">
+              <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant block mb-2">
                 Date Range
               </label>
               <div className="flex items-center gap-2">
@@ -170,21 +170,21 @@ export default function SearchPage() {
                   type="date"
                   value={dateFrom}
                   onChange={(e) => setDateFrom(e.target.value)}
-                  className="flex-1 bg-surface-container dark:bg-dark-surface-container-high border border-outline-variant/20 rounded-lg px-2 py-2 text-xs text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="flex-1 bg-surface-container-high border border-outline-variant/20 rounded-lg px-2 py-2 text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
-                <span className="text-on-surface-variant dark:text-dark-on-surface-variant text-xs">to</span>
+                <span className="text-on-surface-variant text-xs">to</span>
                 <input
                   type="date"
                   value={dateTo}
                   onChange={(e) => setDateTo(e.target.value)}
-                  className="flex-1 bg-surface-container dark:bg-dark-surface-container-high border border-outline-variant/20 rounded-lg px-2 py-2 text-xs text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="flex-1 bg-surface-container-high border border-outline-variant/20 rounded-lg px-2 py-2 text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
               </div>
             </div>
 
             {/* Camera Filter */}
             <div className="min-w-[160px]">
-              <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant dark:text-dark-on-surface-variant block mb-2">
+              <label className="text-[10px] font-bold tracking-widest uppercase text-on-surface-variant block mb-2">
                 Camera
               </label>
               <Select
@@ -201,14 +201,14 @@ export default function SearchPage() {
       <div>
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h3 className="text-lg font-bold text-on-surface dark:text-dark-on-surface">
+            <h3 className="text-lg font-bold text-on-surface">
               Analysis Results
             </h3>
-            <p className="text-xs text-on-surface-variant dark:text-dark-on-surface-variant mt-1">
+            <p className="text-xs text-on-surface-variant mt-1">
               {SEARCH_RESULTS.length} matches found
             </p>
           </div>
-          <div className="flex items-center gap-2 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+          <div className="flex items-center gap-2 text-xs text-on-surface-variant">
             <span className="material-symbols-outlined text-sm">sort</span>
             <span className="font-medium">Sorted by confidence</span>
           </div>
@@ -218,10 +218,10 @@ export default function SearchPage() {
           {SEARCH_RESULTS.map((result) => (
             <div
               key={result.id}
-              className="bg-surface-variant dark:bg-dark-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden group hover:border-primary/30 transition-all"
+              className="bg-surface-variant rounded-xl border border-outline-variant/10 overflow-hidden group hover:border-primary/30 transition-all"
             >
               {/* Thumbnail */}
-              <div className="relative aspect-[4/3] bg-dark-surface-container-lowest">
+              <div className="relative aspect-[4/3] bg-surface-container-lowest">
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
                   <span className="material-symbols-outlined text-white/15 text-7xl">{result.thumbnail}</span>
                 </div>
@@ -243,11 +243,11 @@ export default function SearchPage() {
               </div>
               {/* Info */}
               <div className="p-4 space-y-2">
-                <div className="flex items-center gap-2 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+                <div className="flex items-center gap-2 text-xs text-on-surface-variant">
                   <span className="material-symbols-outlined text-sm">videocam</span>
                   <span>{result.camera}</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+                <div className="flex items-center gap-2 text-xs text-on-surface-variant">
                   <span className="material-symbols-outlined text-sm">schedule</span>
                   <span>{result.timestamp}</span>
                 </div>
@@ -255,7 +255,7 @@ export default function SearchPage() {
                   <button className="flex-1 text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 rounded-lg py-2 hover:bg-primary/20 transition-colors">
                     View Detail
                   </button>
-                  <button className="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors p-2">
+                  <button className="text-on-surface-variant hover:text-primary transition-colors p-2">
                     <span className="material-symbols-outlined text-sm">more_vert</span>
                   </button>
                 </div>
@@ -266,12 +266,12 @@ export default function SearchPage() {
 
         {/* Advanced Retrieval Button */}
         <div className="flex justify-center mt-8">
-          <button className="bg-surface-variant dark:bg-dark-surface-variant border border-outline-variant/20 hover:border-primary/40 rounded-xl px-8 py-3 flex items-center gap-3 transition-all group">
+          <button className="bg-surface-variant border border-outline-variant/20 hover:border-primary/40 rounded-xl px-8 py-3 flex items-center gap-3 transition-all group">
             <span className="material-symbols-outlined text-primary text-lg">manage_search</span>
-            <span className="text-sm font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
+            <span className="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">
               Advanced Retrieval
             </span>
-            <span className="material-symbols-outlined text-on-surface-variant dark:text-dark-on-surface-variant text-sm">arrow_forward</span>
+            <span className="material-symbols-outlined text-on-surface-variant text-sm">arrow_forward</span>
           </button>
         </div>
       </div>

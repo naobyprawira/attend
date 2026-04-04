@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function PasswordResetSentPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#ffffff] dark:bg-[#1b1c1d]">
+    <div className="min-h-screen flex flex-col bg-surface">
       {/* Top bar */}
       <header className="flex items-center justify-between px-8 py-5">
         <span className="text-lg font-bold text-[#751859] dark:text-[#d4a0c4]">
@@ -53,7 +53,7 @@ export default function PasswordResetSentPage() {
 
         {/* Status chips */}
         <div className="mt-12 flex items-center gap-4">
-          <div className="flex items-center gap-3 rounded-full border border-[#85727b]/15 dark:border-[#85727b]/25 bg-white dark:bg-[#2a2a2b] px-5 py-2.5">
+          <div className="flex items-center gap-3 rounded-full border border-[#85727b]/15 dark:border-[#85727b]/25 bg-surface-container-lowest px-5 py-2.5">
             <div>
               <p className="text-[9px] font-semibold tracking-[0.15em] uppercase text-[#85727b] dark:text-[#85727b]">
                 Status
@@ -63,7 +63,7 @@ export default function PasswordResetSentPage() {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-3 rounded-full border border-[#85727b]/15 dark:border-[#85727b]/25 bg-white dark:bg-[#2a2a2b] px-5 py-2.5">
+          <div className="flex items-center gap-3 rounded-full border border-[#85727b]/15 dark:border-[#85727b]/25 bg-surface-container-lowest px-5 py-2.5">
             <div>
               <p className="text-[9px] font-semibold tracking-[0.15em] uppercase text-[#85727b] dark:text-[#85727b]">
                 Expiry

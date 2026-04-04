@@ -88,7 +88,7 @@ const BADGE: Record<EventType, { label: string; icon: string; cls: string }> = {
   ACCESS_VIOLATION: {
     label: "Access Violation",
     icon: "security",
-    cls: "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300",
+    cls: "bg-orange-100 text-orange-700",
   },
 };
 
@@ -117,7 +117,7 @@ function EventDetailModal({
       onClick={onClose}
     >
       <div
-        className="w-full max-w-6xl max-h-[90vh] bg-surface-bright dark:bg-dark-surface rounded-2xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.15)] overflow-hidden flex flex-col relative"
+        className="w-full max-w-6xl max-h-[90vh] bg-surface-bright rounded-2xl shadow-[0_20px_50px_-12px_rgba(27,28,29,0.15)] overflow-hidden flex flex-col relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
@@ -141,7 +141,7 @@ function EventDetailModal({
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low dark:hover:bg-dark-surface-container transition-colors shrink-0"
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors shrink-0"
           >
             <span className="material-symbols-outlined text-secondary">close</span>
           </button>
@@ -150,7 +150,7 @@ function EventDetailModal({
         {/* Modal Content */}
         <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
           {/* Left: Visual Evidence */}
-          <div className="flex-[1.8] bg-black relative overflow-hidden min-h-[200px] lg:min-h-0">
+          <div className="flex-[1.8] bg-surface-container-lowest relative overflow-hidden min-h-[200px] lg:min-h-0">
             <div className="w-full h-full bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center">
               <span className="material-symbols-outlined text-white/20 text-[120px]">
                 videocam
@@ -168,17 +168,17 @@ function EventDetailModal({
             </div>
             {/* HUD Overlays */}
             <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex flex-col gap-2">
-              <div className="glass-panel px-3 py-1 rounded-md text-[10px] font-bold text-on-surface-variant dark:text-dark-on-surface flex items-center gap-2">
+              <div className="glass-panel px-3 py-1 rounded-md text-[10px] font-bold text-on-surface-variant flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-error"></span> CAMERA_04: LOBBY_NORTH
               </div>
-              <div className="glass-panel px-3 py-1 rounded-md text-[10px] font-bold text-on-surface-variant dark:text-dark-on-surface">
+              <div className="glass-panel px-3 py-1 rounded-md text-[10px] font-bold text-on-surface-variant">
                 TIMESTAMP: 14:02:11.233 UTC
               </div>
             </div>
             {/* Face Crop */}
             <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 w-28 h-28 sm:w-44 sm:h-44 rounded-xl border-4 border-surface-container-lowest shadow-2xl overflow-hidden glass-panel">
               <div className="absolute inset-0 bg-primary/10"></div>
-              <div className="w-full h-full bg-slate-700 flex items-center justify-center">
+              <div className="w-full h-full bg-surface-container-high flex items-center justify-center">
                 <span className="material-symbols-outlined text-white/40 text-5xl">face</span>
               </div>
               <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-black/80 to-transparent flex items-center px-3">
@@ -190,7 +190,7 @@ function EventDetailModal({
           </div>
 
           {/* Right: Metadata */}
-          <div className="flex-1 flex flex-col bg-surface-container-low dark:bg-dark-surface-container-low border-l border-outline-variant/10 overflow-y-auto">
+          <div className="flex-1 flex flex-col bg-surface-container-low border-l border-outline-variant/10 overflow-y-auto">
             <div className="p-6 sm:p-8 space-y-8 sm:space-y-10">
               {/* Identity */}
               <div className="space-y-4">
@@ -198,16 +198,16 @@ function EventDetailModal({
                   Recognition Analysis
                 </span>
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-surface-container-high dark:bg-dark-surface-container-high flex items-center justify-center shrink-0">
+                  <div className="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center shrink-0">
                     <span className="material-symbols-outlined text-secondary text-2xl">
                       person_search
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface">
+                    <h3 className="text-xl font-extrabold tracking-tight text-on-surface">
                       {event.person ?? "Unidentified Guest"}
                     </h3>
-                    <p className="text-sm text-on-surface-variant dark:text-dark-on-surface-variant font-medium">
+                    <p className="text-sm text-on-surface-variant font-medium">
                       Potential Lead:{" "}
                       <span className="text-primary">E. Thompson?</span> (14%
                       Confidence)
@@ -219,12 +219,12 @@ function EventDetailModal({
               {/* Metrics */}
               <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest p-4 rounded-xl">
+                  <div className="bg-surface-container-lowest p-4 rounded-xl">
                     <span className="text-[9px] font-bold text-outline uppercase tracking-widest">
                       Confidence
                     </span>
                     <div className="flex items-center gap-2 mt-2">
-                      <div className="flex-1 h-1.5 bg-surface-container dark:bg-dark-surface-container rounded-full overflow-hidden">
+                      <div className="flex-1 h-1.5 bg-surface-container rounded-full overflow-hidden">
                         <div
                           className="h-full bg-gradient-to-r from-primary-container to-primary"
                           style={{ width: "98%" }}
@@ -233,37 +233,37 @@ function EventDetailModal({
                       <span className="text-xs font-black text-primary">98%</span>
                     </div>
                   </div>
-                  <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest p-4 rounded-xl">
+                  <div className="bg-surface-container-lowest p-4 rounded-xl">
                     <span className="text-[9px] font-bold text-outline uppercase tracking-widest">
                       Risk Level
                     </span>
                     <div className="flex items-center gap-2 mt-2">
                       <div className="w-2 h-2 rounded-full bg-error"></div>
-                      <span className="text-xs font-black text-on-surface dark:text-dark-on-surface">
+                      <span className="text-xs font-black text-on-surface">
                         HIGH
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest p-6 rounded-xl space-y-4">
+                <div className="bg-surface-container-lowest p-6 rounded-xl space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs font-semibold text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <span className="text-xs font-semibold text-on-surface-variant">
                       Processing Latency
                     </span>
-                    <span className="text-xs font-bold font-mono text-on-surface dark:text-dark-on-surface">
+                    <span className="text-xs font-bold font-mono text-on-surface">
                       42ms
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs font-semibold text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <span className="text-xs font-semibold text-on-surface-variant">
                       Sensor Model
                     </span>
-                    <span className="text-xs font-bold font-mono text-on-surface dark:text-dark-on-surface">
+                    <span className="text-xs font-bold font-mono text-on-surface">
                       Optic-V4_S
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs font-semibold text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <span className="text-xs font-semibold text-on-surface-variant">
                       Authorization
                     </span>
                     <span className="text-xs font-bold text-error">None Detected</span>
@@ -278,30 +278,30 @@ function EventDetailModal({
                 </span>
                 <div className="relative pl-6 space-y-6 before:absolute before:left-[7px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant/30">
                   <div className="relative">
-                    <div className="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-primary ring-4 ring-surface-container-low dark:ring-dark-surface-container-low"></div>
+                    <div className="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-primary ring-4 ring-surface-container-low"></div>
                     <p className="text-[11px] font-bold text-primary mb-1">CURRENT EVENT</p>
-                    <p className="text-xs font-bold text-on-surface dark:text-dark-on-surface">
+                    <p className="text-xs font-bold text-on-surface">
                       Entry detected at main turnstiles
                     </p>
-                    <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-0.5">
+                    <p className="text-[10px] text-on-surface-variant mt-0.5">
                       Today, 14:02:11
                     </p>
                   </div>
                   <div className="relative opacity-60">
-                    <div className="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-outline-variant ring-4 ring-surface-container-low dark:ring-dark-surface-container-low"></div>
-                    <p className="text-xs font-bold text-on-surface dark:text-dark-on-surface">
+                    <div className="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-outline-variant ring-4 ring-surface-container-low"></div>
+                    <p className="text-xs font-bold text-on-surface">
                       Peripheral scan: Exterior Plaza
                     </p>
-                    <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-0.5">
+                    <p className="text-[10px] text-on-surface-variant mt-0.5">
                       Today, 14:01:45
                     </p>
                   </div>
                   <div className="relative opacity-40">
-                    <div className="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-outline-variant ring-4 ring-surface-container-low dark:ring-dark-surface-container-low"></div>
-                    <p className="text-xs font-bold text-on-surface dark:text-dark-on-surface">
+                    <div className="absolute -left-[23px] top-1 w-[15px] h-[15px] rounded-full bg-outline-variant ring-4 ring-surface-container-low"></div>
+                    <p className="text-xs font-bold text-on-surface">
                       Anomaly trigger: Vehicle Drop-off
                     </p>
-                    <p className="text-[10px] text-on-surface-variant dark:text-dark-on-surface-variant mt-0.5">
+                    <p className="text-[10px] text-on-surface-variant mt-0.5">
                       Today, 14:00:20
                     </p>
                   </div>
@@ -310,7 +310,7 @@ function EventDetailModal({
 
               {/* Actions */}
               <div className="pt-6 border-t border-outline-variant/10 flex flex-col sm:flex-row gap-4">
-                <button className="flex-1 py-4 rounded-xl bg-surface-container-high dark:bg-dark-surface-container-high text-primary font-bold text-xs uppercase tracking-widest hover:brightness-95 transition-all">
+                <button className="flex-1 py-4 rounded-xl bg-surface-container-high text-primary font-bold text-xs uppercase tracking-widest hover:brightness-95 transition-all">
                   Flag for Review
                 </button>
                 <button className="flex-[1.5] py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-xs uppercase tracking-widest shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
@@ -337,9 +337,9 @@ export default function EventCenterPage() {
   const removeFilter = (f: string) => setFilters((prev) => prev.filter((x) => x !== f));
 
   return (
-    <div className="flex min-h-screen bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface">
+    <div className="flex min-h-screen bg-surface text-on-surface">
       {/* Sidebar */}
-      <aside className="hidden md:flex flex-col py-6 w-64 bg-slate-50 dark:bg-dark-surface-container-lowest shrink-0 border-r border-outline-variant/5 dark:border-dark-outline-variant/10">
+      <aside className="hidden md:flex flex-col py-6 w-64 bg-surface-container-lowest shrink-0 border-r border-outline-variant/5">
         <div className="px-6 mb-8">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
@@ -351,7 +351,7 @@ export default function EventCenterPage() {
               </span>
             </div>
             <div>
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-on-surface dark:text-dark-on-surface">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-on-surface">
                 Event Center
               </h2>
               <p className="text-[10px] text-primary font-bold tracking-tight">
@@ -368,8 +368,8 @@ export default function EventCenterPage() {
               onClick={() => setActiveCategory(cat.label)}
               className={`flex items-center gap-3 mx-2 px-4 py-3 w-[calc(100%-1rem)] text-left transition-colors rounded-lg ${
                 activeCategory === cat.label
-                  ? "bg-fuchsia-50 dark:bg-fuchsia-900/20 text-fuchsia-800 dark:text-fuchsia-300"
-                  : "text-slate-500 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50"
+                  ? "bg-fuchsia-50 text-fuchsia-800"
+                  : "text-on-surface-variant hover:bg-surface-container"
               }`}
             >
               <span className="material-symbols-outlined">{cat.icon}</span>
@@ -387,13 +387,13 @@ export default function EventCenterPage() {
           <div className="border-t border-outline-variant/10 pt-4 space-y-1">
             <a
               href="#"
-              className="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-2 text-sm uppercase tracking-widest font-semibold"
+              className="flex items-center gap-3 text-on-surface-variant px-4 py-2 text-sm uppercase tracking-widest font-semibold"
             >
               <span className="material-symbols-outlined text-sm">help</span> Support
             </a>
             <a
               href="#"
-              className="flex items-center gap-3 text-slate-500 dark:text-slate-400 px-4 py-2 text-sm uppercase tracking-widest font-semibold"
+              className="flex items-center gap-3 text-on-surface-variant px-4 py-2 text-sm uppercase tracking-widest font-semibold"
             >
               <span className="material-symbols-outlined text-sm">logout</span> Sign Out
             </a>
@@ -405,13 +405,13 @@ export default function EventCenterPage() {
       <main className="flex-1 overflow-y-auto">
         <div className="p-4 sm:p-6 lg:p-8 space-y-6 lg:space-y-8">
           {/* Filter Bar */}
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface-container-lowest dark:bg-dark-surface-container-lowest p-4 sm:p-6 rounded-xl border border-outline-variant/5 shadow-sm">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface-container-lowest p-4 sm:p-6 rounded-xl border border-outline-variant/5 shadow-sm">
             <div className="flex flex-col sm:flex-row sm:items-center gap-4">
               <div className="flex flex-col">
                 <label className="text-[10px] font-bold text-secondary uppercase tracking-widest mb-1">
                   Time Range
                 </label>
-                <div className="flex items-center gap-2 bg-surface-container-low dark:bg-dark-surface-container-low px-4 py-2 rounded-lg cursor-pointer">
+                <div className="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-lg cursor-pointer">
                   <span className="material-symbols-outlined text-primary text-sm">event</span>
                   <span className="text-sm font-semibold">Oct 24, 2023 - Today</span>
                   <span className="material-symbols-outlined text-secondary text-xs">
@@ -431,7 +431,7 @@ export default function EventCenterPage() {
                       className={`text-[11px] font-bold px-3 py-1 rounded-full flex items-center gap-1 ${
                         f === "High Priority"
                           ? "bg-primary/10 text-primary"
-                          : "bg-surface-container-high dark:bg-dark-surface-container-high text-on-surface-variant dark:text-dark-on-surface-variant"
+                          : "bg-surface-container-high text-on-surface-variant"
                       }`}
                     >
                       {f}
@@ -444,11 +444,11 @@ export default function EventCenterPage() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <button className="flex items-center gap-2 bg-surface-container-low dark:bg-dark-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors">
+              <button className="flex items-center gap-2 bg-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">
                 <span className="material-symbols-outlined text-lg">filter_list</span>
                 Advanced Filters
               </button>
-              <button className="flex items-center gap-2 bg-surface-container-low dark:bg-dark-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors">
+              <button className="flex items-center gap-2 bg-surface-container-low text-primary px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-surface-container-high transition-colors">
                 <span className="material-symbols-outlined text-lg">ios_share</span>
                 Export
               </button>
@@ -458,9 +458,9 @@ export default function EventCenterPage() {
           {/* Bento Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Event Table */}
-            <div className="lg:col-span-3 bg-surface-container-lowest dark:bg-dark-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/5">
+            <div className="lg:col-span-3 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm border border-outline-variant/5">
               {/* Table Header */}
-              <div className="px-4 sm:px-6 py-4 border-b border-outline-variant/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-surface-container-lowest dark:bg-dark-surface-container-lowest">
+              <div className="px-4 sm:px-6 py-4 border-b border-outline-variant/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-surface-container-lowest">
                 <h3 className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-error ai-pulse"></span>
                   Real-Time Exception Feed
@@ -470,7 +470,7 @@ export default function EventCenterPage() {
                     Showing 42 recent events
                   </span>
                   <div className="flex gap-1">
-                    <button className="p-1 hover:bg-surface-container-low dark:hover:bg-dark-surface-container-low rounded">
+                    <button className="p-1 hover:bg-surface-container-low rounded">
                       <span className="material-symbols-outlined text-lg">grid_view</span>
                     </button>
                     <button className="p-1 bg-primary/10 text-primary rounded">
@@ -484,7 +484,7 @@ export default function EventCenterPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse min-w-[800px]">
                   <thead>
-                    <tr className="bg-surface-container-low/50 dark:bg-dark-surface-container-low/50">
+                    <tr className="bg-surface-container-low/50">
                       {["Timestamp", "Event Type", "Camera", "Person", "Priority", "Status"].map(
                         (h) => (
                           <th
@@ -506,14 +506,14 @@ export default function EventCenterPage() {
                         <tr
                           key={ev.id}
                           onClick={() => setSelectedEvent(ev)}
-                          className={`hover:bg-surface-container-low dark:hover:bg-dark-surface-container-low transition-colors group cursor-pointer ${
+                          className={`hover:bg-surface-container-low transition-colors group cursor-pointer ${
                             ev.type === "UNKNOWN_FACE" ? "bg-error/5" : ""
                           }`}
                         >
                           <td className="px-4 sm:px-6 py-4">
                             <div className="flex flex-col">
                               <span className="text-sm font-bold">{ev.time}</span>
-                              <span className="text-[10px] text-on-surface-variant/60 dark:text-dark-on-surface-variant/60 font-medium">
+                              <span className="text-[10px] text-on-surface-variant/60 font-medium">
                                 {ev.date}
                               </span>
                             </div>
@@ -546,12 +546,12 @@ export default function EventCenterPage() {
                               </div>
                             ) : ev.type === "UNKNOWN_FACE" ? (
                               <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-full bg-surface-container-high dark:bg-dark-surface-container-high flex items-center justify-center border border-outline-variant/20">
+                                <div className="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant/20">
                                   <span className="material-symbols-outlined text-secondary text-sm">
                                     person_off
                                   </span>
                                 </div>
-                                <span className="text-xs font-bold italic text-on-surface-variant dark:text-dark-on-surface-variant">
+                                <span className="text-xs font-bold italic text-on-surface-variant">
                                   Unknown
                                 </span>
                               </div>
@@ -603,16 +603,16 @@ export default function EventCenterPage() {
               </div>
 
               {/* Pagination */}
-              <div className="px-4 sm:px-6 py-4 border-t border-outline-variant/5 bg-surface-container-low/30 dark:bg-dark-surface-container-low/30 flex flex-col sm:flex-row justify-between items-center gap-2">
+              <div className="px-4 sm:px-6 py-4 border-t border-outline-variant/5 bg-surface-container-low/30 flex flex-col sm:flex-row justify-between items-center gap-2">
                 <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">
                   Showing 4 of 1,240 Events
                 </span>
                 <div className="flex items-center gap-2">
-                  <button className="p-1 rounded hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors">
+                  <button className="p-1 rounded hover:bg-surface-container-high transition-colors">
                     <span className="material-symbols-outlined text-lg">chevron_left</span>
                   </button>
                   <span className="text-xs font-bold text-primary px-3">Page 1 of 310</span>
-                  <button className="p-1 rounded hover:bg-surface-container-high dark:hover:bg-dark-surface-container-high transition-colors">
+                  <button className="p-1 rounded hover:bg-surface-container-high transition-colors">
                     <span className="material-symbols-outlined text-lg">chevron_right</span>
                   </button>
                 </div>
@@ -628,10 +628,10 @@ export default function EventCenterPage() {
                     Live
                   </span>
                 </div>
-                <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">
+                <h4 className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-4">
                   Last Violation Image
                 </h4>
-                <div className="aspect-video bg-slate-800 rounded-lg mb-4 overflow-hidden group cursor-pointer relative">
+                <div className="aspect-video bg-surface-container rounded-lg mb-4 overflow-hidden group cursor-pointer relative">
                   <div className="w-full h-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
                     <span className="material-symbols-outlined text-white/20 text-6xl">
                       security
@@ -644,10 +644,10 @@ export default function EventCenterPage() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-slate-400">Match Confidence</span>
+                    <span className="text-xs text-on-surface-variant">Match Confidence</span>
                     <span className="text-xs font-bold text-primary-fixed-dim">98.2%</span>
                   </div>
-                  <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="w-full h-1 bg-surface-container rounded-full overflow-hidden">
                     <div className="h-full bg-gradient-to-r from-secondary-fixed-dim to-primary w-[98%]"></div>
                   </div>
                 </div>
@@ -657,22 +657,22 @@ export default function EventCenterPage() {
               </div>
 
               {/* Intelligence Summary */}
-              <div className="bg-surface-container-lowest dark:bg-dark-surface-container-lowest p-6 rounded-xl border border-outline-variant/5 shadow-sm space-y-4">
+              <div className="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/5 shadow-sm space-y-4">
                 <h4 className="text-[10px] font-bold text-secondary uppercase tracking-widest">
                   Intelligence Summary
                 </h4>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-surface-container-low dark:bg-dark-surface-container-low p-4 rounded-lg">
+                  <div className="bg-surface-container-low p-4 rounded-lg">
                     <span className="text-[8px] font-black text-secondary uppercase block mb-1">
                       Criticals (24h)
                     </span>
                     <span className="text-xl font-black text-error">12</span>
                   </div>
-                  <div className="bg-surface-container-low dark:bg-dark-surface-container-low p-4 rounded-lg">
+                  <div className="bg-surface-container-low p-4 rounded-lg">
                     <span className="text-[8px] font-black text-secondary uppercase block mb-1">
                       Avg Resolution
                     </span>
-                    <span className="text-xl font-black text-on-surface dark:text-dark-on-surface">
+                    <span className="text-xl font-black text-on-surface">
                       4m
                     </span>
                   </div>
@@ -682,7 +682,7 @@ export default function EventCenterPage() {
                     <span className="material-symbols-outlined text-primary text-sm mt-0.5">
                       lightbulb
                     </span>
-                    <p className="text-[11px] leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant font-medium">
+                    <p className="text-[11px] leading-relaxed text-on-surface-variant font-medium">
                       Unknown face frequency has increased by 14% at{" "}
                       <span className="font-bold text-primary">Entrance A</span> today.
                     </p>
@@ -691,7 +691,7 @@ export default function EventCenterPage() {
                     <span className="material-symbols-outlined text-secondary text-sm mt-0.5">
                       timer
                     </span>
-                    <p className="text-[11px] leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant font-medium">
+                    <p className="text-[11px] leading-relaxed text-on-surface-variant font-medium">
                       Peak event traffic detected between{" "}
                       <span className="font-bold">08:00 AM - 09:30 AM</span>.
                     </p>

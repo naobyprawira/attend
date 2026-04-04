@@ -1,5 +1,14 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Color tokens use CSS custom properties defined in globals.css.
+ * They auto-switch between light/dark — no `dark:` prefix needed
+ * for surface, on-surface, or outline colors.
+ */
+function cv(name: string) {
+  return `rgb(var(--color-${name}) / <alpha-value>)`;
+}
+
 const config: Config = {
   darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
@@ -10,20 +19,21 @@ const config: Config = {
         headline: ["Inter", "system-ui", "sans-serif"],
       },
       colors: {
-        primary: "#751859",
-        "primary-container": "#923272",
+        /* ── Brand ───────────────────────────────────────── */
+        primary: cv("primary"),
+        "primary-container": cv("primary-container"),
         "primary-fixed": "#ffd8eb",
         "primary-fixed-dim": "#ffaedb",
-        "on-primary": "#ffffff",
-        "on-primary-container": "#ffb9df",
+        "on-primary": cv("on-primary"),
+        "on-primary-container": cv("on-primary-container"),
         "on-primary-fixed": "#3c002b",
         "on-primary-fixed-variant": "#7d2060",
 
-        secondary: "#5e5d6c",
-        "secondary-container": "#e3e0f2",
+        secondary: cv("secondary"),
+        "secondary-container": cv("secondary-container"),
         "secondary-fixed": "#e3e0f2",
         "secondary-fixed-dim": "#c7c5d6",
-        "on-secondary": "#ffffff",
+        "on-secondary": cv("on-secondary"),
         "on-secondary-container": "#646372",
         "on-secondary-fixed": "#1a1a27",
         "on-secondary-fixed-variant": "#464553",
@@ -37,45 +47,55 @@ const config: Config = {
         "on-tertiary-fixed": "#0b2000",
         "on-tertiary-fixed-variant": "#245100",
 
-        error: "#ba1a1a",
+        error: cv("error"),
         "error-container": "#ffdad6",
-        "on-error": "#ffffff",
+        "on-error": cv("on-error"),
         "on-error-container": "#93000a",
 
-        surface: "#fbf9fa",
-        "surface-dim": "#dbd9da",
-        "surface-bright": "#fbf9fa",
-        "surface-variant": "#e4e2e3",
-        "surface-tint": "#9a3979",
-        "surface-container": "#efedee",
-        "surface-container-low": "#f5f3f4",
-        "surface-container-high": "#e9e8e9",
-        "surface-container-highest": "#e4e2e3",
-        "surface-container-lowest": "#ffffff",
+        /* ── Surfaces (token-driven, auto-switch) ───────── */
+        surface: cv("surface"),
+        "surface-dim": cv("surface-dim"),
+        "surface-bright": cv("surface-bright"),
+        "surface-variant": cv("surface-variant"),
+        "surface-tint": cv("surface-tint"),
+        "surface-container": cv("surface-container"),
+        "surface-container-low": cv("surface-container-low"),
+        "surface-container-high": cv("surface-container-high"),
+        "surface-container-highest": cv("surface-container-highest"),
+        "surface-container-lowest": cv("surface-container-lowest"),
 
-        "on-surface": "#1b1c1d",
-        "on-surface-variant": "#53424a",
-        "on-background": "#1b1c1d",
-        background: "#fbf9fa",
+        /* ── Content ─────────────────────────────────────── */
+        "on-surface": cv("on-surface"),
+        "on-surface-variant": cv("on-surface-variant"),
+        "on-background": cv("on-surface"),
+        background: cv("surface"),
 
-        outline: "#85727b",
-        "outline-variant": "#d8c0ca",
+        /* ── Outlines ────────────────────────────────────── */
+        outline: cv("outline"),
+        "outline-variant": cv("outline-variant"),
 
+        /* ── Inverse ─────────────────────────────────────── */
         "inverse-surface": "#303031",
         "inverse-on-surface": "#f2f0f1",
         "inverse-primary": "#ffaedb",
 
-        // Dark mode overrides (used with dark: prefix)
-        "dark-surface": "#1A1A2E",
-        "dark-surface-variant": "#252540",
-        "dark-surface-container": "#252540",
-        "dark-surface-container-low": "#1A1A2E",
-        "dark-surface-container-high": "#2c2c4d",
-        "dark-surface-container-highest": "#333355",
-        "dark-surface-container-lowest": "#151526",
-        "dark-on-surface": "#E5E7EB",
-        "dark-on-surface-variant": "#d8c0ca",
-        "dark-outline-variant": "#464553",
+        /* ── Legacy dark aliases (compat) ───────────────── */
+        "dark-surface": cv("surface"),
+        "dark-surface-variant": cv("surface-variant"),
+        "dark-surface-container": cv("surface-container"),
+        "dark-surface-container-low": cv("surface-container-low"),
+        "dark-surface-container-high": cv("surface-container-high"),
+        "dark-surface-container-highest": cv("surface-container-highest"),
+        "dark-surface-container-lowest": cv("surface-container-lowest"),
+        "dark-on-surface": cv("on-surface"),
+        "dark-on-surface-variant": cv("on-surface-variant"),
+        "dark-outline-variant": cv("outline-variant"),
+
+        /* ── Sidebar (auto-switch) ───────────────────────── */
+        sidebar: cv("sidebar"),
+        "sidebar-on": cv("sidebar-on"),
+        "sidebar-muted": cv("sidebar-muted"),
+        "sidebar-border": cv("sidebar-border"),
       },
       keyframes: {
         "pulse-live": {
