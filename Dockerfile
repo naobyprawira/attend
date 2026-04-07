@@ -42,7 +42,6 @@ COPY --from=web-deps /web-build/node_modules web/node_modules
 # Copy source code
 COPY server server
 COPY web web
-COPY yolo11n-seg.pt .
 
 # Build Next.js with API URL (set at image build time)
 ARG NEXT_PUBLIC_API_URL=http://localhost:5678
