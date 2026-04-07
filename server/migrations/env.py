@@ -9,13 +9,14 @@ from alembic import context
 
 from server.models.base import Base
 import server.models  # noqa: F401 — ensure all models are registered
-from server.config import DB_PATH
+from server.config import DATABASE_URL
 
 # Alembic Config object
 config = context.config
 
-# Override sqlalchemy.url with value from server/config.py
-config.set_main_option("sqlalchemy.url", f"sqlite+aiosqlite:///{DB_PATH}")
+# Override sqlalchemy.url with value from server/config.py.
+# Escape % to avoid ConfigParser interpolation surprises.
+config.set_main_option("sqlalchemy.url", DATABASE_URL.replace("%", "%%"))
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name, disable_existing_loggers=False)
@@ -30,7 +31,6 @@ def run_migrations_offline() -> None:
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},
-        render_as_batch=True,  # required for SQLite ALTER TABLE support
     )
     with context.begin_transaction():
         context.run_migrations()
@@ -40,7 +40,6 @@ def do_run_migrations(connection: Connection) -> None:
     context.configure(
         connection=connection,
         target_metadata=target_metadata,
-        render_as_batch=True,  # required for SQLite ALTER TABLE support
     )
     with context.begin_transaction():
         context.run_migrations()

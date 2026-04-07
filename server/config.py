@@ -13,12 +13,23 @@ import cv2
 cv2.setNumThreads(2)
 
 # ── Server ────────────────────────────────────────────────────
-HOST = "0.0.0.0"
-PORT = 5678
+HOST = os.getenv("HOST", "0.0.0.0")
+PORT = int(os.getenv("PORT", "5678"))
+SERVER_ROLE = os.getenv("SERVER_ROLE", "app").strip().lower()
+AI_WS_UPSTREAM_URL = os.getenv("AI_WS_UPSTREAM_URL", "ws://ai-backend:5679").rstrip("/")
+
+_DEFAULT_CORS_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
+    "http://localhost:3002",
+    "http://127.0.0.1:3002",
+]
 CORS_ORIGINS = [
-    "http://localhost:3000", "http://127.0.0.1:3000",
-    "http://localhost:3001", "http://127.0.0.1:3001",
-    "http://localhost:3002", "http://127.0.0.1:3002",
+    origin.strip()
+    for origin in os.getenv("CORS_ORIGINS", ",".join(_DEFAULT_CORS_ORIGINS)).split(",")
+    if origin.strip()
 ]
 
 # ── Camera / Frame ────────────────────────────────────────────
@@ -43,7 +54,10 @@ FACE_MIN_NEIGHBORS = 5
 FACE_RECOGNITION_MODEL = "Facenet512"
 FACE_DETECTOR_BACKEND = "skip"  # we crop faces ourselves via Haar
 FACE_DISTANCE_THRESHOLD = 23.56  # L2 euclidean for Facenet512 (DeepFace standard)
-KNOWN_FACES_DIR = os.path.join(os.path.dirname(__file__), "known_faces")
+KNOWN_FACES_DIR = os.getenv(
+    "KNOWN_FACES_DIR",
+    os.path.join(os.path.dirname(__file__), "known_faces"),
+)
 
 # ── YOLO Segmentation ────────────────────────────────────────
 YOLO_MODEL = "yolo11n-seg.pt"
@@ -53,4 +67,7 @@ YOLO_PERSON_CLASS = 0
 TEMPORAL_ALPHA = 0.6  # current vs previous mask blend ratio
 
 # ── Database ─────────────────────────────────────────────────
-DB_PATH = os.path.join(os.path.dirname(__file__), "attend.db")
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql+asyncpg://postgres:postgres@localhost:5432/attend",
+)

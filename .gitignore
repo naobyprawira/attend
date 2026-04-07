@@ -31,3 +31,5 @@ server/debug_crops/
 # DeepFace weights
 .deepface/
 .playwright-mcp/
+ops-notes/
+non_app_archive/

@@ -33,6 +33,7 @@ async def init_db() -> None:
     logger.info("Database schema up to date")
 
 
-def get_db_path() -> str:
-    from server.config import DB_PATH
-    return DB_PATH
+def get_database_url() -> str:
+    from server.config import DATABASE_URL
+
+    return DATABASE_URL

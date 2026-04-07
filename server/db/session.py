@@ -11,14 +11,12 @@ from typing import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
-from server.config import DB_PATH
-
-DATABASE_URL = f"sqlite+aiosqlite:///{DB_PATH}"
+from server.config import DATABASE_URL
 
 engine = create_async_engine(
     DATABASE_URL,
     echo=False,
-    connect_args={"check_same_thread": False},
+    pool_pre_ping=True,
 )
 
 _async_session_factory = async_sessionmaker(
