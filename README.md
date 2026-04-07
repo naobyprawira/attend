@@ -85,7 +85,7 @@ This app stack expects the following services to already exist on `attend_networ
 
 ## Two-Repo Deployment Topology
 
-- Repo 1 (`kamera`): app stack (`web` + `api`)
+- Repo 1 (`attend`): app stack (`web` + `api`)
 - Repo 2 (`attend-mlops`): AI backend stack (`ai-backend`)
 - Optional separate infra repo/folder: PostgreSQL stack (`postgres`)
 

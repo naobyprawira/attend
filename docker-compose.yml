@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: server/Dockerfile
-    image: kamera-api:latest
+    image: attend-api:latest
     restart: unless-stopped
     environment:
       SERVER_ROLE: ${SERVER_ROLE:-app}
@@ -32,7 +32,7 @@ services:
       dockerfile: Dockerfile
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:5678}
-    image: kamera-web:latest
+    image: attend-web:latest
     restart: unless-stopped
     depends_on:
       api:
