@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+.git/
+.vscode/
+.ruff_cache/
+.playwright-mcp/
+output.md
+*.db
+
+web/node_modules/
+web/.next/
+web/out/
+web/tsconfig.tsbuildinfo
+
+server/__pycache__/
+camera/__pycache__/

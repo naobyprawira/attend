@@ -1,0 +1,51 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    image: kamera-api:latest
+    restart: unless-stopped
+    environment:
+      SERVER_ROLE: ${SERVER_ROLE:-app}
+      AI_WS_UPSTREAM_URL: ${AI_WS_UPSTREAM_URL:-ws://ai-backend:5679}
+      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://attend:attend@postgres:5432/attend}
+      SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+      KNOWN_FACES_DIR: /app/server/known_faces
+    ports:
+      - "${API_PORT:-5678}:5678"
+    volumes:
+      - known_faces:/app/server/known_faces
+    networks:
+      - default
+      - attend_network
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:5678/api/status', timeout=5)\""]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:5678}
+    image: kamera-web:latest
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:5678}
+      NODE_ENV: production
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+
+volumes:
+  known_faces:
+
+networks:
+  attend_network:
+    external: true
