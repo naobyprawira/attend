@@ -19,7 +19,7 @@ from server.core.errors import register_exception_handlers
 from server.db.engine import init_db
 from server.db.crud.persons import sync_known_faces_from_disk
 from server.db.crud.users import create_user, user_exists
-from server.routers import auth, events, persons, settings, status, users
+from server.routers import ai_events, ai_persons, auth, events, persons, settings, status, users
 
 logging.basicConfig(
     level=logging.INFO,
@@ -63,6 +63,8 @@ app.add_middleware(
 )
 
 app.include_router(status.router)
+app.include_router(ai_events.router)
+app.include_router(ai_persons.router)
 if SERVER_ROLE in {"app", "all"}:
     app.include_router(auth.router)
     app.include_router(users.router)
