@@ -23,6 +23,7 @@ HOST = os.getenv("HOST", "0.0.0.0")
 PORT = int(os.getenv("PORT", "5678"))
 SERVER_ROLE = os.getenv("SERVER_ROLE", "app").strip().lower()
 AI_WS_UPSTREAM_URL = os.getenv("AI_WS_UPSTREAM_URL", "ws://ai-backend:5679").rstrip("/")
+ATTEND_API_KEY = os.getenv("ATTEND_API_KEY", "")
 
 _DEFAULT_CORS_ORIGINS = [
     "http://localhost:3000",
