@@ -1,6 +1,12 @@
 """Centralized configuration for the Attend.ai server."""
 
 import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+# Load .env from the project root (one level above server/)
+load_dotenv(Path(__file__).parent.parent / ".env")
 
 # Limit internal thread counts BEFORE importing heavy libraries.
 # Prevents YOLO/numpy from saturating all CPU cores.
