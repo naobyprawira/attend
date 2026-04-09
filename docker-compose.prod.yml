@@ -35,10 +35,15 @@ services:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:5678}
     ports:
       - "${WEB_PORT:-3000}:3000"
+    networks:
+      - default
+      - proxy_network
 
 volumes:
   known_faces:
 
 networks:
   attend_network:
+    external: true
+  proxy_network:
     external: true

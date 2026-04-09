@@ -42,10 +42,15 @@ services:
       NODE_ENV: production
     ports:
       - "${WEB_PORT:-3000}:3000"
+    networks:
+      - default
+      - proxy_network
 
 volumes:
   known_faces:
 
 networks:
   attend_network:
+    external: true
+  proxy_network:
     external: true
